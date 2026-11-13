@@ -26,7 +26,7 @@ I read the code and docs of all four repos and ran each app.
 | **Practice Desk** | Solid exam engine: six question types, sectional timers and locks, negative marking, calculator, frozen attempts, detailed results, mistake notebook with spaced revision, a content pipeline for agents. | The home screen is a settings form. Results are a wall of twelve equally loud panels with disclaimers. Ships only SSC CGL papers. Getting your own content in is hard. |
 | **Revision Director** | The smartest scheduling: memory scheduling (FSRS-7) kept separate from a daily planner that respects exam dates, time budget, weak areas and subject balance; proper handling of forgotten items. | Adding one topic needs about twenty fields (scope, protocol, success criteria, checkpoints…). The vocabulary is internal jargon ("obligations", "evidence events", "capacity exceptions"). Rating one recall asks for checkpoints, cue level and error types. It reads like a compliance tool. |
 | **Calendar** | A capable, generic calendar library: recurrence, drag and resize, time zones, availability, planned-versus-actual, Google Calendar and ICS support. | It is a plain grid. Nothing in it knows about exams, so it adds no insight by itself. |
-| **Study Director** (reference, not merged now) | The most polished: installable app, Google Drive sync across devices, timer, notes, themes, phone layout. | Not part of this build; see section 8. |
+| **Study Director** (reference, not merged now) | By far the largest and most polished: a day planner, live timer, practice pacer, daily review, a full notes system, insights, and Drive sync across devices. | Not part of this build; see section 9. |
 
 The deeper problem is that the three apps are three databases with three vocabularies, and you are the integration layer. The same topic is typed into each. A mock result never reaches the revision planner. The calendar only shows what the others export to it.
 
@@ -182,20 +182,51 @@ Not part of the first builds; you have no API key now and nothing above depends 
 
 ## 9. Study Director: separate now, loose link next, absorbed later
 
+### What Study Director is
+
+Study Director answers "how did I spend my day?"; Practice Director answers "what do I know, and what can I score?". They meet at the subject, the timer and the notes.
+
+| Study Director surface | What it does |
+|---|---|
+| Plan | A day of time blocks (work, support, fixed) built on a board or pasted as text, with templates, saved plans, a default plan, and a draft that must be applied. Each block can carry an Area and a measurable target. A study day runs 04:00 to 03:59. |
+| Execute | A timer that follows the applied plan: run, pause, finish, skip, extra time, done/total progress, a drift indicator against the clock, Adjust Plan tools, Pomodoro rhythm, screen-awake, sounds and device notifications. Area notes sit beside the running block. |
+| Practice Pacer | A stopwatch inside a work block for answers, questions or paper sections: one repeated target, or a paper plan with fixed-time or marks-weighted groups. It records unit times, not correctness. |
+| Review | Brings plan and timer evidence together, lets you correct progress, add a quality rating, reflection and carry-forward note, then Save Today. Without a study day it is a diary. |
+| Library | Notes (nested, rich text, images, PDFs, audio, tags, links between notes, full-text search, import, recently deleted), Saved Days and Diary, and Data (Device Folder and Drive backups, version history, three restore modes, encrypted standalone files, attachments). |
+| Insights | Seven read-only surfaces built from saved days, led by a Coach that keeps two priorities open, and careful to withhold findings when evidence is thin. |
+| Sync | Local-first on every device; Drive carries changes between them. Clashes are kept as "Needs review". Today's session runs on one device at a time and is handed over with Continue Here. Multiple profiles. |
+
+### Lessons taken from it
+
+- **No "apply" and no "save" steps.** Study Director's draft-versus-applied plan and its Save Today ritual are its two heaviest concepts. In Practice Director the plan is always live and everything is recorded as it happens.
+- **Honest evidence.** Keep its distinction between explicit progress, time-derived estimates and missing data. Missing is never treated as failed.
+- **Two priorities, not twenty.** Progress leads with at most two things to act on, as its Coach does.
+- **Features must surface where they are needed.** Its own backlog notes that tags and note links are buried in the Library. Practice Director shows notes, mistakes and last-mile sheets on the topic and in the session, not in a separate store.
+- **Sync that sends only what changed.** Its Drive backups take over 20 seconds and the hand-over feels heavy; a review of the repository design and of hand-over versus live sync is already on its backlog. Practice Director's sync is designed from that review's conclusions, so both apps end up on one engine, and its add-only history keeps uploads small.
+- **Notifications that expire.** Few, and each one disappears once it no longer applies.
+- **Second device starts with "Connect Drive".** A new phone should find existing data before asking for anything.
+- **Same day boundary.** 04:00, so a day means the same thing in both apps.
+- **The pacer's paper plan** (time per question weighted by marks) is reused for written answers and answer-sheet mode.
+
+### The relationship in three stages
+
 **Now**: Practice Director is fully independent and does not need Study Director. It deliberately does not rebuild what Study Director does well (full-day routine planning, Pomodoro, long-form notes). It keeps only light versions: a time budget, a session timer and short topic notes.
 
 **Hosting**: Practice Director gets its own web address. Study Director is in daily use with real data, so its address is not touched: a shared address would share storage limits, a "clear site data" would wipe both apps, their offline workers would overlap, and a bad deploy of the new app could break the old one. (This reverses my earlier suggestion to share an address.)
 
-**Loose link (optional, later)**: Practice Director can read a "study feed" of what you studied (subject, task, amount, minutes) and offer "You studied X — add it to revision?". The feed travels through your own Google Drive, which both apps already use, so neither app reaches into the other's storage.
+**Loose link (optional, later)**, in both directions and through your own Google Drive, so neither app reaches into the other's storage:
+
+- Study Director → Practice Director: a finished work block with an Area and done/total becomes "You studied X; start revising it?", automatic once the Area is matched to a topic.
+- Practice Director → Study Director: today's session can appear as a work block in the day plan, and opening that block jumps to the session.
 
 **Absorption (last phase)**: the combined app is released at Study Director's existing address, so Study Director's data stays where it is and is adopted in place; Practice Director's data arrives through its normal Drive sync. Study Director keeps working unchanged until that release.
 
 **Built so absorption is easy**:
 
-- Every Study Director surface already has a natural slot: its Plan board → the Plan screen's day view; Execute timer → the session runner; daily Review → an end-of-day step on Today; Notes → topic notes in Syllabus; Insights → Progress.
+- Every Study Director surface already has a natural slot: Plan board → the Plan screen's day view; Execute timer and Pomodoro → the session runner; Practice Pacer → answer-sheet mode and written answers; daily Review and Diary → an end-of-day step on Today; Notes → topic notes in Syllabus; Saved Days → the history archive; Insights → Progress; backups, version history and attachments → Settings › Data.
 - The syllabus tree is the shared spine. Study Director's "Area" maps onto a syllabus node.
 - Features are modules that register their own record types with one shared storage, backup and sync layer. Study Director's planner, timer and notes can arrive later as new modules without reshaping the core.
-- The sync layer is adapted from Study Director's Drive engine, so both apps already speak the same backup language.
+- One sync and backup engine for both, shaped by the sync review already planned for Study Director.
 - The visual language is a sibling of Study Director's.
 
 ## 10. Architecture
@@ -242,7 +273,7 @@ One scheduler serves both recalled prompts and re-attempted questions, with sepa
 
 - IndexedDB for records; browser file storage (OPFS) for images, PDFs and answer photos.
 - One backup file format, optionally encrypted.
-- Google Drive sync for laptop + phone, adapted from Study Director's engine. It is much simpler here: history entries only ever get added, so two devices merge by union, and derived views are recomputed. A test in progress belongs to one device at a time.
+- Google Drive sync for laptop + phone, building on Study Director's engine and the lessons in section 9. It is much simpler here: history entries only ever get added, so two devices merge by union, only new entries are uploaded, and derived views are recomputed. A test in progress belongs to one device at a time.
 
 ### What is reused
 
@@ -265,7 +296,7 @@ Each phase ends with something you can use daily.
 
 | Phase | Delivers | Replaces |
 |---|---|---|
-| 0. Design | Clickable mock-up of the five screens and the test player, light and dark, laptop and phone. You approve before build. | — |
+| 0. Design | Mock-up on a design canvas (first six screens done: Today, phone session, answer-sheet mode, results, Syllabus, Plan). Still to draw: test player, Progress, written answers. You approve before build. | — |
 | 1. Revise | Interface kit and design system, storage, exam templates, syllabus checklist, recall sessions, revision rounds, Today, backup file | Revision Director (core) |
 | 2. Practise | Answer-sheet mode with clipping, question bank, pack import, set builder, test player, results, mistake loop, outside-practice log | Practice Desk |
 | 3. Sync | Google Drive sync, phone polish, install flow | — |
