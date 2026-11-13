@@ -1,6 +1,8 @@
 # Practice Director — product and build plan
 
-Status: planning draft, 13 Nov 2026. Nothing is built yet.
+Status: planning draft, revised 13 Nov 2026 after owner feedback. Nothing is built yet.
+
+The test of this app is whether it gets used every day. Every design choice below is judged against that: it must never feel like a chore to operate.
 
 ## 1. What the app is for
 
@@ -40,6 +42,8 @@ There is also real duplication to remove: Practice Desk and Revision Director ea
 6. **No guilt backlog.** When you miss days, the app spreads the catch-up over the coming days inside your time budget and tells you so.
 7. **Honest numbers.** Keep Practice Desk's rule: no invented predictions. Every strength label says what it is based on ("from 14 questions and 3 recalls").
 8. **Phone and laptop are both first-class.** Quick reviews and today's plan on the phone; mocks and writing on the laptop.
+9. **Automatic by default.** The app decides what, when and how much from sound mechanisms (section 5). You confirm with a tap or override; you never configure before you can start. Every input the app asks for must pay for itself the same day.
+10. **Works fully without AI.** No feature in the core loop depends on an AI key. AI is a later, optional layer (section 8).
 
 ## 4. The app, screen by screen
 
@@ -50,26 +54,29 @@ Five places, plus Settings behind the profile menu. On a laptop they sit in a sl
 - A strip of countdown chips: each exam stage and its days remaining.
 - **Today's session**: an ordered list with time estimates that fits your time budget, for example: fix 8 mistakes from Mock 4 (12 min) · 14 recalls due (25 min) · Polity: Parliament, 20 questions (weak topic) · CAT Mock 6 at 2 pm. One **Start** button runs them back to back. Any item can be skipped or pushed to tomorrow; the plan reflows.
 - **Quick capture** bar: type "read Parliament chapter 2h" or "30 Q percentages from book, 22 right, 40 min". The app suggests the topic, asks nothing else, and schedules the follow-up.
+- **"How long do you have?"** chips (5 · 15 · 30 · 60 min): pick one and the app hands you exactly that much of the most valuable work. Made for the phone and for low-energy days.
 - A small week strip showing consistency.
 
 ### Practice
 
 - **Papers**: mocks, past papers and sectional tests, filtered by exam. Two taps to start: pick paper, pick mode (exam simulation, untimed, one section).
 - **Build a set**: choose topics, number of questions, and source (unseen, my mistakes, weak topics, mixed).
-- **Written answers**: mains-style questions with marks, word limit and timer. Write on paper or type; then compare against key points and score yourself (or ask AI, see section 7).
-- **Log outside practice**: for books, paper tests and coaching websites. Includes a pacer (a per-question timer you tap through) and a quick results form. Mistakes logged here join the same revision loop.
+- **Written answers**: mains-style questions with marks, word limit and timer. Write on paper or type; then compare against key points and run the five-point self-check (section 5).
+- **Answer-sheet mode**: for any PDF, book or coaching test, with no typing-in of questions. Open the PDF beside a bubble sheet (or keep the paper on your desk), answer against the timer, then paste or tap in the answer key. The app scores it with that exam's marking, times each question, and builds the mistake list. For each mistake you can **clip** the question straight from the PDF page as an image; that clip becomes the revision card.
+- **Log outside practice**: for tests taken on a coaching website or anything already finished. A pacer (a per-question timer you tap through) and a ten-second results entry. Mistakes logged here join the same revision loop.
 
 **The test player** is distraction-free and follows the paper's own rules: sectional locks, question palette, mark-for-review, on-screen calculator where the exam allows it, split view for reading passages, and a usable phone layout.
 
 **Results** are told as a short story instead of a dashboard: your score → where the marks went (did not know, errors, left blank, ran out of time) → the three most useful things to do next → **Fix mistakes now**. Full question-by-question review and timing stay available as tabs.
 
-**Mistake triage**: each wrong, guessed or slow question gets one tap for the reason (didn't know · silly error · misread · time pressure · guessed). It is then scheduled to return, and its topic is marked weaker.
+**Mistake triage**: each wrong, guessed or slow question gets a reason (didn't know · silly error · misread · time pressure · guessed). The app pre-selects the likely reason from what it observed (answered in seconds and wrong, changed from right to wrong, left blank when time ran out, marked unsure), so most of the time you only confirm. The question is then scheduled to return, and its topic is marked weaker.
 
 ### Syllabus
 
 - The syllabus tree for each exam, with a strength bar on every node: New · Learning · Shaky · Steady · Strong.
 - A topic page shows strength, last practised, next due, and tabs for its prompts, questions, notes and history.
 - Add a topic or a whole outline by pasting text. One line per topic is enough.
+- **Ticking a topic as studied is the only input revision needs.** The topic itself becomes the recall prompt ("recall everything on X"), scheduled automatically. Key points, diagrams and finer prompts are optional extras you add when you feel the need.
 
 ### Plan
 
@@ -107,7 +114,40 @@ Study Director's "Glass" look is the most polished thing in the four repos, and 
 
 I will show this as a clickable mock-up before any build work, so you judge screens and not descriptions.
 
-## 5. Tailored for you, generic for others
+## 5. Preparation habits built into the mechanisms
+
+The app encodes how people who clear these exams actually prepare, so that following good practice takes no effort or knowledge.
+
+| Proven habit | What the app does by itself |
+|---|---|
+| Few sources, many revisions; the whole syllabus revised several times before the exam | **Revision rounds**: the app tracks full passes over the syllabus and spaces them so the final pass ends just before the exam. A coverage meter shows each round. |
+| Past papers decide what matters | Each topic shows how often it has been asked. That frequency sets the topic's weight automatically; there is no "importance" field to fill. |
+| Tracking the syllabus line by line | The syllabus is a checklist. Ticking a topic starts its revision cycle. |
+| Analysing a mock matters more than taking it | A mock is not marked done until its mistakes are triaged. Results lead straight into the fix loop. |
+| Calibrated risk in negative-marking papers (sure / 50-50 / guess) | Optional one-tap confidence while answering. The app reports your accuracy at each confidence level against the break-even for that paper's marking, and says which bets are paying. |
+| Daily answer writing for mains | One or two questions a day, picked from topics studied recently, timed, followed by a five-point self-check: structure, key terms, diagram, length, finished in time. |
+| Diagrams, maps and tables (central to Forestry and Geology) | Prompts can be "draw it" prompts with a reference image; the self-check asks about the diagram. |
+| Short notes for the final month | A **last-mile sheet** per topic, compiled automatically from your mistakes, key points and sticking points. |
+| Current affairs revised monthly | A current-affairs topic is created each month and scheduled like any other. |
+| Preparation moves in phases | The planner changes its mix by phase, worked out from exam dates: foundation → prelims focus → mains focus → final month (revision and full mocks only) → final week (taper). |
+| Weekly review and planning | A Sunday summary is generated: what was covered, what slipped, what next week holds. One screen, nothing to type. |
+| CAT: sectional tests, long analysis per mock, choosing which questions to leave | Section tests; "time sinks" (long and wrong) flagged as questions to have skipped; unsolved sets offered again untimed. |
+| Consistency over intensity | Time budget, a streak that allows a planned rest day, and catch-up spread over several days. |
+
+### Beyond what the four apps do today
+
+The scope is not limited to the existing apps. Added because they earn daily use:
+
+- **Answer-sheet mode and clipping** (section 4): any PDF or book becomes timed, scored practice with a mistake list, with no data entry.
+- **Time-boxed start**: "I have 15 minutes" gives a ready session.
+- **Rapid-fire fact decks**: quick cards for memory-heavy material (species and botanical names, stratigraphy, formulae, vocabulary), separate from long recall prompts.
+- **Exam rehearsal**: full mocks are proposed at the real exam's time of day and, in the final month, on its weekday pattern.
+- **Attempt-strategy report** from confidence tags and time sinks.
+- **Last-mile sheets** and the **Sunday summary**.
+
+Removed because they cost attention without paying it back: the study-log tab, per-item protocol and success-criteria fields, splitting of long items into chunks, the alternative scheduling policy, multiple skins, the plugin runtime, and edition comparison as a default view.
+
+## 6. Tailored for you, generic for others
 
 Exam-specific behaviour comes from **exam templates** and **syllabus packs**, which are data files:
 
@@ -115,38 +155,40 @@ Exam-specific behaviour comes from **exam templates** and **syllabus packs**, wh
 - A syllabus pack is a topic tree for that exam.
 - One topic can count toward more than one exam (CSAT quant and CAT quant overlap).
 
-Shipped first: UPSC Prelims (shared by CSE and IFoS), IFoS Mains (descriptive), CAT, and a blank template. Later packs: CSE Mains, NEET PG and medical professional exams, JEE. The engine already supports what these need: negative and partial marking, numeric and typed answers, multiple-correct, images, maths rendering.
+First targets:
 
-Exact patterns (question counts, marking, section timing) change between years, so each template is checked against the current official notification when it is written, and stays editable.
+| Exam | Date | Notes |
+|---|---|---|
+| UPSC Prelims 2027 (CSE and IFoS share it) | 23 May 2027 | From the UPSC 2027 calendar as reported by news and coaching sites |
+| IFoS Mains 2027 | Starts about 21 Nov 2027 | One secondary source only; exact dates come with the notification. Optionals: Forestry and Geology, plus General English and General Knowledge. |
+| CAT | 29 Nov 2026 or about 28 Nov 2027 | The 2027 date is a projection and would fall right after IFoS Mains. |
 
-## 6. How content gets in
+All dates are editable and are confirmed against the official notification when it appears. A blank template is included. Later packs: CSE Mains, NEET PG and medical professional exams, JEE. The engine already supports what these need: negative and partial marking, numeric and typed answers, multiple-correct, images, maths rendering.
+
+## 7. How content gets in (no AI needed)
 
 | Your source | How it enters |
 |---|---|
-| Past papers as PDFs | With AI assist: upload PDF and answer key → draft questions → you review in a grid → publish. Without AI: the existing Practice Desk agent pipeline produces a pack file that the app imports. |
-| Coaching test series | PDFs go the same way. For tests taken on a coaching website: log the result (score, sections, time) and add mistakes by photo or quick entry. |
-| Books and paper practice | Pacer plus quick log; no need to enter the questions. |
-| Your notes | One-line prompts by hand, or AI drafts prompts and questions from pasted notes. |
+| Past papers as PDFs | **Answer-sheet mode** works on any PDF immediately. For papers worth having fully inside the app (searchable, mixable into custom sets), a pack file is prepared outside the app in a Claude Code session, using the existing Practice Desk content tools, and imported. That needs no API key. |
+| Coaching test series | PDFs: answer-sheet mode. Tests on a coaching website: log the result and clip or note the mistakes. |
+| Books and paper practice | Answer-sheet mode or the pacer; the questions are never typed in. |
+| Your notes | Syllabus topics are the prompts by default. Add one-line prompts or key points only where you want finer recall. |
 
 The app itself ships no copyrighted papers. You import your own; shared packs carry only templates and syllabi unless the content is free to share.
 
-## 7. Optional AI assist
+## 8. AI assist: later and optional
 
-The app is complete without it. With your own API key (stored only on your device), it can:
+Not part of the first builds; you have no API key now and nothing above depends on one. A slot is kept so it can be added without reshaping anything. With a key it would draft questions from a PDF, give feedback on a written answer, or explain a mistake, always as drafts you approve.
 
-- turn a PDF, photo or pasted text into draft questions with keys;
-- turn a pasted syllabus into a topic tree;
-- draft recall prompts and key points from notes;
-- give feedback on a written answer against the key points, including from a photo of handwriting;
-- explain a mistake.
-
-Rules: everything AI produces is a draft you approve; AI-made content is labelled as such; nothing is sent anywhere unless you trigger it; the cost of each action is shown.
-
-## 8. Study Director: separate now, loose link next, absorbed later
+## 9. Study Director: separate now, loose link next, absorbed later
 
 **Now**: Practice Director is fully independent and does not need Study Director. It deliberately does not rebuild what Study Director does well (full-day routine planning, Pomodoro, long-form notes). It keeps only light versions: a time budget, a session timer and short topic notes.
 
-**Loose link (optional, later)**: Practice Director can read a "study feed" of what you studied (subject, task, amount, minutes) and offer "You studied X — add it to revision?". Hosting both apps on the same web origin makes this possible without file exports, and makes the later merge an in-place move.
+**Hosting**: Practice Director gets its own web address. Study Director is in daily use with real data, so its address is not touched: a shared address would share storage limits, a "clear site data" would wipe both apps, their offline workers would overlap, and a bad deploy of the new app could break the old one. (This reverses my earlier suggestion to share an address.)
+
+**Loose link (optional, later)**: Practice Director can read a "study feed" of what you studied (subject, task, amount, minutes) and offer "You studied X — add it to revision?". The feed travels through your own Google Drive, which both apps already use, so neither app reaches into the other's storage.
+
+**Absorption (last phase)**: the combined app is released at Study Director's existing address, so Study Director's data stays where it is and is adopted in place; Practice Director's data arrives through its normal Drive sync. Study Director keeps working unchanged until that release.
 
 **Built so absorption is easy**:
 
@@ -156,12 +198,17 @@ Rules: everything AI produces is a draft you approve; AI-made content is labelle
 - The sync layer is adapted from Study Director's Drive engine, so both apps already speak the same backup language.
 - The visual language is a sibling of Study Director's.
 
-## 9. Architecture
+## 10. Architecture
 
 ### Stack
 
 - Strict TypeScript, ES modules, built with Vite into an installable, offline-capable web app (PWA). No server and no accounts.
-- **Preact** (about 4 KB) for the interface, with plain CSS and design tokens. All four existing apps hand-build the DOM; that is where most of the roughness comes from (Study Director's host file is over 12,000 lines). The screens are being rewritten anyway, and a small component model makes them consistent. Everything below the interface stays framework-free.
+- **A custom interface with no framework**, as in Study Director, but built on a small in-house kit of a few hundred lines instead of freehand DOM code:
+  - reactive state, so a screen can never show stale data;
+  - a component convention (a function that returns elements) and a keyed-list helper;
+  - a router and one motion layer (shared-element and page transitions, springs, reduced-motion support);
+  - a design system of tokens and about twenty components. Screens are assembled only from these, which is what keeps the app consistent.
+- Why not freehand: Study Director and Practice Desk both show the cost (a 12,000-line host file; hand-written code to stop re-renders destroying focus and input). Why not Preact, Svelte, Solid or Lit: each would work, but each adds a dependency and a second way of doing things next to Calendar and, later, Study Director's code, for benefits the small kit already gives. Polish comes from the design system and motion layer, not from a framework.
 - Existing runtime libraries are kept: ts-fsrs, KaTeX, Wordgard.
 
 ### Modules
@@ -175,8 +222,9 @@ src/
   planner/    daily plan, time budget, load forecast
   evidence/   one append-only history log and the views derived from it
   store/      IndexedDB + file storage, backup, sync
-  assist/     optional AI
+  ui/kit/     reactive state, components, router, motion
   ui/         design system and screens
+  assist/     optional AI (later)
 packs/        exam templates and syllabus packs
 tools/        content command-line tools for agents
 ```
@@ -211,36 +259,35 @@ Practice Desk and Revision Director are frozen once Practice Director reaches pa
 
 Carry over the tests that guard correctness of pure logic: scoring, attempt rules, FSRS replay and parity, planner determinism, backup integrity. Drop the old acceptance and visual suites, which test screens that will no longer exist. Add a small new set of browser journeys for the core flows at laptop and phone widths, with screenshots checked before any interface change is called done.
 
-## 10. Build phases
+## 11. Build phases
 
 Each phase ends with something you can use daily.
 
 | Phase | Delivers | Replaces |
 |---|---|---|
 | 0. Design | Clickable mock-up of the five screens and the test player, light and dark, laptop and phone. You approve before build. | — |
-| 1. Revise | App shell, storage, exam templates, syllabus, prompts, recall sessions, Today, backup file | Revision Director (core) |
-| 2. Practise | Question bank, pack import, set builder, test player, results, mistake loop, outside-practice log | Practice Desk |
+| 1. Revise | Interface kit and design system, storage, exam templates, syllabus checklist, recall sessions, revision rounds, Today, backup file | Revision Director (core) |
+| 2. Practise | Answer-sheet mode with clipping, question bank, pack import, set builder, test player, results, mistake loop, outside-practice log | Practice Desk |
 | 3. Sync | Google Drive sync, phone polish, install flow | — |
 | 4. Plan and Progress | Calendar integration, mock scheduling, load forecast, reminders, Progress screen | Calendar as a separate app; rest of Revision Director |
-| 5. Write and Assist | Written answers, AI assist, in-app authoring | — |
+| 5. Write | Written answers with self-check, last-mile sheets, weekly review, in-app authoring | — |
 | 6. Wider use | More exam packs, pack sharing, onboarding for other students | — |
 | 7. Study Director | Loose link, then absorption | Study Director |
+| Later, optional | AI assist | — |
 
-Until phase 5, question content comes in through the existing agent pipeline as pack files.
+## 12. Decisions and open points
 
-## 11. Decisions I made, and points still open
+Settled:
 
-Decisions (tell me if you disagree):
-
-- Preact for the interface instead of hand-built DOM.
+- Custom interface on a small in-house kit; no framework.
 - Calendar stays its own library; Practice Desk and Revision Director code moves in.
-- One visual style instead of multiple skins.
+- One visual style, improving on Study Director's Glass look.
 - Fixed-retention scheduling only.
-- No migration of existing data from Practice Desk or Revision Director, since both describe themselves as clean-slate prototypes.
+- No import of old data from Practice Desk or Revision Director (there is none).
+- Separate web address from Study Director until absorption.
+- No AI in the first builds.
 
 Open:
 
-1. Do you have real history in Practice Desk or Revision Director worth importing?
-2. Which IFoS optional subjects, and which exam dates, should the first templates target?
-3. Should Practice Director be hosted on the same origin as Study Director (recommended, see section 8)?
-4. Exam patterns for the first templates need checking against the current official notifications.
+1. Which CAT are you sitting: 29 Nov 2026, or 2027? A 2027 sitting would fall right after IFoS Mains, which changes how the planner splits the final months.
+2. IFoS Mains dates and all exam patterns are to be confirmed against official notifications when templates are written.
