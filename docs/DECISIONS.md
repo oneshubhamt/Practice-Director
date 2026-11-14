@@ -59,6 +59,8 @@ How the idea has changed, in order, and where each question stands. The current 
 12. **Owner's condition: the day must not be dictated by a machine.** Study Director exists so the owner plans by hand, at an organic pace. Recorded as a design principle ("You plan; the app informs"): the app works out facts and makes offers; it places nothing in the plan. Consequences written in: choose-your-own by subject, kind and length; phases declared by the owner; practice time offered to the day, never inserted; the week level of the calendar optional.
 13. **Second audit, beyond the four apps.** Added: briefing before a paper, form and admit-card dates, a source line per topic, sharing for feedback with a person, readable export. Cut or pushed back: the memory-model optimizer, paper editions in the interface, the authoring studio, much of the inherited safety machinery; the in-app test player is to be re-examined before it is built, because the target exams are sat on paper.
 
+14. **Owner on Study Director's unfinished-work feature**: never used, unintuitive, unclear what it is for. Found to be a generated text note with no way to act on it. Proposed replacement: a "left over" tray of live blocks beside the Plan board, placed by hand, plus a one-line note to tomorrow. Recorded in STUDY_DIRECTOR_IDEAS.md, a new file for ideas that belong to Study Director.
+
 ## Positions that were reversed
 
 | Was | Now | Why |
@@ -77,6 +79,7 @@ How the idea has changed, in order, and where each question stands. The current 
 
 1. Final word on the two-app structure and the Calendar's home.
 2. Whether the Calendar work in Study Director is wanted now or later; it is a separate project in that repo.
-3. Screens not yet drawn: in-app test player, Practice home, first run, Settings, search, tablet layout.
-4. Thin areas: current affairs, General English, the interview stage.
-5. IFoS Mains dates and paper patterns to be confirmed against official notifications.
+3. When Study Director work (calendar, left-over tray, the seam) is taken up, and in which repo session.
+4. Screens not yet drawn: in-app test player, Practice home, first run, Settings, search, tablet layout.
+5. Thin areas: current affairs, General English, the interview stage.
+6. IFoS Mains dates and paper patterns to be confirmed against official notifications.
