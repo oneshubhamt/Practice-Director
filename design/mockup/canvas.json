@@ -1,19 +1,96 @@
 {
   "v": 3,
-  "createdOnFiles": { "v": 1, "at": "2026-11-13T14:10:00Z" },
-  "title": "Practice Director — design mock-up",
-  "launch": { "view": "canvas" },
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-13T14:10:00Z"
+  },
+  "title": "Practice Director \u2014 design mock-up",
+  "launch": {
+    "view": "canvas"
+  },
   "pages": [],
   "boards": {
-    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 960, "title": "Today (laptop)", "expand": "fill", "is_interactive": true },
-    "Phone-flow.dc.html": { "x": 1520, "y": 0, "w": 390, "h": 844, "title": "Daily session (phone, press Play)", "is_interactive": true, "radius": 28 },
-    "Written-answer.dc.html": { "x": 1990, "y": 0, "w": 390, "h": 844, "title": "Written answer (phone beside your paper)", "is_interactive": true, "radius": 28 },
-    "Answer-sheet.dc.html": { "x": 0, "y": 1080, "w": 1440, "h": 1030, "title": "Answer-sheet mode (any PDF)", "expand": "fill", "is_interactive": true },
-    "Results.dc.html": { "x": 1520, "y": 1080, "w": 1440, "h": 1280, "title": "Results as a story", "expand": "fill" },
-    "Syllabus.dc.html": { "x": 0, "y": 2480, "w": 1440, "h": 900, "title": "Syllabus", "expand": "fill", "is_interactive": true },
-    "Progress.dc.html": { "x": 1520, "y": 2480, "w": 1440, "h": 1150, "title": "Progress", "expand": "fill" }
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 960,
+      "title": "Today (laptop)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Phone-flow.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Daily session (phone, press Play)",
+      "is_interactive": true,
+      "radius": 28
+    },
+    "Written-answer.dc.html": {
+      "x": 1990,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Written answer (phone beside your paper)",
+      "is_interactive": true,
+      "radius": 28
+    },
+    "Answer-sheet.dc.html": {
+      "x": 0,
+      "y": 1080,
+      "w": 1440,
+      "h": 1030,
+      "title": "Answer-sheet mode (any PDF)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Results.dc.html": {
+      "x": 1520,
+      "y": 1080,
+      "w": 1440,
+      "h": 1280,
+      "title": "Results as a story",
+      "expand": "fill"
+    },
+    "Syllabus.dc.html": {
+      "x": 0,
+      "y": 2480,
+      "w": 1440,
+      "h": 900,
+      "title": "Syllabus",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Progress.dc.html": {
+      "x": 1520,
+      "y": 2480,
+      "w": 1440,
+      "h": 1150,
+      "title": "Progress",
+      "expand": "fill"
+    },
+    "SD-Plan-concept.dc.html": {
+      "x": 0,
+      "y": 3750,
+      "w": 1440,
+      "h": 970,
+      "title": "Study Director: Plan with a margin (concept)",
+      "expand": "fill",
+      "is_interactive": true
+    }
   },
-  "order": ["Main.dc.html", "Phone-flow.dc.html", "Written-answer.dc.html", "Answer-sheet.dc.html", "Results.dc.html", "Syllabus.dc.html", "Progress.dc.html"],
+  "order": [
+    "Main.dc.html",
+    "Phone-flow.dc.html",
+    "Written-answer.dc.html",
+    "Answer-sheet.dc.html",
+    "Results.dc.html",
+    "Syllabus.dc.html",
+    "Progress.dc.html",
+    "SD-Plan-concept.dc.html"
+  ],
   "notes": {},
   "designSystems": []
 }

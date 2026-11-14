@@ -14,7 +14,8 @@ How the idea has changed, in order, and where each question stands. The current 
 | AI inside the app | None in the first builds; copy and paste bridges instead | Agreed |
 | Hosting | Own web address, apart from Study Director | Agreed |
 | Devices | Laptop and phone, synced through the owner's Google Drive | Agreed |
-| Exams targeted first | UPSC Prelims 2027 and IFoS Mains 2027 (Forestry, Geology). CAT not for now. | Agreed |
+| Exams targeted first | UPSC Prelims 2027 and IFoS Mains 2027 (Forestry, Geology). Screen-based exams (CAT, XAT, PGDBA) secondary. | Agreed |
+| How the app guides without dictating | Plan with a margin: the owner's side and the app's side; offers cross only by hand | Proposed; owner's own suggestion, refined |
 | Practice time | 2 to 4 hours a day | Stated by owner |
 | Target scores | Default 55% of a paper's marks, changeable | Default set; owner said 50 to 60% is what is needed |
 | Old data | None to import | Stated by owner |
@@ -61,6 +62,15 @@ How the idea has changed, in order, and where each question stands. The current 
 
 14. **Owner on Study Director's unfinished-work feature**: never used, unintuitive, unclear what it is for. Found to be a generated text note with no way to act on it. Proposed replacement: a "left over" tray of live blocks beside the Plan board, placed by hand, plus a one-line note to tomorrow. Recorded in STUDY_DIRECTOR_IDEAS.md, a new file for ideas that belong to Study Director.
 
+15. **Owner's rulings and a question** (14 Nov).
+    - Asked how "I plan, the app informs" fits with a calendar that guides; suggested two panels, one to author the plan and one for suggestions, with the calendar as part of Plan. Adopted: Plan with a margin, and Day, Week and Year views, a year at most. The owner expects the week level to be useful, not merely optional.
+    - Briefing before a paper: yes. Source line per topic: yes, optional. Readable export: yes.
+    - Form and admit-card dates: to be added by the owner as deadlines in the calendar, which should work back from them.
+    - Sharing answers with a person: dropped; AI only.
+    - Paper editions: keep the function, out of the interface by default. In-app authoring: keep, late.
+    - In-app test player and question bank: must stay; needed for screen-based exams (CAT, XAT, PGDBA) and for AI-written questions. UPSC Prelims and Mains remain the first concern.
+    - Safety machinery: left to the designer. Call made: reduced with no loss of safety (PLAN.md section 11a).
+
 ## Positions that were reversed
 
 | Was | Now | Why |
@@ -74,6 +84,7 @@ How the idea has changed, in order, and where each question stands. The current 
 | Four-button self-rating | Tap what you missed | Self-rating invites flattery |
 | "Fix" shows the answer | Blind re-attempt | Seeing an answer is not solving it |
 | Five strength labels | Draining memory bar | The labels mixed knowing with recency |
+| Test player to be re-examined; editions dropped from the interface; authoring pushed to "wider use" | All three kept | Owner's ruling: screen-based exams and AI-checked papers need them |
 
 ## Still open
 

@@ -77,7 +77,7 @@ There is also real duplication to remove: Practice Desk and Revision Director ea
 8. **Phone and laptop are both first-class.** Quick reviews and today's plan on the phone; mocks and writing on the laptop.
 9. **Automatic by default.** The app decides what, when and how much from sound mechanisms (section 5). You confirm with a tap or override; you never configure before you can start. Every input the app asks for must pay for itself the same day.
 10. **Works fully without AI.** No feature in the core loop depends on an AI key. AI is a later, optional layer (section 8).
-11. **You plan; the app informs.** Your day is yours and must not become a routine handed down by a machine. The app works out only facts (what is fading, what a paper scored, how much is coming) and makes offers. It never puts anything into your plan, never needs you to obey it to stay useful, and adjusts to what you actually did. How many hours, which subject, in what order and at what pace are your choices every day.
+11. **You plan; the app informs.** Your day is yours and must not become a routine handed down by a machine. The app works out only facts (what is fading, what a paper scored, how much is coming) and makes offers. It never puts anything into your plan, never needs you to obey it to stay useful, and adjusts to what you actually did. How many hours, which subject, in what order and at what pace are your choices every day. In practice the app does three things, **remember, compute and offer**, and you do three, **place, change and ignore**. Offers sit on their own side of the screen and cross into your plan only by your hand. When reality differs from the plan, which it always will, the app redoes the sums and tells you what follows; it does not replan for you.
 
 ## 4. The app, screen by screen
 
@@ -211,7 +211,7 @@ First targets:
 |---|---|---|
 | UPSC Prelims 2027 (CSE and IFoS share it) | 23 May 2027 | From the UPSC 2027 calendar as reported by news and coaching sites |
 | IFoS Mains 2027 | Starts about 21 Nov 2027 | One secondary source only; exact dates come with the notification. Optionals: Forestry and Geology, plus General English and General Knowledge. |
-| CAT | Not a target for now | The engine supports its pattern (sections, typed answers, calculator); a template follows when wanted. |
+| Screen-based exams (CAT, XAT, PGDBA) | Secondary | Served by the in-app test player in phase 6. |
 
 All dates are editable and are confirmed against the official notification when it appears. A blank template is included. Later packs: CSE Mains, NEET PG and medical professional exams, JEE. The engine already supports what these need: negative and partial marking, numeric and typed answers, multiple-correct, images, maths rendering.
 
@@ -405,7 +405,7 @@ Each phase ends with something you can use daily.
 | 3. Write | Written answers with the marks-weighted clock, missed points to cards, Copy for AI, Paste from AI | — |
 | 4. Sync | Google Drive sync, phone polish, install flow | — |
 | 5. See | Progress, targets, load guard, weekly summary, daily anchor | — |
-| 6. Full papers in-app (re-examine first) | Question bank, test player, set builder | Rest of Practice Desk |
+| 6. Full papers in-app | Question bank, test player, set builder, paper editions; in-app authoring last | Rest of Practice Desk |
 | 7. Wider use | More exam packs, pack sharing, onboarding for other students | — |
 | 8. The seam | The three links to Study Director. Integrating the Calendar into Study Director is its own project in that repo. | — |
 | Later, optional | AI assist with a key | — |
@@ -445,20 +445,19 @@ Asked again whether anything outside the four apps is missing, these passed the 
 | Capability | Why it earns its place | Phase |
 |---|---|---|
 | **Briefing before a paper** | Your own standing lessons shown at the moment they can be used: "last time, misreading 'not correct' cost 9 marks; your pure guesses lose marks". | 2 |
-| **Form and admit-card dates** | Notification, application deadline and admit-card dates sit in the exam template and on the road. Missing a form costs more than any weak topic. | 1 |
+| **Deadlines you add** | Form, admit-card and other dates are entered by you as deadlines in the calendar (Study Director), which can work back from them: a reminder some days ahead, or the weekly pace a piece of work needs. The exam template only offers the known dates for you to accept. | 8 |
 | **Where to reread** | One optional line per topic naming your source (book, chapter, pages), shown when a recall fails. Supports the habit of few sources. | 1 |
-| **Share for feedback with a person** | The same one-tap package as Copy for AI (question, your answer or its photo, marking points), sent to a mentor or friend. | 3 |
 | **Your data in readable form** | Everything can be exported as plain files that outlast the app. | 4 |
 
-### Cut or pushed back as unnecessary
+### Kept, reduced or pushed back
 
 | Item | Verdict | Reason |
 |---|---|---|
 | Personal tuning of the memory model (the optimizer both source apps built) | Much later, perhaps never | It needs thousands of reviews to beat the standard settings and brings a large component for a small gain. |
-| Source and Reviewed editions of a paper | Dropped from the interface | Official papers have official keys. The field stays in the data for coaching papers. |
-| In-app question authoring studio | Pushed to "wider use" | Paper maps, clips and packs cover your content without it. |
-| In-app test player and full question bank | Kept at phase 6, to be re-examined before it is built | Prelims and Mains are sat on paper, so answer-sheet mode beside the PDF is closer to the real exam than an on-screen player. The player matters for screen-based exams such as CAT. It is the largest single piece of work in the plan. |
-| Much of the safety machinery in the two source apps (replay verification, scheduler rebases, ownership leases between tabs) | Not carried over | One add-only history with views rebuilt from it makes most of it unnecessary. A simple integrity check and a single-tab guard remain. |
+| Source and Reviewed editions of a paper | **Kept, out of the way** | You get papers from uncertain sources and coaching mocks with errors, and have AIs check them. A corrected edition beside the original stays fully supported; the interface shows it only when a paper has both. |
+| In-app question authoring studio | **Kept, late phase** | Useful, but paper maps, clips and packs cover your content first. |
+| In-app test player and full question bank | **Kept, no longer in question** | Needed for screen-based exams (CAT, XAT, PGDBA) and for AI-written question sets. It is a port of Practice Desk's working player, not a new build. It stays after the Prelims and Mains work only because those exams come first. |
+| Inherited safety machinery | **Reduced, with no loss of safety** | Kept: an add-only history, writes that land whole or not at all, an integrity check on every backup and restore, backup versions, one writing tab at a time, and tested restore. Not carried over: machinery that guarded the old data models, such as re-verifying every memory card against scheduler fingerprints, per-record revision counters in two stores, and scheduler rebases. Views rebuilt from the history make those unnecessary. |
 
 Considered and left for later: interview-stage preparation, a current-affairs feed, an in-app drawing canvas, multiple profiles on one device, two-way Google Calendar sync, and a plug-in interface.
 
@@ -478,7 +477,9 @@ Settled:
 - Practice time: 2 to 4 hours a day. The session has a core that fits 2 hours and an extension up to 4.
 - Targets default to 55% of each paper's marks and can be changed per paper.
 - Recall and written answers are checked by tapping what was missed, not by self-rating.
-- CAT is not a target for now.
+- UPSC Prelims and Mains come first; screen-based exams (CAT, XAT, PGDBA) are secondary and served by the in-app test player.
+- Paper editions, in-app authoring, and the test player with its question bank are all kept.
+- Feedback on written answers goes through Copy for AI only.
 
 Open:
 

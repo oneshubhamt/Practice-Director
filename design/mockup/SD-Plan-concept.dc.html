@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Study Director — Plan with a margin (concept)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-nav{transition:background .18s ease,color .18s ease}
+.pd-nav:hover{background:#1A1E28;color:#ECEEF4}
+.pd-press{transition:transform .12s ease,background .16s ease,border-color .16s ease}
+.pd-press:hover{border-color:#8E97FF}
+.pd-press:active{transform:scale(.96)}
+@keyframes pdDrop{from{opacity:0;transform:translateY(-8px) scale(.96)}to{opacity:1;transform:none}}
+.pd-drop{animation:pdDrop .4s cubic-bezier(.2,.7,.2,1) both}
+.pd-fill{transition:width .5s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){.pd-nav,.pd-press,.pd-fill{transition:none}.pd-drop{animation:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<nav aria-label="Main" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 20px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 28px">
+<div style="padding: 0 10px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Study Director</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="#plan" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; background: #1E222D; color: #ECEEF4; text-decoration: none; font-weight: 500">Plan</a>
+<a href="#execute" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500">Execute</a>
+<a href="#review" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500">Review</a>
+<a href="#library" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500">Library</a>
+<a href="#insights" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500">Insights</a>
+</div>
+</nav>
+
+<main id="plan" style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px clamp(20px, 3vw, 40px) 40px">
+<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div style="display: flex; align-items: baseline; gap: 16px"><h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 32px; letter-spacing: -0.02em">Plan</h1><span style="color: #A9AEBD">9 to 15 November</span></div>
+<div role="group" aria-label="How far to look" style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #171A23; border: 1px solid #262B38">
+<button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 16px; border-radius: 9px; border: 0; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">Day</button>
+<button type="button" aria-pressed="true" style="min-height: 36px; padding: 0 16px; border-radius: 9px; border: 0; background: #2A2E55; color: #DDE0FF; font-weight: 600; font-size: 14px">Week</button>
+<button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 16px; border-radius: 9px; border: 0; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">Year</button>
+</div>
+</header>
+
+<section aria-label="What you have set for the months ahead" style="display: flex; flex-wrap: wrap; gap: 4px">
+<div style="flex: 48 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 8px"><div style="height: 4px; border-radius: 999px; background: #8E97FF"></div><div style="display: flex; flex-direction: column; align-items: flex-end; text-align: right"><span style="font-size: 13px; font-weight: 600">Forestry Paper I read</span><span style="font-size: 12px; color: #8A90A2">31 December · your milestone</span></div></div>
+<div style="flex: 33 1 160px; min-width: 0; display: flex; flex-direction: column; gap: 8px"><div style="height: 4px; border-radius: 999px; background: #2B3040"></div><div style="display: flex; flex-direction: column; align-items: flex-end; text-align: right"><span style="font-size: 13px; font-weight: 600">Prelims form closes</span><span style="font-size: 12px; color: #8A90A2">2 February · your deadline</span></div></div>
+<div style="flex: 110 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 8px"><div style="height: 4px; border-radius: 999px; background: #2B3040"></div><div style="display: flex; flex-direction: column; align-items: flex-end; text-align: right"><span style="font-size: 13px; font-weight: 600">Prelims</span><span style="font-size: 12px; color: #8A90A2">23 May</span></div></div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<section aria-label="Your week" style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em">Your week</h2><span style="font-size: 13px; color: #8A90A2">Only you write here.</span></div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 13px; color: #A9AEBD">Hours you gave each subject this week</div>
+<sc-for list="{{budgets}}" as="b" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 14px">
+<span style="flex: 0 0 130px; font-size: 14px">{{b.name}}</span>
+<div aria-hidden="true" style="flex: 1 1 auto; height: 8px; border-radius: 999px; background: #262B38; overflow: hidden"><div class="pd-fill" style="height: 100%; border-radius: 999px; background: {{b.color}}; width: {{b.width}}"></div></div>
+<span style="flex: 0 0 84px; text-align: right; font-size: 13px; color: #A9AEBD; font-variant-numeric: tabular-nums">{{b.label}}</span>
+</div>
+</sc-for>
+</div>
+
+<div style="overflow-x: auto">
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; align-items: start; min-width: 700px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<div style="border-radius: 14px; background: {{d.bg}}; border: 1px solid {{d.line}}; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; min-height: 236px; box-sizing: border-box">
+<div style="display: flex; flex-direction: column; gap: 1px; min-height: 36px"><span style="font-weight: 600; font-size: 13px; color: {{d.fg}}">{{d.name}}</span><span style="font-size: 12px; color: #8A90A2">{{d.note}}</span></div>
+<sc-for list="{{d.blocks}}" as="k" hint-placeholder-count="2">
+<div class="{{k.cls}}" style="border-radius: 9px; padding: 7px 9px; background: {{k.bg}}; border: 1px {{k.lineStyle}} {{k.line}}; display: flex; flex-direction: column; gap: 1px; min-width: 0; overflow-wrap: anywhere"><span style="font-size: 12px; font-weight: 600; color: {{k.fg}}">{{k.title}}</span><span style="font-size: 11px; color: #8A90A2">{{k.meta}}</span></div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<aside aria-label="Worth knowing" style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 0 4px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em">Worth knowing</h2><span style="font-size: 13px; color: #8A90A2">The app's side</span></div>
+
+<div style="background: #171A23; border: 1px solid #262B38; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 12px; color: #9BA3FF">Your milestone</div>
+<div style="font-weight: 600">Forestry Paper I by 31 December is on pace</div>
+<div style="font-size: 13px; color: #A9AEBD">It needs about 11 hours a week from here. You gave it 12 and have done 6.5, with three days left.</div>
+</div>
+
+<div style="background: #171A23; border: 1px solid #4A3D1C; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 12px; color: #F2B866">Against your own week</div>
+<div style="font-weight: 600">Geology is behind: 3 of 10 hours</div>
+<div style="font-size: 13px; color: #A9AEBD">Two full blocks before Sunday would bring it level. Or lower the 10; it is your number.</div>
+</div>
+
+<div style="background: #171A23; border: 1px solid #262B38; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 12px; color: #9BA3FF">Waiting to be placed</div>
+<sc-for list="{{offers}}" as="o" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14px; font-weight: 500; color: {{o.fg}}">{{o.title}}</span><span style="font-size: 12px; color: #8A90A2">{{o.meta}}</span></div>
+<button type="button" class="pd-press" onClick="{{o.place}}" aria-pressed="{{o.pressed}}" style="flex: 0 0 auto; min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid {{o.line}}; background: {{o.bg}}; color: {{o.btnFg}}; font-size: 13px; font-weight: 600">{{o.label}}</button>
+</div>
+</sc-for>
+</div>
+
+<div style="background: #171A23; border: 1px solid #262B38; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 12px; color: #9BA3FF">From your record</div>
+<div style="font-weight: 600">Blocks after 8 pm: finished 2 of the last 7</div>
+<div style="font-size: 13px; color: #A9AEBD">Worth a thought before you place the next one there.</div>
+</div>
+
+<div style="padding: 0 4px; font-size: 13px; color: #8A90A2">Nothing on this side enters your plan unless you put it there.</div>
+</aside>
+
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":970}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { placed: {} };
+  }
+  renderVals() {
+    const placed = this.state.placed;
+    const kinds = {
+      done: { bg: 'transparent', line: '#262B38', lineStyle: 'solid', fg: '#8A90A2', cls: '' },
+      mine: { bg: '#1E222D', line: '#343A4A', lineStyle: 'solid', fg: '#ECEEF4', cls: '' },
+      fixed: { bg: '#2A2415', line: '#F2B866', lineStyle: 'solid', fg: '#F2B866', cls: '' },
+      fresh: { bg: '#1C2040', line: '#8E97FF', lineStyle: 'solid', fg: '#DDE0FF', cls: 'pd-drop' }
+    };
+    const offerList = [
+      { id: 'geo', title: 'Geology: stratigraphy', meta: '40 min left, from Tuesday', hours: 0.7, subject: 'Geology' },
+      { id: 'for', title: 'Forestry, chapter 7', meta: '18 pages left, from Wednesday', hours: 1, subject: 'Forestry' },
+      { id: 'pd', title: 'Recall and mistakes', meta: '45 min due today, from Practice Director', hours: 0.75, subject: 'Practice' }
+    ];
+    const offers = offerList.map((o) => {
+      const on = !!placed[o.id];
+      return {
+        ...o, pressed: on ? 'true' : 'false', label: on ? 'In Friday' : 'Place',
+        fg: on ? '#8A90A2' : '#ECEEF4', bg: on ? 'transparent' : '#1E222D', line: on ? '#262B38' : '#343A4A', btnFg: on ? '#8A90A2' : '#ECEEF4',
+        place: () => this.setState({ placed: { ...placed, [o.id]: !on } })
+      };
+    });
+    const extra = offerList.filter((o) => placed[o.id]).map((o) => ['fresh', o.title, o.meta.split(',')[0]]);
+    const raw = [
+      ['Mon 9', '7 h done', 'done', [['done', 'Forestry', '2 h 30'], ['done', 'Geology', '1 h 30'], ['done', 'Practice', '3 h']]],
+      ['Tue 10', '6 h done', 'done', [['done', 'Forestry', '2 h'], ['done', 'Geology', '50 min of 1 h 30'], ['done', 'Practice', '2 h 30']]],
+      ['Wed 11', '5 h done', 'done', [['done', 'Forestry', '2 h'], ['done', 'Current affairs', '1 h'], ['done', 'Practice', '2 h']]],
+      ['Thu 12', 'day off', 'done', []],
+      ['Fri 13', 'today', 'today', [['mine', 'Geology', '7:00, 1 h 30'], ['mine', 'Current affairs', '9:30, 1 h'], ['mine', 'Practice', '4:00, 2 h']].concat(extra)],
+      ['Sat 14', '', 'next', [['mine', 'Forestry', '7:00, 2 h']]],
+      ['Sun 15', '', 'next', [['fixed', 'Prelims 2022 paper', '9:30, 2 h, fixed']]]
+    ];
+    const days = raw.map(([name, note, state, blocks]) => ({
+      name, note,
+      bg: state === 'today' ? '#131620' : '#11141B',
+      line: state === 'today' ? '#8E97FF' : '#222632',
+      fg: state === 'today' ? '#DDE0FF' : state === 'done' ? '#A9AEBD' : '#ECEEF4',
+      blocks: blocks.map(([kind, title, meta]) => ({ title, meta, ...kinds[kind] }))
+    }));
+    const add = (subject) => offerList.filter((o) => placed[o.id] && o.subject === subject).reduce((n, o) => n + o.hours, 0);
+    const budgets = [['Forestry', 6.5, 12], ['Geology', 3, 10], ['Current affairs', 2.5, 5], ['Practice', 8, 18]].map(([name, done, plan]) => {
+      const planned = add(name);
+      return {
+        name,
+        width: Math.round((done / plan) * 100) + '%',
+        color: done / plan < 0.4 ? '#F2B866' : '#8E97FF',
+        label: done + ' of ' + plan + ' h' + (planned ? ' +' : '')
+      };
+    });
+    return { offers, days, budgets };
+  }
+}
+</script>
+</body>
+</html>
