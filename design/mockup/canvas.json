@@ -14,7 +14,7 @@
       "x": 0,
       "y": 0,
       "w": 1440,
-      "h": 960,
+      "h": 1100,
       "title": "Today (laptop)",
       "expand": "fill",
       "is_interactive": true
@@ -77,6 +77,15 @@
       "w": 1440,
       "h": 970,
       "title": "Study Director: Plan with a margin (concept)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Practice.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 960,
+      "title": "Practice",
       "expand": "fill",
       "is_interactive": true
     }

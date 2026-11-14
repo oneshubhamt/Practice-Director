@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — small practice flows</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+input,textarea{font-family:inherit}
+.pd-chip{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-chip:hover{border-color:#8E97FF}
+.pd-primary{transition:transform .16s ease,box-shadow .2s ease}
+.pd-primary:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(142,151,255,.28)}
+@media (prefers-reduced-motion:reduce){.pd-chip,.pd-primary{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #0B0D12; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45; padding: 32px clamp(16px, 3vw, 40px) 40px; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px"><a href="Practice.dc.html" style="text-decoration: none; font-size: 14px; font-weight: 500">Practice</a><span style="font-size: 13px; color: #8A90A2">Three sheets that open over Practice. Each is one short screen with one button.</span></div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 24px; align-items: start">
+
+<section aria-label="Build a set" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">Build a set</h2>
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; color: #8A90A2">{{g.name}}</span>
+<div role="group" aria-label="{{g.name}}" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{g.options}}" as="o" hint-placeholder-count="4">
+<button type="button" class="pd-chip" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.line}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div style="display: flex; flex-direction: column; gap: 4px; border-top: 1px solid #222632; padding-top: 18px">
+<div style="font-weight: 500; font-size: 16px">{{setLine}}</div>
+<div style="font-size: 13px; color: #8A90A2">{{setNote}}</div>
+</div>
+<a href="Test-player.dc.html" class="pd-primary" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none">Start</a>
+</section>
+
+<section aria-label="Log practice done elsewhere" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">Log practice done elsewhere</h2>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="pd-log-what" style="font-size: 13px; color: #8A90A2">What was it? One line is enough.</label>
+<input id="pd-log-what" type="text" value="Coaching site test 9, Polity" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 15px; outline: none">
+<div style="font-size: 13px; color: #8A90A2">Read as <span style="color: #DDE0FF">Prelims · Polity</span>. Change it if that is wrong.</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="pd-log-right" style="font-size: 13px; color: #8A90A2">Right</label><input id="pd-log-right" type="text" inputmode="numeric" value="61" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 17px; font-weight: 600; outline: none; width: 100%"></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="pd-log-wrong" style="font-size: 13px; color: #8A90A2">Wrong</label><input id="pd-log-wrong" type="text" inputmode="numeric" value="27" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 17px; font-weight: 600; outline: none; width: 100%"></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="pd-log-time" style="font-size: 13px; color: #8A90A2">Minutes</label><input id="pd-log-time" type="text" inputmode="numeric" value="110" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 17px; font-weight: 600; outline: none; width: 100%"></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; border-top: 1px solid #222632; padding-top: 18px">
+<div style="font-weight: 500; font-size: 16px">104.0 of 200 · 12 left blank</div>
+<div style="font-size: 13px; color: #8A90A2">Worked out with the Prelims marking. It counts toward Polity and your week, not toward your full-paper target.</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" class="pd-chip" style="min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-size: 14px; font-weight: 500">Clip mistakes from a screenshot</button>
+<button type="button" class="pd-chip" style="min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-size: 14px; font-weight: 500">Note a mistake in a line</button>
+</div>
+<button type="button" class="pd-primary" style="min-height: 52px; border: 0; border-radius: 14px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px">Save</button>
+<div style="font-size: 13px; color: #8A90A2">About to start one? <a href="Written-answer.dc.html" style="text-decoration: none">Run the pacer beside it</a> and the time fills itself in.</div>
+</section>
+
+<section aria-label="New quick cards" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">Quick cards from a list</h2>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="pd-cards" style="font-size: 13px; color: #8A90A2">Paste two columns: from a table, a spreadsheet, or one pair per line.</label>
+<textarea id="pd-cards" rows="7" style="box-sizing: border-box; width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 14px; line-height: 1.6; outline: none; resize: vertical">Sal	Shorea robusta
+Teak	Tectona grandis
+Sandalwood	Santalum album
+Deodar	Cedrus deodara
+Shisham	Dalbergia sissoo
+Chir pine	Pinus roxburghii
+Neem	Azadirachta indica</textarea>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; border-top: 1px solid #222632; padding-top: 18px">
+<div style="font-weight: 500; font-size: 16px">{{cardLine}}</div>
+<div style="font-size: 13px; color: #8A90A2">Filed under <span style="color: #DDE0FF">Forestry › Silviculture of trees</span>, from the words in your list. Change it if that is wrong.</div>
+</div>
+<div role="group" aria-label="Direction" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{directions}}" as="d" hint-placeholder-count="3">
+<button type="button" class="pd-chip" onClick="{{d.pick}}" aria-pressed="{{d.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{d.bg}}; color: {{d.fg}}; border: 1px solid {{d.line}}">{{d.label}}</button>
+</sc-for>
+</div>
+<a href="Quick-cards.dc.html" class="pd-primary" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none">Add the cards</a>
+</section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":760}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { from: 'Weak topics', count: 25, subject: 'Environment', direction: 'Both ways' };
+  }
+  renderVals() {
+    const { from, count, subject, direction } = this.state;
+    const chip = (on) => ({ pressed: on ? 'true' : 'false', bg: on ? '#2A2E55' : 'transparent', fg: on ? '#DDE0FF' : '#A9AEBD', line: on ? '#8E97FF' : '#343A4A' });
+    const group = (name, options, current, key) => ({ name, options: options.map((label) => ({ label: String(label), ...chip(label === current), pick: () => this.setState({ [key]: label }) })) });
+    const groups = [
+      group('Questions from', ['Weak topics', 'My mistakes', 'Unseen', 'Mixed'], from, 'from'),
+      group('Subject', ['Environment', 'Polity', 'Economy', 'History', 'Any'], subject, 'subject'),
+      group('How many', [10, 25, 50], count, 'count')
+    ];
+    const pace = 1.2;
+    const where = subject === 'Any' ? 'all subjects' : subject;
+    const notes = {
+      'Weak topics': 'Topics where your results trail your recall come first.',
+      'My mistakes': 'Open mistakes, answered again blind. The oldest come first.',
+      Unseen: 'Questions you have not met, weighted by how often each topic is asked.',
+      Mixed: 'Half unseen, half from weak topics and mistakes, shuffled.'
+    };
+    const directions = ['Both ways', 'Name to botanical only', 'Botanical to name only'].map((label) => ({ label, ...chip(label === direction), pick: () => this.setState({ direction: label }) }));
+    return {
+      groups, directions,
+      cardLine: direction === 'Both ways' ? '7 pairs · 14 cards, asked both ways' : '7 cards · ' + direction.replace(' only', '').toLowerCase(),
+      setLine: count + ' questions from ' + where + ' · about ' + Math.round(count * pace) + ' min at your pace',
+      setNote: notes[from]
+    };
+  }
+}
+</script>
+</body>
+</html>

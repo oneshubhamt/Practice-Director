@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — search</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-nav{transition:background .18s ease,color .18s ease}
+.pd-nav:hover{background:#1A1E28;color:#ECEEF4}
+.pd-hit{transition:background .16s ease}
+.pd-hit:hover{background:#1C2029;color:#ECEEF4}
+.pd-chip{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-chip:hover{border-color:#8E97FF}
+@media (prefers-reduced-motion:reduce){.pd-nav,.pd-hit,.pd-chip{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<!--pd:rail search-->
+<nav aria-label="Main" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 18px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 22px">
+<div style="padding: 0 12px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
+<a href="Search.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #262B38; color: #8A90A2; text-decoration: none; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg><span style="flex: 1 1 auto">Search</span><span style="padding: 1px 7px; border-radius: 6px; border: 1px solid #343A4A; font-size: 12px; color: #8A90A2">/</span></a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="Main.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="Settings.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>Settings</a>
+<div style="padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #8A90A2; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #6FD3A8"></span>Backed up 2 min ago</div>
+</div>
+</nav>
+<!--/pd:rail-->
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(20px, 4vw, 56px) 48px">
+<div style="max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; align-items: center; gap: 14px; padding: 0 18px; min-height: 60px; border-radius: 16px; background: #171A23; border: 1px solid #8E97FF">
+<svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 20px; width: 20px; height: 20px; fill: none; stroke: #9BA3FF; stroke-width: 2; stroke-linecap: round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg>
+<label for="pd-search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search everything</label>
+<input id="pd-search" type="text" value="gondwana" style="flex: 1 1 auto; min-width: 0; height: 56px; background: transparent; border: 0; outline: none; color: #ECEEF4; font-family: inherit; font-size: 18px">
+<span style="flex: 0 0 auto; font-size: 13px; color: #8A90A2">7 found</span>
+</div>
+
+<div role="group" aria-label="Show" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="6">
+<button type="button" class="pd-chip" onClick="{{f.pick}}" aria-pressed="{{f.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{f.bg}}; color: {{f.fg}}; border: 1px solid {{f.line}}">{{f.label}}</button>
+</sc-for>
+</div>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+<section style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 13px; color: #A9AEBD; padding: 6px 14px">{{g.name}}</div>
+<sc-for list="{{g.hits}}" as="h" hint-placeholder-count="2">
+<a href="{{h.href}}" class="pd-hit" style="display: flex; align-items: center; gap: 16px; padding: 13px 14px; border-radius: 12px; color: #ECEEF4; text-decoration: none">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="font-weight: 500; font-size: 16px">{{h.title}}</div>
+<div style="font-size: 13px; color: #8A90A2">{{h.where}}</div>
+</div>
+<span style="flex: 0 0 auto; font-size: 13px; color: {{h.stateColor}}; text-align: right">{{h.state}}</span>
+</a>
+</sc-for>
+</section>
+</sc-for>
+
+<div style="display: flex; flex-wrap: wrap; gap: 6px 20px; padding: 14px; border-top: 1px solid #222632; font-size: 13px; color: #8A90A2"><span>↑ ↓ to move</span><span>Enter to open</span><span>Esc to close</span><span style="margin-left: auto">Search runs on this device; nothing is sent anywhere.</span></div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 'Everything' };
+  }
+  renderVals() {
+    const { filter } = this.state;
+    const all = [
+      { name: 'Topics', hits: [
+        { title: 'Gondwana Supergroup', where: 'Geology › Stratigraphy of India · asked in 7 of the last 10 papers', state: 'Fresh till 2 Dec', href: 'Syllabus.dc.html' },
+        { title: 'Gondwana coalfields', where: 'Geology › Economic geology · asked in 5 of the last 10 papers', state: 'Fading · recall tomorrow', stateColor: '#F2B866', href: 'Syllabus.dc.html' }
+      ] },
+      { name: 'Points you tend to leave out', hits: [
+        { title: 'Glossopteris flora below, Ptilophyllum flora above', where: 'Gondwana Supergroup · from your recalls', state: 'Missed twice', stateColor: '#F2B866', href: 'Syllabus.dc.html' }
+      ] },
+      { name: 'Mistakes', hits: [
+        { title: 'Prelims 2021 · Question 44', where: 'Geology of India · the word is in your one-line lesson', state: 'Open · back on 16 Nov', stateColor: '#F2B866', href: 'Mistake.dc.html' },
+        { title: 'Coaching test 7 · Question 12', where: 'Clipped with its explanation', state: 'Solved 2 Nov', href: 'Mistake.dc.html' }
+      ] },
+      { name: 'Answers written', hits: [
+        { title: 'Classification of the Gondwana Supergroup and its economic importance', where: 'Geology Paper I, 2022 · 15 marks · written 28 Oct in 13:10', state: '3 points left out', href: 'Written-answer.dc.html' }
+      ] },
+      { name: 'Your notes and history', hits: [
+        { title: '“read Gondwana chapter”', where: 'Quick note · today, 8:40 am', state: 'Ticked the topic', href: 'Main.dc.html' }
+      ] }
+    ];
+    const filters = ['Everything', 'Topics', 'Mistakes', 'Answers written', 'Papers'].map((label) => {
+      const on = label === filter;
+      return { label, pressed: on ? 'true' : 'false', bg: on ? '#2A2E55' : 'transparent', fg: on ? '#DDE0FF' : '#A9AEBD', line: on ? '#8E97FF' : '#343A4A', pick: () => this.setState({ filter: label }) };
+    });
+    const shown = filter === 'Everything' ? all : all.filter((g) => g.name === filter);
+    const groups = (shown.length ? shown : [{ name: filter, hits: [{ title: 'Nothing here for “gondwana”', where: 'Try Everything.', state: '', href: '#' }] }])
+      .map((g) => ({ ...g, hits: g.hits.map((h) => ({ stateColor: '#A9AEBD', ...h })) }));
+    return { filters, groups };
+  }
+}
+</script>
+</body>
+</html>

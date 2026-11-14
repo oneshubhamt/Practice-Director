@@ -23,23 +23,31 @@ button{font-family:inherit;cursor:pointer}
 .pd-chip:hover{border-color:#8E97FF}
 @keyframes pdRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .pd-rise{animation:pdRise .5s cubic-bezier(.2,.7,.2,1) both}
-@media (prefers-reduced-motion:reduce){.pd-rise{animation:none}.pd-primary,.pd-step,.pd-nav,.pd-chip{transition:none}}
+@keyframes pdSwap{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pd-swap{animation:pdSwap .28s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-rise,.pd-swap{animation:none}.pd-primary,.pd-step,.pd-nav,.pd-chip{transition:none}}
 </style>
 </helmet>
 <div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
 
-<nav aria-label="Main" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 20px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 28px">
-<div style="padding: 0 10px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
+<!--pd:rail today-->
+<nav aria-label="Main" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 18px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 22px">
+<div style="padding: 0 12px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
+<a href="Search.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #262B38; color: #8A90A2; text-decoration: none; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg><span style="flex: 1 1 auto">Search</span><span style="padding: 1px 7px; border-radius: 6px; border: 1px solid #343A4A; font-size: 12px; color: #8A90A2">/</span></a>
 <div style="display: flex; flex-direction: column; gap: 4px">
-<a href="#today" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; background: #1E222D; color: #ECEEF4; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: #9BA3FF; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
-<a href="Answer-sheet.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
-<a href="Syllabus.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
-<a href="Progress.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+<a href="Main.dc.html" class="pd-nav" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; background: #1E222D; color: #ECEEF4; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: #9BA3FF; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
 </div>
-<div style="margin-top: auto; padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #8A90A2; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #6FD3A8"></span>Synced 2 min ago</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="Settings.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>Settings</a>
+<div style="padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #8A90A2; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #6FD3A8"></span>Backed up 2 min ago</div>
+</div>
 </nav>
+<!--/pd:rail-->
 
-<main id="today" style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(20px, 4vw, 56px) 48px">
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(20px, 4vw, 56px) 48px">
 <div style="max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
 
 <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
@@ -55,18 +63,20 @@ button{font-family:inherit;cursor:pointer}
 
 <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
 
-<section class="pd-rise" aria-label="Suggested session" style="flex: 999 1 520px; min-width: 0; box-sizing: border-box; background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 22px">
+<section class="pd-rise" aria-label="Today's session" style="flex: 999 1 520px; min-width: 0; box-sizing: border-box; background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 22px">
 <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
 <div style="display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 13px; color: #A9AEBD">Suggested for today</div>
-<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 46px; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums">{{totalLabel}}</span><span style="color: #8A90A2; font-size: 14px">of the 2 h you keep for practice</span></div>
+<div style="font-size: 13px; color: #A9AEBD">{{heading}}</div>
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 46px; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums">{{totalLabel}}</span><span style="color: #8A90A2; font-size: 14px">{{totalNote}}</span></div>
 </div>
-<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px">
+<div style="display: flex; align-items: center; gap: 10px">
+<button type="button" class="pd-chip" onClick="{{toggleOwn}}" aria-pressed="{{ownPressed}}" style="min-height: 52px; padding: 0 20px; border-radius: 14px; border: 1px solid {{ownLine}}; background: {{ownBg}}; color: #ECEEF4; font-weight: 500; font-size: 15px">{{ownLabel}}</button>
 <a href="Phone-flow.dc.html" class="pd-primary" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; box-sizing: border-box; padding: 0 26px; border-radius: 14px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none">Start<svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-<a href="Syllabus.dc.html" style="font-size: 13px; text-decoration: none">or choose your own</a>
 </div>
 </div>
 
+<sc-if value="{{isSuggest}}" hint-placeholder-val="{{true}}">
+<div class="pd-swap" style="display: flex; flex-direction: column; gap: 22px">
 <div style="display: flex; flex-direction: column; gap: 4px">
 <sc-for list="{{steps}}" as="step" hint-placeholder-count="4">
 <div class="pd-step" style="display: flex; align-items: center; gap: 16px; padding: 14px 12px; border-radius: 12px; opacity: {{step.opacity}}">
@@ -83,9 +93,45 @@ button{font-family:inherit;cursor:pointer}
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; border-top: 1px solid #222632; padding-top: 20px">
 <span style="font-size: 13px; color: #8A90A2; margin-right: 4px">Less time today?</span>
 <sc-for list="{{budgets}}" as="b" hint-placeholder-count="4">
-<button type="button" class="pd-chip" onClick="{{b.pick}}" aria-pressed="{{b.pressed}}" style="min-height: 36px; padding: 0 14px; border-radius: 999px; font-size: 13px; font-weight: 500; background: {{b.bg}}; color: {{b.fg}}; border: 1px solid {{b.line}}">{{b.label}}</button>
+<button type="button" class="pd-chip" onClick="{{b.pick}}" aria-pressed="{{b.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 13px; font-weight: 500; background: {{b.bg}}; color: {{b.fg}}; border: 1px solid {{b.line}}">{{b.label}}</button>
 </sc-for>
 </div>
+
+<div style="display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #222632; padding-top: 20px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #8A90A2; padding-bottom: 6px"><span>More time today? Add what you like.</span><span>You allow up to 4 h.</span></div>
+<sc-for list="{{extras}}" as="x" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 16px; padding: 10px 12px; border-radius: 12px">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="font-weight: 500">{{x.title}}</div>
+<div style="font-size: 13px; color: #8A90A2">{{x.why}}</div>
+</div>
+<span style="flex: 0 0 auto; font-size: 13px; color: #A9AEBD; font-variant-numeric: tabular-nums">{{x.time}}</span>
+<button type="button" class="pd-chip" onClick="{{x.toggle}}" aria-pressed="{{x.pressed}}" style="flex: 0 0 auto; min-width: 84px; min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 13px; font-weight: 500; background: {{x.bg}}; color: {{x.fg}}; border: 1px solid {{x.line}}">{{x.label}}</button>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isOwn}}" hint-placeholder-val="{{false}}">
+<div class="pd-swap" style="display: flex; flex-direction: column; gap: 20px">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<span style="flex: 0 0 76px; font-size: 13px; color: #8A90A2">{{g.name}}</span>
+<div role="group" aria-label="{{g.name}}" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{g.options}}" as="o" hint-placeholder-count="5">
+<button type="button" class="pd-chip" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.line}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div style="display: flex; flex-direction: column; gap: 4px; border-top: 1px solid #222632; padding-top: 20px">
+<div style="font-size: 13px; color: #8A90A2">You chose what and how long. The app only picks which items fill it:</div>
+<div style="font-weight: 500; font-size: 16px">{{ownFill}}</div>
+<div style="font-size: 13px; color: #8A90A2">{{ownNote}}</div>
+</div>
+</div>
+</sc-if>
 </section>
 
 <aside style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
@@ -109,11 +155,12 @@ button{font-family:inherit;cursor:pointer}
 <div style="font-size: 13px; color: #A9AEBD">Next full paper</div>
 <div style="font-weight: 600; font-size: 16px">Prelims 2022, General Studies</div>
 <div style="font-size: 13px; color: #8A90A2">Sunday, 9:30 am. Set at the real exam's hour.</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; padding-top: 4px"><a href="Briefing.dc.html" style="text-decoration: none">Take it now</a><a href="Practice.dc.html" style="text-decoration: none">Move it</a></div>
 </section>
 
 <section class="pd-rise" style="background: #171A23; border: 1px solid #262B38; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; animation-delay: .18s">
 <div style="font-size: 13px; color: #A9AEBD">This week</div>
-<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; height: 64px">
+<div role="img" aria-label="Practice on Monday, Tuesday and Wednesday; none on Thursday" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; height: 64px">
 <div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end"><div style="width: 100%; max-width: 22px; height: 70%; border-radius: 6px; background: #5B63C9"></div><span style="font-size: 11px; color: #8A90A2">M</span></div>
 <div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end"><div style="width: 100%; max-width: 22px; height: 92%; border-radius: 6px; background: #5B63C9"></div><span style="font-size: 11px; color: #8A90A2">T</span></div>
 <div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end"><div style="width: 100%; max-width: 22px; height: 55%; border-radius: 6px; background: #5B63C9"></div><span style="font-size: 11px; color: #8A90A2">W</span></div>
@@ -122,52 +169,100 @@ button{font-family:inherit;cursor:pointer}
 <div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end"><div style="width: 100%; max-width: 22px; height: 8%; border-radius: 6px; background: #222632"></div><span style="font-size: 11px; color: #8A90A2">S</span></div>
 <div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end"><div style="width: 100%; max-width: 22px; height: 8%; border-radius: 6px; background: #222632"></div><span style="font-size: 11px; color: #8A90A2">S</span></div>
 </div>
-<div style="font-size: 13px; color: #8A90A2">You skipped Thursday. Nothing piled up: it is spread over the next three days.</div>
+<div style="font-size: 13px; color: #8A90A2">No practice on Thursday. Nothing piled up: it is spread over the next three days.</div>
 </section>
 
 </aside>
 </div>
 
-<form aria-label="Quick capture" style="display: flex; align-items: center; gap: 12px; background: #131620; border: 1px solid #262B38; border-radius: 14px; padding: 6px 6px 6px 18px">
-<label for="pd-capture" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">What did you study or practise?</label>
-<input id="pd-capture" type="text" placeholder="Studied or practised something on your own? Note it here, e.g. read Gondwana chapter · 30 CSAT questions, 22 right" style="flex: 1 1 auto; min-width: 0; height: 44px; background: transparent; border: 0; outline: none; color: #ECEEF4; font-family: inherit; font-size: 15px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<form aria-label="Quick note" style="display: flex; align-items: center; gap: 12px; background: #131620; border: 1px solid #262B38; border-radius: 14px; padding: 6px 6px 6px 18px">
+<label for="pd-capture" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">What did you study or practise on your own?</label>
+<input id="pd-capture" type="text" placeholder="Did something on your own? One line, e.g. 30 CSAT questions, 22 right" style="flex: 1 1 auto; min-width: 0; height: 44px; background: transparent; border: 0; outline: none; color: #ECEEF4; font-family: inherit; font-size: 15px">
 <button type="button" style="flex: 0 0 auto; min-height: 44px; padding: 0 18px; border-radius: 10px; border: 1px solid #343A4A; background: #1E222D; color: #ECEEF4; font-weight: 500; font-size: 14px">Add</button>
 </form>
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 0 18px; font-size: 13px; color: #8A90A2"><span>8:40 am · "read Gondwana chapter"</span><span style="color: #A9AEBD">Ticked Geology › Gondwana Supergroup. First recall on Monday.</span><button type="button" style="min-height: 28px; padding: 0 4px; border: 0; background: transparent; color: #9BA3FF; font-size: 13px">Undo</button></div>
+</div>
 
 </div>
 </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":960}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { budget: 'full' };
+    this.state = { mode: 'suggest', budget: 'full', added: {}, subject: 'Geology', kind: 'Recall', length: 30 };
   }
   renderVals() {
-    const budget = this.state.budget;
+    const { mode, budget, added, subject, kind, length } = this.state;
+    const fmt = (min) => { const h = Math.floor(min / 60), m = min % 60; return h ? h + ' h' + (m ? ' ' + m + ' min' : '') : m + ' min'; };
+    const chip = (on) => ({ pressed: on ? 'true' : 'false', bg: on ? '#2A2E55' : 'transparent', fg: on ? '#DDE0FF' : '#A9AEBD', line: on ? '#8E97FF' : '#343A4A' });
+
     const all = [
-      { n: 1, title: 'Re-attempt 6 mistakes from the Prelims 2023 paper', why: 'Answered blind, marked for you. Fresh mistakes fade fastest.', time: '10 min', min: 10 },
-      { n: 2, title: '12 recalls: Geology and Forestry', why: 'Fading this week: stratigraphy, silvicultural systems.', time: '28 min', min: 28 },
-      { n: 3, title: 'Written answer: Forestry, 10 marks', why: 'A past question on a topic you studied on Tuesday.', time: '15 min', min: 15 },
-      { n: 4, title: 'CSAT: 15 questions', why: 'Short and regular, so it never needs a panic week.', time: '25 min', min: 25 }
+      { n: 1, title: 'Re-attempt 6 mistakes from the Prelims 2023 paper', why: 'Answered blind, marked for you. Fresh mistakes fade fastest.', min: 10 },
+      { n: 2, title: '12 recalls: Geology and Forestry', why: 'Fading this week: stratigraphy, silvicultural systems.', min: 28, short: { title: '8 recalls: the most faded first', min: 19 } },
+      { n: 3, title: 'Written answer: Forestry, 10 marks', why: 'A past question on a topic you studied on Tuesday.', min: 15 },
+      { n: 4, title: 'CSAT: 15 questions', why: 'Short and regular, so it never needs a panic week.', min: 25 }
     ];
-    const cap = { '15': 15, '30': 40, '60': 60, full: 999 }[budget];
+    const cap = { '15': 15, '30': 30, '60': 60, full: 999 }[budget];
     let used = 0;
     const steps = all.map((s) => {
-      const fits = used + s.min <= cap;
-      if (fits) used += s.min;
-      return { ...s, opacity: fits ? 1 : 0.32 };
+      let item = s;
+      if (used + s.min > cap && s.short && used + s.short.min <= cap) item = { ...s, ...s.short };
+      const fits = used + item.min <= cap;
+      if (fits) used += item.min;
+      return { ...item, time: item.min + ' min', opacity: fits ? 1 : 0.32 };
     });
-    const h = Math.floor(used / 60), m = used % 60;
-    const totalLabel = h ? h + ' h ' + (m ? m + ' min' : '') : m + ' min';
+    const extraList = [
+      { id: 'env', title: '25 Prelims questions on Environment', why: 'Your weakest subject in the last paper: 5 of 16.', min: 30 },
+      { id: 'geo', title: 'Written answer: Geology, 15 marks', why: 'Stratigraphy, studied last week and not written on yet.', min: 19 }
+    ];
+    const extras = extraList.map((x) => {
+      const on = !!added[x.id];
+      return { ...x, time: x.min + ' min', ...chip(on), label: on ? 'Added' : 'Add', toggle: () => this.setState({ added: { ...added, [x.id]: !on } }) };
+    });
+    const extraMin = extraList.reduce((sum, x) => sum + (added[x.id] ? x.min : 0), 0);
     const budgets = [
       { id: '15', label: '15 min' }, { id: '30', label: '30 min' }, { id: '60', label: '1 hour' }, { id: 'full', label: 'All of it' }
-    ].map((b) => {
-      const on = b.id === budget;
-      return { ...b, pressed: on ? 'true' : 'false', bg: on ? '#2A2E55' : 'transparent', fg: on ? '#DDE0FF' : '#A9AEBD', line: on ? '#8E97FF' : '#343A4A', pick: () => this.setState({ budget: b.id }) };
+    ].map((b) => ({ ...b, ...chip(b.id === budget), pick: () => this.setState({ budget: b.id }) }));
+
+    const per = { Recall: 2.5, Questions: 1.2, Writing: 15, 'Fix mistakes': 1.7 };
+    const count = Math.max(1, Math.floor(length / per[kind]));
+    const fills = {
+      Recall: count + ' recalls from ' + subject + ', the most faded first',
+      Questions: count + ' questions from ' + subject + ', weak topics and unseen ones mixed',
+      Writing: count + (count === 1 ? ' written answer' : ' written answers') + ' from ' + subject + ', on topics you studied recently',
+      'Fix mistakes': count + ' open mistakes from ' + subject + ', the oldest first'
+    };
+    const notes = {
+      Recall: 'It counts exactly as much as the suggested session.',
+      Questions: 'Timed at your own pace per question. Mistakes go to your fix list.',
+      Writing: 'Past questions on the marks-weighted clock, with the check afterwards.',
+      'Fix mistakes': 'Each one answered again, blind.'
+    };
+    const group = (name, options, current, key) => ({
+      name,
+      options: options.map((label) => ({ label: typeof label === 'number' ? fmt(label) : label, ...chip(label === current), pick: () => this.setState({ [key]: label }) }))
     });
-    return { steps, budgets, totalLabel };
+    const groups = [
+      group('Subject', ['Forestry', 'Geology', 'General Studies', 'CSAT', 'Any'], subject, 'subject'),
+      group('Kind', ['Recall', 'Questions', 'Writing', 'Fix mistakes'], kind, 'kind'),
+      group('Length', [15, 30, 45, 60, 90], length, 'length')
+    ];
+
+    const own = mode === 'own';
+    return {
+      isSuggest: !own, isOwn: own,
+      heading: own ? 'Your own session' : 'Suggested for today',
+      totalLabel: own ? fmt(length) : fmt(used + extraMin),
+      totalNote: own ? subject + ' · ' + kind.toLowerCase() : 'of the 2 h you allow',
+      ownLabel: own ? 'Back to the suggestion' : 'Choose your own',
+      ownPressed: own ? 'true' : 'false', ownBg: own ? '#1E222D' : 'transparent', ownLine: own ? '#8E97FF' : '#343A4A',
+      toggleOwn: () => this.setState({ mode: own ? 'suggest' : 'own' }),
+      steps, budgets, extras, groups,
+      ownFill: fills[kind], ownNote: notes[kind]
+    };
   }
 }
 </script>

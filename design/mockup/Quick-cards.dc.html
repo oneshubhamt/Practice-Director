@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — quick cards</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+@keyframes pdIn{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes pdUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pdPop{0%{opacity:0;transform:scale(.7)}60%{opacity:1;transform:scale(1.06)}100%{transform:scale(1)}}
+.pd-in{animation:pdIn .26s cubic-bezier(.2,.7,.2,1) both}
+.pd-up{animation:pdUp .26s cubic-bezier(.2,.7,.2,1) both}
+.pd-pop{animation:pdPop .5s cubic-bezier(.2,.7,.2,1) both}
+.pd-press{transition:transform .12s ease,background .16s ease,border-color .16s ease}
+.pd-press:active{transform:scale(.97)}
+.pd-bar{transition:width .3s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){.pd-in,.pd-up,.pd-pop{animation:none}.pd-press,.pd-bar{transition:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<sc-if value="{{inCards}}" hint-placeholder-val="{{true}}">
+<div style="flex: 0 0 auto; padding: 52px 20px 0; display: flex; align-items: center; gap: 14px">
+<a href="Phone-places.dc.html" aria-label="Leave" class="pd-press" style="flex: 0 0 44px; height: 44px; border-radius: 50%; border: 1px solid #262B38; color: #A9AEBD; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+<div role="img" aria-label="Progress through the cards" style="flex: 1 1 auto; height: 6px; border-radius: 999px; background: #222632; overflow: hidden"><div class="pd-bar" style="height: 100%; border-radius: 999px; background: #8E97FF; width: {{progress}}"></div></div>
+<span style="flex: 0 0 auto; font-size: 13px; color: #8A90A2; font-variant-numeric: tabular-nums">{{position}} of {{total}}</span>
+</div>
+
+<div style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 28px 24px 28px">
+<div style="font-size: 13px; color: #9BA3FF">Forestry · tree species · {{card.ask}}</div>
+
+<sc-for list="{{cardKey}}" as="k" hint-placeholder-count="1">
+<div class="pd-in" style="flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding-bottom: 40px">
+<div style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 44px; letter-spacing: -0.02em; line-height: 1.1; font-style: {{card.frontStyle}}">{{card.front}}</div>
+<div aria-hidden="{{backHidden}}" style="display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid {{ruleColor}}; opacity: {{backOpacity}}; transition: opacity .22s ease">
+<div style="font-size: 26px; font-weight: 500; font-style: {{card.backStyle}}; color: #DDE0FF">{{card.back}}</div>
+<div style="font-size: 13px; color: #8A90A2">{{card.note}}</div>
+</div>
+</div>
+</sc-for>
+
+<sc-if value="{{hidden}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; color: #8A90A2; text-align: center">Say it, then look.</div>
+<button type="button" class="pd-press" onClick="{{show}}" style="min-height: 64px; border: 0; border-radius: 18px; background: #ECEEF4; color: #0E1016; font-weight: 600; font-size: 17px">Show</button>
+</div>
+</sc-if>
+<sc-if value="{{shown}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<button type="button" class="pd-press" onClick="{{miss}}" style="min-height: 64px; border-radius: 18px; border: 1.5px solid #F2B866; background: #2A2415; color: #F2D9A8; font-weight: 600; font-size: 17px">Missed</button>
+<button type="button" class="pd-press" onClick="{{knew}}" style="min-height: 64px; border: 0; border-radius: 18px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px">Knew it</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 96px 24px 28px; gap: 28px">
+<div class="pd-pop" style="width: 72px; height: 72px; border-radius: 50%; background: #1C3A30; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 34px; height: 34px; fill: none; stroke: #6FD3A8; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div class="pd-up" style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">{{doneTitle}}</h2>
+<div style="color: #A9AEBD">{{doneLine}}</div>
+</div>
+<div class="pd-up" style="display: flex; flex-direction: column; gap: 14px; animation-delay: .1s">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #222632"><span>Knew</span><span style="color: #A9AEBD">{{knewCount}}</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #222632"><span>Missed</span><span style="color: {{missColor}}">{{missCount}}</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px"><span>The rest of this list</span><span style="color: #A9AEBD">resting till 24 Nov</span></div>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+<button type="button" class="pd-press" onClick="{{again}}" style="min-height: 56px; border-radius: 16px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-weight: 600; font-size: 16px">{{againLabel}}</button>
+<a href="Phone-flow.dc.html" class="pd-press" style="display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none">Back to Today</a>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { index: 0, shown: false, missed: [] };
+  }
+  renderVals() {
+    const { index, shown, missed } = this.state;
+    const cards = [
+      { front: 'Sal', back: 'Shorea robusta', ask: 'botanical name', backStyle: 'italic', note: 'Family Dipterocarpaceae' },
+      { front: 'Tectona grandis', back: 'Teak', ask: 'common name', frontStyle: 'italic', backStyle: 'normal', note: 'Family Lamiaceae' },
+      { front: 'Deodar', back: 'Cedrus deodara', ask: 'botanical name', backStyle: 'italic', note: 'Family Pinaceae' },
+      { front: 'Shisham', back: 'Dalbergia sissoo', ask: 'botanical name', backStyle: 'italic', note: 'Family Fabaceae' },
+      { front: 'Santalum album', back: 'Sandalwood', ask: 'common name', backStyle: 'normal', note: 'Family Santalaceae' },
+      { front: 'Chir pine', back: 'Pinus roxburghii', ask: 'botanical name', backStyle: 'italic', note: 'Family Pinaceae' }
+    ];
+    const total = cards.length;
+    const done = index >= total;
+    const card = { frontStyle: 'normal', ...cards[Math.min(index, total - 1)] };
+    const step = (wasMissed) => () => this.setState({ index: index + 1, shown: false, missed: wasMissed ? [...missed, index] : missed });
+    const m = missed.length;
+    return {
+      inCards: !done, isDone: done,
+      card, cardKey: [index], shown: !done && shown, hidden: !done && !shown,
+      position: Math.min(index + 1, total), total,
+      progress: Math.round((index / total) * 100) + '%',
+      backOpacity: shown ? 1 : 0, backHidden: shown ? 'false' : 'true', ruleColor: shown ? '#262B38' : 'transparent',
+      show: () => this.setState({ shown: true }),
+      miss: step(true), knew: step(false),
+      doneTitle: total + ' cards in under a minute',
+      doneLine: m === 0 ? 'All of them came back. This list rests for a while.' : 'The ' + (m === 1 ? 'one you missed comes' : m + ' you missed come') + ' back tomorrow. Nothing else to do.',
+      knewCount: total - m, missCount: m === 0 ? 'none' : m + ', back tomorrow', missColor: m === 0 ? '#A9AEBD' : '#F2B866',
+      againLabel: m === 0 ? 'Go through them once more' : 'Go through the missed ones now',
+      again: () => this.setState({ index: 0, shown: false, missed: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

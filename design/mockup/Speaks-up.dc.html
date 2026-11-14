@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — when the app speaks up</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-press{transition:transform .12s ease,background .16s ease,border-color .16s ease}
+.pd-press:active{transform:scale(.97)}
+.pd-opt{transition:background .16s ease,border-color .16s ease}
+.pd-opt:hover{border-color:#8E97FF}
+@media (prefers-reduced-motion:reduce){.pd-press,.pd-opt{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #07080B; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45; padding: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 32px">
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<figcaption style="font-size: 13px; color: #A9AEBD">A sticking point: stop repeating, change the approach</figcaption>
+<div style="width: 372px; height: 800px; border-radius: 28px; border: 1px solid #262B38; background: #0E1016; overflow: hidden; display: flex; flex-direction: column">
+<div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 44px 18px 18px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 13px; color: #F2B866">Forestry · Silvicultural systems</div><h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.02em; line-height: 1.2; text-wrap: balance">This one keeps slipping</h1><div style="color: #A9AEBD"><span style="color: #ECEEF4">The regeneration period: from seeding felling to final felling.</span> Missed four of the last five times. Repeating it the same way is not working.</div></div><div style="display: flex; flex-direction: column; gap: 10px"><button type="button" class="pd-opt" aria-pressed="false" style="text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: 14px; border: 1px solid #262B38; background: #171A23; color: #ECEEF4"><span style="font-weight: 600">Reread the source</span><span style="font-size: 13px; color: #A9AEBD; line-height: 1.4">Khanna, chapter 7. It comes back two days after you say you have.</span></button><button type="button" class="pd-opt" aria-pressed="false" style="text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: 14px; border: 1px solid #262B38; background: #171A23; color: #ECEEF4"><span style="font-weight: 600">Split it in two</span><span style="font-size: 13px; color: #A9AEBD; line-height: 1.4">“What starts the regeneration period?” and “What ends it?”</span></button><button type="button" class="pd-opt" aria-pressed="false" style="text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: 14px; border: 1px solid #262B38; background: #171A23; color: #ECEEF4"><span style="font-weight: 600">Turn it into a diagram</span><span style="font-size: 13px; color: #A9AEBD; line-height: 1.4">A timeline of the four fellings, drawn by you, becomes the prompt.</span></button><button type="button" class="pd-opt" aria-pressed="false" style="text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: 14px; border: 1px solid #262B38; background: #171A23; color: #ECEEF4"><span style="font-weight: 600">Make a memory hook</span><span style="font-size: 13px; color: #A9AEBD; line-height: 1.4">One line of your own that gets shown first.</span></button></div><button type="button" class="pd-press" style="min-height: 48px; border-radius: 14px; border: 0; background: transparent; color: #9BA3FF; font-weight: 500; font-size: 15px">Leave it as it is</button>
+</div>
+
+</div>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<figcaption style="font-size: 13px; color: #A9AEBD">The load guard: said before you take on too much</figcaption>
+<div style="width: 372px; height: 800px; border-radius: 28px; border: 1px solid #262B38; background: #0E1016; overflow: hidden; display: flex; flex-direction: column">
+<div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 44px 18px 18px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 13px; color: #F2B866">Before you tick these 9 topics</div><h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.02em; line-height: 1.2; text-wrap: balance">They would take you past your time</h1><div style="color: #A9AEBD">By early December recall alone would need about <span style="color: #ECEEF4">2 h 25 min</span> a day. You allow <span style="color: #ECEEF4">2 h</span>.</div></div><div style="display: flex; flex-direction: column; gap: 8px"><div role="img" aria-label="Recall minutes a day over the next three weeks, rising past the two-hour line" style="display: flex; align-items: flex-end; gap: 5px; height: 84px; padding-top: 10px; border-bottom: 1px solid #262B38; position: relative"><div style="position: absolute; left: 0; right: 0; top: 30px; border-top: 1px dashed #8A90A2"></div><div style="flex: 1 1 0; height: 44%; border-radius: 4px 4px 0 0; background: #5B63C9"></div><div style="flex: 1 1 0; height: 48%; border-radius: 4px 4px 0 0; background: #5B63C9"></div><div style="flex: 1 1 0; height: 46%; border-radius: 4px 4px 0 0; background: #5B63C9"></div><div style="flex: 1 1 0; height: 52%; border-radius: 4px 4px 0 0; background: #5B63C9"></div><div style="flex: 1 1 0; height: 55%; border-radius: 4px 4px 0 0; background: #5B63C9"></div><div style="flex: 1 1 0; height: 58%; border-radius: 4px 4px 0 0; background: #5B63C9"></div><div style="flex: 1 1 0; height: 57%; border-radius: 4px 4px 0 0; background: #5B63C9"></div><div style="flex: 1 1 0; height: 62%; border-radius: 4px 4px 0 0; background: #5B63C9"></div><div style="flex: 1 1 0; height: 66%; border-radius: 4px 4px 0 0; background: #F2B866"></div><div style="flex: 1 1 0; height: 70%; border-radius: 4px 4px 0 0; background: #F2B866"></div><div style="flex: 1 1 0; height: 74%; border-radius: 4px 4px 0 0; background: #F2B866"></div><div style="flex: 1 1 0; height: 79%; border-radius: 4px 4px 0 0; background: #F2B866"></div><div style="flex: 1 1 0; height: 84%; border-radius: 4px 4px 0 0; background: #F2B866"></div><div style="flex: 1 1 0; height: 88%; border-radius: 4px 4px 0 0; background: #F2B866"></div></div><div style="font-size: 12px; color: #8A90A2">Recall minutes a day over the next three weeks. The dashed line is your 2 hours.</div></div><div style="display: flex; flex-direction: column; gap: 10px"><button type="button" class="pd-opt" aria-pressed="false" style="text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: 14px; border: 1px solid #262B38; background: #171A23; color: #ECEEF4"><span style="font-weight: 600">Tick 4 now, the rest next week</span><span style="font-size: 13px; color: #A9AEBD; line-height: 1.4">Keeps every day inside 2 hours. The app will remind you once.</span></button><button type="button" class="pd-opt" aria-pressed="false" style="text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: 14px; border: 1px solid #262B38; background: #171A23; color: #ECEEF4"><span style="font-weight: 600">Rest 14 easy items</span><span style="font-size: 13px; color: #A9AEBD; line-height: 1.4">Right five times running and rarely asked. They return in the final month.</span></button><button type="button" class="pd-opt" aria-pressed="false" style="text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: 14px; border: 1px solid #262B38; background: #171A23; color: #ECEEF4"><span style="font-weight: 600">Allow 2 h 30 min a day</span><span style="font-size: 13px; color: #A9AEBD; line-height: 1.4">Your number. Change it back whenever you like.</span></button><button type="button" class="pd-opt" aria-pressed="false" style="text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: 14px; border: 1px solid #262B38; background: #171A23; color: #ECEEF4"><span style="font-weight: 600">Tick all 9 anyway</span><span style="font-size: 13px; color: #A9AEBD; line-height: 1.4">Some days will run over. Nothing breaks.</span></button></div>
+</div>
+
+</div>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<figcaption style="font-size: 13px; color: #A9AEBD">A phase you dated arrives: the app asks, you confirm</figcaption>
+<div style="width: 372px; height: 800px; border-radius: 28px; border: 1px solid #262B38; background: #0E1016; overflow: hidden; display: flex; flex-direction: column">
+<div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 44px 18px 18px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 13px; color: #9BA3FF">1 March</div><h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.02em; line-height: 1.2; text-wrap: balance">You set today as the start of Prelims focus</h1><div style="color: #A9AEBD">Move to it now? A phase only changes what is offered. Your own plan stays yours.</div></div><div style="display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: 16px; background: #171A23; border: 1px solid #262B38"><div style="font-size: 13px; color: #A9AEBD">What would change</div><div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid #222632"><span style="font-size: 13px; color: #8A90A2">Full Prelims papers</span><span style="font-weight: 500">One a fortnight → one a week</span></div><div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid #222632"><span style="font-size: 13px; color: #8A90A2">CSAT</span><span style="font-weight: 500">Three days a week → every day</span></div><div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid #222632"><span style="font-size: 13px; color: #8A90A2">Optionals</span><span style="font-weight: 500">New topics → kept alive by recall</span></div><div style="display: flex; flex-direction: column; gap: 2px; "><span style="font-size: 13px; color: #8A90A2">Current affairs</span><span style="font-weight: 500">Monthly revision → weekly</span></div></div><div style="display: flex; flex-direction: column; gap: 4px; padding: 0 4px"><div style="font-size: 13px; color: #A9AEBD">Where you stand</div><div>First reading of the optionals: 281 of 304 topics. The 23 left would wait until June.</div></div><div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px"><a href="Progress.dc.html" class="pd-press" style="display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px; text-decoration: none">Move to Prelims focus</a><button type="button" class="pd-press" style="min-height: 48px; border-radius: 14px; border: 0; background: transparent; color: #9BA3FF; font-weight: 500; font-size: 15px">Not yet. Ask me in a week</button></div>
+</div>
+
+</div>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<figcaption style="font-size: 13px; color: #A9AEBD">The weekly summary: written for you, every Sunday evening</figcaption>
+<div style="width: 372px; height: 800px; border-radius: 28px; border: 1px solid #262B38; background: #0E1016; overflow: hidden; display: flex; flex-direction: column">
+<div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 44px 18px 18px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 4px"><div style="color: #8A90A2; font-size: 13px">9 to 15 November</div><h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">Your week</h1></div><div style="display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.5"><p style="margin: 0">You practised on <strong style="font-weight: 600">6 of 7 days</strong>, 9 h 10 min in all, against the 14 h you allow.</p><p style="margin: 0"><strong style="font-weight: 600">71 recalls</strong>; 58 came back whole. Forestry is holding. Stratigraphy slipped twice.</p><p style="margin: 0">One full paper: <strong style="font-weight: 600">81.3</strong>, up 3.8. Your “sure” answers were right 80% of the time, up from 71%.</p><p style="margin: 0">Three written answers, all inside their time. The diagram was missing in two.</p></div><div style="display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border-radius: 16px; background: #171A23; border: 1px solid #262B38"><div style="font-size: 13px; color: #A9AEBD">If one thing changes next week</div><div style="font-weight: 500">Draw the diagram first in every written answer.</div></div><div style="margin-top: auto; display: flex; gap: 10px"><a href="AI-bridge.dc.html" class="pd-press" style="flex: 1 1 0; display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; border: 1px solid #343A4A; color: #ECEEF4; font-weight: 500; text-decoration: none">Copy for AI</a><a href="Progress.dc.html" class="pd-press" style="flex: 1 1 0; display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; border: 1px solid #343A4A; color: #ECEEF4; font-weight: 500; text-decoration: none">Earlier weeks</a></div>
+</div>
+
+</div>
+</figure>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1680,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

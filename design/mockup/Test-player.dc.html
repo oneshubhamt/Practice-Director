@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — test player</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4B55D6}a:hover{color:#2F38A8}
+button{font-family:inherit;cursor:pointer}
+.pd-opt{transition:background .14s ease,border-color .14s ease}
+.pd-opt:hover{border-color:#4B55D6}
+.pd-cell{transition:transform .12s ease,border-color .14s ease}
+.pd-cell:hover{border-color:#4B55D6}
+.pd-cell:active{transform:scale(.94)}
+.pd-key{transition:background .12s ease}
+.pd-key:hover{background:#E3E6EE}
+.pd-quiet{transition:background .14s ease}
+.pd-quiet:hover{background:#EEF0F5}
+@media (prefers-reduced-motion:reduce){.pd-opt,.pd-cell,.pd-key,.pd-quiet{transition:none}}
+</style>
+</helmet>
+<div style="height: 100vh; min-height: 720px; display: flex; flex-direction: column; background: #F6F7FA; color: #14161C; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.5">
+
+<header style="flex: 0 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 10px clamp(16px, 2.4vw, 28px); background: #FFFFFF; border-bottom: 1px solid #E3E6EE">
+<div style="display: flex; flex-direction: column; gap: 1px">
+<div style="font-weight: 600">CAT 2024 · Slot 1</div>
+<div style="font-size: 12px; color: #555B6B">Sections open in order and close on time, as in the exam</div>
+</div>
+<div role="tablist" aria-label="Sections" style="flex: 1 1 420px; display: flex; flex-wrap: wrap; gap: 6px">
+<div role="tab" aria-selected="true" style="display: flex; align-items: center; gap: 10px; min-height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 10px; background: #EEF0FF; border: 1px solid #4B55D6; color: #2F38A8; font-weight: 600; font-size: 14px">Verbal and Reading</div>
+<div role="tab" aria-selected="false" aria-disabled="true" style="display: flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 10px; border: 1px solid #E3E6EE; color: #555B6B; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg>Data and Logic<span style="font-weight: 400">opens next</span></div>
+<div role="tab" aria-selected="false" aria-disabled="true" style="display: flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 10px; border: 1px solid #E3E6EE; color: #555B6B; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg>Quant</div>
+</div>
+<button type="button" class="pd-quiet" aria-label="Full screen" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid #E3E6EE; background: #FFFFFF; color: #555B6B; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg></button>
+<div style="display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">31:42</span><span style="font-size: 13px; color: #555B6B">left in this section</span></div>
+</header>
+
+<div style="flex: 1 1 auto; min-height: 0; display: flex; flex-wrap: wrap; gap: 0">
+
+<section aria-label="Passage" style="flex: 1 1 380px; min-width: 0; min-height: 0; box-sizing: border-box; overflow: auto; padding: 28px clamp(20px, 3vw, 40px); background: #FFFFFF; border-right: 1px solid #E3E6EE; display: flex; flex-direction: column; gap: 16px">
+<div style="font-size: 13px; color: #555B6B">Passage for questions 5 to 8</div>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; text-wrap: pretty">For most of the twentieth century, forest managers treated fire as an enemy to be defeated. Every blaze was to be out by ten o'clock the next morning, and for decades the policy appeared to work: fewer hectares burned, and the forests grew denser.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; text-wrap: pretty">The appearance was misleading. In many dry forests, frequent low fires had once cleared the undergrowth every few years, leaving the large trees unharmed and wide spaces between them. With fire excluded, small trees and dead wood accumulated. When fires did escape control, as some always do, they no longer crept along the ground. They climbed this ladder of fuel into the crowns and killed trees that had survived centuries of earlier burning.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; text-wrap: pretty">The lesson usually drawn is that suppression failed. A more careful reading is that it succeeded too well at the wrong task. It reduced the number of fires while increasing the severity of the few that mattered, and it was judged by the first measure alone.</p>
+<div style="margin-top: auto; padding-top: 12px; font-size: 12px; color: #555B6B">Sample passage written for this mock-up.</div>
+</section>
+
+<section aria-label="Question" style="flex: 1 1 380px; min-width: 0; min-height: 0; box-sizing: border-box; overflow: auto; padding: 28px clamp(20px, 3vw, 36px); display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><span style="font-size: 13px; color: #555B6B">Question {{current}} of 24</span><span style="font-size: 13px; color: #555B6B">+3 right · −1 wrong</span></div>
+<div style="font-size: 17px; font-weight: 500; line-height: 1.5">The author's main point about fire suppression is that it</div>
+<div role="radiogroup" aria-label="Options" style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{options}}" as="o" hint-placeholder-count="4">
+<button type="button" role="radio" aria-checked="{{o.checked}}" class="pd-opt" onClick="{{o.pick}}" style="text-align: left; display: flex; align-items: flex-start; gap: 14px; min-height: 52px; box-sizing: border-box; padding: 13px 16px; border-radius: 12px; border: 1.5px solid {{o.line}}; background: {{o.bg}}; color: #14161C; font-size: 15px; line-height: 1.45"><span style="flex: 0 0 24px; height: 24px; border-radius: 50%; border: 1.5px solid {{o.dotLine}}; background: {{o.dotBg}}; color: {{o.dotFg}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{o.n}}</span><span>{{o.text}}</span></button>
+</sc-for>
+</div>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding-top: 12px">
+<button type="button" class="pd-quiet" onClick="{{toggleMark}}" aria-pressed="{{markPressed}}" style="min-height: 46px; padding: 0 16px; border-radius: 12px; border: 1px solid #C9CEDB; background: {{markBg}}; color: #14161C; font-weight: 500; font-size: 14px">{{markLabel}}</button>
+<button type="button" class="pd-quiet" onClick="{{clear}}" style="min-height: 46px; padding: 0 16px; border-radius: 12px; border: 1px solid transparent; background: transparent; color: #555B6B; font-weight: 500; font-size: 14px">Clear</button>
+<button type="button" class="pd-quiet" onClick="{{prev}}" aria-label="Previous question" style="margin-left: auto; width: 46px; height: 46px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
+<button type="button" onClick="{{next}}" style=" min-height: 46px; padding: 0 24px; border-radius: 12px; border: 0; background: #14161C; color: #FFFFFF; font-weight: 600; font-size: 15px">Save and next</button>
+</div>
+</section>
+
+<aside aria-label="Question palette" style="flex: 0 1 300px; min-width: 260px; min-height: 0; box-sizing: border-box; overflow: auto; padding: 24px 22px; background: #FFFFFF; border-left: 1px solid #E3E6EE; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: baseline; justify-content: space-between"><span style="font-weight: 600">Questions</span><span style="font-size: 13px; color: #555B6B">{{answeredCount}} answered</span></div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{cells}}" as="c" hint-placeholder-count="24">
+<button type="button" class="pd-cell" onClick="{{c.go}}" aria-label="{{c.aria}}" style="position: relative; aspect-ratio: 1; min-height: 36px; border-radius: 9px; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; background: {{c.bg}}; color: {{c.fg}}; border: {{c.border}}; box-shadow: {{c.ring}}">{{c.n}}<span style="position: absolute; top: -3px; right: -3px; width: 10px; height: 10px; border-radius: 50%; background: #E0902F; border: 2px solid #FFFFFF; display: {{c.flag}}"></span></button>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: #555B6B">
+<span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 14px; height: 14px; border-radius: 4px; background: #4B55D6"></span>Answered</span>
+<span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 14px; height: 14px; border-radius: 4px; background: #EEF0F5"></span>Not answered</span>
+<span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 10px; height: 10px; margin: 0 2px; border-radius: 50%; background: #E0902F"></span>Marked for review</span>
+</div>
+
+<div style="border-top: 1px solid #E3E6EE; padding-top: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between"><span style="font-weight: 600">Calculator</span><span style="font-size: 12px; color: #555B6B">allowed in this exam</span></div>
+<div aria-label="Calculator display" style="min-height: 44px; box-sizing: border-box; padding: 8px 12px; border-radius: 10px; background: #F6F7FA; border: 1px solid #E3E6EE; text-align: right; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 20px; font-variant-numeric: tabular-nums">{{calc}}</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="16">
+<button type="button" class="pd-key" onClick="{{k.press}}" aria-label="{{k.aria}}" style="min-height: 40px; border-radius: 9px; border: 1px solid #E3E6EE; background: {{k.bg}}; color: #14161C; font-size: 15px; font-weight: 500">{{k.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="margin-top: auto; font-size: 12px; color: #555B6B">Keys: A to D answer · ← → move · M mark for review · F full screen</div>
+</aside>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      current: 7,
+      answers: { 1: 2, 2: 4, 3: 1, 5: 3, 6: 1, 7: 2 },
+      seen: { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1 },
+      marked: { 4: true },
+      calc: '0', acc: null, op: null, fresh: true
+    };
+  }
+  renderVals() {
+    const { current, answers, seen, marked, calc } = this.state;
+    const texts = [
+      'was abandoned before it had time to show results.',
+      'was judged by a measure that hid its real cost.',
+      'failed because large fires can never be controlled.',
+      'suited dry forests but was applied to the wrong ones.'
+    ];
+    const picked = answers[current];
+    const options = texts.map((text, i) => {
+      const n = i + 1, on = picked === n;
+      return {
+        n: 'ABCD'[i], text, checked: on ? 'true' : 'false',
+        line: on ? '#4B55D6' : '#E3E6EE', bg: on ? '#EEF0FF' : '#FFFFFF',
+        dotLine: on ? '#4B55D6' : '#C9CEDB', dotBg: on ? '#4B55D6' : '#FFFFFF', dotFg: on ? '#FFFFFF' : '#555B6B',
+        pick: () => this.setState({ answers: { ...answers, [current]: n } })
+      };
+    });
+    const cells = Array.from({ length: 24 }, (_, i) => {
+      const n = i + 1, a = !!answers[n], s = !!seen[n], here = n === current;
+      return {
+        n,
+        bg: a ? '#4B55D6' : '#EEF0F5',
+        fg: a ? '#FFFFFF' : '#555B6B',
+        border: a ? '1.5px solid #4B55D6' : '1.5px solid #EEF0F5',
+        ring: here ? '0 0 0 3px #C9CEFF' : 'none',
+        flag: marked[n] ? 'block' : 'none',
+        aria: 'Question ' + n + (a ? ', answered' : ', not answered') + (marked[n] ? ', marked for review' : ''),
+        go: () => this.setState({ current: n, seen: { ...seen, [n]: 1 } })
+      };
+    });
+    const isMarked = !!marked[current];
+    const press = (k) => () => {
+      const st = this.state;
+      if (k === 'C') return this.setState({ calc: '0', acc: null, op: null, fresh: true });
+      if ('0123456789.'.includes(k)) {
+        if (k === '.' && !st.fresh && st.calc.includes('.')) return;
+        return this.setState({ calc: st.fresh ? (k === '.' ? '0.' : k) : (st.calc + k).slice(0, 12), fresh: false });
+      }
+      const x = parseFloat(st.calc);
+      const apply = (a, b, op) => op === '+' ? a + b : op === '−' ? a - b : op === '×' ? a * b : op === '÷' ? (b === 0 ? 0 : a / b) : b;
+      const acc = st.op && !st.fresh ? apply(st.acc, x, st.op) : (st.acc === null || !st.fresh ? x : st.acc);
+      const shown = String(Math.round(acc * 1e6) / 1e6);
+      this.setState({ calc: shown, acc, op: k === '=' ? null : k, fresh: true });
+    };
+    const keys = ['7', '8', '9', '÷', '4', '5', '6', '×', '1', '2', '3', '−', '0', '.', '=', '+'].map((label) => ({
+      label, press: press(label),
+      aria: { '÷': 'divide', '×': 'multiply', '−': 'minus', '+': 'plus', '=': 'equals', '.': 'point' }[label] || label,
+      bg: '0123456789.'.includes(label) ? '#FFFFFF' : '#F6F7FA'
+    }));
+    return {
+      current, options, cells, keys, calc,
+      answeredCount: Object.keys(answers).length,
+      markLabel: isMarked ? 'Marked for review' : 'Mark for review',
+      markPressed: isMarked ? 'true' : 'false', markBg: isMarked ? '#FBEBD3' : '#FFFFFF',
+      toggleMark: () => this.setState({ marked: { ...marked, [current]: !isMarked } }),
+      clear: () => { const next = { ...answers }; delete next[current]; this.setState({ answers: next }); },
+      prev: () => this.setState({ current: Math.max(1, current - 1) }),
+      next: () => { const n = Math.min(24, current + 1); this.setState({ current: n, seen: { ...seen, [n]: 1 } }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

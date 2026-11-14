@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — full-paper rehearsal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-pick{transition:background .16s ease,border-color .16s ease}
+.pd-pick:hover{border-color:#8E97FF}
+.pd-chip{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-primary{transition:transform .16s ease,box-shadow .2s ease,opacity .2s ease}
+.pd-primary:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(142,151,255,.28)}
+.pd-bar{transition:width .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes pdSwap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pd-swap{animation:pdSwap .32s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-swap{animation:none}.pd-pick,.pd-chip,.pd-primary,.pd-bar{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 14px clamp(16px, 3vw, 32px); border-bottom: 1px solid #222632">
+<a href="Practice.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Leave</a>
+<div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="font-weight: 600; font-size: 16px">IFoS Mains 2024 · Forestry · Paper I</div>
+<div style="font-size: 13px; color: #8A90A2">200 marks · 3 hours · you write on paper, the screen keeps the pace</div>
+</div>
+<div role="group" aria-label="Stage" style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #171A23; border: 1px solid #262B38">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="3">
+<button type="button" class="pd-chip" onClick="{{s.go}}" aria-pressed="{{s.pressed}}" style="min-height: 40px; padding: 0 16px; border: 0; border-radius: 9px; font-size: 14px; font-weight: 500; background: {{s.bg}}; color: {{s.fg}}">{{s.label}}</button>
+</sc-for>
+</div>
+</header>
+
+<sc-if value="{{isChoose}}" hint-placeholder-val="{{true}}">
+<main class="pd-swap" style="flex: 1 1 auto; width: 100%; max-width: 1120px; box-sizing: border-box; margin: 0 auto; padding: 28px clamp(16px, 3vw, 32px) 36px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px; max-width: 640px">
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">Choose your five</h1>
+<div style="color: #A9AEBD">Questions 1 and 5 are compulsory. Pick three more, with at least one from each section. Choosing well is part of the paper, so the clock is already running.</div>
+</div>
+<div style="display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">2:56:48</span><span style="font-size: 13px; color: #8A90A2">left</span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 20px">
+<sc-for list="{{sections}}" as="sec" hint-placeholder-count="2">
+<section style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 13px; color: #A9AEBD; padding: 0 4px">{{sec.name}}</div>
+<sc-for list="{{sec.questions}}" as="q" hint-placeholder-count="4">
+<button type="button" class="pd-pick" onClick="{{q.toggle}}" aria-pressed="{{q.pressed}}" style="text-align: left; display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; border-radius: 14px; border: 1px solid {{q.line}}; background: {{q.bg}}; color: #ECEEF4">
+<span style="flex: 0 0 22px; height: 22px; margin-top: 1px; border-radius: 6px; border: 1.5px solid {{q.boxLine}}; background: {{q.boxBg}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: #0E1016; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; opacity: {{q.tick}}"><path d="M5 12l5 5 9-10"></path></svg></span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<span style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><span style="font-weight: 600; font-size: 15px">Question {{q.n}}</span><span style="font-size: 13px; color: #8A90A2">{{q.shape}}</span><span style="font-size: 12px; color: #F2B866">{{q.must}}</span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="height: 7px; width: {{q.w1}}; border-radius: 4px; background: #2B3040"></span><span style="height: 7px; width: {{q.w2}}; border-radius: 4px; background: #2B3040"></span></span>
+</span>
+</button>
+</sc-for>
+</section>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding-top: 6px">
+<div style="display: flex; flex-direction: column; gap: 2px"><div style="font-weight: 500; font-size: 16px">{{chosenLine}}</div><div style="font-size: 13px; color: {{ruleColor}}">{{ruleLine}}</div></div>
+<button type="button" class="pd-primary" onClick="{{startWriting}}" style="min-height: 56px; padding: 0 32px; border: 0; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px; opacity: {{startOpacity}}">Start writing</button>
+</div>
+<div style="font-size: 13px; color: #8A90A2">The paper itself is open in your PDF or in front of you. The grey lines stand for its text.</div>
+</main>
+</sc-if>
+
+<sc-if value="{{isWrite}}" hint-placeholder-val="{{false}}">
+<main class="pd-swap" style="flex: 1 1 auto; width: 100%; max-width: 1120px; box-sizing: border-box; margin: 0 auto; padding: 28px clamp(16px, 3vw, 32px) 36px; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+
+<section aria-label="The part you are writing" style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 13px; color: #9BA3FF">Question {{part.q}} · part ({{part.letter}}) · {{part.marks}} marks</div>
+<div style="display: flex; align-items: baseline; gap: 14px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 96px; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; color: {{clockColor}}">{{clock}}</span><span style="color: #8A90A2">of {{part.budget}} for this part</span></div>
+<div role="img" aria-label="Time used on this part" style="height: 6px; border-radius: 999px; background: #222632; overflow: hidden"><div class="pd-bar" style="height: 100%; border-radius: 999px; background: {{clockColor}}; width: {{partPct}}"></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button type="button" class="pd-primary" onClick="{{nextPart}}" style="min-height: 56px; padding: 0 28px; border: 0; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px">Done, next part</button>
+<button type="button" class="pd-chip" style="min-height: 56px; padding: 0 20px; border-radius: 16px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-weight: 500; font-size: 15px">Leave it and come back</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border-radius: 16px; background: #171A23; border: 1px solid #262B38">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px"><span style="font-weight: 600">{{paceLine}}</span><span style="font-size: 13px; color: #8A90A2; font-variant-numeric: tabular-nums">{{part.left}} left of 3:00:00</span></div>
+<div style="font-size: 14px; color: #A9AEBD">{{paceNote}}</div>
+</div>
+</section>
+
+<aside aria-label="Your five questions" style="flex: 1 1 340px; min-width: 0; background: #171A23; border: 1px solid #262B38; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; justify-content: space-between; font-size: 13px; color: #A9AEBD; padding-bottom: 8px"><span>Your five</span><span>planned · took</span></div>
+<sc-for list="{{plan}}" as="p" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 12px; padding: 11px 10px; margin: 0 -10px; border-radius: 10px; background: {{p.bg}}">
+<span style="flex: 0 0 10px; height: 10px; border-radius: 50%; background: {{p.dot}}; border: 1.5px solid {{p.dotLine}}; box-sizing: border-box"></span>
+<span style="flex: 1 1 auto; min-width: 0; font-weight: 500">Question {{p.n}}<span style="font-weight: 400; color: #8A90A2; font-size: 13px"> · {{p.state}}</span></span>
+<span style="flex: 0 0 auto; font-size: 13px; color: #A9AEBD; font-variant-numeric: tabular-nums">36:00 · <span style="color: {{p.tookColor}}">{{p.took}}</span></span>
+</div>
+</sc-for>
+<div style="padding-top: 12px; margin-top: 8px; border-top: 1px solid #222632; font-size: 13px; color: #8A90A2">Every mark gets the same time: 54 seconds. An 8-mark part gets 7:12, a 40-mark question 36 minutes.</div>
+</aside>
+</main>
+</sc-if>
+
+<sc-if value="{{isCheck}}" hint-placeholder-val="{{false}}">
+<main class="pd-swap" style="flex: 1 1 auto; width: 100%; max-width: 760px; box-sizing: border-box; margin: 0 auto; padding: 44px clamp(16px, 3vw, 32px) 40px; display: flex; flex-direction: column; gap: 26px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.02em">Paper written: 2 h 54 min</h1>
+<div style="color: #A9AEBD">You finished all five with six minutes in hand. Question 3 ran 7 minutes over; question 6 paid it back.</div>
+</div>
+<div style="display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 14px 0; border-top: 1px solid #222632"><span>Parts written</span><span style="color: #A9AEBD">18 of 18</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 14px 0; border-top: 1px solid #222632"><span>Parts that ran over their time</span><span style="color: #A9AEBD">4, all in questions 1 and 3</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 14px 0; border-top: 1px solid #222632; border-bottom: 1px solid #222632"><span>Still to check against the marking points</span><span style="color: #F2B866">18 answers</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; color: #A9AEBD">Checking is where the marks are found. Eighteen at once is a lot after three hours, so:</div>
+<div role="group" aria-label="When to check" style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{checkWays}}" as="c" hint-placeholder-count="2">
+<button type="button" class="pd-pick" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" style="text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 16px 18px; border-radius: 14px; border: 1px solid {{c.line}}; background: {{c.bg}}; color: #ECEEF4"><span style="font-weight: 600; font-size: 16px">{{c.title}}</span><span style="font-size: 14px; color: #A9AEBD">{{c.note}}</span></button>
+</sc-for>
+</div>
+</div>
+<a href="Written-answer.dc.html" class="pd-primary" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 56px; box-sizing: border-box; padding: 0 32px; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px; text-decoration: none">{{checkAction}}</a>
+<div style="font-size: 13px; color: #8A90A2">Each check is the same as for a single answer: the marking points appear and you tap what your answer left out.</div>
+</main>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { stage: 'choose', picked: { 1: true, 5: true, 3: true }, partIndex: 0, check: 'spread' };
+  }
+  renderVals() {
+    const { stage, picked, partIndex, check } = this.state;
+    const stages = [['choose', 'Choose'], ['write', 'Write'], ['check', 'Check']].map(([id, label]) => {
+      const on = id === stage;
+      return { label, pressed: on ? 'true' : 'false', bg: on ? '#2A2E55' : 'transparent', fg: on ? '#DDE0FF' : '#A9AEBD', go: () => this.setState({ stage: id }) };
+    });
+    const shapes = { 1: 'five parts of 8 marks', 2: '15 + 15 + 10 marks', 3: '20 + 20 marks', 4: '15 + 10 + 15 marks', 5: 'five parts of 8 marks', 6: '20 + 10 + 10 marks', 7: '15 + 15 + 10 marks', 8: '20 + 20 marks' };
+    const widths = [['94%', '62%'], ['88%', '71%'], ['91%', '48%'], ['85%', '66%'], ['93%', '57%'], ['87%', '74%'], ['90%', '52%'], ['84%', '69%']];
+    const question = (n) => {
+      const must = n === 1 || n === 5, on = !!picked[n];
+      return {
+        n, shape: shapes[n], must: must ? 'compulsory' : '', pressed: on ? 'true' : 'false',
+        w1: widths[n - 1][0], w2: widths[n - 1][1],
+        line: on ? '#8E97FF' : '#262B38', bg: on ? '#1B1E33' : '#171A23',
+        boxLine: on ? '#8E97FF' : '#4A5062', boxBg: on ? '#8E97FF' : 'transparent', tick: on ? 1 : 0,
+        toggle: () => { if (!must) this.setState({ picked: { ...picked, [n]: !on } }); }
+      };
+    };
+    const sections = [
+      { name: 'Section A', questions: [1, 2, 3, 4].map(question) },
+      { name: 'Section B', questions: [5, 6, 7, 8].map(question) }
+    ];
+    const chosen = Object.keys(picked).filter((k) => picked[k]).map(Number);
+    const extraA = chosen.filter((n) => n > 1 && n < 5).length, extraB = chosen.filter((n) => n > 5).length;
+    const ok = chosen.length === 5 && extraA >= 1 && extraB >= 1;
+    const ruleLine = ok ? 'That is a valid choice: 200 marks.'
+      : chosen.length > 5 ? 'Too many. Drop ' + (chosen.length - 5) + '.'
+      : chosen.length === 5 ? 'Take at least one more from each section.'
+      : 'Pick ' + (5 - chosen.length) + ' more' + (extraA < 1 ? ', at least one from Section A' : extraB < 1 ? ', at least one from Section B' : '') + '.';
+
+    const parts = [
+      { q: 3, letter: 'a', marks: 20, budget: '18:00', clock: '11:24', pct: '63%', over: false, left: '1:32:36' },
+      { q: 3, letter: 'b', marks: 20, budget: '18:00', clock: '19:42', pct: '100%', over: true, left: '1:06:18' }
+    ];
+    const part = parts[partIndex % parts.length];
+    const plan = [
+      { n: 1, state: 'done', took: '38:10', late: true },
+      { n: 5, state: 'done', took: '34:38', late: false },
+      { n: 3, state: 'writing now', took: '', now: true },
+      { n: 6, state: 'to come', took: '' },
+      { n: 7, state: 'to come', took: '' }
+    ].map((p) => ({
+      ...p, took: p.took || '—',
+      bg: p.now ? '#1B1E33' : 'transparent',
+      dot: p.state === 'done' ? '#6FD3A8' : p.now ? '#8E97FF' : 'transparent',
+      dotLine: p.state === 'done' ? '#6FD3A8' : p.now ? '#8E97FF' : '#4A5062',
+      tookColor: p.late ? '#F2B866' : '#A9AEBD'
+    }));
+    const checkWays = [
+      { id: 'spread', title: 'Spread them over this week', note: 'Four or five a day inside your usual time, starting tomorrow. Nothing to arrange.' },
+      { id: 'now', title: 'Check them now', note: 'About 55 minutes, while the answers are fresh in your mind.' }
+    ].map((c) => {
+      const on = c.id === check;
+      return { ...c, pressed: on ? 'true' : 'false', line: on ? '#8E97FF' : '#262B38', bg: on ? '#1B1E33' : '#171A23', pick: () => this.setState({ check: c.id }) };
+    });
+    return {
+      stages, sections, part, plan, checkWays,
+      isChoose: stage === 'choose', isWrite: stage === 'write', isCheck: stage === 'check',
+      chosenLine: chosen.length + ' of 5 chosen', ruleLine, ruleColor: ok ? '#6FD3A8' : '#F2B866',
+      startOpacity: ok ? 1 : 0.4,
+      startWriting: () => { if (ok) this.setState({ stage: 'write' }); },
+      clock: part.clock, partPct: part.pct, clockColor: part.over ? '#F2B866' : '#ECEEF4',
+      paceLine: part.over ? 'You are 6 minutes behind the paper' : 'You are 4 minutes behind the paper',
+      paceNote: part.over
+        ? 'This part is over its time. Finish the sentence and move on; a part left unwritten loses more than a part left rough.'
+        : 'Choosing took 3 minutes and question 1 ran 2 over. Small enough to win back on a part you know well.',
+      nextPart: () => this.setState({ partIndex: partIndex + 1 }),
+      checkAction: check === 'now' ? 'Check the first answer' : 'Done for today'
+    };
+  }
+}
+</script>
+</body>
+</html>

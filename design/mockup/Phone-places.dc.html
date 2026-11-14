@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — Practice, Syllabus and Progress on a phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-press{transition:transform .12s ease,background .16s ease,border-color .16s ease}
+.pd-press:active{transform:scale(.97)}
+.pd-fill{transition:width .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes pdUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pd-up{animation:pdUp .3s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-up{animation:none}.pd-press,.pd-fill{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #07080B; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45; padding: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 36px">
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<figcaption style="font-size: 13px; color: #A9AEBD">Practice: what suits a phone comes first</figcaption>
+<div style="width: 372px; height: 800px; border-radius: 28px; border: 1px solid #262B38; background: #0E1016; overflow: hidden; display: flex; flex-direction: column">
+<div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 44px 18px 18px; display: flex; flex-direction: column; gap: 18px">
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">Practice</h1>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<a href="Phone-flow.dc.html" class="pd-press" style="display: flex; align-items: center; gap: 12px; min-height: 64px; box-sizing: border-box; padding: 12px 16px; border-radius: 14px; background: #171A23; border: 1px solid #262B38; color: #ECEEF4; text-decoration: none"><span style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Fix mistakes</span><span style="font-size: 13px; color: #F2B866">43 open · 6 due today</span></span><svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 16px; width: 16px; height: 16px; fill: none; stroke: #8A90A2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M9 6l6 6-6 6"></path></svg></a>
+<a href="Written-answer.dc.html" class="pd-press" style="display: flex; align-items: center; gap: 12px; min-height: 64px; box-sizing: border-box; padding: 12px 16px; border-radius: 14px; background: #171A23; border: 1px solid #262B38; color: #ECEEF4; text-decoration: none"><span style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Write an answer</span><span style="font-size: 13px; color: #8A90A2">Phone beside your paper, on the clock</span></span><svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 16px; width: 16px; height: 16px; fill: none; stroke: #8A90A2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M9 6l6 6-6 6"></path></svg></a>
+<a href="Quick-cards.dc.html" class="pd-press" style="display: flex; align-items: center; gap: 12px; min-height: 64px; box-sizing: border-box; padding: 12px 16px; border-radius: 14px; background: #171A23; border: 1px solid #262B38; color: #ECEEF4; text-decoration: none"><span style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Quick cards</span><span style="font-size: 13px; color: #8A90A2">96 cards in 5 lists</span></span><svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 16px; width: 16px; height: 16px; fill: none; stroke: #8A90A2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M9 6l6 6-6 6"></path></svg></a>
+<a href="Answer-sheet-tablet.dc.html" class="pd-press" style="display: flex; align-items: center; gap: 12px; min-height: 64px; box-sizing: border-box; padding: 12px 16px; border-radius: 14px; background: #171A23; border: 1px solid #262B38; color: #ECEEF4; text-decoration: none"><span style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Answer sheet</span><span style="font-size: 13px; color: #8A90A2">Beside a printed paper or a book</span></span><svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 16px; width: 16px; height: 16px; fill: none; stroke: #8A90A2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M9 6l6 6-6 6"></path></svg></a>
+<a href="Practice-sheets.dc.html" class="pd-press" style="display: flex; align-items: center; gap: 12px; min-height: 64px; box-sizing: border-box; padding: 12px 16px; border-radius: 14px; background: #171A23; border: 1px solid #262B38; color: #ECEEF4; text-decoration: none"><span style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Log practice done elsewhere</span><span style="font-size: 13px; color: #8A90A2">Ten seconds, or run the pacer</span></span><svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 16px; width: 16px; height: 16px; fill: none; stroke: #8A90A2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M9 6l6 6-6 6"></path></svg></a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 0 2px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 13px; color: #A9AEBD">Papers</span><a href="Practice.dc.html" style="font-size: 13px; text-decoration: none">All papers</a></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid #222632"><span style="font-weight: 500">Prelims 2022 · General Studies</span><span style="font-size: 13px; color: #8A90A2">Sunday, 9:30 am · best on the laptop with your PDF</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Prelims 2022 · CSAT</span><span style="font-size: 13px; color: #8A90A2">Paused on your laptop, 41 of 80. It stays there.</span></div>
+</div>
+</div>
+<!--pd:tabs practice-->
+<nav aria-label="Main" style="flex: 0 0 auto; display: flex; padding: 8px 8px 20px; background: #11141B; border-top: 1px solid #222632">
+<a href="Phone-flow.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Phone-places.dc.html" aria-current="page" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #9BA3FF"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Phone-places.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Phone-places.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</nav>
+<!--/pd:tabs-->
+</div>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<figcaption style="font-size: 13px; color: #A9AEBD">Syllabus: tick a topic the moment you finish reading it</figcaption>
+<div style="position: relative; width: 372px; height: 800px; border-radius: 28px; border: 1px solid #262B38; background: #0E1016; overflow: hidden; display: flex; flex-direction: column">
+<div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 44px 18px 18px; display: flex; flex-direction: column; gap: 16px">
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">Syllabus</h1>
+<div style="display: flex; gap: 8px; overflow-x: auto; margin: 0 -18px; padding: 0 18px">
+<span style="flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; background: #2A2E55; border: 1px solid #8E97FF; color: #DDE0FF; font-size: 14px; font-weight: 500">Forestry</span>
+<span style="flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #343A4A; color: #A9AEBD; font-size: 14px; font-weight: 500">Geology</span>
+<span style="flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #343A4A; color: #A9AEBD; font-size: 14px; font-weight: 500">General Knowledge</span>
+<span style="flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #343A4A; color: #A9AEBD; font-size: 14px; font-weight: 500">Prelims</span>
+</div>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{topics}}" as="t" hint-placeholder-count="7">
+<div style="display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid {{t.rule}}">
+<button type="button" class="pd-press" onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" aria-label="{{t.aria}}" style="flex: 0 0 44px; height: 44px; border-radius: 50%; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; padding: 0"><span style="width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid {{t.boxLine}}; background: {{t.boxBg}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: #0E1016; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: {{t.tick}}"><path d="M5 12l5 5 9-10"></path></svg></span></button>
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<div style="font-weight: 500; line-height: 1.3">{{t.name}}</div>
+<div style="display: flex; align-items: center; gap: 10px"><div role="img" aria-label="{{t.label}}" style="flex: 1 1 auto; height: 5px; border-radius: 999px; background: #222632; overflow: hidden"><div class="pd-fill" style="height: 100%; border-radius: 999px; background: {{t.color}}; width: {{t.fill}}"></div></div><span style="flex: 0 0 auto; font-size: 12px; color: {{t.labelColor}}">{{t.label}}</span></div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+<div class="pd-up" role="status" style="position: absolute; left: 14px; right: 14px; bottom: 96px; padding: 14px 16px; border-radius: 16px; background: #1E222D; border: 1px solid #343A4A; box-shadow: 0 14px 40px rgba(0,0,0,.5); display: flex; align-items: center; gap: 12px">
+<div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Ticked. First recall on Monday.</span><span style="font-size: 13px; color: #A9AEBD">This adds about 1 minute a day.</span></div>
+<button type="button" class="pd-press" onClick="{{undo}}" style="flex: 0 0 auto; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #343A4A; background: transparent; color: #9BA3FF; font-weight: 600; font-size: 14px">Undo</button>
+</div>
+</sc-if>
+<!--pd:tabs syllabus-->
+<nav aria-label="Main" style="flex: 0 0 auto; display: flex; padding: 8px 8px 20px; background: #11141B; border-top: 1px solid #222632">
+<a href="Phone-flow.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Phone-places.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Phone-places.dc.html" aria-current="page" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #9BA3FF"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Phone-places.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</nav>
+<!--/pd:tabs-->
+</div>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<figcaption style="font-size: 13px; color: #A9AEBD">Progress: the same four answers, stacked</figcaption>
+<div style="width: 372px; height: 800px; border-radius: 28px; border: 1px solid #262B38; background: #0E1016; overflow: hidden; display: flex; flex-direction: column">
+<div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 44px 18px 18px; display: flex; flex-direction: column; gap: 22px">
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">Progress</h1>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div role="img" aria-label="Three phases; you are in the first, Foundation" style="display: flex; gap: 4px; height: 8px"><div style="flex: 110 1 0; border-radius: 999px; background: #8E97FF"></div><div style="flex: 81 1 0; border-radius: 999px; background: #2B3040"></div><div style="flex: 182 1 0; border-radius: 999px; background: #2B3040"></div></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><span style="font-weight: 600">Foundation · now</span><span style="font-size: 13px; color: #8A90A2">then Prelims focus from 1 March</span></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 16px; background: #171A23; border: 1px solid #262B38">
+<div style="font-size: 13px; color: #A9AEBD">Two things that matter now</div>
+<div style="display: flex; gap: 12px"><span style="flex: 0 0 24px; height: 24px; border-radius: 50%; border: 1px solid #343A4A; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #A9AEBD">1</span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">119 optional topics are still unread</span><span style="font-size: 13px; color: #8A90A2">At 9 a week, first reading ends in mid-February.</span></div></div>
+<div style="display: flex; gap: 12px"><span style="flex: 0 0 24px; height: 24px; border-radius: 50%; border: 1px solid #343A4A; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #A9AEBD">2</span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Environment costs you most in Prelims</span><span style="font-size: 13px; color: #8A90A2">5 of 16 right, against 12 of 17 in Polity.</span></div></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 13px; color: #A9AEBD">Full papers against your target</span><span style="font-size: 13px; color: #F2B866">Target 110</span></div>
+<div role="img" aria-label="Four papers: 68.0, 74.7, 77.5 and 81.3 out of 200, against a target of 110" style="display: flex; align-items: flex-end; gap: 14px; height: 110px; border-top: 1px dashed #F2B866">
+<div style="flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%"><span style="font-size: 12px; font-weight: 600">68.0</span><div style="width: 100%; height: 55%; border-radius: 8px 8px 2px 2px; background: #5B63C9"></div></div>
+<div style="flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%"><span style="font-size: 12px; font-weight: 600">74.7</span><div style="width: 100%; height: 61%; border-radius: 8px 8px 2px 2px; background: #5B63C9"></div></div>
+<div style="flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%"><span style="font-size: 12px; font-weight: 600">77.5</span><div style="width: 100%; height: 63%; border-radius: 8px 8px 2px 2px; background: #5B63C9"></div></div>
+<div style="flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%"><span style="font-size: 12px; font-weight: 600">81.3</span><div style="width: 100%; height: 66%; border-radius: 8px 8px 2px 2px; background: #8E97FF"></div></div>
+</div>
+<div style="font-size: 13px; color: #8A90A2">Up 13 marks over four papers. 29 to go.</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 13px; color: #A9AEBD">What you still hold</div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between; font-size: 14px"><span style="font-weight: 500">Forestry</span><span style="color: #8A90A2; font-variant-numeric: tabular-nums">86 · 21 · 49</span></div><div style="display: flex; gap: 3px; height: 6px"><div style="flex: 86 1 0; border-radius: 999px; background: #8E97FF"></div><div style="flex: 21 1 0; border-radius: 999px; background: #F2B866"></div><div style="flex: 49 1 0; border-radius: 999px; background: #2B3040"></div></div></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between; font-size: 14px"><span style="font-weight: 500">Geology</span><span style="color: #8A90A2; font-variant-numeric: tabular-nums">62 · 16 · 70</span></div><div style="display: flex; gap: 3px; height: 6px"><div style="flex: 62 1 0; border-radius: 999px; background: #8E97FF"></div><div style="flex: 16 1 0; border-radius: 999px; background: #F2B866"></div><div style="flex: 70 1 0; border-radius: 999px; background: #2B3040"></div></div></div>
+</div>
+</div>
+<!--pd:tabs progress-->
+<nav aria-label="Main" style="flex: 0 0 auto; display: flex; padding: 8px 8px 20px; background: #11141B; border-top: 1px solid #222632">
+<a href="Phone-flow.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Phone-places.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Phone-places.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Phone-places.dc.html" aria-current="page" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: #9BA3FF"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</nav>
+<!--/pd:tabs-->
+</div>
+</figure>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { ticked: {}, toast: false };
+  }
+  renderVals() {
+    const { ticked, toast } = this.state;
+    const base = [
+      { name: 'Silviculture: general principles', state: 'fresh', fill: '92%', label: 'Fresh till 4 Dec' },
+      { name: 'Silvicultural systems', state: 'fresh', fill: '70%', label: 'Fresh till 18 Nov' },
+      { name: 'Mangroves and cold deserts', state: 'fading', fill: '30%', label: 'Recall today' },
+      { name: 'Silviculture of trees', state: 'new' },
+      { name: 'Agroforestry, social forestry and JFM', state: 'fresh', fill: '76%', label: 'Fresh till 21 Nov' },
+      { name: 'Forest soils and watershed management', state: 'fading', fill: '38%', label: 'Recall tomorrow' },
+      { name: 'Tree improvement and seed technology', state: 'new' }
+    ];
+    const topics = base.map((t, i) => {
+      const justTicked = t.state === 'new' && !!ticked[i];
+      const done = t.state !== 'new' || justTicked;
+      const state = justTicked ? 'fresh' : t.state;
+      return {
+        name: t.name, rule: i === 0 ? 'transparent' : '#222632',
+        pressed: done ? 'true' : 'false', aria: (done ? 'Studied: ' : 'Tick as studied: ') + t.name,
+        boxLine: done ? '#8E97FF' : '#4A5062', boxBg: done ? '#8E97FF' : 'transparent', tick: done ? 1 : 0,
+        fill: justTicked ? '100%' : t.fill || '0%',
+        color: state === 'fading' ? '#F2B866' : '#8E97FF',
+        label: justTicked ? 'Fresh · recall Monday' : t.label || 'Not started',
+        labelColor: state === 'fading' ? '#F2B866' : state === 'new' ? '#8A90A2' : '#A9AEBD',
+        toggle: () => { if (t.state === 'new') this.setState({ ticked: { ...ticked, [i]: !ticked[i] }, toast: !ticked[i] }); }
+      };
+    });
+    return { topics, toast, undo: () => this.setState({ ticked: {}, toast: false }) };
+  }
+}
+</script>
+</body>
+</html>
