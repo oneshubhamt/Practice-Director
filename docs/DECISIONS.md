@@ -18,6 +18,7 @@ How the idea has changed, in order, and where each question stands. The current 
 | Practice time | 2 to 4 hours a day | Stated by owner |
 | Target scores | Default 55% of a paper's marks, changeable | Default set; owner said 50 to 60% is what is needed |
 | Old data | None to import | Stated by owner |
+| Who plans the day | The owner, by hand. The app informs and offers; it never places work in the plan. | Owner's condition |
 
 ## Log
 
@@ -55,6 +56,8 @@ How the idea has changed, in order, and where each question stands. The current 
 9. **Owner proposed two universes**: a study side and a practice side. Gave practice time (2 to 4 hours) and the level of marks needed (50 to 60%).
 10. **Two-app structure proposed.** Study Director for time, with the Calendar; Practice Director for marks, with Revision Director's engine; three links between them. This replaces absorbing Study Director.
 11. **Owner likes the direction but has not finalised it.** Open in the owner's mind: why the Calendar belongs in Study Director and not with revision or practice, and how multi-day planning fits an app that knows one day. Reasoning recorded in PLAN.md section 9: a calendar is for dates a person decides; revision dates are decided by the forgetting curve, so revision needs a schedule and a load forecast, not a calendar.
+12. **Owner's condition: the day must not be dictated by a machine.** Study Director exists so the owner plans by hand, at an organic pace. Recorded as a design principle ("You plan; the app informs"): the app works out facts and makes offers; it places nothing in the plan. Consequences written in: choose-your-own by subject, kind and length; phases declared by the owner; practice time offered to the day, never inserted; the week level of the calendar optional.
+13. **Second audit, beyond the four apps.** Added: briefing before a paper, form and admit-card dates, a source line per topic, sharing for feedback with a person, readable export. Cut or pushed back: the memory-model optimizer, paper editions in the interface, the authoring studio, much of the inherited safety machinery; the in-app test player is to be re-examined before it is built, because the target exams are sat on paper.
 
 ## Positions that were reversed
 

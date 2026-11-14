@@ -77,6 +77,7 @@ There is also real duplication to remove: Practice Desk and Revision Director ea
 8. **Phone and laptop are both first-class.** Quick reviews and today's plan on the phone; mocks and writing on the laptop.
 9. **Automatic by default.** The app decides what, when and how much from sound mechanisms (section 5). You confirm with a tap or override; you never configure before you can start. Every input the app asks for must pay for itself the same day.
 10. **Works fully without AI.** No feature in the core loop depends on an AI key. AI is a later, optional layer (section 8).
+11. **You plan; the app informs.** Your day is yours and must not become a routine handed down by a machine. The app works out only facts (what is fading, what a paper scored, how much is coming) and makes offers. It never puts anything into your plan, never needs you to obey it to stay useful, and adjusts to what you actually did. How many hours, which subject, in what order and at what pace are your choices every day.
 
 ## 4. The app, screen by screen
 
@@ -86,6 +87,7 @@ Four places: Today, Practice, Syllabus, Progress. Settings sit behind the profil
 
 - Countdown to each exam.
 - **Suggested for today**: an ordered list with a reason and a time for each item. It has a core that fits your shorter days (2 hours) and an extension for longer ones (up to 4). One **Start** button, and **choose your own** beside it.
+- **Choose your own** works by feel: pick a subject, a kind of work (recall, questions, writing) and a length, in any combination, and the app fills that with the most valuable items inside your choice. You decide what and how long; it only picks which items.
 - **"Less time today?"** chips (15 · 30 · 60 min) cut the session to the most valuable part.
 - **Your memory**: how many topics are fresh, fading and not started, and how many of the fading ones today's session catches.
 - The next full paper, placed at the real exam's hour.
@@ -125,7 +127,7 @@ Four places: Today, Practice, Syllabus, Progress. Settings sit behind the profil
 
 ### Progress
 
-- **The road ahead**: phases from today to each exam. You set the dates; the mix follows.
+- **The road ahead**: phases from today to each exam. You set the dates and you say which phase you are in; the app proposes a change of phase and you confirm it. A phase only shifts what is offered.
 - **Two things that matter now**, never more, each with the reason and what the app is doing about it.
 - **Full papers against your target**: every result is read against a target, which starts at 55% of the paper's marks and can be changed.
 - **What you still hold**: fresh, fading and not started, by paper.
@@ -138,7 +140,7 @@ Four places: Today, Practice, Syllabus, Progress. Settings sit behind the profil
 - **One daily anchor**: a single reminder at the hour you choose. No other nagging.
 - **A minimum day**: ten minutes that keeps the most at-risk items alive.
 - **Coming back after a gap**: a short restart session, with the pile already spread over the following days.
-- **Load guard**: the app warns before you take on more topics than your time can keep alive, and retires items that are both low-value and reliably easy.
+- **Load guard**: the app tells you before you take on more topics than your time can keep alive, and offers to rest items that are both low-value and reliably easy. You decide.
 
 ### Key flows
 
@@ -309,11 +311,11 @@ Today Study Director knows one day. A calendar adds the levels above it without 
 | Day | Blocks with start time, length, kind and Area | The Plan board |
 
 - **The Plan board is already one day of a calendar.** Its blocks have a start, a length, a kind and an Area, which is what a calendar event is. A week view is seven boards side by side.
-- **Each morning's board arrives filled in** from the week, instead of being built or loaded each day. Templates and saved plans become repeating blocks.
+- **Each morning's board can start from the week you laid out**, instead of being built from nothing. It is still a draft you reshape freely, and if you never use the week level, Study Director works exactly as it does today. Templates and saved plans become repeating blocks.
 - **Unfinished work is moved, not retyped**: drag a block to Thursday.
 - **Planned against actual, over weeks.** Study Director already records what really happened. Laid on a calendar, a month shows where plans and reality part, which speaks directly to keeping to a timetable.
 - **Outside commitments** (travel, family) come in from Google Calendar and block out time before you plan around them.
-- **Practice Director publishes into it**: exam dates, paper slots and the recall time due each day appear as their own layer. Moving a paper there moves it in Practice Director.
+- **Practice Director publishes into it** as a separate layer you can show or hide: exam dates, paper slots and the recall time due each day. It is information beside your plan, never a block placed in it. Moving a paper there moves it in Practice Director.
 
 Practice Director keeps only what it needs to stand alone: a date on each paper, the countdown, and the 14-day load forecast.
 
@@ -322,7 +324,7 @@ Practice Director keeps only what it needs to stand alone: a date on each paper,
 All three travel through your own Google Drive. Until they exist each app works alone, and the cost is ticking a studied topic by hand in Practice Director.
 
 1. **Studied → ticked.** A finished study block with an Area tells Practice Director the topic was studied.
-2. **Due practice → a block in your day.** Today's recall and practice time appears as a suggested block in the day plan, and exam dates, paper slots and the recall load appear on the calendar. Opening the block jumps to the session; the time spent flows back as the block's evidence.
+2. **Due practice → offered to your day.** Today's recall and practice time is offered as a block you can place, resize or ignore; nothing enters the plan unless you put it there. Exam dates, paper slots and the recall load appear on the calendar as their own layer. Opening a placed block jumps to the session; the time spent flows back as the block's evidence.
 3. **Topic ↔ note.** When you check a recall, "open my note" shows the Study Director note with the same name.
 
 What keeps the seam cheap: the same 04:00 day boundary, Area names that match topic names, one approach to sync and backup, and a sibling look.
@@ -403,7 +405,7 @@ Each phase ends with something you can use daily.
 | 3. Write | Written answers with the marks-weighted clock, missed points to cards, Copy for AI, Paste from AI | — |
 | 4. Sync | Google Drive sync, phone polish, install flow | — |
 | 5. See | Progress, targets, load guard, weekly summary, daily anchor | — |
-| 6. Full papers in-app | Question bank, test player, set builder, in-app authoring | Rest of Practice Desk |
+| 6. Full papers in-app (re-examine first) | Question bank, test player, set builder | Rest of Practice Desk |
 | 7. Wider use | More exam packs, pack sharing, onboarding for other students | — |
 | 8. The seam | The three links to Study Director. Integrating the Calendar into Study Director is its own project in that repo. | — |
 | Later, optional | AI assist with a key | — |
@@ -435,6 +437,28 @@ After the redesign I went back through what each existing app can do and what a 
 | New | **Search** across topics, mistakes and clips | 5 |
 | New | **Accuracy by question type** in Prelims (statement-based, matching and so on), when the paper map records the type | 2 |
 | New | General English practice (essay, précis) through the written-answer flow | 3 |
+
+### Second audit: beyond the four apps
+
+Asked again whether anything outside the four apps is missing, these passed the value test and are added:
+
+| Capability | Why it earns its place | Phase |
+|---|---|---|
+| **Briefing before a paper** | Your own standing lessons shown at the moment they can be used: "last time, misreading 'not correct' cost 9 marks; your pure guesses lose marks". | 2 |
+| **Form and admit-card dates** | Notification, application deadline and admit-card dates sit in the exam template and on the road. Missing a form costs more than any weak topic. | 1 |
+| **Where to reread** | One optional line per topic naming your source (book, chapter, pages), shown when a recall fails. Supports the habit of few sources. | 1 |
+| **Share for feedback with a person** | The same one-tap package as Copy for AI (question, your answer or its photo, marking points), sent to a mentor or friend. | 3 |
+| **Your data in readable form** | Everything can be exported as plain files that outlast the app. | 4 |
+
+### Cut or pushed back as unnecessary
+
+| Item | Verdict | Reason |
+|---|---|---|
+| Personal tuning of the memory model (the optimizer both source apps built) | Much later, perhaps never | It needs thousands of reviews to beat the standard settings and brings a large component for a small gain. |
+| Source and Reviewed editions of a paper | Dropped from the interface | Official papers have official keys. The field stays in the data for coaching papers. |
+| In-app question authoring studio | Pushed to "wider use" | Paper maps, clips and packs cover your content without it. |
+| In-app test player and full question bank | Kept at phase 6, to be re-examined before it is built | Prelims and Mains are sat on paper, so answer-sheet mode beside the PDF is closer to the real exam than an on-screen player. The player matters for screen-based exams such as CAT. It is the largest single piece of work in the plan. |
+| Much of the safety machinery in the two source apps (replay verification, scheduler rebases, ownership leases between tabs) | Not carried over | One add-only history with views rebuilt from it makes most of it unnecessary. A simple integrity check and a single-tab guard remain. |
 
 Considered and left for later: interview-stage preparation, a current-affairs feed, an in-app drawing canvas, multiple profiles on one device, two-way Google Calendar sync, and a plug-in interface.
 
