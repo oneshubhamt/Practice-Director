@@ -59,7 +59,7 @@ I read the code and docs of all four repos and ran each app.
 | **Practice Desk** | Solid exam engine: six question types, sectional timers and locks, negative marking, calculator, frozen attempts, detailed results, mistake notebook with spaced revision, a content pipeline for agents. | The home screen is a settings form. Results are a wall of twelve equally loud panels with disclaimers. Ships only SSC CGL papers. Getting your own content in is hard. |
 | **Revision Director** | The smartest scheduling: memory scheduling (FSRS-7) kept separate from a daily planner that respects exam dates, time budget, weak areas and subject balance; proper handling of forgotten items. | Adding one topic needs about twenty fields (scope, protocol, success criteria, checkpoints…). The vocabulary is internal jargon ("obligations", "evidence events", "capacity exceptions"). Rating one recall asks for checkpoints, cue level and error types. It reads like a compliance tool. |
 | **Calendar** | A capable, generic calendar library: recurrence, drag and resize, time zones, availability, planned-versus-actual, Google Calendar and ICS support. | It is a plain grid. Nothing in it knows about exams, so it adds no insight by itself. |
-| **Study Director** (reference, not merged now) | By far the largest and most polished: a day planner, live timer, practice pacer, daily review, a full notes system, insights, and Drive sync across devices. | Not part of this build; see section 9. |
+| **Study Director** (stays its own app) | By far the largest and most polished: a day planner, live timer, practice pacer, daily review, a full notes system, insights, and Drive sync across devices. | Not part of this build; see section 9. |
 
 The deeper problem is that the three apps are three databases with three vocabularies, and you are the integration layer. The same topic is typed into each. A mock result never reaches the revision planner. The calendar only shows what the others export to it.
 
@@ -85,7 +85,7 @@ Four places: Today, Practice, Syllabus, Progress. Settings sit behind the profil
 ### Today (home)
 
 - Countdown to each exam.
-- **Suggested for today**: an ordered list with a reason and a time for each item, fitted to the time you keep for practice. One **Start** button, and **choose your own** beside it.
+- **Suggested for today**: an ordered list with a reason and a time for each item. It has a core that fits your shorter days (2 hours) and an extension for longer ones (up to 4). One **Start** button, and **choose your own** beside it.
 - **"Less time today?"** chips (15 · 30 · 60 min) cut the session to the most valuable part.
 - **Your memory**: how many topics are fresh, fading and not started, and how many of the fading ones today's session catches.
 - The next full paper, placed at the real exam's hour.
@@ -127,7 +127,7 @@ Four places: Today, Practice, Syllabus, Progress. Settings sit behind the profil
 
 - **The road ahead**: phases from today to each exam. You set the dates; the mix follows.
 - **Two things that matter now**, never more, each with the reason and what the app is doing about it.
-- **Full papers against your target**: you set a target score; every result is read against it.
+- **Full papers against your target**: every result is read against a target, which starts at 55% of the paper's marks and can be changed.
 - **What you still hold**: fresh, fading and not started, by paper.
 - **Recall work coming** for the next 14 days against the time you allow, with a warning when starting more topics would overflow it.
 - **How marks get lost**: did not know, torn between two options, careless.
@@ -231,7 +231,7 @@ The app ships no copyrighted papers. Paper maps carry only numbers, keys and top
 
 Not part of the first builds; you have no API key now and nothing above depends on one. A slot is kept so it can be added without reshaping anything. With a key it would draft questions from a PDF, give feedback on a written answer, or explain a mistake, always as drafts you approve.
 
-## 9. Study Director: separate now, loose link next, absorbed later
+## 9. Study Director and Practice Director: two apps, one seam
 
 ### What Study Director is
 
@@ -259,26 +259,37 @@ Study Director answers "how did I spend my day?"; Practice Director answers "wha
 - **Same day boundary.** 04:00, so a day means the same thing in both apps.
 - **The pacer's paper plan** (time per question weighted by marks) is reused for written answers and answer-sheet mode.
 
-### The relationship in three stages
+### Two universes (proposed 14 Nov, replaces "absorb Study Director")
 
-**Now**: Practice Director is fully independent and does not need Study Director. It deliberately does not rebuild what Study Director does well (full-day routine planning, Pomodoro, long-form notes). It keeps only light versions: a time budget, a session timer and short topic notes.
+Your day has two parts, studying and practising, and each gets one app that is whole by itself.
 
-**Hosting**: Practice Director gets its own web address. Study Director is in daily use with real data, so its address is not touched: a shared address would share storage limits, a "clear site data" would wipe both apps, their offline workers would overlap, and a bad deploy of the new app could break the old one. (This reverses my earlier suggestion to share an address.)
+| | Study Director | Practice Director |
+|---|---|---|
+| The question it answers | How did I spend my day? | What do I hold, and what can I score? |
+| Owns | The day plan, timer, Pomodoro, notes, diary, insights on time, and the **Calendar** | The syllabus, the memory schedule, recall, papers, written answers, mistakes, results |
+| Built from | Study Director, Calendar | Practice Desk, Revision Director |
 
-**Loose link (optional, later)**, in both directions and through your own Google Drive, so neither app reaches into the other's storage:
+**Why the Calendar belongs in Study Director.** A calendar is about time, and Study Director is where time is planned. Its day board becomes week, month and year views with repeating blocks, exam dates and planned-against-actual, which the Calendar library already supports and already has a Study Director adapter for. That is a separate piece of work in the Study Director repo.
 
-- Study Director → Practice Director: a finished work block with an Area and done/total becomes "You studied X; start revising it?", automatic once the Area is matched to a topic.
-- Practice Director → Study Director: today's session can appear as a work block in the day plan, and opening that block jumps to the session.
+**Why Revision Director's engine belongs in Practice Director, although revision feels like study.**
 
-**Absorption (last phase)**: the combined app is released at Study Director's existing address, so Study Director's data stays where it is and is adopted in place; Practice Director's data arrives through its normal Drive sync. Study Director keeps working unchanged until that release.
+- Revision that works is retrieval: recalling, answering, writing. That is practice.
+- The memory schedule needs the evidence that practice produces. It must know that you rated a topic well but scored 2 of 6 on its questions, and it must schedule a mistake's re-attempt in the same queue and the same hours as a recall. Put the schedule in one app and the questions in another and you are carrying data between them again, which is the problem this project began with.
+- Rereading notes is study and stays in Study Director as a block of time. Practice Director records it as "reread" when told, and still asks you to recall the topic later.
 
-**Built so absorption is easy**:
+**Revision still shows up in your study day.** The engine sits in Practice Director, but what is due appears in Study Director through the seam.
 
-- Every Study Director surface already has a natural slot: Plan board → the Plan screen's day view; Execute timer and Pomodoro → the session runner; Practice Pacer → answer-sheet mode and written answers; daily Review and Diary → an end-of-day step on Today; Notes → topic notes in Syllabus; Saved Days → the history archive; Insights → Progress; backups, version history and attachments → Settings › Data.
-- The syllabus tree is the shared spine. Study Director's "Area" maps onto a syllabus node.
-- Features are modules that register their own record types with one shared storage, backup and sync layer. Study Director's planner, timer and notes can arrive later as new modules without reshaping the core.
-- One sync and backup engine for both, shaped by the sync review already planned for Study Director.
-- The visual language is a sibling of Study Director's.
+### The seam: three links
+
+All three travel through your own Google Drive. Until they exist each app works alone, and the cost is ticking a studied topic by hand in Practice Director.
+
+1. **Studied → ticked.** A finished study block with an Area tells Practice Director the topic was studied.
+2. **Due practice → a block in your day.** Today's recall and practice time appears as a suggested block in the day plan, and exam dates, paper slots and the recall load appear on the calendar. Opening the block jumps to the session; the time spent flows back as the block's evidence.
+3. **Topic ↔ note.** When you check a recall, "open my note" shows the Study Director note with the same name.
+
+What keeps the seam cheap: the same 04:00 day boundary, Area names that match topic names, one approach to sync and backup, and a sibling look.
+
+**Hosting**: separate web addresses. Study Director holds your real daily data and is not touched by this build.
 
 ## 10. Architecture
 
@@ -316,7 +327,7 @@ tools/        content command-line tools for agents
 - **Exam** (goal), **Topic** (syllabus node), **Question**, **Prompt**, **Paper**, **Session/Attempt**.
 - **One history log**, append-only: answered a question, recalled a prompt, wrote an answer, logged outside practice, studied a topic.
 - **Derived views**, always rebuildable from the log: memory card per item, topic strength, mistakes list, today's plan, load forecast.
-- **Dates**: exams, scheduled papers, the hours you allow. A full calendar arrives with Study Director's day planner.
+- **Dates**: exams, scheduled papers, the hours you allow. The calendar itself lives in Study Director.
 
 One scheduler serves both recalled prompts and re-attempted questions, with separate tuning per kind, because recalling a topic and re-solving an MCQ behave differently. The fixed 90% retention policy stays as the only policy; Revision Director's own benchmark showed the Cost-ADR alternative cost about 18% more sessions, so that option is dropped.
 
@@ -332,7 +343,7 @@ One scheduler serves both recalled prompts and re-attempted questions, with sepa
 |---|---|---|
 | Practice Desk | Question and paper model, validation, test engine, scoring, timing evidence, calculator, mistake notebook logic, analytics, maths and image viewers, Wordgard authoring, backup integrity, agent content tools | SSC CGL papers as built-in content (become an optional sample pack), the single-file `file://` build, the current screens. Source-versus-Reviewed editions stay in the data model but appear only when a paper has both. |
 | Revision Director | FSRS-7 scheduler with replay verification, optimizer and its safety gates, daily planner (exam proximity, weakness, balance, interleaving, time budget), corrective relearning, duration learning, interruption-aware timer | The unit and obligation forms, Study Log tab, plugin and public-bridge runtime, the script-concatenation build, the current screens |
-| Calendar | Deferred, then used as a library dependency (Ayana depends on it too, so a fork would split it). The first-principles review found that a calendar screen would not earn daily use here: the day is planned in Study Director, and Practice Director needs only exam dates, paper slots and a load forecast. The library comes in with Study Director's day planner. | Everything, until that phase |
+| Calendar | Not used in Practice Director. Its home is Study Director (section 9), as a library dependency there (Ayana depends on it too, so a fork would split it). Practice Director uses only its export code for "Add to my calendar" and later supplies exam dates, paper slots and recall load to it through the seam. | All screens |
 | Study Director | Borrowed now: Drive sync and backup engine design, encryption and integrity primitives, PWA install/update flow, phone safe-area handling, notification and sound coordinator, pacer | Planner, timer and notes stay in Study Director until absorption |
 
 Practice Desk and Revision Director are frozen once Practice Director reaches parity with each.
@@ -356,7 +367,7 @@ Each phase ends with something you can use daily.
 | 5. See | Progress, targets, load guard, weekly summary, daily anchor | — |
 | 6. Full papers in-app | Question bank, test player, set builder, in-app authoring | Rest of Practice Desk |
 | 7. Wider use | More exam packs, pack sharing, onboarding for other students | — |
-| 8. Study Director | Loose link, then absorption, bringing the Calendar library with the day planner | Study Director, Calendar |
+| 8. The seam | The three links to Study Director. Integrating the Calendar into Study Director is its own project in that repo. | — |
 | Later, optional | AI assist with a key | — |
 
 Written answers moved up because IFoS rank is decided in Mains, which is entirely written. The in-app test player moved down because answer-sheet mode covers real papers from day one.
@@ -399,16 +410,17 @@ Settled:
 - One visual style, improving on Study Director's Glass look.
 - Fixed-retention scheduling only.
 - No import of old data from Practice Desk or Revision Director (there is none).
-- Separate web address from Study Director until absorption.
+- Separate web address from Study Director.
 - No AI in the first builds; copy-and-paste bridges to AI instead.
-- Four places, not five; the Calendar library waits for Study Director's day planner.
+- Four places, not five; no calendar screen in Practice Director.
+- Practice time: 2 to 4 hours a day. The session has a core that fits 2 hours and an extension up to 4.
+- Targets default to 55% of each paper's marks and can be changed per paper.
 - Recall and written answers are checked by tapping what was missed, not by self-rating.
 - CAT is not a target for now.
 
 Open:
 
-1. Your target scores, and the hours a day you keep for practice as distinct from first-time study.
-2. Whether the Calendar deferral suits you; it was one of the three apps you named.
+1. Whether the two-universe split in section 9 is how you want it: Calendar into Study Director, Revision Director's engine into Practice Director.
 3. IFoS Mains dates and all exam patterns are confirmed against official notifications when templates are written.
 
 ## 13. Known limits
