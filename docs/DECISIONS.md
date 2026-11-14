@@ -1,77 +1,54 @@
 # Decision log
 
-How the idea has changed, in order, and where each question stands. The current design is in [PLAN.md](PLAN.md); this file records how it got there. Nothing here is final until the owner says so.
+How the idea has changed, in order, and where each question stands. Consolidated 14 Nov 2026 from the whole planning conversation. Nothing here is final until the owner says so.
 
-## Where things stand (14 Nov 2026)
+## 1. Where things stand
 
 | Question | Current position | Status |
 |---|---|---|
 | What is being built | Practice Director: one app for revision and practice, built from Practice Desk and Revision Director | Agreed in outline |
-| How it relates to Study Director | Two apps: Study Director for time, Practice Director for marks, joined by three links | Proposed; owner likes it, not final |
-| Where the Calendar goes | Into Study Director, as the levels above its day board | Proposed; owner unsure, reasoning in PLAN.md section 9 |
+| How it relates to Study Director | Two apps: Study Director for time, Practice Director for marks, joined by three links; each works alone | Proposed; owner likes it, not final |
+| Where the Calendar goes | Into Study Director, as Week, Month and Year views above its day board | Proposed; owner now expects it to help a great deal and wants it designed carefully |
 | Where Revision Director's engine goes | Into Practice Director | Proposed |
+| Who plans the day | The owner, by hand. The apps inform and offer; they never place work in a plan. | Owner's condition |
+| How the apps guide without dictating | Two sides of one screen: the owner's plan, and the app's "Worth knowing" | Owner's suggestion, refined; proposed |
+| How much the owner must enter | As little as possible: recorded automatically, editable afterwards | Owner's condition, for every part of both apps |
+| Sync | Both apps on the owner's Google Drive through one shared mechanism; no server | Agreed in principle |
 | Interface technology | Custom, no framework, on a small in-house kit | Agreed |
 | AI inside the app | None in the first builds; copy and paste bridges instead | Agreed |
 | Hosting | Own web address, apart from Study Director | Agreed |
-| Devices | Laptop and phone, synced through the owner's Google Drive | Agreed |
-| Exams targeted first | UPSC Prelims 2027 and IFoS Mains 2027 (Forestry, Geology). Screen-based exams (CAT, XAT, PGDBA) secondary. | Agreed |
-| How the app guides without dictating | Plan with a margin: the owner's side and the app's side; offers cross only by hand | Proposed; owner's own suggestion, refined |
+| Devices | Laptop and phone | Agreed |
+| Exams | UPSC Prelims 2027 and IFoS Mains 2027 (Forestry, Geology) first. CAT, XAT, PGDBA secondary. | Agreed |
 | Practice time | 2 to 4 hours a day | Stated by owner |
 | Target scores | Default 55% of a paper's marks, changeable | Default set; owner said 50 to 60% is what is needed |
+| Test player, question bank, paper editions, authoring | All kept | Owner's ruling |
 | Old data | None to import | Stated by owner |
-| Who plans the day | The owner, by hand. The app informs and offers; it never places work in the plan. | Owner's condition |
 
-## Log
+## 2. Log
 
 ### 13 Nov 2026
 
-1. **Starting brief.** Combine Practice Desk, Revision Director and Calendar into a new app, Practice Director, for the owner's IFoS and CAT preparation, usable by other students too. The owner finds the interface of all three poor: Calendar basic, Practice Desk rough, Revision Director bureaucratic and unclear. Planning only.
-2. **First answers from the owner.** Study Director to be absorbed eventually (changed on 14 Nov); laptop and phone with sync; optional AI assist (changed later the same day); content from past-paper PDFs, coaching tests, books and the owner's notes. The owner added that Study Director is at most loosely linked for now.
-3. **Plan, first version.** One daily loop (plan, do, review, adapt); five places (Today, Practice, Syllabus, Plan, Progress); exam templates and syllabus packs for generality; Preact for the interface; Calendar as a library; same web address as Study Director suggested.
+1. **Starting brief.** Combine Practice Desk, Revision Director and Calendar into a new app, Practice Director, for the owner's IFoS and CAT preparation, usable by other students too. The owner finds the interface of all three poor: Calendar basic, Practice Desk rough, Revision Director bureaucratic and unclear. Their code may be used, not necessarily their tests. Planning only.
+2. **First answers from the owner.** Study Director to be absorbed eventually (changed on 14 Nov); laptop and phone with sync; optional AI assist (changed later the same day); content from past-paper PDFs, coaching tests, books and the owner's notes. Study Director is at most loosely linked for now.
+3. **Plan, first version.** One daily loop; five places (Today, Practice, Syllabus, Plan, Progress); exam templates and syllabus packs for generality; Preact for the interface; Calendar as a library; same web address as Study Director suggested.
 4. **Owner feedback.** No data in the old apps. Optionals are Geology and Forestry. Prefers a fully custom interface. No API keys, so no AI for now. The app must be automatic and never feel like a chore; user experience decides whether it gets used. Asked for proven UPSC preparation habits to be built in, said the scope is not limited to the existing apps, and asked for a deeper study of Study Director.
-5. **Plan, second version.**
-   - Preact dropped for a custom interface kit.
-   - Same-address hosting reversed: Study Director holds real daily data and is not to be touched.
-   - AI moved out of the first builds.
-   - Answer-sheet mode and clipping added so any PDF or book becomes practice without data entry.
-   - Preparation habits written in as mechanisms.
-   - Exam dates checked: Prelims 23 May 2027; IFoS Mains reported from 21 Nov 2027 (one secondary source).
-   - Study Director studied in depth; lessons recorded (no apply or save steps, honest evidence, two priorities, sync that sends only changes).
-   - First mock-up: six screens.
+5. **Plan, second version.** Preact dropped for a custom kit. Same-address hosting reversed. AI moved out of the first builds. Answer-sheet mode and clipping added. Preparation habits written in as mechanisms. Exam dates checked. Study Director studied in depth and lessons recorded. First mock-up: six screens.
 
 ### 14 Nov 2026
 
-6. **Owner asked for a first-principles review** of the plan and mock-up, aimed at the highest possible rank, and said the coming CAT should not shape the app.
-7. **Review and third version.**
-   - A value test for every feature, and four jobs that pass it: remember, measure, never waste a mistake, rehearse.
-   - Three depths of use, so a self-directed person is never forced to follow the plan.
-   - Self-rating replaced by tapping what was missed.
-   - Mistakes return as blind re-attempts, marked by the app.
-   - Written-answer flow added, since IFoS rank is decided in Mains.
-   - Strength labels replaced by a memory bar that drains, with a cross-check against question results.
-   - Target scores, paper maps, load guard, minimum day and restart after a gap added.
-   - The Plan screen removed; four places remain.
-   - Build phases reordered: written answers earlier, the in-app test player later, a content phase alongside the first build.
-   - Mock-up reworked: seven screens.
-8. **Capability audit** against the four apps: about twenty capabilities restored or added (PLAN.md section 11a).
-9. **Owner proposed two universes**: a study side and a practice side. Gave practice time (2 to 4 hours) and the level of marks needed (50 to 60%).
-10. **Two-app structure proposed.** Study Director for time, with the Calendar; Practice Director for marks, with Revision Director's engine; three links between them. This replaces absorbing Study Director.
-11. **Owner likes the direction but has not finalised it.** Open in the owner's mind: why the Calendar belongs in Study Director and not with revision or practice, and how multi-day planning fits an app that knows one day. Reasoning recorded in PLAN.md section 9: a calendar is for dates a person decides; revision dates are decided by the forgetting curve, so revision needs a schedule and a load forecast, not a calendar.
-12. **Owner's condition: the day must not be dictated by a machine.** Study Director exists so the owner plans by hand, at an organic pace. Recorded as a design principle ("You plan; the app informs"): the app works out facts and makes offers; it places nothing in the plan. Consequences written in: choose-your-own by subject, kind and length; phases declared by the owner; practice time offered to the day, never inserted; the week level of the calendar optional.
-13. **Second audit, beyond the four apps.** Added: briefing before a paper, form and admit-card dates, a source line per topic, sharing for feedback with a person, readable export. Cut or pushed back: the memory-model optimizer, paper editions in the interface, the authoring studio, much of the inherited safety machinery; the in-app test player is to be re-examined before it is built, because the target exams are sat on paper.
+6. **Owner asked for a first-principles review**, aimed at the highest possible rank, and said the coming CAT should not shape the app. Described himself as self-contained, weak at planning revision and at keeping to a timetable, and asked that the app complement both his own habits and AI assistants.
+7. **Review and third version.** A value test and four jobs (remember, measure, never waste a mistake, rehearse). Three depths of use. Self-rating replaced by tapping what was missed. Mistakes return as blind re-attempts. Written-answer flow added. Strength labels replaced by a draining memory bar with a cross-check. Targets, paper maps, load guard, minimum day and restart after a gap added. The Plan screen removed, leaving four places. Phases reordered. Mock-up reworked: seven screens, rendered and inspected this time.
+8. **Capability audit** against the four apps: about twenty capabilities restored or added.
+9. **Owner proposed two universes**, a study side and a practice side. Gave practice time and the level of marks needed.
+10. **Two-app structure proposed**, replacing absorption: Study Director for time with the Calendar, Practice Director for marks with Revision Director's engine, three links between them.
+11. **Owner liked the direction but did not finalise it.** Asked why the Calendar belongs in Study Director and how multi-day planning fits an app that knows one day. Answer recorded: a calendar is for dates a person decides; revision dates are decided by the forgetting curve, so revision needs a schedule and a load forecast.
+12. **Owner's condition: the day must not be dictated by a machine.** Recorded as a principle: the app remembers, computes and offers; it places nothing. Consequences: choose-your-own by subject, kind and length; phases declared by the owner; practice time offered to the day, never inserted.
+13. **Second audit, beyond the four apps.** Added: briefing before a paper, deadlines, a source line per topic, readable export. Proposed cutting or deferring several inherited parts.
+14. **Owner on Study Director's unfinished-work feature**: never used, a bureaucratic procedure. Found to be a generated text note with no way to act on it. Proposed: a "left over" tray of live blocks, and a one-line note to tomorrow.
+15. **Owner's rulings.** Suggested two panels in Plan, one to author and one for suggestions, with the calendar as part of Plan; adopted as "Plan with a margin". Briefing, source line and readable export: yes. Form and admit-card dates: added by the owner as deadlines in the calendar, which works back from them. Sharing answers with a person: dropped; AI only. Paper editions: keep, out of the interface by default. Authoring: keep, late. Test player and question bank: must stay. Safety machinery: left to the designer, who reduced it without loss of safety.
+16. **Owner's confirmations and a request.** The left-over tray must be automatic and editable, like Review today; effortlessness is required of every part of both apps. The calendar will help a great deal (weeks and months, points and windows, forms, obligations) and must be designed carefully and fully. Both apps should talk to each other, stay independent, and share the sync mechanism. Asked that the whole conversation be organised and consolidated into documents for a final review; the documents were audited against the conversation and rewritten as a set.
 
-14. **Owner on Study Director's unfinished-work feature**: never used, unintuitive, unclear what it is for. Found to be a generated text note with no way to act on it. Proposed replacement: a "left over" tray of live blocks beside the Plan board, placed by hand, plus a one-line note to tomorrow. Recorded in STUDY_DIRECTOR_IDEAS.md, a new file for ideas that belong to Study Director.
-
-15. **Owner's rulings and a question** (14 Nov).
-    - Asked how "I plan, the app informs" fits with a calendar that guides; suggested two panels, one to author the plan and one for suggestions, with the calendar as part of Plan. Adopted: Plan with a margin, and Day, Week and Year views, a year at most. The owner expects the week level to be useful, not merely optional.
-    - Briefing before a paper: yes. Source line per topic: yes, optional. Readable export: yes.
-    - Form and admit-card dates: to be added by the owner as deadlines in the calendar, which should work back from them.
-    - Sharing answers with a person: dropped; AI only.
-    - Paper editions: keep the function, out of the interface by default. In-app authoring: keep, late.
-    - In-app test player and question bank: must stay; needed for screen-based exams (CAT, XAT, PGDBA) and for AI-written questions. UPSC Prelims and Mains remain the first concern.
-    - Safety machinery: left to the designer. Call made: reduced with no loss of safety (PLAN.md section 11a).
-
-## Positions that were reversed
+## 3. Positions that were reversed
 
 | Was | Now | Why |
 |---|---|---|
@@ -84,13 +61,42 @@ How the idea has changed, in order, and where each question stands. The current 
 | Four-button self-rating | Tap what you missed | Self-rating invites flattery |
 | "Fix" shows the answer | Blind re-attempt | Seeing an answer is not solving it |
 | Five strength labels | Draining memory bar | The labels mixed knowing with recency |
-| Test player to be re-examined; editions dropped from the interface; authoring pushed to "wider use" | All three kept | Owner's ruling: screen-based exams and AI-checked papers need them |
+| The app decides what, when and how much | The app offers; the owner decides | Owner's condition |
+| Phases worked out from exam dates | Phases declared by the owner | Same |
+| Test player to be re-examined; editions dropped from the interface; authoring pushed far back | All three kept | Owner's ruling |
+| Sharing a written answer with a person | AI only | Owner's ruling |
+| Calendar week level "optional" | A real part of planning, though the day never depends on it | Owner expects it to be useful |
 
-## Still open
+## 4. Parked for later
+
+- Interview-stage preparation (300 marks in IFoS).
+- A fuller treatment of current affairs.
+- A real self-check for General English.
+- AI with a key inside the app.
+- Personal tuning of the memory model.
+- Two-way Google Calendar sync (belongs with the calendar in Study Director).
+- Multiple profiles on one device.
+- Exam packs for other students: CSE Mains, NEET PG, JEE.
+
+## 5. Considered and left out
+
+| Idea | Why not |
+|---|---|
+| Percentile or peer comparison | Needs a server and other people's data |
+| Energy, sleep or mood tracking | Not this app's job; no clear link to marks |
+| Handwriting speed tracking | An extra input for a small gain |
+| Recall by voice recording | Adds storage and nothing the tap check does not give |
+| An in-app drawing canvas | The owner writes and draws on paper; a photo serves |
+| A plug-in interface | No use for it inside one app |
+| A calendar screen in Practice Director | See section 3 |
+
+## 6. Still open
 
 1. Final word on the two-app structure and the Calendar's home.
-2. Whether the Calendar work in Study Director is wanted now or later; it is a separate project in that repo.
-3. When Study Director work (calendar, left-over tray, the seam) is taken up, and in which repo session.
-4. Screens not yet drawn: in-app test player, Practice home, first run, Settings, search, tablet layout.
-5. Thin areas: current affairs, General English, the interview stage.
-6. IFoS Mains dates and paper patterns to be confirmed against official notifications.
+2. The careful design pass on the calendar ([STUDY_DIRECTOR_IDEAS.md](STUDY_DIRECTOR_IDEAS.md), section 2, lists its questions).
+3. When Study Director work is taken up, and in which repo.
+4. The layout for "Paste from AI".
+5. Screens not yet drawn ([PLAN.md](PLAN.md), section 12).
+6. Thin areas: current affairs, General English, the interview stage.
+7. Exam dates and paper patterns to be confirmed against official notifications.
+8. The review of the sync mechanism that both apps are to share.

@@ -1,7 +1,7 @@
 # Practice Director
 
-One app for exam practice: it plans what to practise today, lets you do it (recall, questions, mocks, written answers), and brings back what you got wrong at the right time.
+One app for exam practice. It remembers what you have studied and when it will fade, lets you practise on the spot (recall, past papers, written answers), brings every mistake back until it is solved, and measures you honestly. You plan your own day; the app informs and offers.
 
-It combines the engines of Practice Desk and Revision Director. Study Director remains a separate app for planning and timing the day. It is built first for UPSC IFoS and CAT, and stays generic through exam templates and syllabus packs.
+It is built from the engines of Practice Desk and Revision Director, first for UPSC Prelims and IFoS Mains, and stays generic through exam templates and syllabus packs. Study Director remains a separate app for planning and timing the day; the two are designed to work alone and to talk to each other.
 
-Status: planning. The current design is in [docs/PLAN.md](docs/PLAN.md); how it got there is in [docs/DECISIONS.md](docs/DECISIONS.md); the mock-up source is in [design/mockup](design/mockup); ideas that belong to Study Director are in [docs/STUDY_DIRECTOR_IDEAS.md](docs/STUDY_DIRECTOR_IDEAS.md).
+**Status: planning.** Nothing is built yet. Start with [docs/README.md](docs/README.md), which lists every planning document. The mock-up is described in [design/README.md](design/README.md).
