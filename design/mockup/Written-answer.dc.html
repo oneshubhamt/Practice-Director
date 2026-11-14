@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — written answer beside your paper</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+@keyframes pdIn{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes pdUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes pdPop{0%{opacity:0;transform:scale(.7)}60%{opacity:1;transform:scale(1.06)}100%{transform:scale(1)}}
+.pd-in{animation:pdIn .36s cubic-bezier(.2,.7,.2,1) both}
+.pd-up{animation:pdUp .42s cubic-bezier(.2,.7,.2,1) both}
+.pd-pop{animation:pdPop .5s cubic-bezier(.2,.7,.2,1) both}
+.pd-press{transition:transform .12s ease,background .16s ease,border-color .16s ease,color .16s ease}
+.pd-press:active{transform:scale(.97)}
+.pd-bar{transition:width 1s linear}
+@media (prefers-reduced-motion:reduce){.pd-in,.pd-up,.pd-pop{animation:none}.pd-press,.pd-bar{transition:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<sc-if value="{{isQuestion}}" hint-placeholder-val="{{true}}">
+<div class="pd-in" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 64px 24px 28px">
+<div style="font-size: 13px; color: #9BA3FF">Forestry · Silvicultural systems · past question</div>
+<h1 style="margin: 16px 0 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 26px; line-height: 1.25; letter-spacing: -0.02em; text-wrap: balance">Describe the shelterwood system and its fellings. Where is it suitable?</h1>
+<div style="margin-top: 22px; display: flex; gap: 10px">
+<div style="padding: 8px 14px; border-radius: 999px; background: #171A23; border: 1px solid #262B38; font-size: 13px"><strong style="font-weight: 600">10</strong> <span style="color: #A9AEBD">marks</span></div>
+<div style="padding: 8px 14px; border-radius: 999px; background: #171A23; border: 1px solid #262B38; font-size: 13px"><strong style="font-weight: 600">9</strong> <span style="color: #A9AEBD">minutes, as in the real paper</span></div>
+</div>
+<p style="margin: 22px 0 0; color: #8A90A2">Picked because you studied this on Tuesday and have not written on it yet.</p>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; color: #8A90A2; text-align: center">Write on paper. Keep the phone beside it.</div>
+<button type="button" class="pd-press" onClick="{{begin}}" style="min-height: 56px; border: 0; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px">Start the clock</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isWrite}}" hint-placeholder-val="{{false}}">
+<div class="pd-in" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 64px 24px 28px">
+<div style="font-size: 15px; color: #A9AEBD; line-height: 1.4">Describe the shelterwood system and its fellings. Where is it suitable?</div>
+<div style="margin: auto 0; display: flex; flex-direction: column; align-items: center; gap: 18px">
+<div style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 88px; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; color: {{clockColor}}">{{clock}}</div>
+<div role="img" aria-label="Time used" style="width: 220px; height: 6px; border-radius: 999px; background: #222632; overflow: hidden"><div class="pd-bar" style="height: 100%; border-radius: 999px; background: {{clockColor}}; width: {{used}}"></div></div>
+<div style="font-size: 13px; color: #8A90A2">{{clockNote}}</div>
+</div>
+<button type="button" class="pd-press" onClick="{{stop}}" style="min-height: 56px; border: 0; border-radius: 16px; background: #ECEEF4; color: #0E1016; font-weight: 600; font-size: 17px">I'm done writing</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isCheck}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 56px 20px 28px">
+<div style="padding: 0 4px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">What did your answer leave out?</div>
+<div style="padding: 0 4px; margin-top: 6px; font-size: 13px; color: #A9AEBD">Compare with your page. Tap anything missing.</div>
+<div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{points}}" as="p" hint-placeholder-count="5">
+<button type="button" class="pd-press pd-up" onClick="{{p.toggle}}" aria-pressed="{{p.pressed}}" style="text-align: left; display: flex; gap: 12px; align-items: flex-start; padding: 11px 14px; border-radius: 14px; border: 1px solid {{p.line}}; background: {{p.bg}}; color: {{p.fg}}; font-size: 14px; line-height: 1.4; animation-delay: {{p.delay}}"><span style="flex: 0 0 18px; height: 18px; margin-top: 1px; border-radius: 50%; border: 1.5px solid {{p.dotLine}}; background: {{p.dotBg}}; box-sizing: border-box"></span><span>{{p.text}}</span></button>
+</sc-for>
+</div>
+<div style="margin-top: 14px; padding: 0 4px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="font-size: 14px">Did you draw a diagram?</span>
+<div role="group" aria-label="Diagram" style="display: flex; gap: 6px">
+<button type="button" class="pd-press" onClick="{{diagramYes}}" aria-pressed="{{yesPressed}}" style="min-width: 56px; min-height: 40px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{yesBg}}; color: {{yesFg}}; border: 1px solid {{yesLine}}">Yes</button>
+<button type="button" class="pd-press" onClick="{{diagramNo}}" aria-pressed="{{noPressed}}" style="min-width: 56px; min-height: 40px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{noBg}}; color: {{noFg}}; border: 1px solid {{noLine}}">No</button>
+</div>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; color: #8A90A2; text-align: center">{{verdict}}</div>
+<button type="button" class="pd-press" onClick="{{save}}" style="min-height: 56px; border: 0; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px">Save</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isSaved}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 96px 24px 28px; gap: 26px">
+<div class="pd-pop" style="width: 72px; height: 72px; border-radius: 50%; background: #1C3A30; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 34px; height: 34px; fill: none; stroke: #6FD3A8; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div class="pd-up" style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">Saved</h2>
+<div style="color: #A9AEBD">{{savedLine}}</div>
+</div>
+<div class="pd-up" style="display: flex; flex-direction: column; gap: 14px; animation-delay: .1s">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #222632"><span>Points covered</span><span style="color: #A9AEBD">{{coveredLine}}</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #222632"><span>Time</span><span style="color: #A9AEBD">{{timeLine}}</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px"><span>Answers written this week</span><span style="color: #A9AEBD">5</span></div>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+<button type="button" class="pd-press" style="min-height: 52px; border-radius: 16px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-weight: 500; font-size: 15px">Add a photo of the page</button>
+<button type="button" class="pd-press" style="min-height: 52px; border-radius: 16px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-weight: 500; font-size: 15px">Copy for AI feedback</button>
+<a href="Phone-flow.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; text-decoration: none; font-weight: 500">Back to Today</a>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 'question', left: 540, missed: {}, diagram: '' };
+  }
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      if (this.state.step === 'write' && this.state.left > -120) this.setState({ left: this.state.left - 1 });
+    }, 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+  renderVals() {
+    const { step, left, missed, diagram } = this.state;
+    const total = 540;
+    const over = left < 0;
+    const abs = Math.abs(left);
+    const clock = (over ? '+' : '') + Math.floor(abs / 60) + ':' + String(abs % 60).padStart(2, '0');
+    const texts = [
+      'Definition: the new crop is raised under the shelter of the old one, which is removed in stages.',
+      'The sequence: preparatory, seeding, secondary and final fellings.',
+      'Outcome: a more or less even-aged crop; the regeneration period.',
+      'Where it suits: chir pine, deodar and sal in India.',
+      'Merits and limits: soil stays protected; young crop is damaged in later fellings.'
+    ];
+    const points = texts.map((text, i) => {
+      const off = !!missed[i];
+      return {
+        text, delay: (i * 0.06).toFixed(2) + 's', pressed: off ? 'true' : 'false',
+        bg: off ? '#2A2415' : '#171A23', line: off ? '#F2B866' : '#262B38', fg: off ? '#F2D9A8' : '#ECEEF4',
+        dotBg: off ? '#F2B866' : 'transparent', dotLine: off ? '#F2B866' : '#4A5062',
+        toggle: () => this.setState({ missed: { ...missed, [i]: !off } })
+      };
+    });
+    const count = Object.values(missed).filter(Boolean).length;
+    const chip = (on) => ({ bg: on ? '#2A2E55' : 'transparent', fg: on ? '#DDE0FF' : '#A9AEBD', line: on ? '#8E97FF' : '#343A4A' });
+    const yes = chip(diagram === 'yes'), no = chip(diagram === 'no');
+    const spent = total - left;
+    const spentLabel = Math.floor(spent / 60) + ' min ' + String(spent % 60).padStart(2, '0') + ' s';
+    return {
+      isQuestion: step === 'question', isWrite: step === 'write', isCheck: step === 'check', isSaved: step === 'saved',
+      clock, clockColor: over ? '#F2B866' : '#ECEEF4',
+      used: Math.min(100, Math.round((spent / total) * 100)) + '%',
+      clockNote: over ? 'Over time. In the exam this eats into the next answer.' : 'Timed by marks: 9 minutes for 10.',
+      points,
+      verdict: count === 0 ? 'Nothing missing? Then it is next asked of you in 3 weeks.' : count + (count === 1 ? ' missing point becomes a recall card.' : ' missing points become recall cards.'),
+      yesBg: yes.bg, yesFg: yes.fg, yesLine: yes.line, yesPressed: diagram === 'yes' ? 'true' : 'false',
+      noBg: no.bg, noFg: no.fg, noLine: no.line, noPressed: diagram === 'no' ? 'true' : 'false',
+      diagramYes: () => this.setState({ diagram: 'yes' }),
+      diagramNo: () => this.setState({ diagram: 'no' }),
+      savedLine: count === 0 ? 'A complete answer. This topic rests for 3 weeks.' : 'The ' + count + (count === 1 ? ' point' : ' points') + ' you left out will come back on Monday.',
+      coveredLine: (texts.length - count) + ' of ' + texts.length,
+      timeLine: spentLabel + (left >= 0 ? ', inside the limit' : ', over the limit'),
+      begin: () => this.setState({ step: 'write', left: total }),
+      stop: () => this.setState({ step: 'check' }),
+      save: () => this.setState({ step: 'saved' })
+    };
+  }
+}
+</script>
+</body>
+</html>

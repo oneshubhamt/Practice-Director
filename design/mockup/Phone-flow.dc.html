@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — daily session on a phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+@keyframes pdIn{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes pdUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes pdPop{0%{opacity:0;transform:scale(.7)}60%{opacity:1;transform:scale(1.06)}100%{transform:scale(1)}}
+.pd-in{animation:pdIn .36s cubic-bezier(.2,.7,.2,1) both}
+.pd-up{animation:pdUp .42s cubic-bezier(.2,.7,.2,1) both}
+.pd-pop{animation:pdPop .5s cubic-bezier(.2,.7,.2,1) both}
+.pd-press{transition:transform .12s ease,background .16s ease,border-color .16s ease,color .16s ease}
+.pd-press:active{transform:scale(.97)}
+.pd-bar{transition:width .5s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){.pd-in,.pd-up,.pd-pop{animation:none}.pd-press,.pd-bar{transition:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<sc-if value="{{isToday}}" hint-placeholder-val="{{true}}">
+<div class="pd-in" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column">
+<div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 56px 20px 20px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="color: #8A90A2; font-size: 13px">Friday, 13 November</div>
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">Today</h1>
+</div>
+<div style="display: flex; gap: 8px">
+<div style="display: flex; align-items: baseline; gap: 6px; padding: 7px 12px; border-radius: 999px; background: #171A23; border: 1px solid #262B38"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600">191</span><span style="font-size: 12px; color: #A9AEBD">days to Prelims</span></div>
+<div style="display: flex; align-items: baseline; gap: 6px; padding: 7px 12px; border-radius: 999px; background: #171A23; border: 1px solid #262B38"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600">373</span><span style="font-size: 12px; color: #A9AEBD">to Mains</span></div>
+</div>
+
+<section aria-label="Suggested session" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 22px 20px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 13px; color: #A9AEBD">Suggested for now</div>
+<div style="display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 40px; letter-spacing: -0.03em; line-height: 1">38 min</span><span style="color: #8A90A2; font-size: 13px">the part that suits a phone</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 12px"><span style="flex: 0 0 8px; height: 8px; border-radius: 50%; background: #8E97FF"></span><span style="flex: 1 1 auto">12 recalls</span><span style="color: #8A90A2; font-size: 13px">28 min</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="flex: 0 0 8px; height: 8px; border-radius: 50%; background: #F2B866"></span><span style="flex: 1 1 auto">Re-attempt 6 mistakes</span><span style="color: #8A90A2; font-size: 13px">10 min</span></div>
+</div>
+<button type="button" class="pd-press" onClick="{{start}}" style="min-height: 56px; border: 0; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px">Start</button>
+</section>
+
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 0 4px">
+<div style="font-size: 13px; color: #A9AEBD">Waiting for the laptop</div>
+<div>A 10-mark written answer and 15 CSAT questions</div>
+</div>
+</div>
+
+<nav aria-label="Main" style="flex: 0 0 auto; display: flex; justify-content: space-around; padding: 10px 8px 22px; background: #11141B; border-top: 1px solid #222632">
+<a href="#" aria-label="Today" style="width: 64px; height: 44px; display: flex; align-items: center; justify-content: center; color: #9BA3FF"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg></a>
+<a href="Written-answer.dc.html" aria-label="Practice" style="width: 64px; height: 44px; display: flex; align-items: center; justify-content: center; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg></a>
+<a href="#" aria-label="Syllabus" style="width: 64px; height: 44px; display: flex; align-items: center; justify-content: center; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg></a>
+<a href="#" aria-label="Progress" style="width: 64px; height: 44px; display: flex; align-items: center; justify-content: center; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg></a>
+</nav>
+</div>
+</sc-if>
+
+<sc-if value="{{inSession}}" hint-placeholder-val="{{false}}">
+<div style="flex: 0 0 auto; padding: 52px 20px 0; display: flex; align-items: center; gap: 14px">
+<button type="button" aria-label="Leave session" onClick="{{home}}" class="pd-press" style="flex: 0 0 44px; height: 44px; border-radius: 50%; border: 1px solid #262B38; background: transparent; color: #A9AEBD; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+<div role="img" aria-label="Session progress" style="flex: 1 1 auto; height: 6px; border-radius: 999px; background: #222632; overflow: hidden"><div class="pd-bar" style="height: 100%; border-radius: 999px; background: #8E97FF; width: {{progress}}"></div></div>
+<span style="flex: 0 0 auto; font-size: 13px; color: #8A90A2">{{stageLabel}}</span>
+</div>
+</sc-if>
+
+<sc-if value="{{isRecall}}" hint-placeholder-val="{{false}}">
+<div class="pd-in" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 36px 24px 28px">
+<div style="font-size: 13px; color: #9BA3FF">{{card.path}}</div>
+<h2 style="margin: 14px 0 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 28px; line-height: 1.2; letter-spacing: -0.02em; text-wrap: balance">{{card.prompt}}</h2>
+<p style="margin: 18px 0 0; color: #8A90A2">Say it, sketch it or jot it down. Nothing to type here.</p>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; color: #8A90A2; text-align: center">{{card.last}}</div>
+<button type="button" class="pd-press" onClick="{{reveal}}" style="min-height: 56px; border: 0; border-radius: 16px; background: #ECEEF4; color: #0E1016; font-weight: 600; font-size: 17px">Check myself</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isCheck}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 26px 20px 28px">
+<div style="padding: 0 4px; font-weight: 600; font-size: 17px; line-height: 1.3">{{card.prompt}}</div>
+<div style="padding: 0 4px; margin-top: 6px; font-size: 13px; color: #A9AEBD">Tap anything you missed.</div>
+<div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{points}}" as="p" hint-placeholder-count="4">
+<button type="button" class="pd-press pd-up" onClick="{{p.toggle}}" aria-pressed="{{p.pressed}}" style="text-align: left; display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; border: 1px solid {{p.line}}; background: {{p.bg}}; color: {{p.fg}}; font-size: 15px; line-height: 1.4; animation-delay: {{p.delay}}"><span style="flex: 0 0 18px; height: 18px; margin-top: 2px; border-radius: 50%; border: 1.5px solid {{p.dotLine}}; background: {{p.dotBg}}; box-sizing: border-box"></span><span>{{p.text}}</span></button>
+</sc-for>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; color: {{verdictColor}}; text-align: center">{{verdict}}</div>
+<button type="button" class="pd-press" onClick="{{next}}" style="min-height: 56px; border: 0; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px">Next</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isRetry}}" hint-placeholder-val="{{false}}">
+<div class="pd-in" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 28px 24px 28px; gap: 18px">
+<div style="font-size: 13px; color: #F2B866">Prelims 2023 · General Studies · Question 6</div>
+<div style="border-radius: 14px; background: #F6F7FA; padding: 16px; display: flex; flex-direction: column; gap: 9px">
+<div style="height: 9px; width: 94%; border-radius: 4px; background: #C9CEDB"></div>
+<div style="height: 9px; width: 88%; border-radius: 4px; background: #C9CEDB"></div>
+<div style="height: 9px; width: 60%; border-radius: 4px; background: #C9CEDB"></div>
+<div style="margin-top: 6px; display: flex; flex-direction: column; gap: 7px"><div style="height: 8px; width: 42%; border-radius: 4px; background: #DADEE8"></div><div style="height: 8px; width: 36%; border-radius: 4px; background: #DADEE8"></div><div style="height: 8px; width: 46%; border-radius: 4px; background: #DADEE8"></div><div style="height: 8px; width: 31%; border-radius: 4px; background: #DADEE8"></div></div>
+<div style="margin-top: 4px; font-size: 12px; color: #555B6B">The question as you clipped it from the paper.</div>
+</div>
+
+<sc-if value="{{unanswered}}" hint-placeholder-val="{{true}}">
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; color: #A9AEBD; text-align: center">Answer it again. Your old answer stays hidden.</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{options}}" as="o" hint-placeholder-count="4">
+<button type="button" class="pd-press" onClick="{{o.pick}}" aria-label="{{o.aria}}" style="min-height: 64px; border-radius: 16px; border: 1px solid #343A4A; background: #171A23; color: #ECEEF4; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 20px">{{o.letter}}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{answered}}" hint-placeholder-val="{{false}}">
+<div class="pd-up" style="display: flex; flex-direction: column; gap: 14px">
+<div style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; color: {{resultColor}}">{{resultTitle}}</div>
+<div style="color: #A9AEBD">{{resultText}}</div>
+<div style="display: flex; gap: 22px; padding-top: 14px; border-top: 1px solid #222632"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">In the paper</span><span style="font-weight: 600">B, as a 50-50</span></div><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">Now</span><span style="font-weight: 600">{{picked}}</span></div><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">Answer</span><span style="font-weight: 600; color: #6FD3A8">D</span></div></div>
+</div>
+<button type="button" class="pd-press" onClick="{{finish}}" style="margin-top: auto; min-height: 56px; border-radius: 16px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px">Next</button>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: 96px 24px 28px; gap: 28px">
+<div class="pd-pop" style="width: 72px; height: 72px; border-radius: 50%; background: #1C3A30; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 34px; height: 34px; fill: none; stroke: #6FD3A8; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div class="pd-up" style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">Done on the phone</h2>
+<div style="color: #A9AEBD">36 minutes. Nothing here is left for today.</div>
+</div>
+<div class="pd-up" style="display: flex; flex-direction: column; gap: 14px; animation-delay: .1s">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #222632"><span>Recalls</span><span style="color: #A9AEBD">9 of 12 came back whole</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #222632"><span>Re-attempts</span><span style="color: #A9AEBD">5 of 6 right this time</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px"><span>Back tomorrow</span><span style="color: #A9AEBD">4 missed points, 1 question</span></div>
+</div>
+<button type="button" class="pd-press" onClick="{{home}}" style="margin-top: auto; min-height: 56px; border-radius: 16px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-weight: 600; font-size: 16px">Back to Today</button>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 'today', index: 0, missed: {}, picked: '' };
+  }
+  renderVals() {
+    const { step, index, missed, picked } = this.state;
+    const cards = [
+      {
+        path: 'Geology · Stratigraphy of India',
+        prompt: 'Gondwana Supergroup: age, divisions and why it matters',
+        last: 'Last recalled 9 days ago. You missed one point then.',
+        points: [
+          'Upper Carboniferous to Lower Cretaceous; river and lake deposits in faulted troughs.',
+          'Basins along the Damodar, Son-Mahanadi and Godavari valleys.',
+          'Lower Gondwana: Talchir, Damuda, Panchet. Upper: Mahadeva, Rajmahal, Jabalpur.',
+          'Holds nearly all of India’s coal, mainly Barakar and Raniganj formations.',
+          'Glossopteris flora below, Ptilophyllum flora above.'
+        ]
+      },
+      {
+        path: 'Forestry · Silvicultural systems',
+        prompt: 'Shelterwood (uniform) system: the sequence of fellings',
+        last: 'Last recalled 4 days ago. All of it came back.',
+        points: [
+          'The old crop is removed in stages so the new crop establishes under its shelter.',
+          'Preparatory felling, then seeding felling, secondary fellings, and the final felling.',
+          'Gives a more or less even-aged crop.',
+          'The regeneration period runs from the seeding felling to the final felling.'
+        ]
+      }
+    ];
+    const c = cards[index];
+    const points = c.points.map((text, i) => {
+      const off = !!missed[i];
+      return {
+        text, delay: (i * 0.06).toFixed(2) + 's', pressed: off ? 'true' : 'false',
+        bg: off ? '#2A2415' : '#171A23', line: off ? '#F2B866' : '#262B38', fg: off ? '#F2D9A8' : '#ECEEF4',
+        dotBg: off ? '#F2B866' : 'transparent', dotLine: off ? '#F2B866' : '#4A5062',
+        toggle: () => this.setState({ missed: { ...missed, [i]: !off } })
+      };
+    });
+    const count = Object.values(missed).filter(Boolean).length;
+    const verdict = count === 0 ? 'All of it came back. Next in 12 days.'
+      : count <= 2 ? count + ' missed. Next in 4 days, with ' + (count === 1 ? 'that point' : 'those points') + ' first.'
+      : 'Mostly gone. Back tomorrow, starting from your source.';
+    const next = () => {
+      if (index + 1 < cards.length) this.setState({ index: index + 1, step: 'recall', missed: {} });
+      else this.setState({ step: 'retry', picked: '' });
+    };
+    const right = picked === 'D';
+    const options = ['A', 'B', 'C', 'D'].map((letter) => ({ letter, aria: 'Option ' + letter, pick: () => this.setState({ picked: letter }) }));
+    const progress = { recall: index === 0 ? '8%' : '34%', check: index === 0 ? '20%' : '48%', retry: picked ? '86%' : '72%' }[step] || '0%';
+    return {
+      isToday: step === 'today',
+      inSession: step === 'recall' || step === 'check' || step === 'retry',
+      isRecall: step === 'recall',
+      isCheck: step === 'check',
+      isRetry: step === 'retry',
+      isDone: step === 'done',
+      unanswered: step === 'retry' && !picked,
+      answered: step === 'retry' && !!picked,
+      stageLabel: step === 'retry' ? 'Mistakes' : 'Recalls',
+      progress, card: c, points, verdict, verdictColor: count === 0 ? '#8A90A2' : '#F2B866',
+      options, picked,
+      resultTitle: right ? 'Right this time' : 'Still wrong',
+      resultColor: right ? '#6FD3A8' : '#F2B866',
+      resultText: right ? 'It returns once more in 6 days, to make sure it has stuck.' : 'It comes back tomorrow, and its topic moves up your list.',
+      start: () => this.setState({ step: 'recall', index: 0, missed: {} }),
+      reveal: () => this.setState({ step: 'check' }),
+      next,
+      finish: () => this.setState({ step: 'done' }),
+      home: () => this.setState({ step: 'today', index: 0, missed: {}, picked: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

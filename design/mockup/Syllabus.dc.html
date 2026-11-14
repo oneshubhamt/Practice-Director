@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — Syllabus</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-nav{transition:background .18s ease,color .18s ease}
+.pd-nav:hover{background:#1A1E28;color:#ECEEF4}
+.pd-row{transition:background .16s ease}
+.pd-row:hover{background:#1A1E28}
+.pd-tick{transition:background .16s ease,border-color .16s ease,transform .12s ease}
+.pd-tick:active{transform:scale(.88)}
+.pd-fill{transition:width .5s cubic-bezier(.2,.7,.2,1),flex-grow .5s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){.pd-nav,.pd-row,.pd-tick,.pd-fill{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<nav aria-label="Main" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 20px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 28px">
+<div style="padding: 0 10px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="Main.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Answer-sheet.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="#syllabus" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; background: #1E222D; color: #ECEEF4; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: #9BA3FF; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</div>
+<div style="margin-top: auto; padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #8A90A2; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #6FD3A8"></span>Synced 2 min ago</div>
+</nav>
+
+<main id="syllabus" style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(20px, 4vw, 48px) 48px">
+<div style="max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px">
+
+<header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 32px; letter-spacing: -0.02em">Syllabus</h1>
+<div role="group" aria-label="Paper" style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" aria-pressed="true" style="min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #8E97FF; background: #2A2E55; color: #DDE0FF; font-weight: 500; font-size: 14px">Forestry</button>
+<button type="button" aria-pressed="false" style="min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">Geology</button>
+<button type="button" aria-pressed="false" style="min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">General Knowledge</button>
+<button type="button" aria-pressed="false" style="min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">Prelims</button>
+</div>
+</div>
+<div style="flex: 0 1 340px; min-width: 240px; display: flex; flex-direction: column; gap: 8px">
+<div role="img" aria-label="Memory of this paper" style="display: flex; height: 8px; gap: 3px">
+<div class="pd-fill" style="flex: {{nFresh}} 1 0; border-radius: 999px; background: #8E97FF"></div>
+<div class="pd-fill" style="flex: {{nFading}} 1 0; border-radius: 999px; background: #F2B866"></div>
+<div class="pd-fill" style="flex: {{nNew}} 1 0; border-radius: 999px; background: #2B3040"></div>
+</div>
+<div style="display: flex; gap: 16px; font-size: 13px"><span><strong style="font-weight: 600">{{nFresh}}</strong> <span style="color: #8A90A2">fresh</span></span><span><strong style="font-weight: 600; color: #F2B866">{{nFading}}</strong> <span style="color: #8A90A2">fading</span></span><span><strong style="font-weight: 600">{{nNew}}</strong> <span style="color: #8A90A2">not started</span></span></div>
+</div>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+<section aria-label="Topics" style="flex: 999 1 480px; min-width: 0; background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 10px">
+<div style="padding: 12px 14px 8px; font-size: 13px; color: #8A90A2">Paper I · tick a topic once you have studied it. The bar is your memory of it, draining as days pass.</div>
+<sc-for list="{{topics}}" as="t" hint-placeholder-count="8">
+<div class="pd-row" style="display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 12px; background: {{t.rowBg}}">
+<button type="button" class="pd-tick" onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" aria-label="{{t.tickLabel}}" style="flex: 0 0 26px; height: 26px; border-radius: 50%; border: 1.5px solid {{t.tickLine}}; background: {{t.tickBg}}; display: flex; align-items: center; justify-content: center; padding: 0"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: #0E1016; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: {{t.tickMark}}"><path d="M5 12l5 5 9-10"></path></svg></button>
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-weight: 500; font-size: 15px">{{t.name}}</span>
+<span style="font-size: 12px; color: #8A90A2">{{t.meta}}<span style="color: #F2B866">{{t.weak}}</span></span>
+</div>
+<div style="flex: 0 0 156px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px"><span style="color: {{t.labelColor}}; font-weight: 600">{{t.state}}</span><span style="color: #8A90A2">{{t.note}}</span></div>
+<div aria-hidden="true" style="height: 6px; border-radius: 999px; background: #262B38; overflow: hidden"><div class="pd-fill" style="height: 100%; border-radius: 999px; background: {{t.barColor}}; width: {{t.barWidth}}"></div></div>
+</div>
+</div>
+</sc-for>
+</section>
+
+<aside aria-label="Selected topic" style="flex: 1 1 340px; min-width: 0; background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 13px; color: #9BA3FF">Forestry · Paper I · 6 parts</div>
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">Silvicultural systems</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">Memory</span><span style="font-weight: 600">Fresh</span><span style="font-size: 12px; color: #8A90A2">fades around 18 Nov</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">In questions</span><span style="font-weight: 600">3 of 4 right</span><span style="font-size: 12px; color: #8A90A2">matches your recall</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">Asked in</span><span style="font-weight: 600">8 of the last 10 papers</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">Answers written</span><span style="font-weight: 600">2, both inside time</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 13px; color: #A9AEBD">What you tend to leave out</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid #222632"><span>The regeneration period: from seeding felling to final felling</span><span style="flex: 0 0 auto; font-size: 13px; color: #F2B866">twice</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0"><span>Coppice with standards: how the two rotations relate</span><span style="flex: 0 0 auto; font-size: 13px; color: #8A90A2">once</span></div>
+</div>
+<div style="font-size: 13px; color: #8A90A2">Collected from your recalls and answers. This becomes your sheet for the final month.</div>
+</div>
+<div style="border-radius: 14px; background: #131620; border: 1px solid #262B38; padding: 16px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-weight: 600">3 past questions ready to write</div>
+<div style="font-size: 13px; color: #8A90A2">10, 15 and 20 marks. Recalling this topic means answering one of them.</div>
+</div>
+<a href="Written-answer.dc.html" style="margin-top: auto; display: inline-flex; align-items: center; justify-content: center; min-height: 50px; border-radius: 14px; border: 1px solid #343A4A; color: #ECEEF4; text-decoration: none; font-weight: 600">Practise this topic</a>
+</aside>
+
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { studied: { 0: true, 1: true, 2: true, 3: false, 4: true, 5: true, 6: false, 7: false } };
+  }
+  renderVals() {
+    const base = [
+      ['Silviculture: general principles', 'Asked in 9 of 10 papers', 'Fresh', 92, 'till 4 Dec', ''],
+      ['Silvicultural systems', 'Asked in 8 of 10 papers', 'Fresh', 70, 'till 18 Nov', ''],
+      ['Mangroves and cold deserts', 'Asked in 5 of 10 papers', 'Fading', 30, 'recall today', ' · weaker in questions than you rate it'],
+      ['Silviculture of trees', 'Asked in 9 of 10 papers', 'New', 0, '', ''],
+      ['Agroforestry, social forestry and JFM', 'Asked in 10 of 10 papers', 'Fresh', 76, 'till 21 Nov', ''],
+      ['Forest soils and watershed management', 'Asked in 7 of 10 papers', 'Fading', 38, 'recall tomorrow', ''],
+      ['Environmental conservation and biodiversity', 'Asked in 8 of 10 papers', 'New', 0, '', ''],
+      ['Tree improvement and seed technology', 'Asked in 6 of 10 papers', 'New', 0, '', '']
+    ];
+    const studied = this.state.studied;
+    let nFresh = 0, nFading = 0, nNew = 0;
+    const topics = base.map(([name, meta, st, pct, note, weak], i) => {
+      const on = !!studied[i];
+      const state = !on ? 'New' : st === 'New' ? 'Fresh' : st;
+      if (state === 'Fresh') nFresh++; else if (state === 'Fading') nFading++; else nNew++;
+      const justTicked = on && st === 'New';
+      return {
+        name, meta, weak: on ? weak : '',
+        state: state === 'New' ? 'Not started' : state,
+        note: !on ? '' : justTicked ? 'first recall tomorrow' : note,
+        barWidth: !on ? '0%' : (justTicked ? 100 : pct) + '%',
+        barColor: state === 'Fading' ? '#F2B866' : '#8E97FF',
+        labelColor: state === 'Fading' ? '#F2B866' : state === 'New' ? '#8A90A2' : '#C3C8FF',
+        rowBg: i === 1 ? '#1E222D' : 'transparent',
+        pressed: on ? 'true' : 'false', tickLabel: 'Studied: ' + name,
+        tickBg: on ? '#8E97FF' : 'transparent', tickLine: on ? '#8E97FF' : '#4A5062', tickMark: on ? 1 : 0,
+        toggle: () => this.setState({ studied: { ...studied, [i]: !on } })
+      };
+    });
+    return { topics, nFresh, nFading, nNew };
+  }
+}
+</script>
+</body>
+</html>

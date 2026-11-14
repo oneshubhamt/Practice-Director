@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — results as a story</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4B55D6}a:hover{color:#2F38A8}
+button{font-family:inherit;cursor:pointer}
+@keyframes pdGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pdRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pd-grow{transform-origin:left center;animation:pdGrow .8s cubic-bezier(.2,.7,.2,1) both}
+.pd-rise{animation:pdRise .5s cubic-bezier(.2,.7,.2,1) both}
+.pd-primary{transition:transform .16s ease,box-shadow .2s ease}
+.pd-primary:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(20,22,28,.18);color:#FFFFFF}
+@media (prefers-reduced-motion:reduce){.pd-grow,.pd-rise{animation:none}.pd-primary{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F6F7FA; color: #14161C; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.5">
+<div style="max-width: 1040px; margin: 0 auto; box-sizing: border-box; padding: 28px clamp(16px, 4vw, 40px) 56px; display: flex; flex-direction: column; gap: 32px">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 32px; text-decoration: none; font-size: 13px; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Today</a>
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 24px; letter-spacing: -0.02em">UPSC Prelims 2023 · General Studies Paper I</h1>
+</div>
+<nav aria-label="Result views" style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #E9ECF2">
+<a href="#story" aria-current="page" style="display: inline-flex; align-items: center; min-height: 36px; padding: 0 16px; border-radius: 9px; background: #FFFFFF; color: #14161C; text-decoration: none; font-weight: 600; font-size: 14px; box-shadow: 0 1px 3px rgba(20,22,28,.12)">Summary</a>
+<a href="#questions" style="display: inline-flex; align-items: center; min-height: 36px; padding: 0 16px; border-radius: 9px; color: #555B6B; text-decoration: none; font-weight: 500; font-size: 14px">Every question</a>
+<a href="#timing" style="display: inline-flex; align-items: center; min-height: 36px; padding: 0 16px; border-radius: 9px; color: #555B6B; text-decoration: none; font-weight: 500; font-size: 14px">Timing</a>
+</nav>
+</header>
+
+<section id="story" class="pd-rise" style="background: #FFFFFF; border: 1px solid #E3E6EE; border-radius: 22px; padding: clamp(22px, 4vw, 36px); display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 32px">
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 68px; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums">81.3</span><span style="font-size: 18px; color: #555B6B">of 200</span></div>
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">28.7 short of your target of 110</span><span style="color: #555B6B">51 right, 31 wrong, 18 left blank. Up from 77.5 on your last full paper.</span></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><span style="font-weight: 600">Where the 200 marks went</span><span style="font-size: 13px; color: #555B6B">The line marks your target</span></div>
+<div style="position: relative; padding: 6px 0"><div aria-hidden="true" style="position: absolute; left: 55%; top: 0; bottom: 0; width: 2px; border-radius: 2px; background: #14161C"></div>
+<div role="img" aria-label="81.3 marks earned, 82.7 lost to wrong answers, 36 left blank" class="pd-grow" style="display: flex; height: 22px; border-radius: 999px; overflow: hidden; gap: 3px">
+<div style="flex: 0 0 40.6%; background: #4B55D6; border-radius: 999px 4px 4px 999px"></div>
+<div style="flex: 0 0 41.4%; background: #E0902F; border-radius: 4px"></div>
+<div style="flex: 1 1 auto; background: #C9CEDB; border-radius: 4px 999px 999px 4px"></div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 2px"><div style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #4B55D6"></span><span style="font-weight: 600">81.3 earned</span></div><div style="font-size: 13px; color: #555B6B">From 51 right answers, after penalties</div></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><div style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #E0902F"></span><span style="font-weight: 600">82.7 lost to wrong answers</span></div><div style="font-size: 13px; color: #555B6B">31 questions, including 20.7 in penalties</div></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><div style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #C9CEDB"></span><span style="font-weight: 600">36 left blank</span></div><div style="font-size: 13px; color: #555B6B">18 questions not attempted</div></div>
+</div>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+
+<section class="pd-rise" style="flex: 999 1 440px; min-width: 0; box-sizing: border-box; background: #14161C; color: #ECEEF4; border-radius: 22px; padding: clamp(22px, 4vw, 32px); display: flex; flex-direction: column; gap: 22px; animation-delay: .08s">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em">What to do next</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px">
+<li style="display: flex; gap: 14px"><span style="flex: 0 0 26px; height: 26px; border-radius: 50%; border: 1px solid #4A5062; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #C6CAD6">1</span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Environment and ecology needs work</span><span style="font-size: 14px; color: #B4B9C7">9 of 14 attempts were wrong. Nine revision cards are ready.</span></div></li>
+<li style="display: flex; gap: 14px"><span style="flex: 0 0 26px; height: 26px; border-radius: 50%; border: 1px solid #4A5062; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #C6CAD6">2</span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Keep taking your 50-50s</span><span style="font-size: 14px; color: #B4B9C7">They added 5.3 marks. You were right 35% of the time; 25% is break-even here.</span></div></li>
+<li style="display: flex; gap: 14px"><span style="flex: 0 0 26px; height: 26px; border-radius: 50%; border: 1px solid #4A5062; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #C6CAD6">3</span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Stop pure guessing</span><span style="font-size: 14px; color: #B4B9C7">Eight guesses, one right. They cost you 2.7 marks.</span></div></li>
+</ol>
+<a href="Phone-flow.dc.html" class="pd-primary" style="margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; box-sizing: border-box; padding: 0 24px; border-radius: 14px; background: #8E97FF; color: #0E1016; text-decoration: none; font-weight: 600; font-size: 16px">Fix the 31 mistakes<span style="font-weight: 500; opacity: .75">about 35 min</span></a>
+</section>
+
+<section class="pd-rise" style="flex: 1 1 340px; min-width: 0; box-sizing: border-box; background: #FFFFFF; border: 1px solid #E3E6EE; border-radius: 22px; padding: clamp(22px, 4vw, 32px); display: flex; flex-direction: column; gap: 18px; animation-delay: .14s">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em">Did your bets pay?</h2>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums">
+<thead><tr style="color: #555B6B; text-align: right"><th scope="col" style="text-align: left; font-weight: 500; padding: 0 0 10px">You felt</th><th scope="col" style="font-weight: 500; padding: 0 0 10px 12px">Answered</th><th scope="col" style="font-weight: 500; padding: 0 0 10px 12px">Right</th><th scope="col" style="font-weight: 500; padding: 0 0 10px 12px">Marks</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #E3E6EE; text-align: right"><th scope="row" style="text-align: left; font-weight: 600; padding: 12px 0">Sure</th><td style="padding: 12px 0 12px 12px">54</td><td style="padding: 12px 0 12px 12px">80%</td><td style="padding: 12px 0 12px 12px; font-weight: 600">+78.7</td></tr>
+<tr style="border-top: 1px solid #E3E6EE; text-align: right"><th scope="row" style="text-align: left; font-weight: 600; padding: 12px 0">50-50</th><td style="padding: 12px 0 12px 12px">20</td><td style="padding: 12px 0 12px 12px">35%</td><td style="padding: 12px 0 12px 12px; font-weight: 600; color: #2F38A8">+5.3</td></tr>
+<tr style="border-top: 1px solid #E3E6EE; text-align: right"><th scope="row" style="text-align: left; font-weight: 600; padding: 12px 0">Guess</th><td style="padding: 12px 0 12px 12px">8</td><td style="padding: 12px 0 12px 12px">13%</td><td style="padding: 12px 0 12px 12px; font-weight: 600; color: #9A5A06">−2.7</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin: 0; font-size: 13px; color: #555B6B">One in five of your "sure" answers was wrong. Those 11 questions come first in the fix list.</p>
+</section>
+
+</div>
+
+<section class="pd-rise" style="background: #FFFFFF; border: 1px solid #E3E6EE; border-radius: 22px; padding: clamp(22px, 4vw, 32px); display: flex; flex-direction: column; gap: 18px; animation-delay: .2s">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em">By subject</h2><span style="font-size: 13px; color: #555B6B">Right answers out of questions asked</span></div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{subjects}}" as="s" hint-placeholder-count="7">
+<div style="display: flex; align-items: center; gap: 16px">
+<span style="flex: 0 0 150px; font-size: 14px">{{s.name}}</span>
+<div aria-hidden="true" style="flex: 1 1 auto; height: 10px; border-radius: 999px; background: #EEF0F5; overflow: hidden"><div class="pd-grow" style="height: 100%; border-radius: 999px; background: {{s.color}}; width: {{s.width}}"></div></div>
+<span style="flex: 0 0 56px; text-align: right; font-size: 14px; color: #555B6B; font-variant-numeric: tabular-nums">{{s.label}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const subjects = [
+      ['Polity', 12, 17], ['Economy', 9, 15], ['History', 8, 15], ['Geography', 8, 14],
+      ['Science', 6, 13], ['Environment', 5, 16], ['Current affairs', 3, 10]
+    ].map(([name, right, total]) => {
+      const share = right / total;
+      return { name, label: right + ' / ' + total, width: Math.round(share * 100) + '%', color: share < 0.4 ? '#E0902F' : '#4B55D6' };
+    });
+    return { subjects };
+  }
+}
+</script>
+</body>
+</html>
