@@ -361,6 +361,36 @@ Each phase ends with something you can use daily.
 
 Written answers moved up because IFoS rank is decided in Mains, which is entirely written. The in-app test player moved down because answer-sheet mode covers real papers from day one.
 
+## 11a. Capability audit against the four apps
+
+After the redesign I went back through what each existing app can do and what a full preparation cycle needs, and listed what the plan had lost or never had. These are now part of the design.
+
+| From | Capability added to the plan | Phase |
+|---|---|---|
+| Practice Desk | **Save a question** even when you got it right, so good questions return too | 2 |
+| Practice Desk | **One-line lesson on a mistake** ("what I should have seen"), shown when it comes back | 2 |
+| Practice Desk | **Clip the explanation as well**, from a solutions PDF, as the back of the card | 2 |
+| Practice Desk | **Changed answers** in results: how often you switched from right to wrong | 2 |
+| Practice Desk | **Speed against accuracy** in the Timing view; keyboard shortcuts; text size | 2 |
+| Revision Director | **Sticking points**: after repeated misses the app stops repeating the same card and proposes a different approach: reread the source, split the topic, or turn it into a table, diagram or mnemonic | 1 |
+| Revision Director | **Prompt forms**: explain, list, compare in a table, draw, put in sequence | 1 |
+| Revision Director | Timing that ignores interruptions, and time estimates learned from your own pace | 1 |
+| Calendar | **Add to my calendar**: exam dates and paper slots exported so your phone's own calendar reminds you. Uses the library's export code without its screens. | 5 |
+| Calendar | **Print** the final-month sheets | 5 |
+| Study Director | Screen stays awake and sound cues during timed work | 2 |
+| Study Director | A sample-data preview and an in-app guide | 1 |
+| Study Director | Backup versions you can go back to; encrypted backups | 4 |
+| Study Director | The marks-weighted pacer across a whole paper | 3 |
+| New | **Full Mains paper rehearsal**: three hours, a choose-your-questions step, the pacer across questions, then the same tap-what-you-missed check for each answer | 3 |
+| New | **Read next**: unread topics ordered by how often they are asked | 1 |
+| New | **Search** across topics, mistakes and clips | 5 |
+| New | **Accuracy by question type** in Prelims (statement-based, matching and so on), when the paper map records the type | 2 |
+| New | General English practice (essay, précis) through the written-answer flow | 3 |
+
+Considered and left for later: interview-stage preparation, a current-affairs feed, an in-app drawing canvas, multiple profiles on one device, two-way Google Calendar sync, and a plug-in interface.
+
+Still thin after this audit, and stated so plainly: current affairs has only a monthly topic; General English has a clock but no real self-check; and several screens are not yet drawn (the in-app test player, Practice home, first run, Settings, search, a tablet layout).
+
 ## 12. Decisions and open points
 
 Settled:
