@@ -279,6 +279,44 @@ Your day has two parts, studying and practising, and each gets one app that is w
 
 **Revision still shows up in your study day.** The engine sits in Practice Director, but what is due appears in Study Director through the seam.
 
+### Where the calendar belongs, from first principles
+
+The test is one question: **who decides the dates?**
+
+- A **calendar** is for things a person places in time and then looks at, moves and resizes: "Geology Paper II this week", "a full paper on Sunday morning", "exam on 23 May".
+- A **schedule** is worked out by a rule. Nobody places its entries, and moving one by hand makes it worse.
+
+Applied to the three kinds of work:
+
+| Work | Who decides when | What it needs |
+|---|---|---|
+| Study (first reading) | You. Which subject this month, which chapters this week, what today. | A calendar. This is ordinary planning, and it spans months. |
+| Revision | The forgetting curve. Each topic's next date follows from how the last recall went, and changes after every recall. | A schedule, shown as today's queue and a forecast of the load per day. Several hundred moving entries on a calendar would be noise, and dragging one to a later date overrides the one thing the engine is good at. Planning revision by hand is the task you say you are worst at, so the app does not hand it back to you. |
+| Practice | Mostly the same engine (which mistakes, which weak topics). You place only a few things: full papers and the exam dates. | A date on each paper. One or two entries a week do not justify a calendar screen. |
+
+So revision does need long-range planning, but a machine does it; what you need to see is how much is coming, not a grid of entries.
+
+**One place for your hours.** A Sunday-morning paper is three hours of your day. It has to be seen beside study blocks, meals and everything else, or it will be double-booked. Your hours are allocated in Study Director, so the calendar goes there. A second calendar in Practice Director would be a second place claiming the same Sunday.
+
+### How a calendar fits Study Director
+
+Today Study Director knows one day. A calendar adds the levels above it without changing the day.
+
+| Level | What you do there | What exists today |
+|---|---|---|
+| Year and month | Exam dates; milestones such as "finish Forestry Paper I by 31 December"; which subject leads each month | Nothing |
+| Week | Which subjects on which days; repeating blocks (morning routine, daily current affairs); hours per subject | Saved plans and the default plan, used by hand |
+| Day | Blocks with start time, length, kind and Area | The Plan board |
+
+- **The Plan board is already one day of a calendar.** Its blocks have a start, a length, a kind and an Area, which is what a calendar event is. A week view is seven boards side by side.
+- **Each morning's board arrives filled in** from the week, instead of being built or loaded each day. Templates and saved plans become repeating blocks.
+- **Unfinished work is moved, not retyped**: drag a block to Thursday.
+- **Planned against actual, over weeks.** Study Director already records what really happened. Laid on a calendar, a month shows where plans and reality part, which speaks directly to keeping to a timetable.
+- **Outside commitments** (travel, family) come in from Google Calendar and block out time before you plan around them.
+- **Practice Director publishes into it**: exam dates, paper slots and the recall time due each day appear as their own layer. Moving a paper there moves it in Practice Director.
+
+Practice Director keeps only what it needs to stand alone: a date on each paper, the countdown, and the 14-day load forecast.
+
 ### The seam: three links
 
 All three travel through your own Google Drive. Until they exist each app works alone, and the cost is ticking a studied topic by hand in Practice Director.
