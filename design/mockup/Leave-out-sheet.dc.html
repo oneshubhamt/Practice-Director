@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — the printed sheet of what you tend to leave out</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4B55D6}a:hover{color:#2F38A8}
+button{font-family:inherit;cursor:pointer}
+.pd-chip{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-chip:hover{border-color:#4B55D6}
+.pd-quiet{transition:background .14s ease}
+.pd-quiet:hover{background:#EEF0F5}
+@keyframes pdSwap{from{opacity:0}to{opacity:1}}
+.pd-swap{animation:pdSwap .3s ease both}
+@media (prefers-reduced-motion:reduce){.pd-swap{animation:none}.pd-chip,.pd-quiet{transition:none}}
+@media print{.pd-screen{display:none!important}.pd-paper{box-shadow:none!important;margin:0!important}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #F6F7FA; color: #14161C; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<header class="pd-screen" style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; padding: 12px clamp(16px, 3vw, 32px); background: #FFFFFF; border-bottom: 1px solid #E3E6EE">
+<a href="Syllabus.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Syllabus</a>
+<div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+<div style="font-weight: 600; font-size: 16px">What you tend to leave out</div>
+<div style="font-size: 13px; color: #555B6B">A sheet for the final month. It writes itself from your recalls, mistakes and written answers.</div>
+</div>
+<span style="font-size: 13px; color: #555B6B">{{pageCount}}</span>
+<button type="button" style="min-height: 46px; padding: 0 26px; border-radius: 12px; border: 0; background: #14161C; color: #FFFFFF; font-weight: 600; font-size: 15px">Print</button>
+</header>
+
+<div style="flex: 1 1 auto; display: flex; flex-wrap: wrap; align-items: flex-start">
+
+<aside class="pd-screen" aria-label="What goes on the sheet" style="flex: 1 1 300px; max-width: 380px; min-width: 0; box-sizing: border-box; padding: 26px clamp(16px, 3vw, 28px); display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600">Subject</span>
+<div role="group" aria-label="Subject" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{subjects}}" as="s" hint-placeholder-count="3">
+<button type="button" class="pd-chip" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{s.bg}}; color: {{s.fg}}; border: 1.5px solid {{s.line}}">{{s.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600">How much</span>
+<div role="group" aria-label="How much" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{amounts}}" as="a" hint-placeholder-count="2">
+<button type="button" class="pd-chip" onClick="{{a.pick}}" aria-pressed="{{a.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{a.bg}}; color: {{a.fg}}; border: 1.5px solid {{a.line}}">{{a.label}}</button>
+</sc-for>
+</div>
+<span style="font-size: 13px; color: #555B6B">{{amountNote}}</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 20px; border-top: 1px solid #E3E6EE">
+<span style="font-size: 13px; font-weight: 600">Where each line comes from</span>
+<div style="display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #555B6B"><span style="flex: 0 0 34px; padding: 1px 0; border-radius: 6px; background: #EEF0F5; text-align: center; font-size: 12px; font-weight: 600; color: #14161C">×3</span><span>A marking point you pressed as missed in recall, and how many times.</span></div>
+<div style="display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #555B6B"><span style="flex: 0 0 34px; padding: 1px 0; border-radius: 6px; background: #EEF0F5; text-align: center; font-size: 12px; font-weight: 600; color: #14161C">Q</span><span>The one-line lesson you wrote on a mistake.</span></div>
+<div style="display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #555B6B"><span style="flex: 0 0 34px; padding: 1px 0; border-radius: 6px; background: #EEF0F5; text-align: center; font-size: 12px; font-weight: 600; color: #14161C">W</span><span>A point left out of a written answer.</span></div>
+</div>
+
+<div style="font-size: 13px; color: #555B6B">Every line is in your own words or from your own marking points. Take a line off the sheet by pressing it; it stays in the app.</div>
+<a href="AI-bridge.dc.html" class="pd-quiet" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; margin-left: -14px; border-radius: 10px; font-size: 14px; font-weight: 500; text-decoration: none">Copy the sheet for an AI instead</a>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px clamp(12px, 3vw, 40px) 40px; background: #E9ECF2; align-self: stretch; display: flex; justify-content: center">
+<article class="pd-paper pd-swap" aria-label="The sheet as it will print" style="flex: 0 1 794px; min-width: 0; min-height: 1010px; box-sizing: border-box; background: #FFFFFF; color: #111111; padding: clamp(24px, 6vw, 60px) clamp(20px, 6vw, 64px); box-shadow: 0 1px 3px rgba(20,22,28,.12), 0 12px 32px rgba(20,22,28,.08); display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 6px 24px; padding-bottom: 14px; border-bottom: 2px solid #111111">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #444444">What I tend to leave out</span><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.015em; line-height: 1.1">{{sheet.title}}</span></div>
+<span style="font-size: 12px; color: #444444; text-align: right">{{sheet.meta}}</span>
+</div>
+
+<div style="column-width: 300px; column-gap: 40px">
+<sc-for list="{{sheet.topics}}" as="t" hint-placeholder-count="5">
+<section style="break-inside: avoid; margin: 0 0 22px; display: flex; flex-direction: column; gap: 7px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 4px; border-bottom: 1px solid #BBBBBB"><h2 style="margin: 0; font-size: 15px; font-weight: 600">{{t.name}}</h2><span style="font-size: 12px; color: #444444; white-space: nowrap">{{t.where}}</span></div>
+<sc-for list="{{t.lines}}" as="l" hint-placeholder-count="3">
+<div style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.4"><span style="flex: 0 0 28px; margin-top: 1px; font-size: 12px; font-weight: 600; color: #444444; font-variant-numeric: tabular-nums">{{l.mark}}</span><span>{{l.text}}</span></div>
+</sc-for>
+</section>
+</sc-for>
+<div class="pd-screen" style="break-inside: avoid; font-size: 13px; color: #555B6B; font-style: italic">{{sheet.more}}</div>
+</div>
+
+<div style="margin-top: auto; display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; border-top: 1px solid #BBBBBB; font-size: 12px; color: #444444"><span>×n missed n times in recall · Q from a mistake · W left out of a written answer</span><span>{{sheet.page}}</span></div>
+</article>
+</main>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1140}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { subject: 'Geology', amount: 'Missed twice or more' };
+  }
+  renderVals() {
+    const { subject, amount } = this.state;
+    const chip = (on) => ({ pressed: on ? 'true' : 'false', bg: on ? '#EEF0FF' : '#FFFFFF', fg: on ? '#2F38A8' : '#14161C', line: on ? '#4B55D6' : '#C9CEDB' });
+    const data = {
+      Geology: [
+        { name: 'Gondwana Supergroup', where: 'Paper I · Stratigraphy', lines: [
+          [3, 'Glossopteris flora below, Ptilophyllum flora above.'],
+          [2, 'The coal is mainly in the Barakar and Raniganj formations.'],
+          ['Q', 'Glossopteris is Lower Gondwana. Do not place it in the Rajmahal beds.'],
+          [1, 'Basins follow the Damodar, Son-Mahanadi and Godavari valleys.']
+        ] },
+        { name: 'Deccan Traps', where: 'Paper I · Stratigraphy', lines: [
+          [2, 'Erupted around the Cretaceous to Palaeogene boundary, about 66 million years ago.'],
+          [2, 'Intertrappean beds lie between the flows; the Lameta beds lie below them.'],
+          ['W', 'Left out the economic side: building stone, bauxite and black cotton soil.']
+        ] },
+        { name: 'Dharwar craton', where: 'Paper I · Stratigraphy', lines: [
+          [2, 'The Sargur Group is older than the Dharwar Supergroup.'],
+          [1, 'Within the Dharwar Supergroup: Bababudan Group below, Chitradurga Group above.']
+        ] },
+        { name: 'Folds', where: 'Paper I · Structural geology', lines: [
+          [3, 'Plunge is measured in a vertical plane; pitch is measured in the plane that holds the line.'],
+          ['W', 'Drew the fold but did not label the hinge line and the axial plane.']
+        ] },
+        { name: 'Bowen’s reaction series', where: 'Paper II · Igneous petrology', lines: [
+          [2, 'Discontinuous side, in order: olivine, pyroxene, amphibole, biotite.'],
+          [1, 'Continuous side: plagioclase from calcium-rich to sodium-rich.'],
+          ['Q', 'Quartz is last to crystallise, so it is the most stable at the surface.']
+        ] }
+      ],
+      Forestry: [
+        { name: 'Silvicultural systems', where: 'Paper I · Silviculture', lines: [
+          [3, 'The regeneration period runs from the seeding felling to the final felling.'],
+          [2, 'The selection system keeps an uneven-aged crop over the whole area.'],
+          ['W', 'Compared the systems without saying which species each one suits.']
+        ] },
+        { name: 'Agroforestry and taungya', where: 'Paper I · Agroforestry', lines: [
+          [2, 'Three kinds of taungya: departmental, leased and village.'],
+          [1, 'Taungya is a way of raising a forest crop, with farm crops only in the first years.']
+        ] },
+        { name: 'Mangroves', where: 'Paper I · Silviculture', lines: [
+          [2, 'Pneumatophores are breathing roots; vivipary is the seed germinating on the parent tree.'],
+          ['Q', 'Stilt roots are Rhizophora; pencil-like breathing roots are Avicennia.']
+        ] },
+        { name: 'Forest mensuration', where: 'Paper II · Mensuration', lines: [
+          [3, 'Breast height in India is 1.37 m above ground.'],
+          [2, 'Form factor: the tree’s volume divided by that of a cylinder of the same basal area and height.']
+        ] }
+      ]
+    };
+    data['Prelims GS'] = [
+      { name: 'Protected areas', where: 'Environment', lines: [
+        ['Q', 'Biosphere reserves are notified by the Centre, not the states.'],
+        [2, 'A national park allows no grazing; a sanctuary may.']
+      ] },
+      { name: 'Parliament', where: 'Polity', lines: [
+        ['Q', 'Read the last line of the question first.'],
+        [2, 'A money bill can start only in the Lok Sabha; the Rajya Sabha has 14 days.']
+      ] },
+      { name: 'Local government', where: 'Polity', lines: [
+        ['Q', 'The 73rd is panchayats, the 74th is municipalities.']
+      ] }
+    ];
+    const strict = amount === 'Missed twice or more';
+    const topics = data[subject]
+      .map((t) => ({ ...t, lines: t.lines.filter(([m]) => !strict || typeof m !== 'number' || m >= 2).map(([m, text]) => ({ mark: typeof m === 'number' ? '×' + m : m, text })) }))
+      .filter((t) => t.lines.length);
+    const count = topics.reduce((sum, t) => sum + t.lines.length, 0);
+    const full = { Geology: [41, 86], Forestry: [48, 104], 'Prelims GS': [57, 131] }[subject];
+    const lines = strict ? full[0] : full[1];
+    const pages = Math.max(1, Math.ceil(lines / 28));
+    return {
+      subjects: ['Geology', 'Forestry', 'Prelims GS'].map((label) => ({ label, ...chip(label === subject), pick: () => this.setState({ subject: label }) })),
+      amounts: ['Missed twice or more', 'Everything missed'].map((label) => ({ label, ...chip(label === amount), pick: () => this.setState({ amount: label }) })),
+      amountNote: lines + ' lines over ' + (subject === 'Prelims GS' ? '24' : subject === 'Geology' ? '19' : '22') + ' topics. The first ' + count + ' are shown here.',
+      pageCount: pages + (pages === 1 ? ' page' : ' pages') + ' · A4',
+      sheet: {
+        title: subject === 'Prelims GS' ? 'Prelims · General Studies' : subject + ' optional',
+        meta: 'Made 13 November 2026 from 9 weeks of practice',
+        topics,
+        more: 'The sample stops here. In the app the sheet carries on: ' + (lines - count) + ' more lines, in the same form.',
+        page: 'Page 1 of ' + pages
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

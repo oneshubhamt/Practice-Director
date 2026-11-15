@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — Progress</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4B55D6}a:hover{color:#2F38A8}
+button{font-family:inherit;cursor:pointer}
+.pd-nav{transition:background .18s ease,color .18s ease}
+.pd-nav:hover{background:#EEF0F5;color:#14161C}
+@keyframes pdGrowY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes pdRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pd-growy{transform-origin:center bottom;animation:pdGrowY .7s cubic-bezier(.2,.7,.2,1) both}
+.pd-rise{animation:pdRise .5s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-nav{transition:none}.pd-growy,.pd-rise{animation:none}}
+.pd-link{transition:border-color .16s ease}
+.pd-link:hover{border-color:#4B55D6;color:#14161C}
+</style>
+</helmet>
+<div style="min-height: 100vh;display: flex;flex-wrap: wrap;background: #F6F7FA;color: #14161C;font-family: Inter, system-ui, sans-serif;font-size: 15px;line-height: 1.45">
+
+<!--pd:rail progress light-->
+<style>@media (max-width: 760px){.pd-rail{display:none!important}.pd-railtabs{display:flex!important}.pd-rail~main{padding-bottom:104px!important}}</style>
+<nav aria-label="Main, on a narrow screen" class="pd-railtabs" style="display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 8px 8px 16px; background: #FFFFFF; border-top: 1px solid #E3E6EE">
+<a href="Main-light.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #5F6577"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice-light.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #5F6577"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus-light.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #5F6577"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress-light.dc.html" aria-current="page" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #4B55D6"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</nav>
+<nav aria-label="Main" class="pd-rail" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 18px; background: #FFFFFF; border-right: 1px solid #E3E6EE; display: flex; flex-direction: column; gap: 22px">
+<div style="padding: 0 12px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
+<a href="Search.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #E3E6EE; color: #5F6577; text-decoration: none; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg><span style="flex: 1 1 auto">Search</span><span style="padding: 1px 7px; border-radius: 6px; border: 1px solid #C9CEDB; font-size: 12px; color: #5F6577">/</span></a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="Main-light.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #555B6B; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice-light.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #555B6B; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus-light.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #555B6B; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress-light.dc.html" class="pd-nav" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; background: #EEF0F5; color: #14161C; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: #4B55D6; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="Settings.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #555B6B; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>Settings</a>
+<div style="padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #5F6577; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #1E6B4C"></span>Backed up 2 min ago</div>
+</div>
+</nav>
+<!--/pd:rail-->
+
+<main style="flex: 999 1 560px;min-width: 0;box-sizing: border-box;padding: 36px clamp(20px, 4vw, 48px) 48px">
+<div style="max-width: 1120px;margin: 0 auto;display: flex;flex-direction: column;gap: 24px">
+
+<header style="display: flex;flex-wrap: wrap;align-items: center;justify-content: space-between;gap: 12px">
+<h1 style="margin: 0;font-family: 'Inter Tight', Inter, sans-serif;font-weight: 600;font-size: 32px;letter-spacing: -0.02em">Progress</h1>
+<div style="display: flex;flex-wrap: wrap;gap: 8px">
+<a href="Speaks-up.dc.html" class="pd-link" style="display: inline-flex;align-items: center;min-height: 44px;box-sizing: border-box;padding: 0 16px;border-radius: 12px;border: 1px solid #C9CEDB;color: #14161C;text-decoration: none;font-weight: 500;font-size: 14px">This week's summary</a>
+<a href="History.dc.html" class="pd-link" style="display: inline-flex;align-items: center;min-height: 44px;box-sizing: border-box;padding: 0 16px;border-radius: 12px;border: 1px solid #C9CEDB;color: #14161C;text-decoration: none;font-weight: 500;font-size: 14px">History</a>
+<a href="Leave-out-sheet.dc.html" class="pd-link" style="display: inline-flex;align-items: center;min-height: 44px;box-sizing: border-box;padding: 0 16px;border-radius: 12px;border: 1px solid #C9CEDB;color: #14161C;text-decoration: none;font-weight: 500;font-size: 14px">What you tend to leave out</a>
+</div>
+</header>
+
+<section aria-label="Road to your exams" class="pd-rise" style="background: #FFFFFF;border: 1px solid #E3E6EE;border-radius: 20px;padding: 22px 24px 20px;display: flex;flex-direction: column;gap: 16px">
+<div style="display: flex;flex-wrap: wrap;justify-content: space-between;align-items: center;gap: 8px 16px"><div style="display: flex;flex-wrap: wrap;align-items: baseline;gap: 4px 14px"><span style="font-weight: 600">The road ahead</span><span style="font-size: 13px;color: #5F6577">{{roadNote}}</span></div><button type="button" class="pd-link" onClick="{{toggleRoad}}" aria-pressed="{{roadPressed}}" style="min-height: 44px;padding: 0 16px;border-radius: 12px;border: 1px solid {{roadLine}};background: transparent;color: #14161C;font-weight: 500;font-size: 14px">{{roadButton}}</button></div>
+<div style="display: flex;flex-wrap: wrap;gap: 4px">
+<sc-for list="{{phases}}" as="ph" hint-placeholder-count="3">
+<div style="flex: {{ph.days}} 1 200px;min-width: 0;display: flex;flex-direction: column;gap: 10px">
+<div style="height: 10px;border-radius: {{ph.radius}};background: {{ph.bar}}"></div>
+<div style="display: flex;flex-direction: column;gap: 2px"><span style="font-weight: 600;color: {{ph.color}}">{{ph.name}}</span><span style="font-size: 13px;color: #5F6577">{{ph.text}}</span></div>
+</div>
+</sc-for>
+</div>
+<sc-if value="{{editing}}" hint-placeholder-val="{{false}}">
+<div class="pd-rise" style="display: flex;flex-direction: column;gap: 14px;padding-top: 16px;border-top: 1px solid #E3E6EE">
+<div style="display: flex;flex-wrap: wrap;gap: 14px 28px">
+<sc-for list="{{edits}}" as="e" hint-placeholder-count="2">
+<div style="display: flex;flex-direction: column;gap: 6px">
+<label for="{{e.id}}" style="font-size: 13px;color: #555B6B">{{e.label}}</label>
+<div style="display: flex;align-items: center;gap: 10px"><input id="{{e.id}}" type="text" value="{{e.value}}" onChange="{{e.set}}" style="width: 150px;height: 44px;box-sizing: border-box;padding: 0 14px;border-radius: 12px;border: 1px solid {{e.line}};background: #F6F7FA;color: #14161C;font-family: inherit;font-size: 15px;outline: none"><span style="font-size: 13px;color: #5F6577">{{e.draft}}</span></div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex;flex-wrap: wrap;align-items: center;gap: 8px 16px;font-size: 13px;color: #5F6577"><span style="flex: 1 1 320px">The app drew these from your exam dates: Prelims focus twelve weeks before Prelims, Mains focus from the day after it. Dates, names and the number of phases are all yours to change.</span><button type="button" onClick="{{resetRoad}}" style="min-height: 44px;padding: 0 6px;border: 0;background: transparent;color: #4B55D6;font-size: 14px;font-weight: 500">Back to the app's draft</button><button type="button" style="min-height: 44px;padding: 0 6px;border: 0;background: transparent;color: #4B55D6;font-size: 14px;font-weight: 500">Add a phase</button></div>
+</div>
+</sc-if>
+</section>
+
+<div style="display: flex;flex-wrap: wrap;gap: 24px;align-items: stretch">
+
+<section class="pd-rise" style="flex: 999 1 420px;min-width: 0;box-sizing: border-box;background: #FFFFFF;border: 1px solid #E3E6EE;border-radius: 20px;padding: 24px;display: flex;flex-direction: column;gap: 20px;animation-delay: .06s">
+<h2 style="margin: 0;font-family: 'Inter Tight', Inter, sans-serif;font-weight: 600;font-size: 20px;letter-spacing: -0.01em">Two things that matter now</h2>
+<ol style="list-style: none;margin: 0;padding: 0;display: flex;flex-direction: column;gap: 20px">
+<li style="display: flex;gap: 14px"><span style="flex: 0 0 26px;height: 26px;border-radius: 50%;border: 1px solid #A9AFBF;display: flex;align-items: center;justify-content: center;font-size: 12px;color: #555B6B">1</span><div style="display: flex;flex-direction: column;gap: 4px"><span style="font-weight: 600">119 optional topics are still unread</span><span style="font-size: 14px;color: #555B6B">At your pace of 9 a week, first reading ends in mid-February. That leaves room for two full revisions before Mains. Hold the pace.</span></div></li>
+<li style="display: flex;gap: 14px"><span style="flex: 0 0 26px;height: 26px;border-radius: 50%;border: 1px solid #A9AFBF;display: flex;align-items: center;justify-content: center;font-size: 12px;color: #555B6B">2</span><div style="display: flex;flex-direction: column;gap: 4px"><span style="font-weight: 600">Environment costs you most in Prelims papers</span><span style="font-size: 14px;color: #555B6B">5 of 16 right, against 12 of 17 in Polity. An hour here is worth more marks than an hour anywhere else, so it leads Sunday's session.</span></div></li>
+</ol>
+</section>
+
+<section class="pd-rise" style="flex: 1 1 380px;min-width: 0;box-sizing: border-box;background: #FFFFFF;border: 1px solid #E3E6EE;border-radius: 20px;padding: 24px;display: flex;flex-direction: column;gap: 18px;animation-delay: .12s">
+<div style="display: flex;flex-direction: column;gap: 2px"><h2 style="margin: 0;font-family: 'Inter Tight', Inter, sans-serif;font-weight: 600;font-size: 20px;letter-spacing: -0.01em">Full papers against your target</h2><span style="font-size: 13px;color: #5F6577">Prelims General Studies, marks out of 200</span></div>
+<div role="img" aria-label="Scores 68, 74.7, 77.5 and 81.3 against a target of 110" style="position: relative;height: 170px;display: flex;align-items: flex-end;gap: 14px;padding: 0 4px">
+<div aria-hidden="true" style="position: absolute;left: 0;right: 0;bottom: 77.6%;border-top: 1.5px dashed #E0902F"></div>
+<div aria-hidden="true" style="position: absolute;right: 0;bottom: calc(77.6% + 6px);font-size: 12px;color: #8A5206">Target 110</div>
+<sc-for list="{{papers}}" as="p" hint-placeholder-count="4">
+<div style="flex: 1 1 0;height: 100%;display: flex;flex-direction: column;justify-content: flex-end;align-items: center;gap: 6px">
+<span style="font-size: 13px;font-weight: 600;font-variant-numeric: tabular-nums">{{p.score}}</span>
+<div class="pd-growy" style="width: 100%;max-width: 54px;border-radius: 8px 8px 3px 3px;background: {{p.color}};height: {{p.height}}"></div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex;gap: 14px;padding: 0 4px">
+<sc-for list="{{papers}}" as="p" hint-placeholder-count="4">
+<span style="flex: 1 1 0;text-align: center;font-size: 12px;color: #5F6577">{{p.name}}</span>
+</sc-for>
+</div>
+<div style="font-size: 13px;color: #5F6577">Up 13 marks over four papers. 29 to go.</div>
+</section>
+
+</div>
+
+<div style="display: flex;flex-wrap: wrap;gap: 24px;align-items: stretch">
+
+<section class="pd-rise" style="flex: 1 1 380px;min-width: 0;box-sizing: border-box;background: #FFFFFF;border: 1px solid #E3E6EE;border-radius: 20px;padding: 24px;display: flex;flex-direction: column;gap: 18px;animation-delay: .18s">
+<h2 style="margin: 0;font-family: 'Inter Tight', Inter, sans-serif;font-weight: 600;font-size: 20px;letter-spacing: -0.01em">What you still hold</h2>
+<div style="display: flex;flex-direction: column;gap: 16px">
+<sc-for list="{{memory}}" as="m" hint-placeholder-count="3">
+<div style="display: flex;flex-direction: column;gap: 8px">
+<div style="display: flex;justify-content: space-between;gap: 12px;font-size: 14px"><span style="font-weight: 500">{{m.name}}</span><span style="color: #5F6577;font-variant-numeric: tabular-nums">{{m.label}}</span></div>
+<div aria-hidden="true" style="display: flex;height: 8px;gap: 3px"><div style="flex: {{m.fresh}} 1 0;border-radius: 999px;background: #4B55D6"></div><div style="flex: {{m.fading}} 1 0;border-radius: 999px;background: #E0902F"></div><div style="flex: {{m.fresh0}} 1 0;border-radius: 999px;background: #E3E6EE"></div></div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex;flex-wrap: wrap;gap: 6px 16px;font-size: 12px;color: #5F6577"><span style="display: inline-flex;align-items: center;gap: 6px"><span style="width: 8px;height: 8px;border-radius: 50%;background: #4B55D6"></span>fresh</span><span style="display: inline-flex;align-items: center;gap: 6px"><span style="width: 8px;height: 8px;border-radius: 50%;background: #E0902F"></span>fading</span><span style="display: inline-flex;align-items: center;gap: 6px"><span style="width: 8px;height: 8px;border-radius: 50%;background: #E3E6EE;border: 1px solid #A9AFBF;box-sizing: border-box"></span>not started</span></div>
+</section>
+
+<section class="pd-rise" style="flex: 999 1 420px;min-width: 0;box-sizing: border-box;background: #FFFFFF;border: 1px solid #E3E6EE;border-radius: 20px;padding: 24px;display: flex;flex-direction: column;gap: 18px;animation-delay: .24s">
+<div style="display: flex;justify-content: space-between;align-items: baseline;gap: 12px"><h2 style="margin: 0;font-family: 'Inter Tight', Inter, sans-serif;font-weight: 600;font-size: 20px;letter-spacing: -0.01em">Recall work coming, next 14 days</h2><span style="font-size: 13px;color: #5F6577">minutes a day</span></div>
+<div role="img" aria-label="Daily recall minutes for the next 14 days against the two hours you allow" style="position: relative;height: 120px;display: flex;align-items: flex-end;gap: 8px">
+<div aria-hidden="true" style="position: absolute;left: 0;right: 0;bottom: 75%;border-top: 1.5px dashed #A9AFBF"></div>
+<div aria-hidden="true" style="position: absolute;left: 0;bottom: calc(75% + 6px);font-size: 12px;color: #5F6577">the 2 h you allow</div>
+<sc-for list="{{load}}" as="d" hint-placeholder-count="14">
+<div class="pd-growy" style="flex: 1 1 0;border-radius: 5px 5px 2px 2px;background: {{d.color}};height: {{d.height}}"></div>
+</sc-for>
+</div>
+<div style="font-size: 13px;color: #5F6577">Four days run past your 2 hours. Starting fewer new topics next week keeps every day inside it; the app will say so when you tick them.</div>
+</section>
+
+</div>
+
+<section class="pd-rise" style="background: #FFFFFF;border: 1px solid #E3E6EE;border-radius: 20px;padding: 22px 24px;display: flex;flex-wrap: wrap;align-items: center;gap: 14px 40px;animation-delay: .3s">
+<span style="font-weight: 600">How marks get lost in your papers</span>
+<span style="font-size: 14px"><strong style="font-weight: 600">46%</strong> <span style="color: #555B6B">didn't know it</span></span>
+<span style="font-size: 14px"><strong style="font-weight: 600">31%</strong> <span style="color: #555B6B">torn between two options</span></span>
+<span style="font-size: 14px"><strong style="font-weight: 600">23%</strong> <span style="color: #555B6B">careless or misread</span></span>
+<span style="font-size: 13px;color: #5F6577">Your "sure" answers are right 80% of the time, up from 71%.</span>
+</section>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1150}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { editing: false, prelimsFrom: '1 March 2027', mainsFrom: '24 May 2027' };
+  }
+  roadVals() {
+    const { editing, prelimsFrom, mainsFrom } = this.state;
+    const draft = { prelimsFrom: '1 March 2027', mainsFrom: '24 May 2027' };
+    const changed = prelimsFrom !== draft.prelimsFrom || mainsFrom !== draft.mainsFrom;
+    const short = (d) => d.replace(/ 20\d\d$/, '');
+    const phases = [
+      { name: 'Foundation · now', days: 108, text: 'To ' + short(prelimsFrom) + '. Finish both optionals; keep them alive.', bar: '#4B55D6', color: '#2F38A8', radius: '999px 4px 4px 999px' },
+      { name: 'Prelims focus', days: 84, text: short(prelimsFrom) + ' to 23 May. Full papers, CSAT, current affairs.', bar: '#E3E6EE', color: '#14161C', radius: '4px' },
+      { name: 'Mains focus', days: 181, text: short(mainsFrom) + ' to 21 November. An answer a day, timed papers, final-month sheets.', bar: '#E3E6EE', color: '#14161C', radius: '4px 999px 999px 4px' }
+    ];
+    const edit = (id, label, key) => ({
+      id, label, value: this.state[key], line: this.state[key] !== draft[key] ? '#4B55D6' : '#C9CEDB',
+      draft: this.state[key] !== draft[key] ? "the app's draft was " + short(draft[key]) : "the app's draft",
+      set: (e) => this.setState({ [key]: e.target.value })
+    });
+    return {
+      phases, editing,
+      edits: [edit('road-prelims', 'Prelims focus starts', 'prelimsFrom'), edit('road-mains', 'Mains focus starts', 'mainsFrom')],
+      roadNote: changed ? 'Drafted by the app from your exam dates, then adjusted by you.' : 'Drafted by the app from your exam dates; approved by you on 2 November.',
+      roadButton: editing ? 'Done' : 'Adjust', roadPressed: editing ? 'true' : 'false', roadLine: editing ? '#4B55D6' : '#C9CEDB',
+      toggleRoad: () => this.setState({ editing: !editing }),
+      resetRoad: () => this.setState(draft)
+    };
+  }
+  renderVals() {
+    const top = 141.75;
+    const papers = [['2019', 68], ['2020', 74.7], ['2021', 77.5], ['2023', 81.3]].map(([name, score], i, all) => ({
+      name: 'Prelims ' + name, score: score.toFixed(1),
+      height: Math.round((score / top) * 100) + '%',
+      color: i === all.length - 1 ? '#4B55D6' : '#4B55D6'
+    }));
+    const memory = [['Forestry', 86, 21, 49], ['Geology', 62, 16, 70], ['Prelims, General Studies', 210, 64, 96]].map(([name, fresh, fading, rest]) => ({
+      name, fresh, fading, fresh0: rest, label: fresh + ' · ' + fading + ' · ' + rest
+    }));
+    const load = [76, 104, 88, 122, 70, 140, 96, 110, 84, 132, 116, 98, 146, 102].map((min) => ({
+      height: Math.round((min / 160) * 100) + '%',
+      color: min > 120 ? '#E0902F' : '#4B55D6'
+    }));
+    return { ...this.roadVals(), papers, memory, load };
+  }
+}
+</script>
+</body>
+</html>

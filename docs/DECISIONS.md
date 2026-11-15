@@ -12,7 +12,7 @@ How the idea has changed, in order, and where each question stands. Consolidated
 | Where Revision Director's engine goes | Into Practice Director | Proposed |
 | Who plans the day | The owner, by hand. The apps inform and offer; they never place work in a plan. | Owner's condition |
 | Phases of the year | Drafted by the app from the exam dates; approved, edited or adjusted by the owner | Owner's ruling |
-| The mock-up | Complete for Practice Director (25 screens and a design-system sheet); awaiting the owner's review | Phase 0, drawn |
+| The mock-up | Complete for Practice Director: 43 boards covering every screen, a design-system sheet, and the main screens in both themes; awaiting the owner's review | Phase 0, drawn |
 | How the apps guide without dictating | Two sides of one screen: the owner's plan, and the app's "Worth knowing" | Owner's suggestion, refined; proposed |
 | How much the owner must enter | As little as possible: recorded automatically, editable afterwards | Owner's condition, for every part of both apps |
 | Sync | Both apps on the owner's Google Drive through one shared mechanism; no server | Agreed in principle |
@@ -52,6 +52,7 @@ How the idea has changed, in order, and where each question stands. Consolidated
 
 17. **Owner asked for the mock-up to be finished**, end to end and with high polish, as the basis for development (phase 0 of the build). Done for Practice Director: 25 screens on the canvas, each rendered and inspected, with automated checks for broken links, tap-target size, text contrast, text size and narrow-width overflow. Choices made while drawing, all open to change: Search and Settings on the rail and no profile menu; a paused paper offered first on Practice; timed and untimed sittings, with only timed ones measured against the target; mistakes shown sure-and-wrong first; checking after a full paper can be spread over the week; a key-entry step for papers without a key; a first layout for Paste from AI; the test player's keys and question states taken from Practice Desk's own player.
 18. **Owner's two rulings during the mock-up.** Phases are to be suggested and tentatively drawn by the app, then approved, edited or adjusted by the owner. Time is to be enterable freely, not only picked from fixed chips. Both applied to the documents and the screens.
+19. **Owner asked for the remaining screens to be drawn**, leaving Study Director's for a separate pass. Drawn: a recall session on a laptop, the fix list with saved questions, the clipping tool, paper editions, the authoring studio, the pacer, six small sheets (add a paper, add topics, an exam's date and target, move a paper, earlier versions, keyboard shortcuts), history, the printed sheet, the memory-schedule page, the guide, and the main screens in the other theme. The canvas now has 43 boards, checked the same way as before. Choices made while drawing, all open to change: a correction to a paper records who made it, and one from an AI stays "not confirmed" until the owner says so; a sitting on the original edition keeps its score and the owner chooses whether it also counts under the corrected key, with the fix list following; saved questions live beside mistakes and return on the same schedule; a clip is a picture and no text is read out of it, so the question number comes from the place on the answer sheet; a changed history entry keeps the original underneath; the memory-schedule page offers only two actions (bring back a rested item, rebuild the dates from history) and says plainly that fitting the schedule to the owner's own memory is not built; the guide is five short pages, and the sample data is kept apart from the owner's records; keys 1, 2 and 3 for Sure, 50-50 and Guess, C to clip and N for a quick note are new, beside the test player's own keys; in the authoring studio a question's marks, topic and the paper's rules are filled in from the exam's pattern.
 
 ## 3. Positions that were reversed
 
@@ -102,7 +103,7 @@ How the idea has changed, in order, and where each question stands. Consolidated
 2. The careful design pass on the calendar ([STUDY_DIRECTOR_IDEAS.md](STUDY_DIRECTOR_IDEAS.md), section 2, lists its questions).
 3. When Study Director work is taken up, and in which repo.
 4. The layout for "Paste from AI": a first proposal is in the mock-up, not settled.
-5. The owner's review of the mock-up, and the few screens still not drawn ([PLAN.md](PLAN.md), section 12).
+5. The owner's review of the mock-up. Every Practice Director screen is drawn; the choices made while drawing are listed in log entries 17 and 19.
 6. Thin areas: current affairs, General English, the interview stage.
 7. Exam dates and paper patterns to be confirmed against official notifications.
 8. The review of the sync mechanism that both apps are to share.

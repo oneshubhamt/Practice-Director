@@ -75,7 +75,7 @@ Each phase ends with something usable daily.
 
 | Phase | Delivers | Replaces |
 |---|---|---|
-| 0. Design | The mock-up, drawn end to end for Practice Director with a design-system sheet (see `design/README.md`). The few screens left are listed in PLAN.md section 12. The owner approves before build. | — |
+| 0. Design | The mock-up, drawn end to end for Practice Director with a design-system sheet (see `design/README.md`). Every Practice Director screen is drawn; Study Director's are a separate pass. The owner approves before build. | — |
 | 0b. Content | Syllabus packs for Forestry, Geology, General Knowledge and Prelims; paper maps for recent Prelims papers; past Mains questions mapped to topics. In Claude Code sessions, alongside phase 1. | — |
 | 1. Remember | Interface kit and design system, storage, syllabus checklist, memory schedule, recall with tap-what-you-missed, Today, backup file | Revision Director |
 | 2. Rehearse | Answer-sheet mode with paper maps and clipping, results, mistake re-attempts, cross-check, outside-practice log | Practice Desk (core) |

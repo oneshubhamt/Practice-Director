@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — clipping a question</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4B55D6}a:hover{color:#2F38A8}
+button{font-family:inherit;cursor:pointer}
+.pd-quiet{transition:background .14s ease,border-color .14s ease}
+.pd-quiet:hover{background:#EEF0F5}
+.pd-dark{transition:background .14s ease}
+.pd-dark:hover{background:#2A2E3A}
+.pd-seg{transition:background .14s ease,color .14s ease}
+.pd-sel{transition:top .34s cubic-bezier(.2,.7,.2,1),height .34s cubic-bezier(.2,.7,.2,1),left .34s cubic-bezier(.2,.7,.2,1),right .34s cubic-bezier(.2,.7,.2,1)}
+@keyframes pdRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pd-rise{animation:pdRise .3s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-rise{animation:none}.pd-quiet,.pd-dark,.pd-seg,.pd-sel{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #F6F7FA; color: #14161C; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; padding: 10px clamp(16px, 3vw, 32px); background: #FFFFFF; border-bottom: 1px solid #E3E6EE">
+<a href="Answer-sheet.dc.html" class="pd-quiet" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; margin-left: -12px; border-radius: 10px; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M6 6l12 12M18 6L6 18"></path></svg>Cancel the clip</a>
+<div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+<div style="font-weight: 600; font-size: 16px">Clip a question · Prelims 2023, General Studies</div>
+<div style="font-size: 13px; color: #555B6B">{{stepLine}}</div>
+</div>
+<div style="display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: #555B6B"><span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #EEF0F5; font-weight: 600; color: #14161C; font-variant-numeric: tabular-nums"><span style="width: 7px; height: 7px; border-radius: 50%; background: #E0902F"></span>1:12:40 left</span>The clock keeps running.</div>
+</header>
+
+<div style="flex: 1 1 auto; display: flex; flex-wrap: wrap; align-items: stretch">
+
+<section aria-label="Your PDF" style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; background: #E9ECF2">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 10px 20px; border-bottom: 1px solid #D9DDE7">
+<div role="tablist" aria-label="Which PDF" style="display: inline-flex; padding: 3px; border-radius: 12px; background: #DDE1EA">
+<sc-for list="{{docs}}" as="d" hint-placeholder-count="2">
+<button type="button" role="tab" class="pd-seg" onClick="{{d.pick}}" aria-selected="{{d.selected}}" style="min-height: 40px; padding: 0 16px; border-radius: 9px; border: 0; font-size: 14px; font-weight: 500; background: {{d.bg}}; color: {{d.fg}}">{{d.label}}</button>
+</sc-for>
+</div>
+<span style="font-size: 13px; color: #555B6B">{{pageLine}}</span>
+<span style="margin-left: auto; font-size: 13px; color: #555B6B">Drag on the page to draw a box. Drag a corner to adjust it.</span>
+</div>
+
+<div style="flex: 1 1 auto; display: flex; justify-content: center; padding: 28px 20px 36px; overflow: hidden">
+<div style="position: relative; flex: 0 1 620px; min-width: 0; min-height: 700px; background: #FFFFFF; border-radius: 4px; box-shadow: 0 1px 3px rgba(20,22,28,.12), 0 12px 32px rgba(20,22,28,.08); overflow: hidden; padding: 44px 52px; box-sizing: border-box; display: flex; flex-direction: column; gap: 30px">
+
+<sc-for list="{{blocks}}" as="b" hint-placeholder-count="4">
+<div style="display: flex; gap: 14px">
+<span style="flex: 0 0 26px; font-size: 13px; font-weight: 600; color: #555B6B; font-variant-numeric: tabular-nums">{{b.n}}.</span>
+<div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 9px; padding-top: 5px">
+<sc-for list="{{b.lines}}" as="l" hint-placeholder-count="3">
+<div style="height: 8px; width: {{l.w}}; margin-left: {{l.indent}}; border-radius: 4px; background: {{l.color}}"></div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+
+<div class="pd-sel" role="img" aria-label="{{selAria}}" style="position: absolute; left: {{sel.left}}; right: {{sel.right}}; top: {{sel.top}}; height: {{sel.height}}; border: 2px solid #4B55D6; border-radius: 4px; box-shadow: 0 0 0 2000px rgba(20,22,28,.34); box-sizing: border-box; pointer-events: none">
+<span style="position: absolute; left: -7px; top: -7px; width: 12px; height: 12px; border-radius: 3px; background: #FFFFFF; border: 2px solid #4B55D6; box-sizing: border-box"></span>
+<span style="position: absolute; right: -7px; top: -7px; width: 12px; height: 12px; border-radius: 3px; background: #FFFFFF; border: 2px solid #4B55D6; box-sizing: border-box"></span>
+<span style="position: absolute; left: -7px; bottom: -7px; width: 12px; height: 12px; border-radius: 3px; background: #FFFFFF; border: 2px solid #4B55D6; box-sizing: border-box"></span>
+<span style="position: absolute; right: -7px; bottom: -7px; width: 12px; height: 12px; border-radius: 3px; background: #FFFFFF; border: 2px solid #4B55D6; box-sizing: border-box"></span>
+<span style="position: absolute; left: -2px; top: -30px; padding: 3px 10px; border-radius: 6px 6px 6px 0; background: #4B55D6; color: #FFFFFF; font-size: 12px; font-weight: 600; white-space: nowrap">{{sel.label}}</span>
+</div>
+
+<div style="position: absolute; left: 50%; transform: translateX(-50%); top: {{sel.barTop}}; display: flex; align-items: center; gap: 6px; padding: 6px; border-radius: 14px; background: #14161C; color: #FFFFFF; box-shadow: 0 8px 24px rgba(20,22,28,.28); white-space: nowrap">
+<button type="button" class="pd-dark" onClick="{{redraw}}" style="min-height: 40px; padding: 0 14px; border-radius: 10px; border: 0; background: transparent; color: #D7DAE4; font-size: 14px; font-weight: 500">Draw again</button>
+<button type="button" onClick="{{primary}}" style="min-height: 40px; padding: 0 18px; border-radius: 10px; border: 0; background: #FFFFFF; color: #14161C; font-size: 14px; font-weight: 600">{{primaryLabel}}</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<aside aria-label="The card this makes" style="flex: 1 1 340px; min-width: 0; box-sizing: border-box; background: #FFFFFF; border-left: 1px solid #E3E6EE; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em">The card this makes</h2>
+<div style="font-size: 13px; color: #555B6B">A clip is a picture of your own page. It becomes the revision card for this question, and comes back when the question does.</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px">
+<label for="pd-clip-n" style="font-size: 14px; color: #555B6B">Question</label>
+<input id="pd-clip-n" type="text" inputmode="numeric" value="{{qn}}" onChange="{{setQn}}" style="width: 64px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-family: inherit; font-size: 16px; font-weight: 600; text-align: center; outline: none">
+<span style="flex: 1 1 160px; font-size: 13px; color: #555B6B">Taken from where you are on the answer sheet. Change it if that is wrong.</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 13px"><span style="font-weight: 600">Front · the question</span><span style="color: #1E6B4C">{{frontState}}</span></div>
+<div style="border-radius: 12px; border: 1px solid #E3E6EE; background: #F6F7FA; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="height: 7px; width: 94%; border-radius: 4px; background: #CDD2E0"></div>
+<div style="height: 7px; width: 88%; border-radius: 4px; background: #CDD2E0"></div>
+<div style="height: 7px; width: 52%; border-radius: 4px; background: #CDD2E0"></div>
+<div style="height: 6px; width: 40%; margin: 4px 0 0 14px; border-radius: 4px; background: #DADEE8"></div>
+<div style="height: 6px; width: 34%; margin-left: 14px; border-radius: 4px; background: #DADEE8"></div>
+<div style="height: 6px; width: 44%; margin-left: 14px; border-radius: 4px; background: #DADEE8"></div>
+<div style="height: 6px; width: 30%; margin-left: 14px; border-radius: 4px; background: #DADEE8"></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 13px"><span style="font-weight: 600">Back · the explanation</span><span style="color: {{backColor}}">{{backState}}</span></div>
+<sc-if value="{{hasBack}}" hint-placeholder-val="{{false}}">
+<div class="pd-rise" style="border-radius: 12px; border: 1px solid #E3E6EE; background: #F6F7FA; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="height: 7px; width: 30%; border-radius: 4px; background: #B9BFD0"></div>
+<div style="height: 7px; width: 96%; border-radius: 4px; background: #CDD2E0"></div>
+<div style="height: 7px; width: 91%; border-radius: 4px; background: #CDD2E0"></div>
+<div style="height: 7px; width: 84%; border-radius: 4px; background: #CDD2E0"></div>
+<div style="height: 7px; width: 47%; border-radius: 4px; background: #CDD2E0"></div>
+</div>
+</sc-if>
+<sc-if value="{{noBack}}" hint-placeholder-val="{{true}}">
+<div style="border-radius: 12px; border: 1.5px dashed #C9CEDB; padding: 18px 16px; font-size: 14px; color: #555B6B">{{backHint}}</div>
+</sc-if>
+</div>
+
+<sc-if value="{{isSaved}}" hint-placeholder-val="{{false}}">
+<div class="pd-rise" role="status" style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-radius: 12px; background: #E3F3EC; color: #1E6B4C; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 20px; width: 20px; height: 20px; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Clipped question {{qn}}. If you get it wrong, this is the card you will see again. <a href="Answer-sheet.dc.html" style="color: #1E6B4C; font-weight: 600">Back to the paper</a></span></div>
+</sc-if>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+<sc-if value="{{canSave}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{save}}" style="min-height: 50px; border-radius: 12px; border: 0; background: #14161C; color: #FFFFFF; font-weight: 600; font-size: 15px">{{saveLabel}}</button>
+</sc-if>
+<sc-if value="{{canAddBack}}" hint-placeholder-val="{{true}}">
+<button type="button" class="pd-quiet" onClick="{{toSolutions}}" style="min-height: 48px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-weight: 500; font-size: 15px">Clip the explanation too</button>
+</sc-if>
+<div style="font-size: 13px; color: #555B6B">Clips stay on your devices and in your own backup. No text is read out of them, so nothing has to be typed or corrected.</div>
+<div style="font-size: 13px; color: #555B6B">Keys: <b style="font-weight: 600; color: #14161C">C</b> clip · <b style="font-weight: 600; color: #14161C">Enter</b> save · <b style="font-weight: 600; color: #14161C">Esc</b> cancel</div>
+</div>
+</aside>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { doc: 'Paper', back: false, saved: false, qn: '14', tight: true };
+  }
+  renderVals() {
+    const { doc, back, saved, qn, tight } = this.state;
+    const onPaper = doc === 'Paper';
+    const line = (w, indent, color) => ({ w, indent: indent || '0', color: color || '#CDD2E0' });
+    const question = (n, stem) => ({ n, lines: [...stem.map((w) => line(w)), line('38%', '16px', '#DADEE8'), line('33%', '16px', '#DADEE8'), line('43%', '16px', '#DADEE8'), line('29%', '16px', '#DADEE8')] });
+    const answer = (n, body) => ({ n, lines: [line('22%', '0', '#B9BFD0'), ...body.map((w) => line(w))] });
+    const blocks = onPaper
+      ? [question(13, ['96%', '71%']), question(14, ['95%', '90%', '54%']), question(15, ['93%', '62%']), question(16, ['97%', '88%', '35%'])]
+      : [answer(12, ['95%', '89%', '40%']), answer(13, ['94%', '58%']), answer(14, ['96%', '92%', '86%', '48%']), answer(15, ['93%', '90%', '66%']), answer(16, ['95%', '51%'])];
+    const sel = onPaper
+      ? { left: '40px', right: '40px', top: tight ? '170px' : '158px', height: tight ? '142px' : '172px', barTop: tight ? '326px' : '344px', label: 'Question ' + (qn || '?') }
+      : { left: '40px', right: '40px', top: '208px', height: '124px', barTop: '346px', label: 'Explanation for ' + (qn || '?') };
+    const docs = ['Paper', 'Solutions'].map((label) => {
+      const on = label === doc;
+      return { label, selected: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#14161C' : '#555B6B', pick: () => this.setState({ doc: label }) };
+    });
+    return {
+      blocks, sel, docs, qn,
+      selAria: onPaper ? 'A box drawn around question ' + qn : 'A box drawn around the explanation for question ' + qn,
+      pageLine: onPaper ? 'Page 4 of 24 · your paper' : 'Page 3 of 31 · your solutions PDF',
+      stepLine: saved ? 'Saved.' : onPaper ? 'Draw a box around the question. That is the whole job.' : 'Now a box around its explanation. This part is optional.',
+      primaryLabel: onPaper ? (back ? 'Looks right' : 'Use this box') : 'Use as the explanation',
+      primary: () => onPaper ? this.setState({ tight: true }) : this.setState({ back: true }),
+      redraw: () => onPaper ? this.setState({ tight: !tight }) : this.setState({ back: false }),
+      setQn: (e) => this.setState({ qn: (e.target.value || '').replace(/\D/g, '').slice(0, 3) }),
+      frontState: 'Clipped',
+      hasBack: back, noBack: !back,
+      backState: back ? 'Clipped' : 'Optional',
+      backColor: back ? '#1E6B4C' : '#555B6B',
+      backHint: onPaper ? 'Nothing yet. If you have a solutions PDF, its explanation can sit on the back of the card.' : 'Draw the box on the page, then press “Use as the explanation”.',
+      isSaved: saved,
+      canSave: !saved,
+      canAddBack: !saved && !back && onPaper,
+      saveLabel: back ? 'Save the clip, with its explanation' : 'Save the clip',
+      save: () => this.setState({ saved: true, doc: 'Paper' }),
+      toSolutions: () => this.setState({ doc: 'Solutions' })
+    };
+  }
+}
+</script>
+</body>
+</html>

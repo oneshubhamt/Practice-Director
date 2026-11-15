@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — the editions of a paper</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-nav{transition:background .18s ease,color .18s ease}
+.pd-nav:hover{background:#1A1E28;color:#ECEEF4}
+.pd-card{transition:border-color .18s ease,background .18s ease}
+.pd-card:hover{border-color:#4A5062}
+.pd-quiet{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-quiet:hover{background:#1C2029;color:#ECEEF4}
+.pd-primary{transition:background .16s ease}
+.pd-primary:hover{background:#A3ABFF}
+@keyframes pdRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pd-rise{animation:pdRise .3s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-rise{animation:none}.pd-nav,.pd-card,.pd-quiet,.pd-primary{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<!--pd:rail practice-->
+<style>@media (max-width: 760px){.pd-rail{display:none!important}.pd-railtabs{display:flex!important}.pd-rail~main{padding-bottom:104px!important}}</style>
+<nav aria-label="Main, on a narrow screen" class="pd-railtabs" style="display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 8px 8px 16px; background: #11141B; border-top: 1px solid #222632">
+<a href="Main.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" aria-current="page" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #9BA3FF"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</nav>
+<nav aria-label="Main" class="pd-rail" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 18px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 22px">
+<div style="padding: 0 12px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
+<a href="Search.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #262B38; color: #8A90A2; text-decoration: none; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg><span style="flex: 1 1 auto">Search</span><span style="padding: 1px 7px; border-radius: 6px; border: 1px solid #343A4A; font-size: 12px; color: #8A90A2">/</span></a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="Main.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" class="pd-nav" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; background: #1E222D; color: #ECEEF4; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: #9BA3FF; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="Settings.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>Settings</a>
+<div style="padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #8A90A2; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #6FD3A8"></span>Backed up 2 min ago</div>
+</div>
+</nav>
+<!--/pd:rail-->
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(20px, 4vw, 56px) 48px">
+<div style="max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px">
+
+<header style="display: flex; flex-direction: column; gap: 6px">
+<a href="Practice.dc.html" style="align-self: flex-start; display: inline-block; padding: 12px 0; margin: -12px 0; text-decoration: none; font-size: 14px; font-weight: 500">Practice</a>
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.015em">CAT Mock 3 · two editions</h1>
+<div style="color: #A9AEBD; max-width: 640px">A corrected edition sits beside the original whenever a paper's key or wording has been fixed. Both are kept. You only see this page for a paper that has more than one.</div>
+</header>
+
+<div role="radiogroup" aria-label="The edition to sit" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 20px">
+<sc-for list="{{editions}}" as="e" hint-placeholder-count="2">
+<button type="button" role="radio" class="pd-card" onClick="{{e.pick}}" aria-checked="{{e.checked}}" style="display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 20px; text-align: left; font-size: 15px; background: {{e.bg}}; color: #ECEEF4; border: 1.5px solid {{e.line}}">
+<span style="display: flex; align-items: center; gap: 12px; width: 100%">
+<span style="flex: 0 0 22px; height: 22px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{e.dotLine}}; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{e.dotFill}}"></span></span>
+<span style="flex: 1 1 auto; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">{{e.name}}</span>
+<span style="flex: 0 0 auto; font-size: 13px; font-weight: 500; color: {{e.tagColor}}">{{e.tag}}</span>
+</span>
+<span style="color: #A9AEBD">{{e.what}}</span>
+<span style="display: flex; flex-wrap: wrap; gap: 8px 28px; padding-top: 14px; border-top: 1px solid #262B38; width: 100%; box-sizing: border-box">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">Made</span><span style="font-weight: 500">{{e.made}}</span></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">Sat</span><span style="font-weight: 500">{{e.sat}}</span></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #8A90A2">Who vouches for it</span><span style="font-weight: 500">{{e.who}}</span></span>
+</span>
+</button>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 28px">
+
+<section aria-label="What the corrected edition changes" style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">What the corrected edition changes</h2><span style="font-size: 13px; color: #8A90A2">4 of 68 questions · the other 64 are identical</span></div>
+
+<div style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 6px 22px">
+<sc-for list="{{changes}}" as="c" hint-placeholder-count="4">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding: 18px 0; border-top: 1px solid {{c.rule}}">
+<div style="flex: 0 0 96px; display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 600; font-variant-numeric: tabular-nums">Q {{c.n}}</span><span style="font-size: 12px; color: #8A90A2">{{c.section}}</span></div>
+<div style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; font-variant-numeric: tabular-nums"><span style="min-width: 40px; box-sizing: border-box; padding: 5px 10px; border-radius: 8px; background: #1E222D; text-align: center; color: #8A90A2; text-decoration: line-through">{{c.from}}</span><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: #8A90A2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><span style="min-width: 40px; box-sizing: border-box; padding: 5px 10px; border-radius: 8px; background: #1C3A30; text-align: center; font-weight: 600; color: #6FD3A8">{{c.to}}</span></div>
+<div style="flex: 1 1 210px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span>{{c.why}}</span><span style="font-size: 13px; color: {{c.youColor}}">{{c.you}}</span></div>
+<div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; gap: 6px">
+<sc-if value="{{c.unconfirmed}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 13px; color: #F2B866">From an AI · not confirmed</span>
+<button type="button" class="pd-quiet" onClick="{{c.confirm}}" style="min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-size: 14px; font-weight: 500">I have checked it</button>
+</sc-if>
+<sc-if value="{{c.confirmed}}" hint-placeholder-val="{{true}}">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #A9AEBD"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: #6FD3A8; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{c.by}}</span>
+</sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px">
+<button type="button" class="pd-quiet" style="min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-size: 14px; font-weight: 500">Correct another question</button>
+<a href="AI-bridge.dc.html" class="pd-quiet" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 12px; border: 1px solid #343A4A; color: #ECEEF4; font-size: 14px; font-weight: 500; text-decoration: none">Paste corrections from an AI</a>
+<span style="flex: 1 1 260px; font-size: 13px; color: #8A90A2">The app cannot tell whether a correction is right. It records who made it and waits for you.</span>
+</div>
+</section>
+
+<aside aria-label="Your sitting on the original" style="flex: 1 1 320px; min-width: 0; background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 2px"><h2 style="margin: 0; font-weight: 600; font-size: 16px">Your sitting on 1 November</h2><span style="font-size: 13px; color: #8A90A2">Sat on the original, before the corrections.</span></div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 14px; background: #131620; border: 1.5px solid {{asMarked.line}}"><span style="font-size: 12px; color: #8A90A2">As marked then</span><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">71</span><span style="font-size: 12px; color: #8A90A2">of 204</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 14px; background: #131620; border: 1.5px solid {{corrected.line}}"><span style="font-size: 12px; color: #8A90A2">With the fixes</span><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">74</span><span style="font-size: 12px; color: #8A90A2">of 204</span></div>
+</div>
+
+<div style="font-size: 14px; color: #A9AEBD">Two answers the old key marked wrong were right (+4 and +3). One it marked right was wrong (−4). Question 60 you left blank.{{openNote}}</div>
+
+<sc-if value="{{undecided}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<button type="button" class="pd-primary" onClick="{{useCorrected}}" style="min-height: 50px; border-radius: 14px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 15px">Count it as 74 from now on</button>
+<button type="button" class="pd-quiet" onClick="{{keepOriginal}}" style="min-height: 46px; border-radius: 14px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 15px">Leave it at 71</button>
+</div>
+</sc-if>
+<sc-if value="{{decided}}" hint-placeholder-val="{{false}}">
+<div class="pd-rise" role="status" style="display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 14px; background: #1C3A30; color: #BFEBD8; font-size: 14px"><span>{{decisionLine}}</span><button type="button" onClick="{{undo}}" style="align-self: flex-start; min-height: 44px; margin: -6px 0 -12px; padding: 0; border: 0; background: transparent; color: #6FD3A8; font-size: 14px; font-weight: 600">Undo</button></div>
+</sc-if>
+
+<div style="padding-top: 16px; border-top: 1px solid #222632; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #A9AEBD">
+<span style="font-weight: 600; color: #ECEEF4">Your fix list follows the same choice</span>
+<span>Questions 9 and 31 come off it: those were the key's mistakes, not yours. Question 52 goes on.</span>
+</div>
+<div style="font-size: 13px; color: #8A90A2">Either way both scores stay on record, and a sitting is always shown with the edition it was sat on.</div>
+</aside>
+
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { edition: 'Corrected', confirmed: {}, score: '' };
+  }
+  renderVals() {
+    const { edition, confirmed, score } = this.state;
+    const raw = [
+      { n: 9, section: 'Verbal', from: 'B', to: 'D', why: 'The key pointed at the wrong option; the passage supports D.', you: 'You answered D. Marked wrong then.', by: 'Corrected by you', ai: false },
+      { n: 31, section: 'Data and logic', from: '42', to: '48', why: 'A slip in the solution’s last step.', you: 'You typed 48. Marked wrong then.', by: 'Corrected by you', ai: false },
+      { n: 52, section: 'Quant', from: 'A', to: 'C', why: 'The solution ignores the second root.', you: 'You answered A. Marked right then.', youColor: '#F2B866', by: 'Confirmed by you', ai: true },
+      { n: 60, section: 'Quant', from: 'C', to: 'B', why: 'Options B and C were swapped in the key.', you: 'You left it blank.', by: 'Confirmed by you', ai: true }
+    ];
+    const open = raw.filter((c) => c.ai && !confirmed[c.n]).length;
+    const changes = raw.map((c, i) => {
+      const un = c.ai && !confirmed[c.n];
+      return { youColor: '#8A90A2', ...c, rule: i === 0 ? 'transparent' : '#222632', unconfirmed: un, confirmed: !un, confirm: () => this.setState({ confirmed: { ...confirmed, [c.n]: true } }) };
+    });
+    const editions = [
+      { name: 'Original', what: 'The paper exactly as you added it, with the key it came with.', made: '28 October', sat: '1 November · 71 of 204', who: 'Its publisher' },
+      { name: 'Corrected', what: 'The same 68 questions, with four keys fixed after review.', made: '9 November', sat: 'Not yet', who: open ? 'You, for ' + (4 - open) + ' of 4 so far' : 'You, for all 4' }
+    ].map((e) => {
+      const on = e.name === edition;
+      return {
+        ...e, checked: on ? 'true' : 'false',
+        bg: on ? '#1B1E33' : '#171A23', line: on ? '#8E97FF' : '#262B38',
+        dotLine: on ? '#8E97FF' : '#4A5062', dotFill: on ? '#8E97FF' : 'transparent',
+        tag: on ? 'Used when you next sit it' : 'Kept', tagColor: on ? '#DDE0FF' : '#8A90A2',
+        pick: () => this.setState({ edition: e.name })
+      };
+    });
+    return {
+      editions, changes,
+      openNote: open ? ' The 74 counts all four fixes, including the ' + (open === 1 ? 'one' : 'two') + ' you have not confirmed.' : '',
+      asMarked: { line: score === 'original' ? '#8E97FF' : '#262B38' },
+      corrected: { line: score === 'corrected' ? '#8E97FF' : '#262B38' },
+      undecided: !score, decided: !!score,
+      decisionLine: score === 'corrected' ? 'Counted as 74 in Progress. Two mistakes taken off your fix list, one added.' : 'Left at 71. Your fix list is unchanged.',
+      useCorrected: () => this.setState({ score: 'corrected' }),
+      keepOriginal: () => this.setState({ score: 'original' }),
+      undo: () => this.setState({ score: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

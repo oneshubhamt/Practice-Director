@@ -66,11 +66,14 @@ ${PLACES.map(item).join('\n')}
 }
 
 const GEN = { rail, tabs };
+// A board in the light theme marks its slot  <!--pd:rail today light-->.
+const LIGHT = { '#11141B': '#FFFFFF', '#222632': '#E3E6EE', '#1E222D': '#EEF0F5', '#ECEEF4': '#14161C', '#A9AEBD': '#555B6B', '#8A90A2': '#5F6577', '#9BA3FF': '#4B55D6', '#262B38': '#E3E6EE', '#343A4A': '#C9CEDB', '#6FD3A8': '#1E6B4C' };
+const light = (html) => html.replace(/#[0-9A-F]{6}/g, (c) => LIGHT[c] || c).replace(/"(Main|Practice|Syllabus|Progress|Phone-flow)\.dc\.html"/g, '"$1-light.dc.html"');
 let changed = 0;
 for (const f of fs.readdirSync(PROJ).filter((n) => n.endsWith('.dc.html'))) {
   const file = path.join(PROJ, f);
   const src = fs.readFileSync(file, 'utf8');
-  const out = src.replace(/<!--pd:(rail|tabs) ([a-z-]+)-->[\s\S]*?<!--\/pd:\1-->/g, (m, kind, arg) => `<!--pd:${kind} ${arg}-->${GEN[kind](arg)}<!--/pd:${kind}-->`);
+  const out = src.replace(/<!--pd:(rail|tabs) ([a-z-]+)( light)?-->[\s\S]*?<!--\/pd:\1-->/g, (m, kind, arg, lt) => `<!--pd:${kind} ${arg}${lt || ''}-->${lt ? light(GEN[kind](arg)) : GEN[kind](arg)}<!--/pd:${kind}-->`);
   if (out !== src) { fs.writeFileSync(file, out); changed++; console.log('injected', f); }
 }
 console.log('files changed:', changed);

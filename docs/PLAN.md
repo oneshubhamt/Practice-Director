@@ -94,7 +94,7 @@ Today, Practice, Syllabus, Progress. On a laptop they are a slim left rail, with
 - **What you still hold**: fresh, fading and not started, by paper.
 - **Recall work coming** over the next 14 days against the time you allow.
 - **How marks get lost**: did not know, torn between two options, careless.
-- A weekly summary written for you, the history archive, and search across topics, mistakes and clips.
+- A weekly summary written for you, the history archive (recorded by itself; any entry can be corrected afterwards, with the original kept underneath), and search across topics, mistakes and clips.
 
 ### First run and a second device
 
@@ -192,7 +192,7 @@ Paper patterns, from memory and to be confirmed the same way:
 | Official past papers | A **paper map**: the answer key and topic of each question, with no question text. A tiny file, prepared once in a Claude Code session. It can also record the type of each question (statement-based, matching), which gives accuracy by type. |
 | Past Mains questions for the optionals | A pack of questions mapped to topics, prepared the same way. Recall and written answers draw on these. |
 | Coaching tests and other PDFs | Answer-sheet mode; you enter the key and pick a subject. |
-| Papers from uncertain sources, or mocks with errors | A **corrected edition** beside the original, after an AI or you have checked it. Both are kept; the interface shows editions only when a paper has more than one. |
+| Papers from uncertain sources, or mocks with errors | A **corrected edition** beside the original, after an AI or you have checked it. Both are kept; the interface shows editions only when a paper has more than one. Each correction records who made it: you, or an AI until you confirm it. A sitting taken on the original keeps its score, and you choose whether it also counts under the corrected key; the fix list follows that choice. |
 | Tests on a coaching website | Log the result; clip or note the mistakes. |
 | Books and paper practice | Answer-sheet mode or the pacer. |
 | Marking points for a topic | They grow from your own "what I missed" notes. Pasted from an AI or your notes when you want them sooner. Anything not from you is labelled unverified until you confirm it. |
@@ -228,11 +228,11 @@ With a key, later and optional: drafting questions from a PDF, feedback on a wri
 
 A calmer sibling of Study Director's Glass look: dark and light from one set of colour roles, one accent, one warm colour reserved for "needs attention", Inter throughout (Inter Tight for headings and large numbers), generous spacing, restrained motion. Reading surfaces are plain and high-contrast.
 
-The mock-up is on a design canvas; its source is in `design/mockup/` and every screen is listed in `design/README.md`. It now covers Practice Director end to end: the four places on a laptop and on a phone, a daily session, every kind of practice, the whole path of a paper (briefing, answer sheet, key entry, results, mistakes), the moments the app speaks up, first run, Settings, search, the AI bridge and a design-system sheet. The design-system sheet is the reference for colour roles, type, shape, controls, motion and wording.
+The mock-up is on a design canvas; its source is in `design/mockup/` and every screen is listed in `design/README.md`. It now covers Practice Director end to end: the four places on a laptop and on a phone, a daily session on both, every kind of practice, the whole path of a paper (briefing, answer sheet, clipping, key entry, results, mistakes and the fix list), paper editions, the authoring studio, the pacer, the moments the app speaks up, first run, Settings and the pages behind it (memory schedule, guide, earlier versions, keyboard shortcuts), history, the printed sheet, search, the AI bridge and a design-system sheet. The design-system sheet is the reference for colour roles, type, shape, controls, motion and wording.
 
-Paper pages (answer sheet, results, mistakes, the test player) are drawn light and the rest dark, to show both themes; in the app the theme is your choice, and only the PDF page itself is always white.
+Paper pages (answer sheet, results, mistakes, the test player) are drawn light and the rest dark. The four places, the phone session, the answer sheet and results are also drawn in the other theme, to show that each works in both. In the app the theme is your choice, and only the PDF page itself is always white.
 
-**Not drawn yet.** The authoring studio (a late phase); the screen for comparing and choosing paper editions; the clipping tool in the middle of a clip; a recall session at laptop width (it is the phone layout, centred); the advanced memory-schedule page, the guide and the history archive; the printed "what you tend to leave out" sheet; the main screens in the light theme. Study Director's own screens are a separate pass.
+**Not drawn.** Nothing of Practice Director's is left undrawn. Study Director's own screens (Plan with a margin, the calendar, the left-over tray) are a separate pass; the one concept board for it on the canvas has not been revised.
 
 ## 13. Known limits and thin areas
 

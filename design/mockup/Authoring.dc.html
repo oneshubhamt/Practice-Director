@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — writing a paper inside the app</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4B55D6}a:hover{color:#2F38A8}
+button{font-family:inherit;cursor:pointer}
+input,textarea{font-family:inherit}
+.pd-quiet{transition:background .14s ease,border-color .14s ease}
+.pd-quiet:hover{background:#EEF0F5}
+.pd-chip{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-chip:hover{border-color:#4B55D6}
+.pd-q{transition:background .14s ease}
+.pd-q:hover{background:#EEF0F5}
+.pd-field{transition:border-color .16s ease,box-shadow .16s ease}
+.pd-field:focus,.pd-field:focus-within{border-color:#4B55D6;box-shadow:0 0 0 3px #E7E9FB}
+.pd-tool{transition:background .14s ease}
+.pd-tool:hover{background:#E3E6EE}
+@keyframes pdRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pd-rise{animation:pdRise .28s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-rise{animation:none}.pd-quiet,.pd-chip,.pd-q,.pd-field,.pd-tool{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #F6F7FA; color: #14161C; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding: 10px clamp(16px, 3vw, 28px); background: #FFFFFF; border-bottom: 1px solid #E3E6EE">
+<a href="Practice.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Practice</a>
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column">
+<label for="pd-paper-title" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Paper title</label>
+<input id="pd-paper-title" type="text" value="Forestry sectional 4 · Silvicultural systems" style="height: 40px; margin: -6px 0 -8px; padding: 0; border: 0; background: transparent; color: #14161C; font-size: 17px; font-weight: 600; outline: none; min-width: 0">
+<span style="font-size: 13px; color: #555B6B">Your own paper · 6 questions · 12 marks · saved as you type</span>
+</div>
+<button type="button" class="pd-quiet" onClick="{{toggleSettings}}" aria-pressed="{{settingsPressed}}" style="min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid {{settingsLine}}; background: {{settingsBg}}; color: #14161C; font-weight: 500; font-size: 14px">Paper rules</button>
+<a href="Test-player.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 12px; background: #14161C; color: #FFFFFF; font-weight: 600; font-size: 14px; text-decoration: none">Try it as a test</a>
+</header>
+
+<div style="flex: 1 1 auto; display: flex; flex-wrap: wrap; align-items: stretch">
+
+<nav aria-label="Questions in this paper" style="flex: 1 1 230px; max-width: 280px; min-width: 0; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid #E3E6EE; padding: 18px 12px; display: flex; flex-direction: column; gap: 4px">
+<div style="padding: 0 10px 8px; font-size: 13px; color: #555B6B">Questions</div>
+<sc-for list="{{questions}}" as="q" hint-placeholder-count="6">
+<button type="button" class="pd-q" onClick="{{q.pick}}" aria-current="{{q.current}}" style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 6px 10px; border-radius: 10px; border: 0; text-align: left; background: {{q.bg}}; color: #14161C">
+<span style="flex: 0 0 26px; height: 26px; border-radius: 8px; background: {{q.numBg}}; color: {{q.numFg}}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums">{{q.n}}</span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{q.title}}</span><span style="font-size: 12px; color: {{q.subColor}}">{{q.sub}}</span></span>
+</button>
+</sc-for>
+<button type="button" class="pd-quiet" style="margin-top: 8px; min-height: 44px; border-radius: 10px; border: 1px dashed #C9CEDB; background: transparent; color: #14161C; font-size: 14px; font-weight: 500">Add a question</button>
+<a href="AI-bridge.dc.html" class="pd-quiet" style="display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 10px; font-size: 14px; font-weight: 500; text-decoration: none">Paste questions from an AI</a>
+<div style="margin-top: auto; padding: 14px 10px 0; border-top: 1px solid #E3E6EE; font-size: 13px; color: #555B6B">Writing questions here is the slow way in. For a paper you already have as a PDF, the answer sheet needs none of this.</div>
+</nav>
+
+<main style="flex: 999 1 520px; min-width: 0; box-sizing: border-box; padding: 26px clamp(16px, 3vw, 36px) 32px; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 24px; letter-spacing: -0.01em">Question {{current}}</h1><span style="font-size: 13px; color: #555B6B">What kind of question is it?</span></div>
+<div role="group" aria-label="Kind of question" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{kinds}}" as="k" hint-placeholder-count="6">
+<button type="button" class="pd-chip" onClick="{{k.pick}}" aria-pressed="{{k.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{k.bg}}; color: {{k.fg}}; border: 1.5px solid {{k.line}}">{{k.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<section aria-label="The question" style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600">The question</span>
+<div class="pd-field" style="border-radius: 14px; border: 1px solid #C9CEDB; background: #FFFFFF; overflow: hidden">
+<div role="toolbar" aria-label="Formatting" style="display: flex; flex-wrap: wrap; align-items: center; gap: 2px; padding: 6px 8px; border-bottom: 1px solid #E3E6EE; background: #F6F7FA">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="7">
+<button type="button" class="pd-tool" aria-label="{{t.aria}}" style="min-width: 40px; min-height: 40px; padding: 0 10px; border-radius: 8px; border: 0; background: transparent; color: #14161C; font-size: 14px; font-weight: {{t.weight}}; font-style: {{t.italic}}">{{t.label}}</button>
+</sc-for>
+<span style="margin-left: auto; padding: 0 8px; font-size: 12px; color: #555B6B">Paste an image straight in. Maths is typed as LaTeX.</span>
+</div>
+<label for="pd-stem" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Question text</label>
+<textarea id="pd-stem" rows="2" value="{{stem}}" onChange="{{setStem}}" style="display: block; width: 100%; box-sizing: border-box; padding: 16px 18px; border: 0; background: transparent; color: #14161C; font-size: 17px; line-height: 1.45; outline: none; resize: vertical"></textarea>
+<sc-if value="{{imageMissing}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0 18px 16px; padding: 14px 16px; border-radius: 10px; border: 1.5px dashed #E0902F; background: #FBEBD3; color: #8A5206; font-size: 14px"><span style="flex: 1 1 220px">The image “felling-series-map.png” did not load. The question cannot be sat without it.</span><button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #8A5206; background: transparent; color: #8A5206; font-size: 14px; font-weight: 600">Choose it again</button></div>
+</sc-if>
+</div>
+</section>
+
+<sc-if value="{{modeOptions}}" hint-placeholder-val="{{true}}">
+<section class="pd-rise" aria-label="The options" style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><span style="font-size: 13px; font-weight: 600">The options</span><span style="font-size: 13px; color: {{optionsHintColor}}">{{optionsHint}}</span></div>
+<sc-for list="{{options}}" as="o" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 10px">
+<button type="button" onClick="{{o.mark}}" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" style="flex: 0 0 44px; height: 44px; border-radius: {{o.radius}}; border: 1.5px solid {{o.line}}; background: {{o.bg}}; color: {{o.fg}}; font-size: 14px; font-weight: 600">{{o.letter}}</button>
+<label for="{{o.id}}" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Option {{o.letter}}</label>
+<input id="{{o.id}}" class="pd-field" type="text" value="{{o.text}}" style="flex: 1 1 auto; min-width: 0; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 15px; outline: none">
+<span style="flex: 0 0 96px; font-size: 13px; font-weight: 600; color: #1E6B4C">{{o.tag}}</span>
+</div>
+</sc-for>
+<sc-if value="{{canAddOption}}" hint-placeholder-val="{{true}}">
+<button type="button" class="pd-quiet" style="align-self: flex-start; min-height: 44px; margin-left: 54px; padding: 0 14px; border-radius: 10px; border: 0; background: transparent; color: #4B55D6; font-size: 14px; font-weight: 500">Add an option</button>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{modeNumber}}" hint-placeholder-val="{{false}}">
+<section class="pd-rise" aria-label="The answer" style="display: flex; flex-wrap: wrap; gap: 14px 20px">
+<div style="display: flex; flex-direction: column; gap: 8px"><label for="pd-num" style="font-size: 13px; font-weight: 600">The answer</label><input id="pd-num" class="pd-field" type="text" inputmode="decimal" value="30" style="width: 150px; height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 17px; font-weight: 600; outline: none"></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><label for="pd-tol" style="font-size: 13px; font-weight: 600">Accept within</label><input id="pd-tol" class="pd-field" type="text" inputmode="decimal" value="0" style="width: 110px; height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 17px; outline: none"></div>
+<div style="flex: 1 1 240px; align-self: flex-end; padding-bottom: 12px; font-size: 13px; color: #555B6B">A typed answer. With 0, only 30 is right; with 0.5, anything from 29.5 to 30.5.</div>
+</section>
+</sc-if>
+
+<sc-if value="{{modeMatch}}" hint-placeholder-val="{{false}}">
+<section class="pd-rise" aria-label="The pairs" style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><span style="font-size: 13px; font-weight: 600">The pairs, written the right way round</span><span style="font-size: 13px; color: #555B6B">The right-hand column is shuffled in the test.</span></div>
+<sc-for list="{{pairs}}" as="p" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 10px">
+<input class="pd-field" type="text" aria-label="Left item" value="{{p.left}}" style="flex: 1 1 0; min-width: 0; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 15px; outline: none">
+<svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 18px; width: 18px; height: 18px; fill: none; stroke: #555B6B; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+<input class="pd-field" type="text" aria-label="Its match" value="{{p.right}}" style="flex: 1 1 0; min-width: 0; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 15px; outline: none">
+</div>
+</sc-for>
+</section>
+</sc-if>
+
+<sc-if value="{{modeWritten}}" hint-placeholder-val="{{false}}">
+<section class="pd-rise" aria-label="Marking points" style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><span style="font-size: 13px; font-weight: 600">What a full answer contains</span><span style="font-size: 13px; color: #555B6B">One point per line. You check your written answer against these.</span></div>
+<label for="pd-points" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Marking points</label>
+<textarea id="pd-points" class="pd-field" rows="4" style="display: block; width: 100%; box-sizing: border-box; padding: 14px 16px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 15px; line-height: 1.6; outline: none; resize: vertical">Single trees or small groups are felled, scattered over the whole area.
+Fellings return to each part after a felling cycle.
+All age classes stay mixed, so the canopy is never opened fully.
+Suits shade bearers and protection forests on steep ground.</textarea>
+</section>
+</sc-if>
+
+<section aria-label="The explanation" style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><label for="pd-expl" style="font-size: 13px; font-weight: 600">The explanation</label><span style="font-size: 13px; color: #555B6B">Optional. Shown after the test, and on the card if you get it wrong.</span></div>
+<textarea id="pd-expl" class="pd-field" rows="2" value="{{expl}}" onChange="{{setExpl}}" placeholder="Why the right answer is right, in a line or two." style="display: block; width: 100%; box-sizing: border-box; padding: 14px 16px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 15px; line-height: 1.5; outline: none; resize: vertical"></textarea>
+</section>
+
+<div role="status" style="margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 14px 18px; border-radius: 14px; background: #FBEBD3; color: #8A5206; font-size: 14px">
+<span style="font-weight: 600">{{settleTitle}}</span>
+<sc-if value="{{settle4}}" hint-placeholder-val="{{true}}"><span>Question 4 has no right answer marked.</span></sc-if>
+<span>Question 6 has an image that did not load.</span>
+</div>
+</main>
+
+<aside aria-label="{{asideName}}" style="flex: 1 1 290px; max-width: 360px; min-width: 0; box-sizing: border-box; background: #FFFFFF; border-left: 1px solid #E3E6EE; padding: 24px; display: flex; flex-direction: column; gap: 22px">
+
+<sc-if value="{{showQuestionSide}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-weight: 600; font-size: 16px">This question</h2><span style="font-size: 13px; color: #555B6B">All of it is filled in for you. Change only what is wrong.</span></div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600">Marks</span>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="pd-right" style="font-size: 12px; color: #555B6B">If right</label><input id="pd-right" class="pd-field" type="text" inputmode="decimal" value="2" style="height: 44px; width: 100%; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 16px; font-weight: 600; outline: none"></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="pd-wrong" style="font-size: 12px; color: #555B6B">If wrong</label><input id="pd-wrong" class="pd-field" type="text" inputmode="decimal" value="−0.66" style="height: 44px; width: 100%; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 16px; font-weight: 600; outline: none"></div>
+</div>
+<span style="font-size: 13px; color: #555B6B">From the paper's rules. Change them here for this question only.</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600">Topic</span>
+<button type="button" class="pd-quiet" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 15px; text-align: left"><span>Forestry › Silvicultural systems</span><svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 16px; width: 16px; height: 16px; fill: none; stroke: #555B6B; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M6 9l6 6 6-6"></path></svg></button>
+<span style="font-size: 13px; color: #555B6B">Chosen from the words in the question. Results for this question count toward this topic.</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600">How hard, if you want to say</span>
+<div role="group" aria-label="Difficulty" style="display: flex; gap: 8px">
+<sc-for list="{{levels}}" as="l" hint-placeholder-count="3">
+<button type="button" class="pd-chip" onClick="{{l.pick}}" aria-pressed="{{l.pressed}}" style="flex: 1 1 0; min-height: 40px; border-radius: 10px; font-size: 14px; font-weight: 500; background: {{l.bg}}; color: {{l.fg}}; border: 1.5px solid {{l.line}}">{{l.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="pd-source" style="font-size: 13px; font-weight: 600">Where it came from, if anywhere</label>
+<input id="pd-source" class="pd-field" type="text" placeholder="e.g. your notes, a book and page, an AI" style="height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 15px; outline: none">
+</div>
+
+<div style="margin-top: auto; display: flex; gap: 10px">
+<button type="button" class="pd-quiet" style="flex: 1 1 0; min-height: 44px; border-radius: 10px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 14px; font-weight: 500">Duplicate</button>
+<button type="button" class="pd-quiet" style="flex: 1 1 0; min-height: 44px; border-radius: 10px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #8A5206; font-size: 14px; font-weight: 500">Remove</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{showPaperSide}}" hint-placeholder-val="{{false}}">
+<div class="pd-rise" style="display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-weight: 600; font-size: 16px">Paper rules</h2><span style="font-size: 13px; color: #555B6B">Copied from the Prelims pattern because this paper is filed under Prelims. The test player follows them exactly.</span></div>
+<sc-for list="{{rules}}" as="r" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600">{{r.name}}</span>
+<div role="group" aria-label="{{r.name}}" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{r.options}}" as="o" hint-placeholder-count="2">
+<button type="button" class="pd-chip" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 10px; font-size: 14px; font-weight: 500; background: {{o.bg}}; color: {{o.fg}}; border: 1.5px solid {{o.line}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<label for="pd-dur" style="font-size: 13px; font-weight: 600; flex: 1 1 100%">Time allowed</label>
+<input id="pd-dur" class="pd-field" type="text" inputmode="numeric" value="7" style="width: 80px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-size: 16px; font-weight: 600; outline: none"><span style="font-size: 14px; color: #555B6B">minutes · at the Prelims pace for 6 questions</span>
+</div>
+</div>
+</sc-if>
+
+</aside>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { current: 3, kinds: {}, right: {}, stems: {}, expls: {}, level: '', settings: false, rules: {} };
+  }
+  bank() {
+    return [
+      { title: 'Clear-felling: where it suits', kind: 'One right answer', right: { A: true },
+        stem: 'The clear-felling system is best suited to which of the following?',
+        options: ['Light-demanding species on easy ground', 'Shade-bearing species on steep slopes', 'Protection forests in catchments', 'Species that regenerate only under shelter'],
+        expl: 'Clear-felling exposes the whole area at once, which suits light demanders and ground that will not erode.' },
+      { title: 'Regeneration period, in years', kind: 'A number', right: {},
+        stem: 'A uniform system has a rotation of 120 years and four periodic blocks. How long is the regeneration period, in years?',
+        options: [], expl: 'Rotation divided by the number of periodic blocks: 120 ÷ 4 = 30.' },
+      { title: 'Uneven-aged crop', kind: 'One right answer', right: { C: true },
+        stem: 'Which one of the following silvicultural systems maintains an uneven-aged crop over the whole area?',
+        options: ['Clear-felling system', 'Uniform (shelterwood) system', 'Selection system', 'Simple coppice system'],
+        expl: 'Selection fellings take scattered single trees or small groups from the whole area, so every age class stays present. The other three give even-aged crops.' },
+      { title: 'Coppice with standards', kind: 'One right answer', right: {}, problem: 'No right answer marked',
+        stem: 'Coppice with standards produces which kind of crop?',
+        options: ['An even-aged high forest', 'A two-storeyed forest: coppice below, standards above', 'An uneven-aged selection forest', 'A pure coppice crop'],
+        expl: '' },
+      { title: 'Match the system to its crop', kind: 'Matching', right: {},
+        stem: 'Match each silvicultural system with the crop it produces.',
+        options: [], expl: '' },
+      { title: 'Felling series on a map', kind: 'One right answer', right: { B: true }, problem: 'The image did not load',
+        stem: 'The map shows a working circle divided into annual coupes. Which coupe is felled in the fourth year?',
+        options: ['Coupe II', 'Coupe IV', 'Coupe VI', 'Coupe VIII'],
+        expl: '' }
+    ];
+  }
+  renderVals() {
+    const { current, kinds, right, stems, expls, level, settings, rules } = this.state;
+    const chip = (on) => ({ pressed: on ? 'true' : 'false', bg: on ? '#EEF0FF' : '#FFFFFF', fg: on ? '#2F38A8' : '#14161C', line: on ? '#4B55D6' : '#C9CEDB' });
+    const bank = this.bank();
+    const q = bank[current - 1];
+    const kind = kinds[current] || q.kind;
+    const marked = right[current] || q.right;
+    const unmarked = current === 4 && !Object.values(marked).some(Boolean);
+    const questions = bank.map((b, i) => {
+      const n = i + 1, on = n === current;
+      const fixed = n === 4 && Object.values(right[4] || {}).some(Boolean);
+      const bad = !!b.problem && !fixed;
+      return {
+        n, title: b.title, sub: bad ? b.problem : kinds[n] || b.kind, current: on ? 'true' : 'false',
+        bg: on ? '#EEF0FF' : 'transparent',
+        numBg: bad ? '#FBEBD3' : on ? '#4B55D6' : '#EEF0F5', numFg: bad ? '#8A5206' : on ? '#FFFFFF' : '#14161C',
+        subColor: bad ? '#8A5206' : '#555B6B',
+        pick: () => this.setState({ current: n })
+      };
+    });
+    const kindChips = ['One right answer', 'Several right', 'True or false', 'Matching', 'A number', 'Written answer']
+      .map((label) => ({ label, ...chip(label === kind), pick: () => this.setState({ kinds: { ...kinds, [current]: label }, right: { ...right, [current]: label === 'True or false' ? { B: true } : q.right } }) }));
+    const several = kind === 'Several right';
+    const base = q.options.length ? q.options : bank[2].options;
+    const texts = kind === 'True or false' ? ['True', 'False'] : base;
+    const options = texts.map((text, i) => {
+      const letter = 'ABCD'[i], on = !!marked[letter];
+      return {
+        letter, text, id: 'pd-opt-' + letter, pressed: on ? 'true' : 'false',
+        aria: 'Mark option ' + letter + ' as right',
+        radius: several ? '10px' : '50%',
+        bg: on ? '#1E6B4C' : '#FFFFFF', fg: on ? '#FFFFFF' : '#14161C', line: on ? '#1E6B4C' : unmarked ? '#E0902F' : '#C9CEDB',
+        tag: on ? 'Right answer' : '',
+        mark: () => this.setState({ right: { ...right, [current]: several ? { ...marked, [letter]: !on } : { [letter]: true } } })
+      };
+    });
+    const tools = [
+      { label: 'B', aria: 'Bold', weight: 700, italic: 'normal' },
+      { label: 'I', aria: 'Italic', weight: 500, italic: 'italic' },
+      { label: 'x²', aria: 'Superscript', weight: 500, italic: 'normal' },
+      { label: 'x₂', aria: 'Subscript', weight: 500, italic: 'normal' },
+      { label: '∑ Maths', aria: 'Insert maths', weight: 500, italic: 'normal' },
+      { label: 'Image', aria: 'Insert an image', weight: 500, italic: 'normal' },
+      { label: 'Table', aria: 'Insert a table', weight: 500, italic: 'normal' }
+    ];
+    const levels = ['Easy', 'Medium', 'Hard'].map((label) => ({ label, ...chip(label === level), pick: () => this.setState({ level: label === level ? '' : label }) }));
+    const ruleDefs = [
+      ['The clock', ['One for the whole paper', 'One per section']],
+      ['Pausing', ['Allowed', 'Not allowed']],
+      ['Moving between questions', ['Freely', 'Forward only']],
+      ['Calculator', ['None', 'On screen']]
+    ];
+    const ruleRows = ruleDefs.map(([name, opts]) => ({
+      name,
+      options: opts.map((label) => ({ label, ...chip((rules[name] || opts[0]) === label), pick: () => this.setState({ rules: { ...rules, [name]: label } }) }))
+    }));
+    const mode = kind === 'A number' ? 'number' : kind === 'Matching' ? 'match' : kind === 'Written answer' ? 'written' : 'options';
+    const fixed4 = Object.values(right[4] || {}).some(Boolean);
+    return {
+      current, questions, kinds: kindChips, options, tools, levels, rules: ruleRows,
+      stem: stems[current] !== undefined ? stems[current] : q.stem,
+      setStem: (e) => this.setState({ stems: { ...stems, [current]: e.target.value } }),
+      expl: expls[current] !== undefined ? expls[current] : q.expl,
+      setExpl: (e) => this.setState({ expls: { ...expls, [current]: e.target.value } }),
+      imageMissing: current === 6,
+      modeOptions: mode === 'options', modeNumber: mode === 'number', modeMatch: mode === 'match', modeWritten: mode === 'written',
+      canAddOption: kind !== 'True or false',
+      optionsHint: unmarked ? 'No right answer yet. Press the letter of the right one.' : several ? 'Press every letter that is right.' : 'Press the letter of the right one.',
+      optionsHintColor: unmarked ? '#8A5206' : '#555B6B',
+      settleTitle: fixed4 ? 'One thing to settle before this paper can be sat' : 'Two things to settle before this paper can be sat',
+      settle4: !fixed4,
+      pairs: [
+        { left: 'Clear-felling system', right: 'Even-aged' },
+        { left: 'Selection system', right: 'Uneven-aged' },
+        { left: 'Coppice with standards', right: 'Two-storeyed' },
+        { left: 'Uniform system', right: 'Even-aged, raised under shelter' }
+      ],
+      showQuestionSide: !settings, showPaperSide: settings,
+      asideName: settings ? 'Paper rules' : 'This question',
+      settingsPressed: settings ? 'true' : 'false',
+      settingsBg: settings ? '#EEF0FF' : '#FFFFFF', settingsLine: settings ? '#4B55D6' : '#C9CEDB',
+      toggleSettings: () => this.setState({ settings: !settings })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — six small sheets</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+input,textarea{font-family:inherit}
+.pd-chip{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-chip:hover{border-color:#8E97FF}
+.pd-primary{transition:background .16s ease}
+.pd-primary:hover{background:#A3ABFF}
+.pd-quiet{transition:background .16s ease,color .16s ease}
+.pd-quiet:hover{background:#1C2029;color:#ECEEF4}
+.pd-row{transition:background .16s ease,border-color .16s ease}
+.pd-row:hover{background:#1C2029}
+.pd-in{transition:border-color .16s ease}
+.pd-in:focus,.pd-in:focus-within{border-color:#8E97FF}
+kbd{font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;box-sizing:border-box;padding:0 8px;border-radius:7px;border:1px solid #343A4A;background:#131620;font-size:13px;font-weight:600;color:#ECEEF4}
+@keyframes pdRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pd-rise{animation:pdRise .28s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-rise{animation:none}.pd-chip,.pd-primary,.pd-quiet,.pd-row,.pd-in{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; padding: 32px clamp(16px, 3vw, 40px) 40px; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px"><a href="Main.dc.html" style="display: inline-block; padding: 12px 0; margin: -12px 0; text-decoration: none; font-size: 14px; font-weight: 500">Today</a><span style="font-size: 13px; color: #8A90A2">Six small sheets that open over the screen behind them. Each does one thing, with one button.</span></div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 24px; align-items: start">
+
+<section aria-label="Add a paper or PDF" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">Add a paper or PDF</h2><span style="font-size: 13px; color: #8A90A2">From Practice. Nothing is typed in; the PDF is used as it is.</span></div>
+<div style="display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 14px; border: 1.5px dashed #343A4A; background: #131620">
+<span style="flex: 0 0 40px; height: 48px; border-radius: 6px; background: #ECEEF4; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; box-sizing: border-box; font-size: 12px; font-weight: 600; color: #0E1016">PDF</span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 500">Coaching test 10 Environment.pdf</span><span style="font-size: 13px; color: #8A90A2">24 pages · 3.1 MB · dropped just now</span></span>
+<button type="button" class="pd-quiet" style="flex: 0 0 auto; min-height: 40px; padding: 0 12px; border-radius: 10px; border: 0; background: transparent; color: #9BA3FF; font-size: 14px; font-weight: 500">Change</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; color: #8A90A2">Read from the file's name. Change what is wrong.</span>
+<div role="group" aria-label="Exam" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{exams}}" as="x" hint-placeholder-count="4">
+<button type="button" class="pd-chip" onClick="{{x.pick}}" aria-pressed="{{x.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{x.bg}}; color: {{x.fg}}; border: 1px solid {{x.line}}">{{x.label}}</button>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="pd-add-subject" style="font-size: 13px; color: #8A90A2">Subject</label><input id="pd-add-subject" class="pd-in" type="text" value="Environment" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 15px; outline: none; width: 100%"></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="pd-add-count" style="font-size: 13px; color: #8A90A2">Questions</label><input id="pd-add-count" class="pd-in" type="text" inputmode="numeric" value="100" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 15px; outline: none; width: 100%; font-weight: 600"></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<button type="button" class="pd-row" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 0 4px; border: 0; border-top: 1px solid #222632; background: transparent; color: #ECEEF4; font-size: 15px; text-align: left"><span style="display: flex; flex-direction: column"><span>Add its solutions PDF</span><span style="font-size: 13px; color: #8A90A2">Optional. Lets you clip explanations.</span></span><span style="color: #8A90A2">›</span></button>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 0 4px; border-top: 1px solid #222632"><span style="display: flex; flex-direction: column"><span>Answer key</span><span style="font-size: 13px; color: #8A90A2">Entered after you sit it, by paste, photo or tap.</span></span><span style="font-size: 14px; color: #A9AEBD">Later</span></div>
+</div>
+<a href="Practice.dc.html" class="pd-primary" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none">Add the paper</a>
+<span style="font-size: 13px; color: #8A90A2">The PDF stays on this device and in your own backup. No PDF? <a href="Authoring.dc.html" style="display: inline-block; padding: 13px 0; margin: -13px 0; text-decoration: none">Write a paper here instead</a></span>
+</section>
+
+<section aria-label="Add topics" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">Add topics</h2><span style="font-size: 13px; color: #8A90A2">From Syllabus. One line per topic. Paste a whole outline if you have one.</span></div>
+<label for="pd-outline" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Topics, one per line</label>
+<textarea id="pd-outline" class="pd-in" rows="8" spellcheck="false" style="display: block; width: 100%; box-sizing: border-box; padding: 14px 16px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; line-height: 1.7; outline: none; resize: vertical">Economic geology
+  Ore genesis and classification
+  Metallic deposits of India
+  Coal and petroleum
+  Mineral policy and conservation
+Environmental geology
+  Natural hazards and their mitigation</textarea>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 15px">Read as <span style="color: #DDE0FF; font-weight: 600">2 headings and 5 topics</span>, to go under</div>
+<div role="group" aria-label="Where they go" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{places}}" as="p" hint-placeholder-count="3">
+<button type="button" class="pd-chip" onClick="{{p.pick}}" aria-pressed="{{p.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{p.bg}}; color: {{p.fg}}; border: 1px solid {{p.line}}">{{p.label}}</button>
+</sc-for>
+</div>
+<span style="font-size: 13px; color: #8A90A2">An indented line goes under the line above it. Two of these names match topics in the official syllabus and will be joined to them, not doubled.</span>
+</div>
+<a href="Syllabus.dc.html" class="pd-primary" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none; margin-top: auto">Add 5 topics</a>
+<span style="font-size: 13px; color: #8A90A2">They arrive unticked. Nothing is scheduled until you have studied a topic and ticked it.</span>
+</section>
+
+<section aria-label="An exam's date and target" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">UPSC Prelims 2027</h2><span style="font-size: 13px; color: #8A90A2">From Settings or Progress. Three things the app cannot decide for you.</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="pd-exam-date" style="font-size: 13px; color: #8A90A2">The date</label>
+<input id="pd-exam-date" class="pd-in" type="text" value="Sunday 23 May 2027" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 15px; outline: none; font-weight: 600">
+<span style="font-size: 13px; color: #8A90A2">Filled in from the exam's published calendar. If a notification moves it, change it here and everything that counts days follows.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="pd-exam-target" style="font-size: 13px; color: #8A90A2">Your target, General Studies</label>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<span class="pd-in" style="display: inline-flex; align-items: center; gap: 8px; height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #8A90A2"><input id="pd-exam-target" type="text" inputmode="decimal" value="{{target}}" onChange="{{setTarget}}" style="width: 52px; height: 44px; padding: 0; border: 0; background: transparent; color: #ECEEF4; font-size: 18px; font-weight: 600; outline: none">of 200</span>
+<span style="flex: 1 1 180px; font-size: 14px; color: {{targetColor}}">{{targetLine}}</span>
+</div>
+<span style="font-size: 13px; color: #8A90A2">Your own number. The app does not know cut-offs and does not guess them.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; color: #8A90A2">Are you sitting it?</span>
+<div role="group" aria-label="Sitting this exam" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{sitting}}" as="s" hint-placeholder-count="3">
+<button type="button" class="pd-chip" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{s.bg}}; color: {{s.fg}}; border: 1px solid {{s.line}}">{{s.label}}</button>
+</sc-for>
+</div>
+<span style="font-size: 13px; color: #8A90A2">{{sittingLine}}</span>
+</div>
+<a href="Progress.dc.html" class="pd-primary" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none; margin-top: auto">Save</a>
+<span style="font-size: 13px; color: #8A90A2">If a new date touches your road, the app redraws its draft and asks before any phase moves.</span>
+</section>
+
+<section aria-label="Move the next full paper" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">Move the next full paper</h2><span style="font-size: 13px; color: #8A90A2">From Today. Prelims 2022, General Studies · 2 hours · now on Sunday at 9:30 am.</span></div>
+<div role="radiogroup" aria-label="A day for the paper" style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{slots}}" as="d" hint-placeholder-count="5">
+<button type="button" role="radio" class="pd-row" onClick="{{d.pick}}" aria-checked="{{d.checked}}" style="display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 8px 14px; border-radius: 12px; text-align: left; font-size: 15px; background: {{d.bg}}; color: #ECEEF4; border: 1px solid {{d.line}}">
+<span style="flex: 0 0 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{d.dotLine}}; display: flex; align-items: center; justify-content: center"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{d.dotFill}}"></span></span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 500">{{d.day}}</span><span style="font-size: 13px; color: {{d.noteColor}}">{{d.note}}</span></span>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<label for="pd-move-time" style="font-size: 14px; color: #A9AEBD">Starting at</label>
+<input id="pd-move-time" class="pd-in" type="text" value="9:30 am" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 15px; outline: none; width: 110px; font-weight: 600">
+<span style="flex: 1 1 160px; font-size: 13px; color: #8A90A2">The real paper starts at 9:30. Any hour you type is kept.</span>
+</div>
+<a href="Main.dc.html" class="pd-primary" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none; margin-top: auto">{{moveLabel}}</a>
+<span style="font-size: 13px; color: #8A90A2">Days come from your calendar in Study Director when the two are linked, and from this app's own record when they are not.</span>
+</section>
+
+<section aria-label="Go back to an earlier version" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">Go back to an earlier version</h2><span style="font-size: 13px; color: #8A90A2">From Settings. A copy is kept each day you use the app, and before anything large.</span></div>
+<div role="radiogroup" aria-label="Versions" style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{versions}}" as="v" hint-placeholder-count="5">
+<button type="button" role="radio" class="pd-row" onClick="{{v.pick}}" aria-checked="{{v.checked}}" style="display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 8px 14px; border-radius: 12px; text-align: left; font-size: 15px; background: {{v.bg}}; color: #ECEEF4; border: 1px solid {{v.line}}">
+<span style="flex: 0 0 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{v.dotLine}}; display: flex; align-items: center; justify-content: center"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{v.dotFill}}"></span></span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 500">{{v.when}}</span><span style="font-size: 13px; color: #8A90A2">{{v.why}}</span></span>
+<span style="flex: 0 0 auto; font-size: 12px; color: #6FD3A8">{{v.check}}</span>
+</button>
+</sc-for>
+</div>
+<div style="padding: 14px 16px; border-radius: 12px; background: #131620; border: 1px solid #222632; font-size: 14px; color: #A9AEBD">{{versionLine}}</div>
+<button type="button" class="pd-primary" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none; margin-top: auto; opacity: {{restoreOpacity}}">{{restoreLabel}}</button>
+<span style="font-size: 13px; color: #8A90A2">Today's state is saved as a version first, so going back can itself be undone.</span>
+</section>
+
+<section aria-label="Keyboard shortcuts" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">Keyboard shortcuts</h2><span style="font-size: 13px; color: #8A90A2">From Settings, or press <kbd style="min-width: 24px; height: 24px; font-size: 12px">?</kbd> anywhere. Press a row to give it a different key.</span></div>
+<sc-for list="{{keyGroups}}" as="g" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; font-weight: 600; color: #A9AEBD; padding-bottom: 4px">{{g.name}}</span>
+<sc-for list="{{g.rows}}" as="k" hint-placeholder-count="4">
+<button type="button" class="pd-row" onClick="{{k.pick}}" aria-pressed="{{k.pressed}}" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; margin: 0 -10px; padding: 4px 10px; border-radius: 10px; border: 1px solid {{k.line}}; background: {{k.bg}}; color: #ECEEF4; font-size: 15px; text-align: left"><span>{{k.what}}</span><span style="display: inline-flex; align-items: center; gap: 6px; color: #8A90A2; font-size: 13px"><sc-if value="{{k.recording}}" hint-placeholder-val="{{false}}"><span style="color: #DDE0FF">Press the new key…</span></sc-if><sc-if value="{{k.idle}}" hint-placeholder-val="{{true}}"><sc-for list="{{k.keys}}" as="c" hint-placeholder-count="2"><kbd>{{c}}</kbd></sc-for></sc-if></span></button>
+</sc-for>
+</div>
+</sc-for>
+<span style="font-size: 13px; color: #8A90A2; margin-top: auto">A to D, the arrows, M and F are the test player's long-standing keys. A key already taken is refused, with the reason.</span>
+</section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1680}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { exam: 'Prelims', place: 'Geology · Paper II', target: '110', sitting: 'Yes', slot: 'Sunday 15 November', version: '', key: 'Mark for review' };
+  }
+  renderVals() {
+    const { exam, place, target, sitting, slot, version, key } = this.state;
+    const chip = (on) => ({ pressed: on ? 'true' : 'false', bg: on ? '#2A2E55' : 'transparent', fg: on ? '#DDE0FF' : '#A9AEBD', line: on ? '#8E97FF' : '#343A4A' });
+    const chips = (list, value, name) => list.map((label) => ({ label, ...chip(label === value), pick: () => this.setState({ [name]: label }) }));
+    const radio = (on) => ({ checked: on ? 'true' : 'false', bg: on ? '#1B1E33' : 'transparent', line: on ? '#8E97FF' : '#262B38', dotLine: on ? '#8E97FF' : '#4A5062', dotFill: on ? '#8E97FF' : 'transparent' });
+    const t = parseFloat(target);
+    const gap = isNaN(t) ? null : Math.round((t - 81.3) * 10) / 10;
+    const slots = [
+      ['Saturday 14 November', 'Tomorrow. A light day: 40 minutes of recall is due.', false],
+      ['Sunday 15 November', 'Where it is now. 35 minutes of recall is due.', false],
+      ['Wednesday 18 November', 'Recall is heavy that day: 1 h 25 min is due. With the paper it comes to 3 h 25 min.', true],
+      ['Sunday 22 November', 'A week later. Still one full paper a fortnight, as your road asks.', false],
+      ['Not this fortnight', 'The app stops offering it and asks again on 27 November.', false]
+    ].map(([day, note, warn]) => ({ day, note, noteColor: warn ? '#F2B866' : '#8A90A2', ...radio(day === slot), pick: () => this.setState({ slot: day }) }));
+    const versionList = [
+      ['Today, 8:52 am', 'As it is now', '', ''],
+      ['Thursday 12 November, 9:40 pm', 'End of day', 'Since then: 1 quick note and 3 mistakes looked at.', 'Checked'],
+      ['Tuesday 10 November, 4:25 pm', 'Before logging Coaching site test 9', 'Since then: 1 test logged, 2 sessions, 1 quick note, 3 mistakes looked at.', 'Checked'],
+      ['Sunday 8 November, 9:25 am', 'Before Prelims 2023', 'Since then: 1 full paper, 1 test logged, 4 sessions, 1 written answer, 9 topics ticked.', 'Checked'],
+      ['Sunday 1 November', 'Kept weekly', 'Since then: 2 full papers, 11 sessions, 3 written answers, 14 topics ticked.', 'Checked']
+    ];
+    const versions = versionList.map(([when, why, since, check]) => ({ when, why, check, ...radio(when === (version || versionList[0][0])), pick: () => this.setState({ version: when }) }));
+    const chosen = versionList.find((v) => v[0] === version);
+    const older = chosen && chosen[2];
+    const groups = [
+      ['On a paper', [['Answer', ['A', 'B', 'C', 'D']], ['Sure · 50-50 · Guess', ['1', '2', '3']], ['Previous and next question', ['←', '→']], ['Mark for review', ['M']], ['Clip this question', ['C']], ['Full screen', ['F']]]],
+      ['In a recall', [['Check myself', ['Space']], ['Mark a point missed', ['1', '…', '9']], ['Next', ['Enter']]]],
+      ['Anywhere', [['Search', ['/']], ['Quick note', ['N']]]]
+    ];
+    const keyGroups = groups.map(([name, rows]) => ({ name, rows: rows.map(([what, keys]) => {
+      const on = what === key;
+      return { what, keys, recording: on, idle: !on, pressed: on ? 'true' : 'false', bg: on ? '#1B1E33' : 'transparent', line: on ? '#8E97FF' : 'transparent', pick: () => this.setState({ key: on ? '' : what }) };
+    }) }));
+    return {
+      exams: chips(['Prelims', 'IFoS Mains', 'CAT and XAT', 'Something else'], exam, 'exam'),
+      places: chips(['Geology · Paper II', 'Geology · Paper I', 'A new subject'], place, 'place'),
+      target,
+      setTarget: (e) => this.setState({ target: (e.target.value || '').replace(/[^0-9.]/g, '').slice(0, 5) }),
+      targetLine: gap === null ? 'Leave it empty and Progress simply shows your scores.' : gap > 0 ? gap.toFixed(1) + ' above your last paper (81.3).' : 'At or below your last paper (81.3).',
+      targetColor: '#A9AEBD',
+      sitting: chips(['Yes', 'Not decided', 'Not this year'], sitting, 'sitting'),
+      sittingLine: sitting === 'Yes' ? 'It stays on your road and in the count of days.' : sitting === 'Not decided' ? 'It stays on your road, drawn faintly, and is not counted toward your load.' : 'It leaves your road. Its papers and topics stay, and nothing is deleted.',
+      slots,
+      moveLabel: slot === 'Sunday 15 November' ? 'Leave it on Sunday' : slot === 'Not this fortnight' ? 'Skip it for now' : 'Move it to ' + slot.split(' ')[0],
+      versions,
+      versionLine: older ? chosen[2] + ' Going back removes those from view, not from the saved copy of today.' : 'Choose a version to see what has happened since.',
+      restoreLabel: older ? 'Go back to ' + chosen[0].split(',')[0] : 'Choose an earlier version',
+      restoreOpacity: older ? 1 : 0.45,
+      keyGroups
+    };
+  }
+}
+</script>
+</body>
+</html>

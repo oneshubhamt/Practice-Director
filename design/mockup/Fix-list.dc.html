@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — fix mistakes and saved questions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-nav{transition:background .18s ease,color .18s ease}
+.pd-nav:hover{background:#1A1E28;color:#ECEEF4}
+.pd-row{transition:background .16s ease}
+.pd-row:hover{background:#1C2029}
+.pd-chip{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-chip:hover{border-color:#8E97FF}
+.pd-tab{transition:color .16s ease,border-color .16s ease}
+.pd-tab:hover{color:#ECEEF4}
+.pd-primary{transition:background .16s ease}
+.pd-primary:hover{background:#A3ABFF}
+.pd-bar{transition:width .5s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){.pd-nav,.pd-row,.pd-chip,.pd-tab,.pd-primary,.pd-bar{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<!--pd:rail practice-->
+<style>@media (max-width: 760px){.pd-rail{display:none!important}.pd-railtabs{display:flex!important}.pd-rail~main{padding-bottom:104px!important}}</style>
+<nav aria-label="Main, on a narrow screen" class="pd-railtabs" style="display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 8px 8px 16px; background: #11141B; border-top: 1px solid #222632">
+<a href="Main.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" aria-current="page" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #9BA3FF"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</nav>
+<nav aria-label="Main" class="pd-rail" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 18px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 22px">
+<div style="padding: 0 12px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
+<a href="Search.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #262B38; color: #8A90A2; text-decoration: none; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg><span style="flex: 1 1 auto">Search</span><span style="padding: 1px 7px; border-radius: 6px; border: 1px solid #343A4A; font-size: 12px; color: #8A90A2">/</span></a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="Main.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" class="pd-nav" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; background: #1E222D; color: #ECEEF4; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: #9BA3FF; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="Settings.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>Settings</a>
+<div style="padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #8A90A2; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #6FD3A8"></span>Backed up 2 min ago</div>
+</div>
+</nav>
+<!--/pd:rail-->
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(20px, 4vw, 56px) 48px">
+<div style="max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px">
+
+<header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<a href="Practice.dc.html" style="display: inline-block; padding: 12px 0; margin: -12px 0; text-decoration: none; font-size: 14px; font-weight: 500">Practice</a>
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.015em">Fix mistakes</h1>
+<div style="color: #A9AEBD; max-width: 560px">Every wrong answer comes back as a blind re-attempt until you get it right twice. Nothing here needs managing; it is a place to look.</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px">
+<a href="Phone-flow.dc.html" class="pd-primary" style="display: inline-flex; align-items: center; min-height: 52px; box-sizing: border-box; padding: 0 26px; border-radius: 14px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none">Re-attempt the 6 due today</a>
+<span style="font-size: 13px; color: #8A90A2">About 8 minutes. Two of them are already in today's session.</span>
+</div>
+</header>
+
+<div role="tablist" aria-label="Show" style="display: flex; flex-wrap: wrap; gap: 4px 28px; border-bottom: 1px solid #222632">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<button type="button" role="tab" class="pd-tab" onClick="{{t.pick}}" aria-selected="{{t.selected}}" style="display: inline-flex; align-items: baseline; gap: 8px; min-height: 48px; padding: 0; background: transparent; border: 0; border-bottom: 2px solid {{t.line}}; margin-bottom: -1px; font-size: 15px; font-weight: 500; color: {{t.fg}}">{{t.label}}<span style="font-size: 13px; color: #8A90A2; font-variant-numeric: tabular-nums">{{t.count}}</span></button>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 28px">
+
+<section aria-label="{{tabName}}" style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="font-size: 14px; color: #A9AEBD">{{tabNote}}</div>
+
+<sc-if value="{{showReasons}}" hint-placeholder-val="{{true}}">
+<div role="group" aria-label="Why it went wrong" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{reasons}}" as="r" hint-placeholder-count="6">
+<button type="button" class="pd-chip" onClick="{{r.pick}}" aria-pressed="{{r.pressed}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: {{r.bg}}; color: {{r.fg}}; border: 1px solid {{r.line}}">{{r.label}}</button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; padding: 10px 14px 6px"><span style="font-size: 13px; font-weight: 600; color: #A9AEBD">{{g.name}}</span><span style="font-size: 13px; color: #8A90A2">{{g.note}}</span></div>
+<sc-for list="{{g.rows}}" as="m" hint-placeholder-count="4">
+<a href="{{m.href}}" class="pd-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; padding: 12px 14px; border-radius: 12px; color: #ECEEF4; text-decoration: none">
+<span style="flex: 0 0 52px; font-weight: 600; font-variant-numeric: tabular-nums">Q {{m.n}}</span>
+<span style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{m.topic}}</span><span style="font-size: 13px; color: #8A90A2">{{m.line}}</span></span>
+<span style="flex: 0 0 auto; padding: 3px 10px; border-radius: 999px; background: #1E222D; font-size: 12px; font-weight: 500; color: #A9AEBD">{{m.tag}}</span>
+<span style="flex: 0 0 132px; text-align: right; font-size: 13px; color: {{m.stateColor}}">{{m.state}}</span>
+</a>
+</sc-for>
+</div>
+</sc-for>
+
+<sc-if value="{{showMore}}" hint-placeholder-val="{{true}}">
+<button type="button" class="pd-row" style="align-self: flex-start; min-height: 44px; padding: 0 14px; border-radius: 12px; border: 0; background: transparent; color: #9BA3FF; font-size: 14px; font-weight: 500">{{moreLabel}}</button>
+</sc-if>
+</section>
+
+<aside aria-label="What your mistakes say" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<section style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 2px"><h2 style="margin: 0; font-weight: 600; font-size: 16px">Why they went wrong</h2><span style="font-size: 13px; color: #8A90A2">All 170 mistakes from your last five papers.</span></div>
+<sc-for list="{{why}}" as="w" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px"><span>{{w.label}}</span><span style="color: #A9AEBD; font-variant-numeric: tabular-nums">{{w.count}}</span></div>
+<div role="img" aria-label="{{w.aria}}" style="height: 6px; border-radius: 999px; background: #2B3040; overflow: hidden"><div class="pd-bar" style="height: 100%; border-radius: 999px; background: {{w.color}}; width: {{w.width}}"></div></div>
+</div>
+</sc-for>
+<div style="padding-top: 14px; border-top: 1px solid #222632; font-size: 14px; color: #A9AEBD">Misreading and slips are 42 of the 170. Those are marks you already know how to get: about <span style="color: #ECEEF4; font-weight: 600">22 marks a paper</span>.</div>
+</section>
+
+<section style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-weight: 600; font-size: 16px">How a mistake leaves this list</h2>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: #A9AEBD">
+<li style="display: flex; gap: 12px"><span style="flex: 0 0 22px; height: 22px; border-radius: 50%; background: #1E222D; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #ECEEF4">1</span><span>A first look, with the reason chosen for you.</span></li>
+<li style="display: flex; gap: 12px"><span style="flex: 0 0 22px; height: 22px; border-radius: 50%; background: #1E222D; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #ECEEF4">2</span><span>Two days later you answer it again, blind.</span></li>
+<li style="display: flex; gap: 12px"><span style="flex: 0 0 22px; height: 22px; border-radius: 50%; background: #1E222D; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #ECEEF4">3</span><span>Right: once more after a few days, then it is solved. Wrong: tomorrow, and its topic moves up.</span></li>
+</ol>
+</section>
+</aside>
+
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1040}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'Coming back', reason: 'Every reason' };
+  }
+  renderVals() {
+    const { tab, reason } = this.state;
+    const amber = '#F2B866', quiet = '#A9AEBD', green = '#6FD3A8';
+    const data = {
+      'First look': {
+        note: 'Marked wrong, not yet looked at. A first look takes about half a minute each, and you can stop at any point.',
+        groups: [
+          { name: 'Prelims 2023, General Studies', note: '28 of 31 left · sat 8 Nov', rows: [
+            { n: 31, topic: 'Environment › Protected areas', line: 'You answered B and were sure. Took 0:48.', tag: 'Sure, and wrong', state: 'Look now', stateColor: '#9BA3FF' },
+            { n: 38, topic: 'Polity › Parliament', line: 'You answered A and were sure. Took 2:50.', tag: 'Sure, and wrong', state: 'Look now', stateColor: '#9BA3FF' },
+            { n: 47, topic: 'Economy › Banking', line: 'You answered C and were sure. Took 1:52.', tag: 'Sure, and wrong', state: 'Look now', stateColor: '#9BA3FF' },
+            { n: 6, topic: 'Modern history › 1857 to 1885', line: 'You answered B as a 50-50. The answer is D.', tag: '50-50', state: 'Look now', stateColor: '#9BA3FF' }
+          ] }
+        ],
+        more: 'Show the other 24'
+      },
+      'Coming back': {
+        note: 'Looked at, and waiting to be answered again. The app brings each one to Today on its day; you never have to come here for them.',
+        groups: [
+          { name: 'Due today', note: '6', rows: [
+            { n: 30, topic: 'Polity › Local government', line: 'Coaching test 9 · “The 73rd is panchayats, the 74th is municipalities”', reason: 'Did not know it', state: 'Today', stateColor: amber },
+            { n: 52, topic: 'Polity › Fundamental rights', line: 'Coaching test 9 · clipped with its explanation', reason: 'Misread the question', state: 'Today · second time', stateColor: amber },
+            { n: 71, topic: 'Geography › Monsoon', line: 'Prelims 2020 · no lesson written', reason: 'Torn between two', state: 'Today', stateColor: amber }
+          ] },
+          { name: 'This week', note: '14', rows: [
+            { n: 12, topic: 'Environment › Protected areas', line: 'Prelims 2023 · “Biosphere reserves are notified by the Centre, not the states”', reason: 'Did not know it', state: 'Sunday 15 Nov', stateColor: quiet },
+            { n: 14, topic: 'Polity › Parliament', line: 'Prelims 2023 · “Read the last line of the question first”', reason: 'Misread the question', state: 'Sunday 15 Nov', stateColor: quiet },
+            { n: 23, topic: 'Economy › Banking', line: 'Prelims 2023 · no lesson written', reason: 'Torn between two', state: 'Sunday 15 Nov', stateColor: quiet },
+            { n: 44, topic: 'Geology of India › Gondwana', line: 'Prelims 2021 · the lesson you wrote mentions the older flora', reason: 'Did not know it', state: 'Monday 16 Nov', stateColor: quiet }
+          ] },
+          { name: 'Later', note: '10', rows: [
+            { n: 58, topic: 'Science › Biotechnology', line: 'Prelims 2021 · right once, one more to go', reason: 'Careless slip', state: '24 Nov · last time', stateColor: quiet }
+          ] }
+        ],
+        more: 'Show all 30'
+      },
+      'Solved': {
+        note: 'Answered right twice, days apart. They rest here. A solved question that you later get wrong on another paper comes straight back.',
+        groups: [
+          { name: 'This month', note: '19', rows: [
+            { n: 12, topic: 'Polity › Fundamental rights', line: 'Coaching test 7 · wrong once, then right twice', reason: 'Misread the question', state: 'Solved 2 Nov', stateColor: green },
+            { n: 63, topic: 'Geography › Rivers of the peninsula', line: 'Prelims 2020 · wrong three times first', reason: 'Did not know it', state: 'Solved 6 Nov', stateColor: green },
+            { n: 9, topic: 'Economy › Balance of payments', line: 'Prelims 2019 · “Capital account, not current”', reason: 'Torn between two', state: 'Solved 9 Nov', stateColor: green }
+          ] }
+        ],
+        more: 'Show all 112'
+      },
+      'Saved questions': {
+        note: 'Questions you got right, or did not attempt, and chose to keep. They come back on the same schedule as mistakes, one re-attempt at a time.',
+        groups: [
+          { name: 'Saved by you', note: '18', rows: [
+            { n: 17, topic: 'Modern history › Governors-General', line: 'Prelims 2021 · right, as a guess', tag: 'Guessed right', state: 'Back on 18 Nov', stateColor: quiet },
+            { n: 40, topic: 'Environment › Biosphere reserves', line: 'Prelims 2023 · left blank', tag: 'Left blank', state: 'Back on 15 Nov', stateColor: quiet },
+            { n: 88, topic: 'Science › Space missions', line: 'Coaching test 7 · right, and worth keeping', tag: 'A good question', state: 'Back on 2 Dec', stateColor: quiet },
+            { n: 5, topic: 'Geology › Mineralogy', line: 'Geology Paper I, 2022 · part (c), written in 6:10', tag: 'Written answer', state: 'Ready to write again', stateColor: quiet }
+          ] }
+        ],
+        more: 'Show all 18'
+      }
+    };
+    const counts = { 'First look': 28, 'Coming back': 30, 'Solved': 112, 'Saved questions': 18 };
+    const tabs = Object.keys(data).map((label) => {
+      const on = label === tab;
+      return { label, count: counts[label], selected: on ? 'true' : 'false', fg: on ? '#ECEEF4' : '#A9AEBD', line: on ? '#8E97FF' : 'transparent', pick: () => this.setState({ tab: label, reason: 'Every reason' }) };
+    });
+    const d = data[tab];
+    const hasReasons = tab === 'Coming back' || tab === 'Solved';
+    const reasons = ['Every reason', 'Did not know it', 'Torn between two', 'Misread the question', 'Careless slip', 'Ran out of time'].map((label) => {
+      const on = label === reason;
+      return { label, pressed: on ? 'true' : 'false', bg: on ? '#2A2E55' : 'transparent', fg: on ? '#DDE0FF' : '#A9AEBD', line: on ? '#8E97FF' : '#343A4A', pick: () => this.setState({ reason: label }) };
+    });
+    const filtered = d.groups
+      .map((g) => ({ ...g, rows: g.rows.filter((m) => !hasReasons || reason === 'Every reason' || m.reason === reason).map((m) => ({ ...m, tag: m.tag || m.reason, href: tab === 'First look' ? 'Mistake.dc.html' : tab === 'Saved questions' ? 'Search.dc.html' : 'Mistake.dc.html' })) }))
+      .filter((g) => g.rows.length);
+    const groups = filtered.length ? filtered : [{ name: 'Nothing with that reason here', note: '', rows: [] }];
+    const total = 170;
+    const why = [['Did not know it', 72, '#5B63C9'], ['Torn between two', 48, '#5B63C9'], ['Misread the question', 27, '#F2B866'], ['Careless slip', 15, '#F2B866'], ['Ran out of time', 8, '#5B63C9']]
+      .map(([label, count, color]) => ({ label, count, color, width: Math.round((count / 72) * 100) + '%', aria: label + ': ' + count + ' of ' + total }));
+    return {
+      tabs, tabName: tab, tabNote: d.note, groups, reasons, why,
+      showReasons: hasReasons,
+      showMore: reason === 'Every reason', moreLabel: d.more
+    };
+  }
+}
+</script>
+</body>
+</html>

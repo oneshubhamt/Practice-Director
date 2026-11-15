@@ -228,6 +228,168 @@
       "title": "25 · For Study Director, a concept: Plan with a margin",
       "expand": "fill",
       "is_interactive": true
+    },
+    "Recall-laptop.dc.html": {
+      "x": 0,
+      "y": 10090,
+      "w": 1440,
+      "h": 900,
+      "title": "26 · A daily session on a laptop: recall by keyboard",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Fix-list.dc.html": {
+      "x": 1540,
+      "y": 10090,
+      "w": 1440,
+      "h": 1260,
+      "title": "27 · Fix mistakes: first look, coming back, solved, saved questions",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Clip.dc.html": {
+      "x": 3080,
+      "y": 10090,
+      "w": 1440,
+      "h": 900,
+      "title": "28 · Clipping a question, and its explanation, from your PDF",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Pacer.dc.html": {
+      "x": 4620,
+      "y": 10090,
+      "w": 390,
+      "h": 844,
+      "title": "29 · The pacer for a test taken elsewhere (press Start the clock)",
+      "radius": 28,
+      "is_interactive": true
+    },
+    "Editions.dc.html": {
+      "x": 0,
+      "y": 11510,
+      "w": 1440,
+      "h": 1080,
+      "title": "30 · A paper with two editions: what changed, and what it does to your score",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Authoring.dc.html": {
+      "x": 1540,
+      "y": 11510,
+      "w": 1440,
+      "h": 1000,
+      "title": "31 · Writing a paper inside the app (a late phase)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "More-sheets.dc.html": {
+      "x": 3080,
+      "y": 11510,
+      "w": 1440,
+      "h": 1680,
+      "title": "32 · Six small sheets: add a paper, add topics, an exam, move a paper, versions, keys",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "History.dc.html": {
+      "x": 0,
+      "y": 13330,
+      "w": 1440,
+      "h": 1500,
+      "title": "33 · History: recorded by itself, corrected by you",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Leave-out-sheet.dc.html": {
+      "x": 1540,
+      "y": 13330,
+      "w": 1440,
+      "h": 1150,
+      "title": "34 · What you tend to leave out, as it prints",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Memory-schedule.dc.html": {
+      "x": 3080,
+      "y": 13330,
+      "w": 1440,
+      "h": 1400,
+      "title": "35 · The memory schedule (advanced)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Guide.dc.html": {
+      "x": 4620,
+      "y": 13330,
+      "w": 1440,
+      "h": 1120,
+      "title": "36 · The guide, and a look around with sample data",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Main-light.dc.html": {
+      "x": 0,
+      "y": 14990,
+      "w": 1440,
+      "h": 1100,
+      "title": "37 · Today, light theme",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Practice-light.dc.html": {
+      "x": 1540,
+      "y": 14990,
+      "w": 1440,
+      "h": 960,
+      "title": "38 · Practice, light theme",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Syllabus-light.dc.html": {
+      "x": 3080,
+      "y": 14990,
+      "w": 1440,
+      "h": 1020,
+      "title": "39 · Syllabus, light theme",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Progress-light.dc.html": {
+      "x": 4620,
+      "y": 14990,
+      "w": 1440,
+      "h": 1170,
+      "title": "40 · Progress, light theme",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Phone-flow-light.dc.html": {
+      "x": 6160,
+      "y": 14990,
+      "w": 390,
+      "h": 844,
+      "title": "41 · Today and a daily session on a phone, light theme",
+      "radius": 28,
+      "is_interactive": true
+    },
+    "Answer-sheet-dark.dc.html": {
+      "x": 0,
+      "y": 16320,
+      "w": 1440,
+      "h": 1030,
+      "title": "42 · The answer sheet, dark theme: only the PDF page stays white",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Results-dark.dc.html": {
+      "x": 1540,
+      "y": 16320,
+      "w": 1440,
+      "h": 1280,
+      "title": "43 · Results, dark theme",
+      "expand": "fill",
+      "is_interactive": true
     }
   },
   "order": [
@@ -255,7 +417,25 @@
     "Search.dc.html",
     "AI-bridge.dc.html",
     "Design-system.dc.html",
-    "SD-Plan-concept.dc.html"
+    "SD-Plan-concept.dc.html",
+    "Recall-laptop.dc.html",
+    "Fix-list.dc.html",
+    "Clip.dc.html",
+    "Pacer.dc.html",
+    "Editions.dc.html",
+    "Authoring.dc.html",
+    "More-sheets.dc.html",
+    "History.dc.html",
+    "Leave-out-sheet.dc.html",
+    "Memory-schedule.dc.html",
+    "Guide.dc.html",
+    "Main-light.dc.html",
+    "Practice-light.dc.html",
+    "Syllabus-light.dc.html",
+    "Progress-light.dc.html",
+    "Phone-flow-light.dc.html",
+    "Answer-sheet-dark.dc.html",
+    "Results-dark.dc.html"
   ],
   "notes": {},
   "designSystems": []

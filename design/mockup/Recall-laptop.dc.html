@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — a recall session on a laptop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-quiet{transition:background .16s ease,color .16s ease}
+.pd-quiet:hover{background:#1C2029;color:#ECEEF4}
+.pd-primary{transition:background .16s ease,transform .16s ease}
+.pd-primary:hover{background:#A3ABFF}
+.pd-primary:active{transform:scale(.985)}
+.pd-point{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-point:hover{border-color:#4A5062}
+.pd-bar{transition:width .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes pdRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pd-rise{animation:pdRise .34s cubic-bezier(.2,.7,.2,1) both}
+kbd{font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;box-sizing:border-box;padding:0 7px;border-radius:6px;border:1px solid #343A4A;background:#171A23;font-size:12px;font-weight:600;color:#A9AEBD}
+@media (prefers-reduced-motion:reduce){.pd-rise{animation:none}.pd-quiet,.pd-primary,.pd-point,.pd-bar{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; padding: 12px clamp(16px, 3vw, 32px); border-bottom: 1px solid #222632">
+<a href="Main.dc.html" class="pd-quiet" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; margin-left: -12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M6 6l12 12M18 6L6 18"></path></svg>Leave</a>
+<div style="flex: 1 1 280px; min-width: 0; display: flex; align-items: center; gap: 14px">
+<span style="flex: 0 0 auto; font-size: 13px; color: #A9AEBD">{{stageLabel}}</span>
+<div role="img" aria-label="Progress through today's session" style="flex: 1 1 auto; height: 6px; border-radius: 999px; background: #222632; overflow: hidden"><div class="pd-bar" style="height: 100%; border-radius: 999px; background: #8E97FF; width: {{progress}}"></div></div>
+</div>
+<span style="font-size: 13px; color: #8A90A2; font-variant-numeric: tabular-nums">{{left}}</span>
+</header>
+
+<div style="flex: 1 1 auto; display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 32px 48px; padding: 40px clamp(16px, 4vw, 56px) 48px; box-sizing: border-box">
+
+<aside aria-label="This session" style="flex: 0 1 230px; min-width: 200px; display: flex; flex-direction: column; gap: 6px; padding-top: 6px">
+<div style="font-size: 13px; color: #8A90A2; padding: 0 12px 6px">This session</div>
+<sc-for list="{{queue}}" as="it" hint-placeholder-count="4">
+<div style="display: flex; align-items: flex-start; gap: 12px; padding: 10px 12px; border-radius: 12px; background: {{it.bg}}">
+<span style="flex: 0 0 18px; height: 18px; margin-top: 2px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid {{it.dotLine}}; background: {{it.dotBg}}; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: none; stroke: #0E1016; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; opacity: {{it.tick}}"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14px; font-weight: 500; color: {{it.fg}}">{{it.title}}</span><span style="font-size: 12px; color: #8A90A2">{{it.kind}}</span></div>
+</div>
+</sc-for>
+<div style="margin: 14px 12px 0; padding-top: 14px; border-top: 1px solid #222632; font-size: 13px; color: #8A90A2">Leave whenever you need to. What is done is kept, and the rest waits on Today.</div>
+</aside>
+
+<main style="flex: 0 1 680px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+
+<sc-if value="{{inCard}}" hint-placeholder-val="{{true}}">
+<section class="pd-rise" aria-label="The prompt" style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px"><span style="font-size: 13px; color: #A9AEBD">{{card.path}}</span><span style="padding: 3px 10px; border-radius: 999px; border: 1px solid #343A4A; font-size: 12px; font-weight: 500; color: #A9AEBD">{{card.form}}</span></div>
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: clamp(26px, 3vw, 34px); line-height: 1.18; letter-spacing: -0.015em; text-wrap: balance">{{card.prompt}}</h1>
+<div style="font-size: 14px; color: #8A90A2">{{card.last}}</div>
+</section>
+</sc-if>
+
+<sc-if value="{{isRecall}}" hint-placeholder-val="{{true}}">
+<section aria-label="Recall" style="display: flex; flex-direction: column; gap: 20px; padding: 28px; border-radius: 20px; background: #171A23; border: 1px solid #262B38">
+<div style="font-size: 17px; color: #ECEEF4">{{card.how}}</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px">
+<button type="button" class="pd-primary" onClick="{{reveal}}" style="min-height: 52px; padding: 0 28px; border-radius: 14px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px">{{revealLabel}}</button>
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #8A90A2">or press <kbd>Space</kbd></span>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{showPoints}}" hint-placeholder-val="{{false}}">
+<section aria-label="Check yourself" style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h2 style="margin: 0; font-weight: 600; font-size: 16px">Press what you missed</h2><span style="font-size: 13px; color: #8A90A2">Press nothing if it all came back.</span></div>
+<sc-for list="{{points}}" as="p" hint-placeholder-count="5">
+<button type="button" class="pd-point pd-rise" onClick="{{p.toggle}}" aria-pressed="{{p.pressed}}" style="animation-delay: {{p.delay}}; display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 12px 16px; border-radius: 14px; text-align: left; font-size: 15px; line-height: 1.4; background: {{p.bg}}; color: {{p.fg}}; border: 1px solid {{p.line}}">
+<kbd style="flex: 0 0 24px">{{p.key}}</kbd>
+<span style="flex: 1 1 auto">{{p.text}}</span>
+<span style="flex: 0 0 auto; font-size: 12px; font-weight: 600; color: #F2B866; opacity: {{p.tagOn}}">Missed</span>
+</button>
+</sc-for>
+</section>
+</sc-if>
+
+<sc-if value="{{showRating}}" hint-placeholder-val="{{false}}">
+<section class="pd-rise" aria-label="How much came back" style="display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 20px; background: #171A23; border: 1px solid #262B38">
+<div style="font-weight: 600; font-size: 16px">Compare it with your book or notes. How much came back?</div>
+<div style="font-size: 13px; color: #8A90A2">This topic has no marking points yet, so the app asks you. Anything you write below becomes its first point.</div>
+<div role="group" aria-label="How much came back" style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{ratings}}" as="r" hint-placeholder-count="3">
+<button type="button" class="pd-point" onClick="{{r.pick}}" aria-pressed="{{r.pressed}}" style="flex: 1 1 150px; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 16px; border-radius: 14px; font-size: 15px; font-weight: 500; background: {{r.bg}}; color: {{r.fg}}; border: 1px solid {{r.line}}"><kbd>{{r.key}}</kbd>{{r.label}}</button>
+</sc-for>
+</div>
+<label for="pd-missed-line" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">What you missed, in a line</label>
+<input id="pd-missed-line" type="text" placeholder="What did you miss? One line, if anything." style="height: 48px; box-sizing: border-box; padding: 0 16px; border-radius: 12px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-family: inherit; font-size: 15px; outline: none">
+</section>
+</sc-if>
+
+<sc-if value="{{isCheck}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 20px; padding-top: 4px">
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; color: {{verdictColor}}">{{verdict}}</span><span style="font-size: 13px; color: #8A90A2">{{card.source}}</span></div>
+<div style="display: flex; align-items: center; gap: 14px"><span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #8A90A2"><kbd>Enter</kbd></span><button type="button" class="pd-primary" onClick="{{next}}" style="min-height: 52px; padding: 0 30px; border-radius: 14px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px">{{nextLabel}}</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+<section class="pd-rise" aria-label="Recalls done" style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 36px; border-radius: 20px; background: #171A23; border: 1px solid #262B38">
+<span style="width: 44px; height: 44px; border-radius: 50%; background: #1C3A30; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: #6FD3A8; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.015em">Three recalls done</h1>
+<div style="font-size: 16px; color: #A9AEBD; max-width: 520px">{{doneLine}} One mistake is left to re-attempt, then today's core is finished.</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 6px">
+<a href="Phone-flow.dc.html" class="pd-primary" style="display: inline-flex; align-items: center; min-height: 52px; box-sizing: border-box; padding: 0 28px; border-radius: 14px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px; text-decoration: none">Re-attempt the mistake</a>
+<button type="button" class="pd-quiet" onClick="{{again}}" style="min-height: 52px; padding: 0 20px; border-radius: 14px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 15px">See this screen again</button>
+</div>
+</section>
+</sc-if>
+
+</main>
+
+<aside aria-label="Keys" style="flex: 0 1 230px; min-width: 200px; display: flex; flex-direction: column; gap: 12px; padding-top: 6px">
+<div style="font-size: 13px; color: #8A90A2">Keys</div>
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: #A9AEBD">
+<span style="display: flex; align-items: center; gap: 10px"><kbd>Space</kbd>Check myself</span>
+<span style="display: flex; align-items: center; gap: 10px"><kbd>1</kbd><span style="margin-left: -4px">to</span><kbd>9</kbd>Mark a point missed</span>
+<span style="display: flex; align-items: center; gap: 10px"><kbd>Enter</kbd>Next</span>
+<span style="display: flex; align-items: center; gap: 10px"><kbd>Esc</kbd>Leave</span>
+</div>
+<div style="margin-top: 10px; padding-top: 14px; border-top: 1px solid #222632; font-size: 13px; color: #8A90A2">The session is the same on a phone. On a laptop it sits in the middle of the screen, and the keyboard does everything.</div>
+</aside>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 'check', index: 0, missed: { 4: true }, rating: '' };
+  }
+  cards() {
+    return [
+      {
+        title: 'Gondwana Supergroup', path: 'Geology · Stratigraphy of India', form: 'Explain',
+        prompt: 'Gondwana Supergroup: age, divisions and why it matters',
+        how: 'Say it, sketch it or jot it down. Nothing to type here.',
+        last: 'Last recalled 9 days ago. You missed one point then.',
+        source: 'Your source: Ravindra Kumar, chapter 11.',
+        points: [
+          'Upper Carboniferous to Lower Cretaceous; river and lake deposits in faulted troughs.',
+          'Basins along the Damodar, Son-Mahanadi and Godavari valleys.',
+          'Lower Gondwana: Talchir, Damuda, Panchet. Upper: Mahadeva, Rajmahal, Jabalpur.',
+          'Holds nearly all of India’s coal, mainly Barakar and Raniganj formations.',
+          'Glossopteris flora below, Ptilophyllum flora above.'
+        ]
+      },
+      {
+        title: 'Shelterwood system', path: 'Forestry · Silvicultural systems', form: 'In sequence',
+        prompt: 'Shelterwood (uniform) system: the sequence of fellings',
+        how: 'Say the steps in order, or number them on paper.',
+        last: 'Last recalled 4 days ago. All of it came back.',
+        source: 'No source named for this topic.',
+        points: [
+          'The old crop is removed in stages so the new crop establishes under its shelter.',
+          'Preparatory felling, then seeding felling, secondary fellings, and the final felling.',
+          'Gives a more or less even-aged crop.',
+          'The regeneration period runs from the seeding felling to the final felling.'
+        ]
+      },
+      {
+        title: 'Parts of a fold', path: 'Geology · Structural geology', form: 'Draw it',
+        prompt: 'A fold: draw one and label its parts',
+        how: 'Draw it on paper, from memory, before you look at anything.',
+        last: 'First recall of this topic.',
+        source: 'First recall, so there is nothing to compare with yet.',
+        points: []
+      }
+    ];
+  }
+  componentDidMount() {
+    this.onKey = (e) => {
+      if (e.target && e.target.tagName === 'INPUT') return;
+      const { step, index, missed } = this.state;
+      const card = this.cards()[index];
+      if (step === 'recall' && e.key === ' ') { e.preventDefault(); this.setState({ step: 'check' }); }
+      else if (step === 'check' && e.key === 'Enter') { e.preventDefault(); this.next(); }
+      else if (step === 'check' && /^[1-9]$/.test(e.key)) {
+        const i = +e.key - 1;
+        if (card.points.length) { if (i < card.points.length) this.setState({ missed: { ...missed, [i]: !missed[i] } }); }
+        else if (i < 3) this.setState({ rating: ['All of it', 'Some of it', 'Mostly gone'][i] });
+      }
+    };
+    document.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() { document.removeEventListener('keydown', this.onKey); }
+  next() {
+    const { index, rating } = this.state;
+    const cards = this.cards();
+    if (!cards[index].points.length && !rating) return;
+    if (index + 1 < cards.length) this.setState({ index: index + 1, step: 'recall', missed: {}, rating: '' });
+    else this.setState({ step: 'done' });
+  }
+  renderVals() {
+    const { step, index, missed, rating } = this.state;
+    const cards = this.cards();
+    const c = cards[index];
+    const done = step === 'done';
+    const noPoints = c.points.length === 0;
+    const points = c.points.map((text, i) => {
+      const off = !!missed[i];
+      return {
+        text, key: i + 1, delay: (i * 0.05).toFixed(2) + 's', pressed: off ? 'true' : 'false', tagOn: off ? 1 : 0,
+        bg: off ? '#2A2415' : '#171A23', line: off ? '#F2B866' : '#262B38', fg: off ? '#F2D9A8' : '#ECEEF4',
+        toggle: () => this.setState({ missed: { ...missed, [i]: !off } })
+      };
+    });
+    const count = Object.values(missed).filter(Boolean).length;
+    const ratings = ['All of it', 'Some of it', 'Mostly gone'].map((label, i) => {
+      const on = label === rating;
+      return { label, key: i + 1, pressed: on ? 'true' : 'false', line: on ? '#8E97FF' : '#262B38', bg: on ? '#1B1E33' : '#131620', fg: on ? '#DDE0FF' : '#ECEEF4', pick: () => this.setState({ rating: label }) };
+    });
+    const verdict = noPoints ? ({ 'All of it': 'Next in 5 days.', 'Some of it': 'Next in 2 days.', 'Mostly gone': 'Back tomorrow.' }[rating] || 'Choose one to go on.')
+      : count === 0 ? 'All of it came back. Next in 12 days.'
+      : count <= 2 ? count + ' missed. Next in 4 days, with ' + (count === 1 ? 'that point' : 'those points') + ' first.'
+      : 'Mostly gone. Back tomorrow, starting from your source.';
+    const queue = [...cards.map((card, i) => ({ title: card.title, kind: 'Recall · ' + card.form.toLowerCase(), state: done || i < index ? 'done' : i === index ? 'now' : 'later' })),
+      { title: 'Prelims 2023 · Question 6', kind: 'Mistake · answer it again', state: 'later' }]
+      .map((it) => ({
+        ...it,
+        bg: it.state === 'now' ? '#171A23' : 'transparent',
+        fg: it.state === 'later' ? '#A9AEBD' : '#ECEEF4',
+        dotLine: it.state === 'done' ? '#6FD3A8' : it.state === 'now' ? '#8E97FF' : '#4A5062',
+        dotBg: it.state === 'done' ? '#6FD3A8' : 'transparent',
+        tick: it.state === 'done' ? 1 : 0
+      }));
+    const pos = done ? 3 : index;
+    return {
+      card: c, points, ratings, queue, verdict,
+      verdictColor: noPoints || count === 0 ? '#A9AEBD' : '#F2B866',
+      inCard: !done, isRecall: step === 'recall', isCheck: step === 'check', isDone: done,
+      showPoints: step === 'check' && !noPoints, showRating: step === 'check' && noPoints,
+      revealLabel: noPoints ? 'I have drawn it' : 'Check myself',
+      nextLabel: index + 1 < cards.length ? 'Next' : 'Finish recalls',
+      stageLabel: done ? 'Recalls done' : 'Recall ' + (index + 1) + ' of 3',
+      progress: (done ? 75 : pos * 25 + (step === 'check' ? 14 : 4)) + '%',
+      left: done ? 'about 3 min left' : ['about 18 min left', 'about 12 min left', 'about 7 min left'][index],
+      doneLine: 'One point on the Gondwana Supergroup comes back first next time.',
+      reveal: () => this.setState({ step: 'check' }),
+      next: () => this.next(),
+      again: () => this.setState({ step: 'check', index: 0, missed: { 4: true }, rating: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -59,7 +59,7 @@ button{font-family:inherit;cursor:pointer}
 
 <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 32px; letter-spacing: -0.02em">Practice</h1>
-<button type="button" class="pd-chip" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M12 5v14M5 12h14"></path></svg>Add a paper or PDF</button>
+<a href="More-sheets.dc.html" class="pd-chip" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-weight: 500; font-size: 14px; text-decoration: none; box-sizing: border-box"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M12 5v14M5 12h14"></path></svg>Add a paper or PDF</a>
 </header>
 
 <section aria-label="Paused paper" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 16px 20px; border-radius: 16px; background: #171A23; border: 1px solid #262B38">
@@ -88,7 +88,7 @@ button{font-family:inherit;cursor:pointer}
 <div class="pd-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 14px 12px; margin: 0 -12px; border-radius: 12px; border-top: 1px solid {{p.rule}}">
 <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 3px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px"><span style="font-weight: 500; font-size: 16px">{{p.title}}</span>
-<sc-if value="{{p.edition}}" hint-placeholder-val="{{false}}"><span style="padding: 2px 9px; border-radius: 999px; border: 1px solid #343A4A; font-size: 12px; color: #A9AEBD">{{p.edition}}</span></sc-if>
+<sc-if value="{{p.edition}}" hint-placeholder-val="{{false}}"><a href="Editions.dc.html" class="pd-chip" style="padding: 2px 9px; border-radius: 999px; border: 1px solid #343A4A; font-size: 12px; color: #A9AEBD; text-decoration: none; position: relative"><span aria-hidden="true" style="position: absolute; inset: -12px -6px"></span>{{p.edition}}</a></sc-if>
 </div>
 <div style="font-size: 13px; color: #8A90A2">{{p.meta}}</div>
 </div>
@@ -136,7 +136,7 @@ class Component extends DCLogic {
         list: [
           { title: 'Prelims 2022 · General Studies', meta: '100 questions · 2 hours', status: 'Sunday, 9:30 am', statusColor: '#DDE0FF', sub: 'Add to my calendar', action: 'Start', href: 'Briefing.dc.html' },
           { title: 'Prelims 2024 · General Studies', meta: '100 questions · 2 hours', status: 'Not taken', statusColor: '#A9AEBD', sub: '', action: 'Start', href: 'Briefing.dc.html' },
-          { title: 'Prelims 2023 · General Studies', meta: 'Taken 8 Nov', status: '81.3 of 200', statusColor: '#ECEEF4', sub: '25 of 31 mistakes still open', action: 'Results', href: 'Results.dc.html' },
+          { title: 'Prelims 2023 · General Studies', meta: 'Taken 8 Nov', status: '81.3 of 200', statusColor: '#ECEEF4', sub: '28 of 31 mistakes not looked at yet', action: 'Results', href: 'Results.dc.html' },
           { title: 'Prelims 2021 · General Studies', meta: 'Taken 25 Oct', status: '77.5 of 200', statusColor: '#ECEEF4', sub: 'All mistakes looked at', action: 'Results', href: 'Results.dc.html' },
           { title: 'Prelims 2022 · CSAT', meta: '80 questions · 2 hours · qualifying', status: 'Paused', statusColor: '#F2B866', sub: '41 of 80 answered', action: 'Resume', href: 'Answer-sheet.dc.html' }
         ]
@@ -178,13 +178,13 @@ class Component extends DCLogic {
     });
     const papers = set.list.map((p, i) => ({ edition: '', ...p, rule: i === 0 ? 'transparent' : '#222632' }));
     const ways = [
-      { title: 'Fix mistakes', note: '43 open · 6 due today', noteColor: '#F2B866', href: 'Mistake.dc.html' },
+      { title: 'Fix mistakes', note: '58 open · 6 due today', noteColor: '#F2B866', href: 'Fix-list.dc.html' },
       { title: 'Answer sheet for any PDF or book', note: 'Nothing to type in. Works beside a printed paper too.', href: 'Answer-sheet.dc.html' },
       { title: 'Build a set', note: 'From topics, weak areas or your mistakes.', href: 'Practice-sheets.dc.html' },
       { title: 'Write an answer', note: 'A past question on the marks-weighted clock.', href: 'Written-answer.dc.html' },
       { title: 'Quick cards', note: 'Names, formations, formulae. 96 cards in 5 lists.', href: 'Quick-cards.dc.html' },
       { title: 'Log practice done elsewhere', note: 'Ten seconds for a test taken on a coaching site.', href: 'Practice-sheets.dc.html' },
-      { title: 'Saved questions', note: '18 you got right and wanted to see again.', href: 'Search.dc.html' }
+      { title: 'Saved questions', note: '18 you got right and wanted to see again.', href: 'Fix-list.dc.html' }
     ].map((w) => ({ noteColor: '#8A90A2', ...w }));
     return { tabs, papers, ways, foot: set.foot, more: set.more };
   }

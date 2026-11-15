@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — the memory schedule</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}a:hover{color:#C3C8FF}
+button{font-family:inherit;cursor:pointer}
+.pd-nav{transition:background .18s ease,color .18s ease}
+.pd-nav:hover{background:#1A1E28;color:#ECEEF4}
+.pd-quiet{transition:background .16s ease,color .16s ease,border-color .16s ease}
+.pd-quiet:hover{background:#1C2029;color:#ECEEF4}
+@keyframes pdRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pd-rise{animation:pdRise .3s cubic-bezier(.2,.7,.2,1) both}
+@keyframes pdDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.pd-draw{stroke-dasharray:1;animation:pdDraw 1.1s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-rise,.pd-draw{animation:none}.pd-nav,.pd-quiet{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<!--pd:rail settings-->
+<style>@media (max-width: 760px){.pd-rail{display:none!important}.pd-railtabs{display:flex!important}.pd-rail~main{padding-bottom:104px!important}}</style>
+<nav aria-label="Main, on a narrow screen" class="pd-railtabs" style="display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 8px 8px 16px; background: #11141B; border-top: 1px solid #222632">
+<a href="Main.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</nav>
+<nav aria-label="Main" class="pd-rail" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 18px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 22px">
+<div style="padding: 0 12px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
+<a href="Search.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #262B38; color: #8A90A2; text-decoration: none; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg><span style="flex: 1 1 auto">Search</span><span style="padding: 1px 7px; border-radius: 6px; border: 1px solid #343A4A; font-size: 12px; color: #8A90A2">/</span></a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="Main.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="Settings.dc.html" class="pd-nav" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; background: #1E222D; color: #ECEEF4; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: #9BA3FF; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>Settings</a>
+<div style="padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #8A90A2; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #6FD3A8"></span>Backed up 2 min ago</div>
+</div>
+</nav>
+<!--/pd:rail-->
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(20px, 4vw, 56px) 48px">
+<div style="max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px">
+
+<header style="display: flex; flex-direction: column; gap: 6px">
+<a href="Settings.dc.html" style="align-self: flex-start; display: inline-block; padding: 12px 0; margin: -12px 0; text-decoration: none; font-size: 14px; font-weight: 500">Settings</a>
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.015em">Memory schedule</h1>
+<div style="color: #A9AEBD; max-width: 640px">You never need this page. It shows how the app decides when something comes back, and holds the two things you can undo: rested items, and the dates themselves.</div>
+</header>
+
+<section aria-label="The one rule" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-wrap: wrap; gap: 24px 40px">
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">The one rule</h2>
+<div style="font-size: 17px; line-height: 1.5">Each item comes back at about the moment you would still recall it <span style="color: #DDE0FF; font-weight: 600">9 times in 10</span>.</div>
+<div style="color: #A9AEBD">Recall it whole and the next gap is longer. Miss part of it and the gap is shorter, with the missed points first. That is all the schedule does.</div>
+<div style="font-size: 13px; color: #8A90A2">The 9 in 10 is fixed. The alternative that was tested cost about 18% more sessions for the same result.</div>
+</div>
+<figure style="flex: 1 1 380px; min-width: 0; margin: 0; display: flex; flex-direction: column; gap: 10px">
+<svg role="img" aria-label="One topic over ten weeks: memory drains between recalls, and each whole recall makes the next gap longer. One missed recall shortens the gap." viewBox="0 0 480 190" style="width: 100%; height: auto; display: block">
+<line x1="30" y1="30" x2="470" y2="30" stroke="#262B38" stroke-width="1"></line>
+<line x1="30" y1="90" x2="470" y2="90" stroke="#8E97FF" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="30" y1="150" x2="470" y2="150" stroke="#262B38" stroke-width="1"></line>
+<text x="30" y="20" fill="#8A90A2" font-size="12" font-family="Inter, sans-serif">Held fully</text>
+<text x="470" y="82" fill="#9BA3FF" font-size="12" font-family="Inter, sans-serif" text-anchor="end">9 in 10</text>
+<path class="pd-draw" pathLength="1" d="M30 30 C36 56 44 78 54 90 L54 30 C66 56 82 78 100 90 L100 30 C120 56 146 78 176 90 L176 30 C190 70 208 110 232 128 L232 30 C248 56 270 78 296 90 L296 30 C336 56 390 78 452 90" fill="none" stroke="#ECEEF4" stroke-width="2" stroke-linejoin="round"></path>
+<circle cx="54" cy="90" r="4" fill="#6FD3A8"></circle><circle cx="100" cy="90" r="4" fill="#6FD3A8"></circle><circle cx="176" cy="90" r="4" fill="#6FD3A8"></circle><circle cx="232" cy="128" r="4" fill="#F2B866"></circle><circle cx="296" cy="90" r="4" fill="#6FD3A8"></circle><circle cx="452" cy="90" r="4" fill="#171A23" stroke="#8E97FF" stroke-width="2"></circle>
+<text x="42" y="170" fill="#8A90A2" font-size="12" font-family="Inter, sans-serif" text-anchor="middle">2 d</text>
+<text x="77" y="170" fill="#8A90A2" font-size="12" font-family="Inter, sans-serif" text-anchor="middle">5 d</text>
+<text x="138" y="170" fill="#8A90A2" font-size="12" font-family="Inter, sans-serif" text-anchor="middle">12 d</text>
+<text x="204" y="170" fill="#F2B866" font-size="12" font-family="Inter, sans-serif" text-anchor="middle">a week late</text>
+<text x="264" y="170" fill="#8A90A2" font-size="12" font-family="Inter, sans-serif" text-anchor="middle">9 d</text>
+<text x="374" y="170" fill="#8A90A2" font-size="12" font-family="Inter, sans-serif" text-anchor="middle">24 d</text>
+</svg>
+<figcaption style="display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: #8A90A2"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #6FD3A8"></span>Recalled whole</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #F2B866"></span>Points missed</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 9px; height: 9px; box-sizing: border-box; border-radius: 50%; border: 2px solid #8E97FF"></span>Next date</span><span>One topic, Gondwana Supergroup, since September.</span></figcaption>
+</figure>
+</section>
+
+<section aria-label="Three kinds of item" style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h2 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em">One schedule, three kinds of item</h2><span style="font-size: 13px; color: #8A90A2">483 items in all</span></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px">
+<sc-for list="{{kinds}}" as="k" hint-placeholder-count="3">
+<div style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><span style="font-weight: 600; font-size: 16px">{{k.name}}</span><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 24px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums">{{k.count}}</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #A9AEBD">
+<span style="display: flex; gap: 10px"><span style="flex: 0 0 8px; height: 8px; margin-top: 7px; border-radius: 50%; background: #6FD3A8"></span>{{k.right}}</span>
+<span style="display: flex; gap: 10px"><span style="flex: 0 0 8px; height: 8px; margin-top: 7px; border-radius: 50%; background: #F2B866"></span>{{k.wrong}}</span>
+</div>
+<div style="margin-top: auto; padding-top: 12px; border-top: 1px solid #222632; font-size: 13px; color: #8A90A2">{{k.now}}</div>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 13px; color: #8A90A2">They are kept apart because recalling a topic and re-solving a question fade differently. Dates are also worked back from each exam, so that everything you hold returns in its final weeks and nothing is scheduled for after it.</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 24px">
+
+<section aria-label="Rested items" style="flex: 999 1 460px; min-width: 0; background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h2 style="margin: 0; font-weight: 600; font-size: 16px">Rested items · {{restedCount}}</h2><span style="font-size: 13px; color: #8A90A2">Rested by you on 2 November, when recall was about to pass your 2 hours.</span></div>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{rested}}" as="r" hint-placeholder-count="4">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 10px 0; border-top: 1px solid {{r.rule}}">
+<span style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 500; color: {{r.fg}}">{{r.name}}</span><span style="font-size: 13px; color: #8A90A2">{{r.why}}</span></span>
+<span style="flex: 0 0 auto; font-size: 13px; color: #8A90A2">{{r.state}}</span>
+<button type="button" class="pd-quiet" onClick="{{r.toggle}}" aria-pressed="{{r.pressed}}" style="flex: 0 0 auto; min-width: 104px; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-size: 14px; font-weight: 500">{{r.action}}</button>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-top: 4px"><button type="button" class="pd-quiet" style="min-height: 44px; padding: 0 12px; margin-left: -12px; border-radius: 10px; border: 0; background: transparent; color: #9BA3FF; font-size: 14px; font-weight: 500">Show the other 10</button><span style="font-size: 13px; color: #8A90A2">All of them return by themselves in the final month.</span></div>
+</section>
+
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<section aria-label="Rebuild the dates" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-weight: 600; font-size: 16px">If the dates ever look wrong</h2>
+<div style="font-size: 14px; color: #A9AEBD">Every date is worked out from your history and nothing else. Rebuilding works all of them out again from the start. It takes a few seconds and cannot lose anything.</div>
+<sc-if value="{{notRebuilt}}" hint-placeholder-val="{{true}}">
+<button type="button" class="pd-quiet" onClick="{{rebuild}}" style="align-self: flex-start; min-height: 46px; padding: 0 18px; border-radius: 12px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-size: 15px; font-weight: 500">Rebuild from history</button>
+</sc-if>
+<sc-if value="{{rebuilt}}" hint-placeholder-val="{{false}}">
+<div class="pd-rise" role="status" style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: 12px; background: #1C3A30; color: #BFEBD8; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 18px; width: 18px; height: 18px; margin-top: 2px; fill: none; stroke: #6FD3A8; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Rebuilt just now from 2,914 history entries. All 483 dates came out the same.</div>
+</sc-if>
+</section>
+
+<section aria-label="Not built yet" style="border: 1px dashed #343A4A; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; font-weight: 600; font-size: 16px; color: #A9AEBD">Not here yet</h2>
+<div style="font-size: 14px; color: #8A90A2">Fitting the schedule to your own memory. For now it uses standard settings that suit most people; your own results would only sharpen it after many months of recalls. There are no dials to turn in the meantime, on purpose.</div>
+</section>
+</div>
+
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1280}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { back: {}, rebuilt: false };
+  }
+  renderVals() {
+    const { back, rebuilt } = this.state;
+    const kinds = [
+      { name: 'Topics you recall', count: 185, right: 'Whole: the gap grows, from days to weeks to months.', wrong: 'Points missed: a shorter gap, and those points come first.', now: '148 fresh · 37 fading · typical gap now 16 days' },
+      { name: 'Questions you re-attempt', count: 58, right: 'Right: once more after a few days, then it rests as solved.', wrong: 'Wrong: tomorrow, and its topic moves up.', now: '28 waiting for a first look · 30 coming back' },
+      { name: 'Quick cards', count: 240, right: 'Knew it: the gap grows quickly; a card is small.', wrong: 'Missed: again in the same sitting, then tomorrow.', now: '4 lists · typical gap now 9 days' }
+    ];
+    const list = [
+      ['Forest policy of 1894, 1952 and 1988', 'Forestry · right five times running · asked in 2 of 10 papers'],
+      ['Mohs scale of hardness', 'Geology · right six times running · asked in 1 of 10 papers'],
+      ['Types of unconformity', 'Geology · right five times running · asked in 2 of 10 papers'],
+      ['Classification of forest types: the group names', 'Forestry · right five times running · asked in 2 of 10 papers']
+    ];
+    const rested = list.map(([name, why], i) => {
+      const on = !!back[i];
+      return {
+        name, why, rule: i === 0 ? 'transparent' : '#222632',
+        fg: on ? '#ECEEF4' : '#A9AEBD',
+        state: on ? 'Back · first recall on Monday' : 'Resting',
+        action: on ? 'Rest again' : 'Bring back', pressed: on ? 'true' : 'false',
+        toggle: () => this.setState({ back: { ...back, [i]: !on } })
+      };
+    });
+    const brought = Object.values(back).filter(Boolean).length;
+    return {
+      kinds, rested, restedCount: 14 - brought,
+      rebuilt, notRebuilt: !rebuilt,
+      rebuild: () => this.setState({ rebuilt: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

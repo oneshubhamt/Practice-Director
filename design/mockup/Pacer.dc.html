@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — the pacer for practice done elsewhere</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9BA3FF}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+.pd-chip{transition:background .16s ease,border-color .16s ease,color .16s ease}
+.pd-primary{transition:background .16s ease,transform .16s ease}
+.pd-primary:active{transform:scale(.985)}
+.pd-step{transition:background .12s ease,transform .12s ease}
+.pd-step:active{transform:scale(.94);background:#262B38}
+.pd-field:focus-within{border-color:#8E97FF}
+.pd-mark{transition:left .5s cubic-bezier(.2,.7,.2,1),width .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes pdRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pd-rise{animation:pdRise .34s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.pd-rise{animation:none}.pd-chip,.pd-primary,.pd-step,.pd-mark{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.45">
+
+<header style="display: flex; align-items: center; gap: 8px; padding: 14px 12px 6px">
+<a href="Phone-places.dc.html" aria-label="Leave the pacer" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #A9AEBD"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 600; font-size: 15px">{{title}}</span><span style="font-size: 13px; color: #8A90A2">{{subtitle}}</span></div>
+</header>
+
+<sc-if value="{{isSetup}}" hint-placeholder-val="{{true}}">
+<main class="pd-rise" style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 22px; padding: 18px 20px 24px">
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 28px; line-height: 1.15; letter-spacing: -0.015em">A clock beside a test you take somewhere else</h1>
+<div style="color: #A9AEBD; font-size: 15px">For a book, a printed paper or a coaching website. The app keeps the pace; your answers stay where they are.</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="pd-pacer-what" style="font-size: 13px; color: #8A90A2">What is it? One line is enough.</label>
+<input id="pd-pacer-what" type="text" value="Coaching site test 9, Polity" style="height: 52px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 1px solid #343A4A; background: #131620; color: #ECEEF4; font-size: 16px; outline: none">
+<div style="font-size: 13px; color: #8A90A2">Read as <span style="color: #DDE0FF">Prelims · Polity</span>, so the pattern below is filled in.</div>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+<label for="pd-pacer-q" class="pd-field" style="display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border-radius: 14px; border: 1px solid #343A4A; background: #131620"><span style="font-size: 13px; color: #8A90A2">Questions</span><input id="pd-pacer-q" type="text" inputmode="numeric" value="{{questions}}" onChange="{{setQuestions}}" style="width: 100%; height: 34px; padding: 0; border: 0; background: transparent; color: #ECEEF4; font-size: 26px; font-weight: 600; outline: none"></label>
+<label for="pd-pacer-m" class="pd-field" style="display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border-radius: 14px; border: 1px solid #343A4A; background: #131620"><span style="font-size: 13px; color: #8A90A2">Minutes</span><input id="pd-pacer-m" type="text" inputmode="numeric" value="{{minutes}}" onChange="{{setMinutes}}" style="width: 100%; height: 34px; padding: 0; border: 0; background: transparent; color: #ECEEF4; font-size: 26px; font-weight: 600; outline: none"></label>
+</div>
+<div style="font-size: 14px; color: #A9AEBD">{{paceLine}}</div>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
+<button type="button" class="pd-primary" onClick="{{start}}" style="min-height: 58px; border-radius: 16px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px">Start the clock</button>
+<div style="text-align: center; font-size: 13px; color: #8A90A2">The screen stays on while it runs.</div>
+</div>
+</main>
+</sc-if>
+
+<sc-if value="{{isRunning}}" hint-placeholder-val="{{false}}">
+<main class="pd-rise" style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 22px; padding: 10px 20px 24px">
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2px; padding-top: 6px">
+<span style="font-size: 13px; color: #8A90A2">Time left</span>
+<span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 64px; line-height: 1.05; letter-spacing: -0.03em; font-variant-numeric: tabular-nums">1:12:40</span>
+</div>
+
+<div role="img" aria-label="{{trackAria}}" style="position: relative; height: 34px">
+<div style="position: absolute; left: 0; right: 0; top: 14px; height: 6px; border-radius: 999px; background: #222632"></div>
+<div class="pd-mark" style="position: absolute; left: 0; top: 14px; height: 6px; border-radius: 999px; background: #5B63C9; width: {{youAt}}"></div>
+<div class="pd-mark" style="position: absolute; left: {{youAt}}; top: 8px; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: #ECEEF4; border: 3px solid #0E1016; box-sizing: border-box"></div>
+<div style="position: absolute; left: 39%; top: 4px; width: 2px; height: 26px; margin-left: -1px; border-radius: 2px; background: {{paceColor}}"></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 16px; border-radius: 16px; background: #171A23; border: 1px solid #262B38"><span style="font-size: 13px; color: #8A90A2">The pace is on</span><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">40</span><span style="font-size: 13px; color: #8A90A2">of 100 · 1:12 each</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 16px; border-radius: 16px; background: {{gapBg}}; border: 1px solid {{gapLine}}"><span style="font-size: 13px; color: {{gapSub}}">You are</span><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.02em; color: {{gapFg}}; font-variant-numeric: tabular-nums">{{gapBig}}</span><span style="font-size: 13px; color: {{gapSub}}">{{gapSmall}}</span></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="text-align: center; font-size: 14px; color: #A9AEBD">The question you are on</div>
+<div style="display: flex; align-items: center; justify-content: center; gap: 18px">
+<button type="button" class="pd-step" onClick="{{minus}}" aria-label="One question back" style="width: 72px; height: 72px; border-radius: 22px; border: 1px solid #343A4A; background: #171A23; color: #ECEEF4; font-size: 30px; font-weight: 500">−</button>
+<span aria-live="polite" style="min-width: 96px; text-align: center; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 56px; letter-spacing: -0.03em; font-variant-numeric: tabular-nums">{{at}}</span>
+<button type="button" class="pd-step" onClick="{{plus}}" aria-label="Next question" style="width: 72px; height: 72px; border-radius: 22px; border: 0; background: #2A2E55; color: #DDE0FF; font-size: 30px; font-weight: 500">+</button>
+</div>
+<div style="text-align: center; font-size: 13px; color: #8A90A2">Press + as you move on, or ignore it and just glance at the pace.</div>
+</div>
+
+<div style="margin-top: auto; display: flex; gap: 12px">
+<button type="button" style="flex: 1 1 0; min-height: 54px; border-radius: 16px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 16px">Pause</button>
+<button type="button" class="pd-primary" onClick="{{finish}}" style="flex: 2 1 0; min-height: 54px; border-radius: 16px; border: 0; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 16px">I have finished</button>
+</div>
+</main>
+</sc-if>
+
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+<main class="pd-rise" style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 20px; padding: 18px 20px 24px">
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 28px; line-height: 1.15; letter-spacing: -0.015em">Done in 1 h 50 min. How did it go?</h1>
+<div style="color: #A9AEBD; font-size: 15px">Two numbers from wherever you checked it. The time is already filled in.</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+<label for="pd-pacer-right" class="pd-field" style="display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border-radius: 14px; border: 1px solid #343A4A; background: #131620"><span style="font-size: 13px; color: #8A90A2">Right</span><input id="pd-pacer-right" type="text" inputmode="numeric" value="{{right}}" onChange="{{setRight}}" style="width: 100%; height: 34px; padding: 0; border: 0; background: transparent; color: #ECEEF4; font-size: 26px; font-weight: 600; outline: none"></label>
+<label for="pd-pacer-wrong" class="pd-field" style="display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border-radius: 14px; border: 1px solid #343A4A; background: #131620"><span style="font-size: 13px; color: #8A90A2">Wrong</span><input id="pd-pacer-wrong" type="text" inputmode="numeric" value="{{wrong}}" onChange="{{setWrong}}" style="width: 100%; height: 34px; padding: 0; border: 0; background: transparent; color: #ECEEF4; font-size: 26px; font-weight: 600; outline: none"></label>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 18px; border-radius: 16px; background: #171A23; border: 1px solid #262B38">
+<span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">{{score}}</span>
+<span style="font-size: 14px; color: #A9AEBD">{{scoreNote}}</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 2px">
+<button type="button" style="display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 4px; border: 0; border-bottom: 1px solid #222632; background: transparent; color: #ECEEF4; font-size: 15px; text-align: left">Clip the mistakes from a screenshot<span style="color: #8A90A2">›</span></button>
+<button type="button" style="display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 4px; border: 0; background: transparent; color: #ECEEF4; font-size: 15px; text-align: left">Note a mistake in a line<span style="color: #8A90A2">›</span></button>
+</div>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+<a href="Phone-places.dc.html" class="pd-primary" style="display: flex; align-items: center; justify-content: center; min-height: 58px; border-radius: 16px; background: #8E97FF; color: #0E1016; font-weight: 600; font-size: 17px; text-decoration: none">Save</a>
+<a href="Phone-places.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 46px; color: #A9AEBD; font-size: 15px; font-weight: 500; text-decoration: none">I do not have the result yet</a>
+</div>
+</main>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 'setup', questions: '100', minutes: '120', at: 36, right: '61', wrong: '27' };
+  }
+  renderVals() {
+    const { step, questions, minutes, at, right, wrong } = this.state;
+    const digits = (e) => (e.target.value || '').replace(/\D/g, '').slice(0, 3);
+    const q = +questions || 0, m = +minutes || 0;
+    const each = q && m ? (m * 60) / q : 0;
+    const mmss = (s) => Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0');
+    const gap = 40 - at;
+    const behind = gap > 0, level = gap === 0;
+    const mins = Math.abs(gap) * 1.2;
+    const minsText = (Math.round(mins * 2) / 2).toString().replace('.5', '½') + ' min';
+    const r = +right || 0, w = +wrong || 0;
+    const blank = Math.max(0, 100 - r - w);
+    return {
+      isSetup: step === 'setup', isRunning: step === 'running', isDone: step === 'done',
+      title: step === 'setup' ? 'Pacer' : 'Coaching site test 9, Polity',
+      subtitle: step === 'setup' ? 'Practice done elsewhere' : step === 'running' ? 'Prelims pattern · 100 questions in 2 hours' : 'Prelims · Polity',
+      questions, minutes, at, right, wrong,
+      setQuestions: (e) => this.setState({ questions: digits(e) }),
+      setMinutes: (e) => this.setState({ minutes: digits(e) }),
+      setRight: (e) => this.setState({ right: digits(e) }),
+      setWrong: (e) => this.setState({ wrong: digits(e) }),
+      paceLine: each ? 'That is ' + mmss(each) + ' a question. Change either number to anything you like.' : 'Type both numbers to see the pace.',
+      youAt: Math.min(100, at) + '%',
+      trackAria: 'You are on question ' + at + '. The pace is on question 40.',
+      paceColor: behind ? '#F2B866' : '#6FD3A8',
+      gapBig: level ? 'On pace' : Math.abs(gap) + (behind ? ' behind' : ' ahead'),
+      gapSmall: level ? 'Exactly where the clock is' : 'about ' + minsText,
+      gapBg: behind ? '#2A2415' : '#171A23', gapLine: behind ? '#5A4A22' : '#262B38',
+      gapFg: behind ? '#F2D9A8' : level ? '#ECEEF4' : '#6FD3A8', gapSub: behind ? '#D9B872' : '#8A90A2',
+      minus: () => this.setState({ at: Math.max(1, at - 1) }),
+      plus: () => this.setState({ at: Math.min(100, at + 1) }),
+      start: () => this.setState({ step: 'running' }),
+      finish: () => this.setState({ step: 'done' }),
+      again: () => this.setState({ step: 'setup' }),
+      score: (r * 2 - (w * 2) / 3).toFixed(1) + ' of 200',
+      scoreNote: blank + ' left blank. Worked out with the Prelims marking. It counts toward Polity and your week, not toward your full-paper target.'
+    };
+  }
+}
+</script>
+</body>
+</html>
