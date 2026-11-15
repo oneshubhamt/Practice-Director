@@ -9,6 +9,8 @@ Everything decided or proposed so far, consolidated on 14 Nov 2026 from the whol
 | [STUDY_DIRECTOR_IDEAS.md](STUDY_DIRECTOR_IDEAS.md) | What belongs to Study Director: Plan with a margin, the calendar, the left-over tray |
 | [BUILD.md](BUILD.md) | How Practice Director would be built: stack, modules, what is reused and how directly, tests, phases |
 | [DATA.md](DATA.md) | What is stored and what is not: the five kinds of data, their size, what stays on a device, what moves between devices, versions and backup |
+| [sd/SYNC_PLAN.md](sd/SYNC_PLAN.md) | The plan for Study Director's new sync, consolidated from the owner's other planning session. On branch `SD` only. |
+| [sd/PRACTICE_DIRECTOR_NEEDS.md](sd/PRACTICE_DIRECTOR_NEEDS.md) | What Practice Director needs from that engine; written to be handed to the Study Director session. On branch `SD` only. |
 | [DECISIONS.md](DECISIONS.md) | How the idea changed, what was reversed and why, what is parked, left out and still open |
 | [../design/README.md](../design/README.md) | The mock-up |
 
