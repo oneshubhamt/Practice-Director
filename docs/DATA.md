@@ -1,6 +1,6 @@
 # Practice Director: what is stored, and where
 
-Written 15 Nov 2026, after a review of the first data design in [BUILD.md](BUILD.md), and revised the same day after the owner's replies (question banks, the plan for Study Director's new sync, earlier versions). The product this serves is in [PLAN.md](PLAN.md). Nothing is built yet.
+Written 15 Nov 2026, after a review of the first data design in [BUILD.md](BUILD.md), and revised the same day after the owner's replies (question banks, the plan for Study Director's new sync, earlier versions) and after a check of the whole design for gaps (a few fields added; a bank of your own). The product this serves is in [PLAN.md](PLAN.md). Nothing is built yet.
 
 The aim is a small, well-kept body of data: only what cannot be worked out again is stored; what can be worked out is never stored; a thing that changes is replaced where it sits; and nothing is copied twice.
 
@@ -35,6 +35,8 @@ Refinements for Practice Director. The chain of lists and the folder per paper s
 | **Pictures are separate files, named by fingerprint, fetched when a question is shown.** | The SSC CGL papers hold their pictures inside the paper file. That costs a third more in size and loads every picture of a paper to show one question. |
 | **More kinds of content in the same chain**: the syllabus of an exam, its pattern, past Mains questions tied to topics. | Practice Director needs them, and one way of finding content is enough. |
 | **A paper may be a map only**: the key and the topic of each question. | For papers whose text cannot be shipped. |
+| **A map names its booklet series** and carries the official key for each series; it may also hold the page each question sits on. | UPSC prints a Prelims paper in four series with the questions in a different order ([RULES.md](RULES.md), section 14). |
+| **Two banks, one form: the published bank and your bank.** The published bank sits beside the app and holds only what is safe to publish: syllabuses, patterns, topic weights and maps. Question text and prepared marking points come in as your bank: one file brought in from the device, kept as a file by fingerprint, and carried to your other devices by sync like any file. | The app's address is open to anyone. This is also how a bank would be handed to another student. |
 
 The sizes above were measured on one paper of each family on 15 Nov; they show the direction, not a survey of the bank.
 
@@ -50,13 +52,13 @@ One store, one record per thing, each with an id and the time it last changed. A
 
 | Record | Holds | How many |
 |---|---|---|
-| Setting | One setting each: the time you allow, the reminder, text size, each shortcut | About 30 |
+| Setting | One setting each: the time you allow, the time zone, the reminder's hour, text size, each shortcut | About 30 |
 | Exam | Date, target, whether you are sitting it | 2 to 5 |
 | Road | The phases and their dates | 1 |
-| Topic | Only for a topic you have touched: your source line, rested or not; for a topic you added, its name and place | Up to a few hundred |
+| Topic | Only for a topic you have touched: your source line, rested or not, your own first-shown line; for a topic you added or split off, its name and place, and for a split the topic it came from and the day | Up to a few hundred |
 | Marking point | One point of one topic: its text, who wrote it, whether you have confirmed it | 1,000 to 2,000 |
 | Paper | For a paper you added: title, exam, subject, number of questions, its PDF's fingerprint, its key, and any corrections | Tens to a few hundred |
-| Mistake note | For one question of one paper: the reason, your one-line lesson, saved or not, its clip | A few thousand over the years |
+| Mistake note | For one question of one paper: the reason, your one-line lesson, saved or not, pinned to the briefing or not, its clip | A few thousand over the years |
 | Card list | One pasted list of quick cards | Tens |
 | Paper slot | When the next full paper is set | A handful |
 | Paused paper | That a paper is paused, on which device, and how far it got, so the other device can say so | One at most |
@@ -76,11 +78,11 @@ One store, one compact record per event. The id carries the time, so facts sort 
 | Fact | Holds | Size |
 |---|---|---|
 | Studied | Topic, and the quick note if it came from one | 40 bytes |
-| Recall | Topic, the points you missed (or one of three answers when there are no points), time taken | 60 bytes |
+| Recall | Topic, how many points were shown, the points you missed (or one of three answers when there are no points), time taken | 60 bytes |
 | Re-attempt | Question, the answer you gave, time taken | 50 bytes |
 | Quick cards | The list, and one character per card for known or missed | 80 bytes |
-| Written answer | Question, marks, time taken, points left out, the photo's fingerprint if there is one | 100 bytes |
-| Sitting | Paper, the edition sat, timed or not, then **one column each** for answers, sure / 50-50 / guess, seconds spent, seconds on the first visit, seconds before the first answer, and the second each answer was settled; changed answers listed only where there were any | About 1.5 KB per 100 questions |
+| Written answer | Question, marks, time taken, how many points were shown, points left out, the diagram answer, the photo's fingerprint if there is one | 100 bytes |
+| Sitting | Paper, the edition and the booklet series sat, timed or not, any pauses, then **one column each** for answers, sure / 50-50 / guess, seconds spent, seconds on the first visit, seconds before the first answer, the second each answer was settled, and the page of the PDF in view at that moment; changed answers listed only where there were any | About 1.7 KB per 100 questions |
 | Test logged | Label, exam, subject, right, wrong, time | 80 bytes |
 
 Three decisions inside this table:
@@ -90,6 +92,8 @@ Three decisions inside this table:
 - **Whether an answer was right is not stored.** It is the answer against the key, and the key can be corrected.
 - **Facts are the one place where slightly more is kept than today's screens use.** What was not recorded at the time can never be worked out later, and a column costs a few hundred bytes. So a sitting keeps all the timing Practice Desk measures, and the facts hold everything a later fitting of the memory schedule to your own results would need.
 - **Missing is stored as missing**, never as zero: a recall with no time measured has no time.
+- **The page in view is kept so that a mistake you did not clip can still be shown.** A sitting from your own PDF has no question text. With the page, a mistake coming back opens the PDF where the question is, and one drag clips it then.
+- **How many points were shown is kept with a recall**, because points are added over time and an old recall must not be re-graded against points that did not exist.
 
 ### Files (never changed)
 
@@ -106,7 +110,7 @@ A file that no record points to any more is removed. Nothing else is ever delete
 
 ## 4. What is not stored
 
-Everything below is worked out from records, facts and pack content each time it is needed, and so can never be out of step with them.
+Everything below is worked out from records, facts and bank content each time it is needed, and so can never be out of step with them.
 
 | Never stored | Worked out from |
 |---|---|
@@ -136,11 +140,13 @@ One consequence for the screens: there is no "rebuild from history" button. The 
 |---|---|
 | A database with three stores | Records · Facts · This device only |
 | The browser's file store | Files, by fingerprint |
-| The app's own cache | The app and its packs, for use offline |
+| The app's own cache | The app and the published bank for your exams, for use offline |
 
 "This device only" holds what never leaves the device: a paper in progress (saved after every answer, and turned into one sitting fact when you finish), today's choices such as "30 minutes today", which screen you were on, the sign-in to Drive, and the list of changes still to send.
 
 The sample data of the guide lives in a second database of the same shape, so it can never mix with yours.
+
+Every record, fact, backup and bank file carries a format number. The app reads every format it has ever written and upgrades in one place as it reads; it never writes to data in a format newer than it understands ([RULES.md](RULES.md), section 15).
 
 Facts are not all held in memory. At start they are read once, in order, into running totals; after that History reads a screenful at a time.
 
@@ -159,7 +165,7 @@ Practice Director follows the plan made for Study Director's new sync, which is 
 - **Joining is record by record.** Each record and fact carries a small count per device, which shows whether one device changed it or both. One: its value is taken. Both: the later change wins. Facts are written once, so two devices can only differ on a fact when one corrected it. There is no "needs review" queue in Practice Director.
 - **Nothing is handed over live.** Study Director moves a running timer between devices and checks Drive every ten seconds to do it. Practice Director has no such thing: a paper in progress stays on the device it was started on, and the paused-paper record tells the other device where it is. So it syncs when the app is opened or returned to, when a session or sitting ends, and about a minute after an edit.
 - **The sign-in to Drive lasts an hour**, because there is no server to renew it. The app is complete without it: every change is added to a "to send" list in the same step that saves it, and the list goes up the next time you are signed in.
-- **Files are fetched only where they are used.** A phone downloads a clip when a mistake comes back, and a PDF only if you open that paper there. A device can drop its copy of any file that Drive also holds.
+- **Files are fetched only where they are used.** Every file, PDFs included, goes up to Drive by default (the owner's ruling, 15 Nov), so that any paper can be opened on any device. A phone downloads a clip when a mistake comes back, and a PDF only if you open that paper there. A device can drop its copy of any file that Drive also holds.
 
 Lessons from Study Director's backlog that this layout answers: few requests, because a whole version per sync cost about six in a row; joining record by record, because joining block by block lost a setting; no review queue here, because nothing in Practice Director needs a person to choose between two copies.
 
@@ -189,6 +195,7 @@ Everything except files stays in the low megabytes for the life of the app. File
 
 - [BUILD.md](BUILD.md), sections 2 to 5, now follow this document.
 - Two screens were adjusted: History no longer says the original is kept underneath a change, and the memory-schedule page no longer has a rebuild button.
+- The exact rules that the working-out follows are in [RULES.md](RULES.md).
 - Still to settle are listed in [DECISIONS.md](DECISIONS.md), section 6.
 
 ## 10. Was anything lost?

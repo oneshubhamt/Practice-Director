@@ -111,7 +111,7 @@ Exams, dates and targets; the time you allow on a normal day and at most (chips 
 
 **A mistake coming back.** The question appears as you clipped it and you **answer it again, blind**. The app marks it. Right: it returns once more after a few days, then rests. Wrong: tomorrow, and its topic moves up. A one-line lesson you wrote ("what I should have seen") shows after you answer.
 
-**Answer-sheet mode.** For any PDF, book or coaching test, with no typing-in of questions. Your PDF sits beside a bubble sheet; on a tablet or phone the sheet becomes a dock under the page with one large row of answers. You answer against the clock and say when you are unsure: Sure · 50-50 · Guess. For official papers a **paper map** (answer key and topic of each question) is already loaded. For anything else you enter the key at the end: paste it in whatever form it comes, read it from a photo or a solutions PDF, or tap the letters; anything unreadable is marked for you to settle, and scoring can wait if you have no key yet. You can **clip** a question, and its explanation from a solutions PDF, straight from the page; the clip becomes the revision card. This is also closest to how Prelims is actually sat.
+**Answer-sheet mode.** For any PDF, book or coaching test, with no typing-in of questions. Your PDF sits beside a bubble sheet; on a tablet or phone the sheet becomes a dock under the page with one large row of answers. You answer against the clock and say when you are unsure: Sure · 50-50 · Guess. For official papers a **paper map** (answer key and topic of each question) is already loaded. For anything else you enter the key at the end: paste it in whatever form it comes, take it from a solutions PDF, or tap the letters (reading a key from a photo is parked); anything unreadable is marked for you to settle, and scoring can wait if you have no key yet. You can **clip** a question, and its explanation from a solutions PDF, straight from the page; the clip becomes the revision card. This is also closest to how Prelims is actually sat.
 
 **Results.** A short story: the score against your target → where the marks went → three things to do next → whether your bets paid at each confidence level, against the break-even for that paper's marking → **Fix the mistakes**. Every question, timing, speed against accuracy, changed answers and time sinks (long and wrong: questions to have left) remain as tabs. A first look at each mistake takes one tap for the reason, pre-selected from what the app observed (answered in seconds, changed from right to wrong, left blank at the end, marked unsure). Mistakes are shown in the order worth looking at: sure and wrong first.
 
@@ -140,8 +140,10 @@ Exams, dates and targets; the time you allow on a normal day and at most (chips 
 | Time estimates | Learned from your own pace, ignoring interruptions. |
 | A minimum day | Ten minutes that keeps the most at-risk items alive. |
 | Coming back after a gap | A short restart session, with the pile already spread over the following days. |
-| One daily anchor | A single reminder at the hour you choose. No other nagging. |
+| One daily anchor | A single reminder at the hour you choose. No other nagging. With no server the app cannot ring while it is closed, so the reminder is a repeating event added once to your phone's own calendar. |
 | Rehearsal slots | Full papers are offered at the real exam's hour. |
+
+The exact rule behind each row (what counts as due, how the order is worked out, when the app speaks) is in [RULES.md](RULES.md).
 
 ### Preparation habits these carry
 
@@ -170,20 +172,20 @@ Exam-specific behaviour comes from data files:
 | Exam | Date | Standing |
 |---|---|---|
 | UPSC Prelims 2027 (CSE and IFoS share it) | 23 May 2027 | First priority |
-| IFoS Mains 2027: Forestry, Geology, General English, General Knowledge | Reported from 21 Nov 2027 (one secondary source) | First priority |
+| IFoS Mains 2027: Forestry, Geology, General English, General Knowledge | From 21 Nov 2027, seven days | First priority |
 | CAT, XAT, PGDBA | Not fixed | Secondary; served by the in-app test player |
 | CSE Mains, NEET PG and medical professionals, JEE | — | Later packs, for other students |
 
-Dates are from the UPSC 2027 calendar as reported by news and coaching sites, and are confirmed against the official notification when templates are written.
+Dates are from UPSC's 2027 calendar, published on 20 May 2026, as carried by several news and coaching sites that agree with each other (checked again on 15 Nov 2026). The official file itself was not read; the dates are read off it when the exam templates are written.
 
-Paper patterns, from memory and to be confirmed the same way:
+Paper patterns. The marks and papers of IFoS Mains were checked against published summaries on 15 Nov 2026. The inner pattern of an optional paper is from memory, and is read off the instructions printed on a real paper when the first one is prepared:
 
 | Paper | Pattern |
 |---|---|
 | Prelims General Studies | 100 questions, 200 marks, 2 hours, one-third of a question's marks deducted for a wrong answer |
 | Prelims CSAT | 80 questions, 200 marks, 2 hours, qualifying at 33% |
 | IFoS Mains | Six papers of 3 hours: General English 300, General Knowledge 300, and two papers of 200 for each of two optionals; then an interview of 300 |
-| IFoS optional paper | Eight questions in two sections, five to be answered, two of them compulsory |
+| IFoS optional paper | 200 marks, 3 hours. Eight questions in two sections, five to be answered: questions 1 and 5 are compulsory, and of the other three at least one comes from each section |
 
 ## 9. Content
 
@@ -199,7 +201,7 @@ Paper patterns, from memory and to be confirmed the same way:
 | Memory-heavy lists | Paste a two-column list. |
 | Questions written inside the app | An authoring studio, in a late phase. |
 
-The app ships no copyrighted papers. Paper maps carry only numbers, keys and topic names.
+The app ships no copyrighted papers. Paper maps carry only numbers, keys and topic names. A map names the booklet series it was written for, since UPSC prints each Prelims paper in four series. Question text and prepared marking points reach the app as a bank of your own, brought in as a file, never from the app's public address ([RULES.md](RULES.md), section 14).
 
 Prepared content is kept as a question bank in the form Practice Desk now uses (one folder per paper, found through catalogue, exam and year, with original and revised editions), and is fetched for the exams you sit. See [DATA.md](DATA.md), section 2.
 
@@ -208,7 +210,7 @@ Prepared content is kept as a question bank in the form Practice Desk now uses (
 The app is the memory and the measurement; an AI is the reasoning and the content. Without a key, you carry things between them:
 
 - **Copy for AI**: one tap copies a mistake, a written answer with its marking points, or your weekly state, as a brief to paste into any chat.
-- **Paste from AI**: the app accepts key points, cards and question sets in a simple text layout that any assistant can produce. A first layout is proposed in the mock-up (a TOPIC line, then POINTS, CARDS and QUESTION blocks); it is not settled. The screen also gives a ready request to copy into the chat, so the assistant replies in that shape.
+- **Paste from AI**: the app accepts key points, cards and question sets in a simple text layout that any assistant can produce. The layout is the one in the mock-up (a TOPIC line, then POINTS, CARDS and QUESTION blocks), taken as settled unless the owner changes it. The screen also gives a ready request to copy into the chat, so the assistant replies in that shape. The layout is written out in [RULES.md](RULES.md), section 11.
 - **Packs** and paper maps are prepared in Claude Code sessions.
 
 With a key, later and optional: drafting questions from a PDF, feedback on a written answer, explaining a mistake. Always as drafts you approve.

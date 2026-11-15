@@ -12,18 +12,21 @@ How the idea has changed, in order, and where each question stands. Consolidated
 | Where Revision Director's engine goes | Into Practice Director | Proposed |
 | Who plans the day | The owner, by hand. The apps inform and offer; they never place work in a plan. | Owner's condition |
 | Phases of the year | Drafted by the app from the exam dates; approved, edited or adjusted by the owner | Owner's ruling |
-| The mock-up | Complete for Practice Director: 43 boards covering every screen, a design-system sheet, and the main screens in both themes; awaiting the owner's review | Phase 0, drawn |
+| The mock-up | Complete for Practice Director: 43 boards covering every screen, a design-system sheet, and the main screens in both themes; awaiting the owner's review. Five small amendments from the 15 Nov check are listed in `design/README.md` and not yet drawn | Phase 0, drawn; not yet approved |
+| The rules behind the screens | Every "by itself" behaviour written as an exact rule with starting numbers, all changeable in one place ([RULES.md](RULES.md)) | Proposed; the owner has not read it yet |
 | How the apps guide without dictating | Two sides of one screen: the owner's plan, and the app's "Worth knowing" | Owner's suggestion, refined; proposed |
 | How much the owner must enter | As little as possible: recorded automatically, editable afterwards | Owner's condition, for every part of both apps |
 | Sync | Both apps on the owner's Google Drive through one shared mechanism; no server | Agreed in principle; Study Director's engine is to be overhauled first |
 | What is stored | Five kinds of data ([DATA.md](DATA.md)): bank content fetched per exam, records replaced in place, facts written once, files stored once, and everything else worked out, never stored | Proposed after the owner asked for a lean design |
-| Prepared content | Practice Desk's question-bank form (one folder per paper, found through catalogue, exam and year), with refinements for what reaches a device | Owner prefers that form and invited refinements |
+| Prepared content | Practice Desk's question-bank form (one folder per paper, found through catalogue, exam and year), with refinements for what reaches a device. Two banks of one form: a published one with only what is safe to publish, and a bank of your own brought in as a file | Owner prefers that form and invited refinements; the two-bank split is proposed |
+| PDF renderer | pdf.js, loaded only when a paper is opened | Agreed (15 Nov) |
+| PDFs and sync | Every file, PDFs included, goes to Drive by default and comes down only where it is opened | Agreed (15 Nov) |
 | Earlier versions kept | The latest, one a day for a week, one a week for a month, and one before anything large | Agreed |
 | Interface technology | Custom, no framework, on a small in-house kit | Agreed |
 | AI inside the app | None in the first builds; copy and paste bridges instead | Agreed |
 | Hosting | Own web address, apart from Study Director | Agreed |
-| Devices | Laptop and phone | Agreed |
-| Exams | UPSC Prelims 2027 and IFoS Mains 2027 (Forestry, Geology) first. CAT, XAT, PGDBA secondary. | Agreed |
+| Devices | Laptop (Chrome), Android phone (Chrome, installed), iPad (Safari, on the Home Screen): the three named in Study Director's backlog | Laptop and phone agreed; the iPad is assumed and to be confirmed |
+| Exams | UPSC Prelims 2027 (23 May) and IFoS Mains 2027 (from 21 Nov; Forestry, Geology) first. CAT, XAT, PGDBA secondary. | Agreed; dates checked again on 15 Nov against several reports of UPSC's calendar |
 | Practice time | 2 to 4 hours a day | Stated by owner |
 | Target scores | Default 55% of a paper's marks, changeable | Default set; owner said 50 to 60% is what is needed |
 | Test player, question bank, paper editions, authoring | All kept | Owner's ruling |
@@ -61,6 +64,13 @@ How the idea has changed, in order, and where each question stands. Consolidated
 
 21. **Owner's replies to the data review.** Practice Desk now keeps content as a question bank with one chain of lists, and the owner prefers that to "packs shipped with the app"; adopted, with refinements the owner invited (fetched per exam, one generated index per family, a revised edition always as changes only, one compact file per paper, pictures as separate files). Asked that nothing meaningful be lost: checked item by item ([DATA.md](DATA.md), section 10); two things added back. Asked whether Revision Director is modular: it is typed and layered in 27 parts, but they share one scope with no imports, so nothing copies over as a file; converting all of it is not worth doing, since most is left behind. Reading a key from a photo: left open. Speaking instead of typing: wanted, parked. Asked whether the browser's own PDF viewer could replace a renderer: it cannot serve clipping or phones; answer recorded in BUILD.md, the owner's ruling awaited. Earlier versions: agreed as proposed. The owner supplied the plan for Study Director's new sync; it is consolidated on branch `SD` with a statement of what Practice Director needs from it, and section 6 of DATA.md now follows that plan (a changes file per device, versions built from pieces) in place of the three shared files first proposed.
 
+22. **Owner agreed the data design, approved the PDF renderer and PDFs going to Drive by default, and asked whether everything for Practice Director has been thought through**, so that the plan, the screens and the details connect, before a detailed implementation plan is written for an agent to build from. The whole design was read again against that question. Three kinds of thing were found.
+    - **Behaviour stated only as a sentence.** PLAN.md said what the app does by itself but not exactly how: what "due" means, how the order of Today is worked out, how a recall is graded from the points tapped, how the app works back from an exam, how phases are drafted, when the app speaks and on what evidence, how a typed line or a pasted key is read. All of it is now written as exact rules with starting numbers in [RULES.md](RULES.md). Two refinements came out of writing it: mistakes follow a short fixed ladder (first look, two days, seven days, solved) and not the forgetting model, which is what the screens already showed; and the final weeks before an exam are a rule of the schedule, not a phase to approve.
+    - **Gaps.** (a) A mistake that was never clipped had nothing to show when it came back: a sitting now also records the page in view at each answer, so the PDF opens at the question and one drag clips it. (b) A reminder at a set hour is not possible from a web app with no server while it is closed: it becomes a repeating event added once to the phone's own calendar. (c) UPSC prints Prelims in four booklet series with different question order: a paper map names its series and carries all four keys, and the app asks once which series the owner's PDF is. (d) The app's address is public, so question text cannot sit beside it: the published bank holds only syllabuses, patterns, weights and maps, and question text comes in as a bank of the owner's own, one file of the same form. (e) Practice by topic across past papers has no text to draw on when papers are maps only: said plainly, with what "Build a set" does until phase 6. (f) A recall now records how many points were shown, so that adding a point later cannot re-grade an old recall. (g) A timed paper's clock, pauses and time-up were not defined: now they are. (h) Devices and browsers, speed and size budgets, format numbers, safety of pasted content, reach and error notes were nowhere: now in RULES.md, section 15.
+    - **Decisions that are the owner's alone.** Listed in section 7 below with a recommendation each.
+
+    Also corrected on the way: BUILD.md still described the first sync layout in one paragraph; PLAN.md and BUILD.md still offered reading a key from a photo, which is parked; the exam dates were checked again.
+
 ## 3. Positions that were reversed
 
 | Was | Now | Why |
@@ -82,6 +92,9 @@ How the idea has changed, in order, and where each question stands. Consolidated
 | Memory state, scores and the mistake list kept as stored views, rebuildable from the history | Not stored at all; worked out each time | Stored copies can fall out of step and need machinery to check them. Working them out takes a fraction of a second |
 | A copy of the paper inside every attempt (Practice Desk) | A sitting names the exact edition it was sat on | The same promise, that an old sitting is never re-marked against a changed paper, at no cost |
 | "Rebuild from history" on the memory-schedule page | Removed | The dates are rebuilt every time the app opens, so the button had nothing to do |
+| One forgetting model for topics, mistakes and cards alike | Topics and cards on the forgetting model; mistakes on a fixed ladder that ends in "solved" | A mistake is to be solved, not carried for life; the screens already showed two right answers, days apart, then rest |
+| The daily reminder as a notification from the app | A repeating event in the phone's own calendar, added once | No server, so a closed web app cannot ring |
+| All prepared content published with the app | Maps, syllabuses and patterns published; question text in a bank of your own | The app's address is public |
 | Sharing a written answer with a person | AI only | Owner's ruling |
 | Calendar week level "optional" | A real part of planning, though the day never depends on it | Owner expects it to be useful |
 
@@ -115,11 +128,49 @@ How the idea has changed, in order, and where each question stands. Consolidated
 1. Final word on the two-app structure and the Calendar's home.
 2. The careful design pass on the calendar ([STUDY_DIRECTOR_IDEAS.md](STUDY_DIRECTOR_IDEAS.md), section 2, lists its questions).
 3. When Study Director work is taken up, and in which repo.
-4. The layout for "Paste from AI": a first proposal is in the mock-up, not settled.
+4. The layout for "Paste from AI": written out in RULES.md, section 11, and taken as settled unless the owner changes it.
 5. The owner's review of the mock-up. Every Practice Director screen is drawn; the choices made while drawing are listed in log entries 17 and 19.
 6. Thin areas: current affairs, General English, the interview stage.
-7. Exam dates and paper patterns to be confirmed against official notifications.
+7. Exam dates and paper patterns: checked again on 15 Nov against several reports that agree. Still to do when the first content is prepared: read the dates off UPSC's own file, and the pattern of an optional paper off a real paper's instructions.
 8. The overhaul of Study Director's backup and sync, which both apps are to share. The plan and what Practice Director needs from it are on branch `SD` (`docs/sd/`). Until the engine is ready, phases 1 to 3 need no sync at all.
-9. The PDF renderer: the owner asked whether the browser's own viewer would do; the answer (it cannot serve clipping or phones) is in BUILD.md, section 1, and awaits a ruling.
-10. Whether PDFs go to Drive by default (so that a paper can be opened on the other device) or only when asked. DATA.md assumes by default, fetched elsewhere only when opened.
+9. ~~The PDF renderer.~~ Approved by the owner on 15 Nov.
+10. ~~Whether PDFs go to Drive by default.~~ Yes, by the owner on 15 Nov.
 11. The refinements to the question-bank form ([DATA.md](DATA.md), section 2): which of them are made in Practice Desk's own bank, and which only in what Practice Director fetches.
+12. The numbers in RULES.md. Each is a starting value in one file. None needs the owner's ruling before building, and all can be changed after a few weeks of real use.
+
+## 7. Before building starts
+
+Asked by the owner on 15 Nov: is everything thought through, and is phase 0 done?
+
+**Settled, and enough to build from**
+
+| Area | Where |
+|---|---|
+| What the app is for, its principles, its four places, every kind of practice | PLAN.md |
+| Every screen | The mock-up, 43 boards |
+| What is stored, what is worked out, how devices join, versions | DATA.md |
+| The exact rule behind every automatic behaviour | RULES.md |
+| Stack, modules, the four rules of the code, what is reused | BUILD.md |
+| Devices, speed, formats, safety, reach | RULES.md, section 15 |
+
+**The owner's alone to decide** (each has a recommendation, and none blocks the first weeks of building)
+
+| # | Decision | Recommendation | Needed by |
+|---|---|---|---|
+| A | Approve the mock-up, or say what to change | Approve it as the reference, with changes welcome at any time: the interface kit is built before any screen, so a change to a screen is cheap until that screen's phase | Before the first screen is built (phase 1, second step) |
+| B | How Practice Director relates to Practice Desk, which is still being developed | Copy the pure parts at a named commit, keep a list of what came from where, and let the two go their own way. Sharing one library between two apps would tie every release of one to the other, and the part most worth sharing (attempts) is the part Practice Director changes | Before porting starts (phase 1, first step) |
+| C | Where the UPSC bank is written | In this repository, in Practice Desk's form, with the same content tools. Practice Desk's bank stays where it is for the families it holds | Before content preparation (phase 0b) |
+| D | What may sit in the published bank | Syllabuses, patterns, weights and maps only. Past Mains questions and anything with question text in your own bank, until you decide otherwise | Before the first publish |
+| E | Hosting | The same kind of static hosting Study Director uses, at its own address. Whether this repository is public is yours to say; nothing in the design needs it to be | Before the first build is put on a phone (end of phase 1) |
+| F | The iPad | Supported from the start, since it is the natural device for the answer sheet | Phase 2 |
+| G | Google sign-in for Drive | Reuse the project Study Director already has, with Practice Director's address added | Phase 4 |
+
+**Decided when its phase arrives, not now**
+
+- The careful design of the calendar, and everything else that is Study Director's (items 1 to 3 above).
+- The three links between the two apps (phase 8).
+- Which of the bank refinements are also made in Practice Desk (item 11).
+- Thin areas: current affairs, General English, the interview (item 6).
+- Reading a key from a photo, speaking instead of typing, AI with a key, fitting the schedule to the owner's own memory (section 4).
+
+**Phase 0, plainly.** Drawn and written: yes. Approved by the owner: not yet. Content (phase 0b): not started; it runs beside phase 1 and is the main thing that decides whether the first week of use is practice or setup.

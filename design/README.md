@@ -91,3 +91,15 @@ python3 design/tools/theme.py dark Results Results-dark
 ```
 
 The light variants come from `Main`, `Practice`, `Syllabus`, `Progress` and `Phone-flow`; the dark ones from `Answer-sheet` and `Results`.
+
+## Amendments not yet drawn
+
+Found in the check of 15 Nov 2026 (docs/DECISIONS.md, entry 22). Each is small and is built from the text here and in docs/RULES.md; the boards have not been redrawn.
+
+| Board | Amendment |
+|---|---|
+| Settings | The reminder row sets an hour and offers "Add the reminder to my calendar" (a repeating event in a calendar file). It is not a notification switch. |
+| Answer-sheet, Briefing | For an official paper started from your own PDF, one question before the clock: "Which series is printed on your booklet? A B C D". |
+| Answer-sheet, Test-player | At time up: "Finish" or "Keep going (not counted)". Results then show answers settled after time on a line of their own. |
+| Mistake | A mistake with no clip shows the PDF at the page that was in view when it was answered, with "Clip it" on the page. |
+| More-sheets (add a paper), Settings (data) | "Bring in a bank": one file from the device, with what it holds shown before it is added. |

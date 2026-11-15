@@ -1,6 +1,6 @@
 # Practice Director: how it would be built
 
-Consolidated 14 Nov 2026; sections 1 to 5 revised 15 Nov after a review of the architecture and the data design. The product design this serves is in [PLAN.md](PLAN.md); what is stored is in [DATA.md](DATA.md). Nothing is built yet.
+Consolidated 14 Nov 2026; sections 1 to 5 revised 15 Nov after a review of the architecture and the data design. The product design this serves is in [PLAN.md](PLAN.md); what is stored is in [DATA.md](DATA.md); the exact rules the app follows are in [RULES.md](RULES.md). Nothing is built yet.
 
 ## 1. Stack
 
@@ -12,7 +12,7 @@ Consolidated 14 Nov 2026; sections 1 to 5 revised 15 Nov after a review of the a
   - a design system of tokens and about twenty components, as laid out on the mock-up's design-system sheet. Screens are assembled only from these.
 - Why not freehand: Study Director and Practice Desk both show the cost (a 12,000-line host file; hand-written code to stop re-renders destroying focus and input).
 - Why not Preact, Svelte, Solid or Lit: each would work, but each adds a dependency for benefits the kit already gives. Polish comes from the design system and motion layer, not from a framework.
-- Runtime libraries: ts-fsrs, KaTeX, Wordgard, and **a PDF renderer (pdf.js), which is new**: none of the four source apps shows a PDF, and the answer sheet and clipping both need one. The browser's own PDF viewer was considered and is not enough: a page that embeds it cannot learn which page is showing, cannot draw a clip box on it or read the picture under the box, and phone browsers do not show it inside a page at all. The renderer is the one Firefox itself uses; it loads only when a paper is opened.
+- Runtime libraries: ts-fsrs, KaTeX, Wordgard, and **a PDF renderer (pdf.js), which is new and was approved by the owner on 15 Nov**: none of the four source apps shows a PDF, and the answer sheet and clipping both need one. The browser's own PDF viewer was considered and is not enough: a page that embeds it cannot learn which page is showing, cannot draw a clip box on it or read the picture under the box, and phone browsers do not show it inside a page at all. The renderer is the one Firefox itself uses; it loads only when a paper is opened.
 - **Each screen loads only what it uses.** Today, Syllabus and Progress need none of the four libraries. The PDF renderer loads with a paper, KaTeX with a question that has maths, Wordgard with the authoring studio. The PDF renderer and the packing of backups run off the main thread, and only the page in view (and its neighbours) is kept drawn.
 
 ## 2. Modules
@@ -20,8 +20,9 @@ Consolidated 14 Nov 2026; sections 1 to 5 revised 15 Nov after a review of the a
 ```text
 src/
   core/           no screen, no storage, no clock: the date is passed in
+    rules.ts      every number in RULES.md, named, in one place
     kernel/       ids, change stamps, the 04:00 day, fingerprints, validation
-    content/      topics, papers, questions, editions; reads packs
+    content/      topics, papers, questions, editions; reads banks
     attempt/      test engine, scoring, timing
     memory/       the one memory schedule
     planner/      what to offer today, the time you allow, load forecast
@@ -59,9 +60,9 @@ One memory schedule serves recalled topics, re-attempted questions and quick car
 
 ## 4. Storage, sync and safety
 
-- On the device: one database with three stores (records, facts, this device only) and the browser's file store for files. See [DATA.md](DATA.md), section 4.
-- Between devices: a records file, one facts file per month, and files by fingerprint, on the owner's Google Drive. A usual sync moves two small files. Joining is record by record, last change wins; there is no review queue. See [DATA.md](DATA.md), section 5.
-- Earlier versions live where backups live and cost only what changed. One backup file by hand; a readable export. See [DATA.md](DATA.md), section 6.
+- On the device: one database with three stores (records, facts, this device only) and the browser's file store for files. See [DATA.md](DATA.md), section 5.
+- Between devices, on the owner's Google Drive: one small changes file per device, written only by that device, and versions built from pieces named by fingerprint, with facts in one piece per month. Joining is record by record; where both devices changed the same record the later change wins; there is no review queue. Files, PDFs included, go up by default and come down only where they are opened. See [DATA.md](DATA.md), section 6.
+- Earlier versions live where backups live and cost only what changed. One backup file by hand; a readable export. See [DATA.md](DATA.md), section 7.
 - The sync engine is shared with Study Director in intent ([ECOSYSTEM.md](ECOSYSTEM.md), section 6), and that engine is to be overhauled. Practice Director's side is written against a small port (carry these files, tell changed from unchanged, keep versions), so it can sit on the overhauled engine, or on a small engine of its own until that is ready.
 
 **Safety, reduced without loss.** Kept: writes that land whole or not at all, a fingerprint check on every file sent or received, versions to go back to, one writing tab at a time, a tested restore, and recovery by itself when a device's storage has been emptied. Not carried over from the two source apps: a copy of the paper inside every attempt, re-verifying every memory card against scheduler fingerprints, per-record revision counters in two stores, and scheduler rebases. Working the schedule out from the facts each time makes those unnecessary.
@@ -93,13 +94,13 @@ Each phase ends with something usable daily.
 
 | Phase | Delivers | Replaces |
 |---|---|---|
-| 0. Design | The mock-up, drawn end to end for Practice Director with a design-system sheet (see `design/README.md`). Every Practice Director screen is drawn; Study Director's are a separate pass. The owner approves before build. | — |
+| 0. Design | The mock-up, drawn end to end for Practice Director with a design-system sheet (see `design/README.md`); the data design ([DATA.md](DATA.md)); the rules behind the screens ([RULES.md](RULES.md)). All three are written. The owner approves before build. | — |
 | 0b. Content | Syllabus packs for Forestry, Geology, General Knowledge and Prelims; paper maps for recent Prelims papers; past Mains questions mapped to topics. In Claude Code sessions, alongside phase 1. | — |
-| 1. Remember | Interface kit and design system, storage as set out in DATA.md, syllabus checklist, memory schedule, recall with tap-what-you-missed, Today, backup file | Revision Director |
+| 1. Remember | Interface kit and design system, storage as set out in DATA.md, syllabus checklist, memory schedule, recall with tap-what-you-missed, Today, backup file, bringing in a bank of your own | Revision Director |
 | 2. Rehearse | Answer-sheet mode with paper maps and clipping, results, mistake re-attempts, cross-check, outside-practice log | Practice Desk (core) |
 | 3. Write | Written answers on the marks-weighted clock, full-paper rehearsal, missed points to cards, Copy for AI, Paste from AI | — |
 | 4. Sync | Google Drive sync, backup versions, readable export, phone polish, install flow | — |
-| 5. See | Progress, targets, load guard, weekly summary, daily anchor, search, print, Add to my calendar | — |
+| 5. See | Progress, targets, load guard, weekly summary, the daily reminder as a calendar event, search, print, Add to my calendar | — |
 | 6. Full papers in-app | Question bank, test player, set builder, paper editions; in-app authoring last | Rest of Practice Desk |
 | 7. Wider use | More exam packs, pack sharing, onboarding for other students | — |
 | 8. The seam | The three links to Study Director | — |
@@ -116,6 +117,6 @@ Everything in PLAN.md that is not named in the phase table above, with where it 
 | Phase | Capability |
 |---|---|
 | 1 | Any length of time typed as well as picked; prompt forms (explain, list, compare, draw, sequence); sticking points; time estimates learned from your pace; Read next; the optional source line; choose-your-own by subject, kind and length; a sample-data preview and an in-app guide; exam templates with known dates offered for acceptance; quick cards from a pasted list |
-| 2 | Sure · 50-50 · Guess; entering a key by paste, photo or tap; timed and untimed sittings; the briefing before a paper; saving a question; a one-line lesson on a mistake; clipping the explanation; changed answers; speed against accuracy; accuracy by question type; keyboard shortcuts and text size; screen stays awake and sound cues during timed work |
+| 2 | Sure · 50-50 · Guess; entering a key by paste, from a solutions PDF or by tap (reading one from a photo is parked); timed and untimed sittings; the briefing before a paper; saving a question; a one-line lesson on a mistake; clipping the explanation; changed answers; speed against accuracy; accuracy by question type; keyboard shortcuts and text size; screen stays awake and sound cues during timed work |
 | 3 | The pacer across a whole paper; the choose-your-questions step; the diagram check; General English through the same flow; a photo of the page |
 | 5 | Phases drafted by the app and approved or adjusted by you; "what you tend to leave out" as a printable sheet; a minimum day; coming back after a gap |

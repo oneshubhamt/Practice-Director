@@ -9,6 +9,7 @@ Everything decided or proposed so far, consolidated on 14 Nov 2026 from the whol
 | [STUDY_DIRECTOR_IDEAS.md](STUDY_DIRECTOR_IDEAS.md) | What belongs to Study Director: Plan with a margin, the calendar, the left-over tray |
 | [BUILD.md](BUILD.md) | How Practice Director would be built: stack, modules, what is reused and how directly, tests, phases |
 | [DATA.md](DATA.md) | What is stored and what is not: the five kinds of data, their size, what stays on a device, what moves between devices, versions and backup |
+| [RULES.md](RULES.md) | The exact rule behind everything the app does by itself: days and clocks, the memory schedule, what Today offers and in what order, phases, when the app speaks up, scoring and what is said after a paper, how typed and pasted text is read, and the qualities the build must meet |
 | [DECISIONS.md](DECISIONS.md) | How the idea changed, what was reversed and why, what is parked, left out and still open |
 | [../design/README.md](../design/README.md) | The mock-up |
 
