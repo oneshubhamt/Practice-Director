@@ -94,7 +94,7 @@ Today, Practice, Syllabus, Progress. On a laptop they are a slim left rail, with
 - **What you still hold**: fresh, fading and not started, by paper.
 - **Recall work coming** over the next 14 days against the time you allow.
 - **How marks get lost**: did not know, torn between two options, careless.
-- A weekly summary written for you, the history archive (recorded by itself; any entry can be corrected afterwards, with the original kept underneath), and search across topics, mistakes and clips.
+- A weekly summary written for you, the history archive (recorded by itself; any entry can be corrected afterwards, and the correction undone), and search across topics, mistakes and clips.
 
 ### First run and a second device
 

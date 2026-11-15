@@ -1,6 +1,6 @@
 # Practice Director: how it would be built
 
-Consolidated 14 Nov 2026. The product design this serves is in [PLAN.md](PLAN.md). Nothing is built yet.
+Consolidated 14 Nov 2026; sections 1 to 5 revised 15 Nov after a review of the architecture and the data design. The product design this serves is in [PLAN.md](PLAN.md); what is stored is in [DATA.md](DATA.md). Nothing is built yet.
 
 ## 1. Stack
 
@@ -12,54 +12,72 @@ Consolidated 14 Nov 2026. The product design this serves is in [PLAN.md](PLAN.md
   - a design system of tokens and about twenty components, as laid out on the mock-up's design-system sheet. Screens are assembled only from these.
 - Why not freehand: Study Director and Practice Desk both show the cost (a 12,000-line host file; hand-written code to stop re-renders destroying focus and input).
 - Why not Preact, Svelte, Solid or Lit: each would work, but each adds a dependency for benefits the kit already gives. Polish comes from the design system and motion layer, not from a framework.
-- Runtime libraries kept: ts-fsrs, KaTeX, Wordgard.
+- Runtime libraries: ts-fsrs, KaTeX, Wordgard, and **a PDF renderer (pdf.js), which is new**: none of the four source apps shows a PDF, and the answer sheet and clipping both need one.
+- **Each screen loads only what it uses.** Today, Syllabus and Progress need none of the four libraries. The PDF renderer loads with a paper, KaTeX with a question that has maths, Wordgard with the authoring studio. The PDF renderer and the packing of backups run off the main thread, and only the page in view (and its neighbours) is kept drawn.
 
 ## 2. Modules
 
 ```text
 src/
-  kernel/     ids, time, hashing, validation (no DOM)
-  content/    syllabus, questions, prompts, papers, editions, exam templates
-  attempt/    test engine, scoring, timing
-  memory/     one memory schedule
-  planner/    what to offer today, the time you allow, load forecast
-  evidence/   one add-only history and the views derived from it
-  store/      device storage, backup, sync
-  ui/kit/     reactive state, components, router, motion
-  ui/         design system and screens
-  assist/     AI with a key (later, optional)
-packs/        exam templates, syllabus packs, paper maps
-tools/        content command-line tools for agents
+  core/           no screen, no storage, no clock: the date is passed in
+    kernel/       ids, change stamps, the 04:00 day, fingerprints, validation
+    content/      topics, papers, questions, editions; reads packs
+    attempt/      test engine, scoring, timing
+    memory/       the one memory schedule
+    planner/      what to offer today, the time you allow, load forecast
+    derive/       works out everything shown from records and facts
+  data/
+    store/        the database and the file store; the only code that touches them
+    sync/         files out, files in, joining two copies; the engine sits behind a port
+    backup/       one file out, one file in; the readable export
+  app/            commands (the one way anything is written), start-up
+  ui/kit/         reactive state, components, router, motion
+  ui/             design system and screens, loaded per screen
+  assist/         AI with a key (later, optional)
+packs/            exam patterns, syllabus packs, paper maps
+tools/            content command-line tools for agents
 ```
 
-Features are modules that register their own record types with one shared storage, backup and sync layer.
+Four rules hold the shape:
 
-## 3. Data model
+1. **`core` is pure.** It never touches the screen, the database or the clock, so all of it runs in a plain test with no browser, and the same inputs always give the same result.
+2. **One way in.** A screen never writes to storage. It issues a command ("recall checked", "topic ticked"); the command writes one record or fact in a single step that lands whole or not at all; `derive` updates what is shown; the screen redraws from that. Undo, the one-writing-tab check and sync all hang on this one path.
+3. **One list of what is stored.** Every kind of record and fact is declared in one table: its fields, whether it syncs, how two copies join. Validation, backup and export are read from that table, not written again per feature.
+4. **Dependencies point one way**: `ui` → `app` → `core` and `data`. `core` and `data` do not know each other; `app` joins them. A lint rule enforces it.
 
-- **Exam**, **Topic**, **Question**, **Prompt**, **Paper** (with editions), **Session or Attempt**.
-- **One history**, add-only: answered a question, recalled a prompt, wrote an answer, logged outside practice, studied or reread a topic.
-- **Derived views**, always rebuildable from the history: memory state per item, topic freshness, the mistake list, what a topic tends to lose, today's offer, the load forecast.
-- **Dates**: exams, scheduled papers, the hours you allow. The calendar itself lives in Study Director.
+## 3. Data
 
-One memory schedule serves recalled prompts, re-attempted questions and quick cards, with separate settings per kind, because recalling a topic and re-solving a question behave differently. A fixed 90% retention target is the only policy; Revision Director's own benchmark showed the alternative cost about 18% more sessions.
+Set out in full in [DATA.md](DATA.md). In brief:
+
+- **Pack content** ships with the app and is never copied into your data.
+- **Records** (settings, dates, ticks, marking points, lessons, your papers) are small and replaced in place.
+- **Facts** (a recall, a sitting, a written answer) are compact, written once, and corrected in place.
+- **Files** (clips, PDFs, photos) are stored once each, by fingerprint.
+- **Everything else on screen is worked out and never stored**: memory dates, scores, the mistake list, progress, today's offer.
+
+One memory schedule serves recalled topics, re-attempted questions and quick cards, with separate settings per kind, because recalling a topic and re-solving a question behave differently. A fixed 90% retention target is the only policy; Revision Director's own benchmark showed the alternative cost about 18% more sessions. The schedule uses no chance, so that replaying the same recalls always gives the same dates.
 
 ## 4. Storage, sync and safety
 
-- IndexedDB for records; browser file storage for images, PDFs, clips and answer photos.
-- One backup file format, optionally encrypted, with versions to go back to.
-- Export of everything as plain readable files.
-- Google Drive sync for laptop and phone on the mechanism shared with Study Director ([ECOSYSTEM.md](ECOSYSTEM.md), section 6). The history only grows, so two devices merge by union and only new entries are uploaded. A test in progress belongs to one device at a time.
+- On the device: one database with three stores (records, facts, this device only) and the browser's file store for files. See [DATA.md](DATA.md), section 4.
+- Between devices: a records file, one facts file per month, and files by fingerprint, on the owner's Google Drive. A usual sync moves two small files. Joining is record by record, last change wins; there is no review queue. See [DATA.md](DATA.md), section 5.
+- Earlier versions live where backups live and cost only what changed. One backup file by hand; a readable export. See [DATA.md](DATA.md), section 6.
+- The sync engine is shared with Study Director in intent ([ECOSYSTEM.md](ECOSYSTEM.md), section 6), and that engine is to be overhauled. Practice Director's side is written against a small port (carry these files, tell changed from unchanged, keep versions), so it can sit on the overhauled engine, or on a small engine of its own until that is ready.
 
-**Safety, reduced without loss.** Kept: the add-only history, writes that land whole or not at all, an integrity check on every backup and restore, backup versions, one writing tab at a time, tested restore. Not carried over from the two source apps: machinery that guarded the old data models, such as re-verifying every memory card against scheduler fingerprints, per-record revision counters in two stores, and scheduler rebases. Views rebuilt from the history make those unnecessary.
+**Safety, reduced without loss.** Kept: writes that land whole or not at all, a fingerprint check on every file sent or received, versions to go back to, one writing tab at a time, a tested restore, and recovery by itself when a device's storage has been emptied. Not carried over from the two source apps: a copy of the paper inside every attempt, re-verifying every memory card against scheduler fingerprints, per-record revision counters in two stores, and scheduler rebases. Working the schedule out from the facts each time makes those unnecessary.
 
 ## 5. What is reused
 
-| From | Carried over | Left behind |
-|---|---|---|
-| Practice Desk | Question and paper model, validation, test engine, scoring, timing evidence, calculator, the test player, original and corrected editions, mistake notebook logic, analytics, maths and image viewers, Wordgard authoring, agent content tools | SSC CGL papers as built-in content (an optional sample pack), the single-file build, the current screens |
-| Revision Director | The memory scheduler, the daily planner's signals (exam proximity, weakness, balance, interleaving, time), corrective relearning, sticking-point escalation, duration learning, interruption-aware timing | The unit and obligation forms, Study Log tab, plug-in runtime, the script-concatenation build, replay and rebase machinery, the current screens |
-| Calendar | Its export code only, for "Add to my calendar" | Everything else; its home is Study Director |
-| Study Director | The sync and backup mechanism, encryption and integrity primitives, install and update flow, phone safe-area handling, notification and sound handling, the pacer | Planner, timer and notes stay there |
+How directly each part comes over was checked against the code on 15 Nov.
+
+| From | Comes over as it is | Comes over reworked | Left behind |
+|---|---|---|---|
+| **Practice Desk** (TypeScript modules, the same form this app uses) | The test engine and scoring (`src/engine`, about 1,000 lines, no browser code); the question and paper model and its validation (`src/domain`, `src/content`); the scheduler adapter and its port (`src/learning`, about 140 lines), with chance switched off; the calculator | Attempts, which stop carrying a copy of the paper; mistake and analytics logic, which read facts and are no longer stored; editions, stored as changes only; the authoring studio (late phase), which is tied to its screens | SSC CGL papers as built-in content (an optional sample pack), its history stores, the single-file build, every screen |
+| **Revision Director** (TypeScript written as one long script, with no modules) | Nothing as a file | The planner's signals (exam proximity, weakness, balance, interleaving, time), sticking-point escalation, corrective relearning, learning how long things take, and interruption-aware timing: each is rewritten as a small pure function over topics and facts, with its existing tests as the specification | Its scheduler (Practice Desk's does the same job in a fifth of the code), units and obligations, stored cards and their fingerprints, replay and rebase machinery, the plug-in runtime, every screen |
+| **Calendar** (TypeScript modules) | Its calendar-file export (`src/interoperability/ics.ts`), for "Add to my calendar" | — | Everything else; its home is Study Director |
+| **Study Director** (plain JavaScript in its own module registry) | — | The pacer's arithmetic (its code is tied to Study Director's screen); install and update flow, phone safe-area handling, notification and sound handling, as patterns; the sync engine once its overhaul is done | Planner, timer and notes stay there |
+
+In short: Practice Desk's core drops in nearly unchanged, because it is already written the way this app will be. Revision Director contributes its ideas and its tests more than its files. The largest new pieces, with no source in any of the four, are the interface kit, the PDF answer sheet with clipping, and written answers.
 
 Practice Desk and Revision Director are frozen once Practice Director reaches parity with each. Both source apps carry their own scheduler, optimizer, store, backup format and tab guard; one of each remains.
 
@@ -77,7 +95,7 @@ Each phase ends with something usable daily.
 |---|---|---|
 | 0. Design | The mock-up, drawn end to end for Practice Director with a design-system sheet (see `design/README.md`). Every Practice Director screen is drawn; Study Director's are a separate pass. The owner approves before build. | — |
 | 0b. Content | Syllabus packs for Forestry, Geology, General Knowledge and Prelims; paper maps for recent Prelims papers; past Mains questions mapped to topics. In Claude Code sessions, alongside phase 1. | — |
-| 1. Remember | Interface kit and design system, storage, syllabus checklist, memory schedule, recall with tap-what-you-missed, Today, backup file | Revision Director |
+| 1. Remember | Interface kit and design system, storage as set out in DATA.md, syllabus checklist, memory schedule, recall with tap-what-you-missed, Today, backup file | Revision Director |
 | 2. Rehearse | Answer-sheet mode with paper maps and clipping, results, mistake re-attempts, cross-check, outside-practice log | Practice Desk (core) |
 | 3. Write | Written answers on the marks-weighted clock, full-paper rehearsal, missed points to cards, Copy for AI, Paste from AI | — |
 | 4. Sync | Google Drive sync, backup versions, readable export, phone polish, install flow | — |

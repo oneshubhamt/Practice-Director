@@ -46,7 +46,7 @@ Boards 01 to 25 are numbered in the order of a real day, then the edges. Boards 
 | 32 | `More-sheets.dc.html` | Six small sheets: add a paper or PDF, add topics, an exam's date and target, move the next paper, earlier versions, keyboard shortcuts | Yes |
 | 33 | `History.dc.html` | History: recorded by itself, corrected by you, thirteen weeks at a glance | Yes |
 | 34 | `Leave-out-sheet.dc.html` | "What you tend to leave out", as it prints | Yes |
-| 35 | `Memory-schedule.dc.html` | The memory schedule (advanced): the one rule, three kinds of item, rested items, rebuild | Yes |
+| 35 | `Memory-schedule.dc.html` | The memory schedule (advanced): the one rule, three kinds of item, rested items, and why no date is stored | Yes |
 | 36 | `Guide.dc.html` | The guide in five short pages, and a look around with sample data | Yes |
 | 37 | `Main-light.dc.html` | Today in the light theme | Yes |
 | 38 | `Practice-light.dc.html` | Practice in the light theme | Yes |

@@ -56,7 +56,7 @@ button{font-family:inherit;cursor:pointer}
 <header style="display: flex; flex-direction: column; gap: 6px">
 <a href="Settings.dc.html" style="align-self: flex-start; display: inline-block; padding: 12px 0; margin: -12px 0; text-decoration: none; font-size: 14px; font-weight: 500">Settings</a>
 <h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.015em">Memory schedule</h1>
-<div style="color: #A9AEBD; max-width: 640px">You never need this page. It shows how the app decides when something comes back, and holds the two things you can undo: rested items, and the dates themselves.</div>
+<div style="color: #A9AEBD; max-width: 640px">You never need this page. It shows how the app decides when something comes back, and holds the one thing here you can undo: resting an item.</div>
 </header>
 
 <section aria-label="The one rule" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 26px; display: flex; flex-wrap: wrap; gap: 24px 40px">
@@ -120,15 +120,14 @@ button{font-family:inherit;cursor:pointer}
 </section>
 
 <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
-<section aria-label="Rebuild the dates" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
-<h2 style="margin: 0; font-weight: 600; font-size: 16px">If the dates ever look wrong</h2>
-<div style="font-size: 14px; color: #A9AEBD">Every date is worked out from your history and nothing else. Rebuilding works all of them out again from the start. It takes a few seconds and cannot lose anything.</div>
-<sc-if value="{{notRebuilt}}" hint-placeholder-val="{{true}}">
-<button type="button" class="pd-quiet" onClick="{{rebuild}}" style="align-self: flex-start; min-height: 46px; padding: 0 18px; border-radius: 12px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-size: 15px; font-weight: 500">Rebuild from history</button>
-</sc-if>
-<sc-if value="{{rebuilt}}" hint-placeholder-val="{{false}}">
-<div class="pd-rise" role="status" style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: 12px; background: #1C3A30; color: #BFEBD8; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex: 0 0 18px; width: 18px; height: 18px; margin-top: 2px; fill: none; stroke: #6FD3A8; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Rebuilt just now from 2,914 history entries. All 483 dates came out the same.</div>
-</sc-if>
+<section aria-label="Where the dates come from" style="background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-weight: 600; font-size: 16px">Nothing here can go stale</h2>
+<div style="font-size: 14px; color: #A9AEBD">No date on this page is stored. Each one is worked out from your history every time the app opens, on every device, so the schedule can never drift from what you actually did.</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 28px; padding-top: 12px; border-top: 1px solid #222632">
+<div style="display: flex; flex-direction: column; gap: 1px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums">2,914</span><span style="font-size: 13px; color: #8A90A2">history entries read</span></div>
+<div style="display: flex; flex-direction: column; gap: 1px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums">0.04 s</span><span style="font-size: 13px; color: #8A90A2">to work out all 483 dates</span></div>
+</div>
+<a href="History.dc.html" style="align-self: flex-start; display: inline-block; padding: 12px 0; margin: -6px 0 -12px; text-decoration: none; font-size: 14px; font-weight: 500">If a date looks wrong, correct the history</a>
 </section>
 
 <section aria-label="Not built yet" style="border: 1px dashed #343A4A; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 8px">
@@ -146,10 +145,10 @@ button{font-family:inherit;cursor:pointer}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { back: {}, rebuilt: false };
+    this.state = { back: {} };
   }
   renderVals() {
-    const { back, rebuilt } = this.state;
+    const { back } = this.state;
     const kinds = [
       { name: 'Topics you recall', count: 185, right: 'Whole: the gap grows, from days to weeks to months.', wrong: 'Points missed: a shorter gap, and those points come first.', now: '148 fresh · 37 fading · typical gap now 16 days' },
       { name: 'Questions you re-attempt', count: 58, right: 'Right: once more after a few days, then it rests as solved.', wrong: 'Wrong: tomorrow, and its topic moves up.', now: '28 waiting for a first look · 30 coming back' },
@@ -173,9 +172,7 @@ class Component extends DCLogic {
     });
     const brought = Object.values(back).filter(Boolean).length;
     return {
-      kinds, rested, restedCount: 14 - brought,
-      rebuilt, notRebuilt: !rebuilt,
-      rebuild: () => this.setState({ rebuilt: true })
+      kinds, rested, restedCount: 14 - brought
     };
   }
 }
