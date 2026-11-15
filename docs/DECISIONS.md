@@ -16,7 +16,9 @@ How the idea has changed, in order, and where each question stands. Consolidated
 | How the apps guide without dictating | Two sides of one screen: the owner's plan, and the app's "Worth knowing" | Owner's suggestion, refined; proposed |
 | How much the owner must enter | As little as possible: recorded automatically, editable afterwards | Owner's condition, for every part of both apps |
 | Sync | Both apps on the owner's Google Drive through one shared mechanism; no server | Agreed in principle; Study Director's engine is to be overhauled first |
-| What is stored | Five kinds of data ([DATA.md](DATA.md)): pack content in the app, records replaced in place, facts written once, files stored once, and everything else worked out, never stored | Proposed after the owner asked for a lean design |
+| What is stored | Five kinds of data ([DATA.md](DATA.md)): bank content fetched per exam, records replaced in place, facts written once, files stored once, and everything else worked out, never stored | Proposed after the owner asked for a lean design |
+| Prepared content | Practice Desk's question-bank form (one folder per paper, found through catalogue, exam and year), with refinements for what reaches a device | Owner prefers that form and invited refinements |
+| Earlier versions kept | The latest, one a day for a week, one a week for a month, and one before anything large | Agreed |
 | Interface technology | Custom, no framework, on a small in-house kit | Agreed |
 | AI inside the app | None in the first builds; copy and paste bridges instead | Agreed |
 | Hosting | Own web address, apart from Study Director | Agreed |
@@ -57,6 +59,8 @@ How the idea has changed, in order, and where each question stands. Consolidated
 
 20. **Owner asked for the architecture and the data design to be reviewed** for leanness: store only what is needed, store nothing that can be worked out, replace in place wherever that suits, keep memory and storage small, lose no ability, and reuse the owner's repos directly where possible. Result: [DATA.md](DATA.md), and sections 1 to 5 of [BUILD.md](BUILD.md) rewritten. Five kinds of data. Worked-out data is never stored, on two conditions: the working-out uses no chance, and it stays fast. A sitting names its paper and no longer carries a copy; answers are stored in columns. What leaves a device is a records file, one facts file a month, and files by fingerprint. The source code was checked for how directly it comes over: Practice Desk's core nearly unchanged; Revision Director as rewritten logic with its tests; Calendar's export file as it is; Study Director's sync engine after its planned overhaul. Found on the way: no source app shows a PDF, so a PDF renderer is a new dependency; and reading an answer key from a photo would need a text-reading engine of several megabytes. Two screens adjusted (History, memory schedule). The owner said Study Director's backup system is to be overhauled massively; that plan was not available to this session, so the data design was written not to depend on it.
 
+21. **Owner's replies to the data review.** Practice Desk now keeps content as a question bank with one chain of lists, and the owner prefers that to "packs shipped with the app"; adopted, with refinements the owner invited (fetched per exam, one generated index per family, a revised edition always as changes only, one compact file per paper, pictures as separate files). Asked that nothing meaningful be lost: checked item by item ([DATA.md](DATA.md), section 10); two things added back. Asked whether Revision Director is modular: it is typed and layered in 27 parts, but they share one scope with no imports, so nothing copies over as a file; converting all of it is not worth doing, since most is left behind. Reading a key from a photo: left open. Speaking instead of typing: wanted, parked. Asked whether the browser's own PDF viewer could replace a renderer: it cannot serve clipping or phones; answer recorded in BUILD.md, the owner's ruling awaited. Earlier versions: agreed as proposed. The owner supplied the plan for Study Director's new sync; it is consolidated on branch `SD` with a statement of what Practice Director needs from it, and section 6 of DATA.md now follows that plan (a changes file per device, versions built from pieces) in place of the three shared files first proposed.
+
 ## 3. Positions that were reversed
 
 | Was | Now | Why |
@@ -88,6 +92,8 @@ How the idea has changed, in order, and where each question stands. Consolidated
 - A real self-check for General English.
 - AI with a key inside the app.
 - Personal tuning of the memory model.
+- Reading an answer key from a photo. Left open by the owner on 15 Nov: whether and how is decided later. Paste, tap and a solutions PDF with real text cover the first builds.
+- Speaking instead of typing. The owner wants it eventually. Good recognition of natural Indian English is heavy (a large model on the device, or an AI connection), so it waits. Until then the microphone on a phone's keyboard, and dictation on a laptop, already work in every text field of the app at no cost to it.
 - Two-way Google Calendar sync (belongs with the calendar in Study Director).
 - Multiple profiles on one device.
 - Exam packs for other students: CSE Mains, NEET PG, JEE.
@@ -113,7 +119,7 @@ How the idea has changed, in order, and where each question stands. Consolidated
 5. The owner's review of the mock-up. Every Practice Director screen is drawn; the choices made while drawing are listed in log entries 17 and 19.
 6. Thin areas: current affairs, General English, the interview stage.
 7. Exam dates and paper patterns to be confirmed against official notifications.
-8. The overhaul of Study Director's backup and sync, which both apps are to share. Practice Director needs three things from it: that another app can use it, that it carries a few whole files and tells changed from unchanged, and that it keeps versions. Until it is ready, phases 1 to 3 need no sync at all.
-9. Reading an answer key from a photo. Pasting a key, tapping it, and reading it from a solutions PDF that has real text are all light. A photo needs a text-reading engine of several megabytes. Suggested: leave the photo route out of the first builds and send photos through Copy for AI, which returns the key as text to paste; add the engine later, loaded only when asked for, if it is missed.
+8. The overhaul of Study Director's backup and sync, which both apps are to share. The plan and what Practice Director needs from it are on branch `SD` (`docs/sd/`). Until the engine is ready, phases 1 to 3 need no sync at all.
+9. The PDF renderer: the owner asked whether the browser's own viewer would do; the answer (it cannot serve clipping or phones) is in BUILD.md, section 1, and awaits a ruling.
 10. Whether PDFs go to Drive by default (so that a paper can be opened on the other device) or only when asked. DATA.md assumes by default, fetched elsewhere only when opened.
-11. How many earlier versions are kept, and the three kept on a device with no backup connected ([DATA.md](DATA.md), section 6).
+11. The refinements to the question-bank form ([DATA.md](DATA.md), section 2): which of them are made in Practice Desk's own bank, and which only in what Practice Director fetches.

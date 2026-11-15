@@ -12,7 +12,7 @@ Consolidated 14 Nov 2026; sections 1 to 5 revised 15 Nov after a review of the a
   - a design system of tokens and about twenty components, as laid out on the mock-up's design-system sheet. Screens are assembled only from these.
 - Why not freehand: Study Director and Practice Desk both show the cost (a 12,000-line host file; hand-written code to stop re-renders destroying focus and input).
 - Why not Preact, Svelte, Solid or Lit: each would work, but each adds a dependency for benefits the kit already gives. Polish comes from the design system and motion layer, not from a framework.
-- Runtime libraries: ts-fsrs, KaTeX, Wordgard, and **a PDF renderer (pdf.js), which is new**: none of the four source apps shows a PDF, and the answer sheet and clipping both need one.
+- Runtime libraries: ts-fsrs, KaTeX, Wordgard, and **a PDF renderer (pdf.js), which is new**: none of the four source apps shows a PDF, and the answer sheet and clipping both need one. The browser's own PDF viewer was considered and is not enough: a page that embeds it cannot learn which page is showing, cannot draw a clip box on it or read the picture under the box, and phone browsers do not show it inside a page at all. The renderer is the one Firefox itself uses; it loads only when a paper is opened.
 - **Each screen loads only what it uses.** Today, Syllabus and Progress need none of the four libraries. The PDF renderer loads with a paper, KaTeX with a question that has maths, Wordgard with the authoring studio. The PDF renderer and the packing of backups run off the main thread, and only the page in view (and its neighbours) is kept drawn.
 
 ## 2. Modules
@@ -34,7 +34,7 @@ src/
   ui/kit/         reactive state, components, router, motion
   ui/             design system and screens, loaded per screen
   assist/         AI with a key (later, optional)
-packs/            exam patterns, syllabus packs, paper maps
+question-banks/   content in Practice Desk's form: catalogue → exam → year → paper
 tools/            content command-line tools for agents
 ```
 
@@ -49,7 +49,7 @@ Four rules hold the shape:
 
 Set out in full in [DATA.md](DATA.md). In brief:
 
-- **Pack content** ships with the app and is never copied into your data.
+- **Bank content** follows Practice Desk's question-bank form, is fetched for the exams you sit, and is never copied into your data.
 - **Records** (settings, dates, ticks, marking points, lessons, your papers) are small and replaced in place.
 - **Facts** (a recall, a sitting, a written answer) are compact, written once, and corrected in place.
 - **Files** (clips, PDFs, photos) are stored once each, by fingerprint.
@@ -72,12 +72,12 @@ How directly each part comes over was checked against the code on 15 Nov.
 
 | From | Comes over as it is | Comes over reworked | Left behind |
 |---|---|---|---|
-| **Practice Desk** (TypeScript modules, the same form this app uses) | The test engine and scoring (`src/engine`, about 1,000 lines, no browser code); the question and paper model and its validation (`src/domain`, `src/content`); the scheduler adapter and its port (`src/learning`, about 140 lines), with chance switched off; the calculator | Attempts, which stop carrying a copy of the paper; mistake and analytics logic, which read facts and are no longer stored; editions, stored as changes only; the authoring studio (late phase), which is tied to its screens | SSC CGL papers as built-in content (an optional sample pack), its history stores, the single-file build, every screen |
-| **Revision Director** (TypeScript written as one long script, with no modules) | Nothing as a file | The planner's signals (exam proximity, weakness, balance, interleaving, time), sticking-point escalation, corrective relearning, learning how long things take, and interruption-aware timing: each is rewritten as a small pure function over topics and facts, with its existing tests as the specification | Its scheduler (Practice Desk's does the same job in a fifth of the code), units and obligations, stored cards and their fingerprints, replay and rebase machinery, the plug-in runtime, every screen |
+| **Practice Desk** (TypeScript modules, the same form this app uses) | The test engine and scoring (`src/engine`, about 1,000 lines, no browser code); the question and paper model and its validation (`src/domain`, `src/content`); the scheduler adapter and its port (`src/learning`, about 140 lines), with chance switched off; the calculator; the question-bank form and its content tools (`question-banks/`, `scripts/`) | Attempts, which stop carrying a copy of the paper; mistake and analytics logic, which read facts and are no longer stored; editions, stored as changes only; the authoring studio (late phase), which is tied to its screens | SSC CGL papers as built-in content (an optional sample pack), its history stores, the single-file build, every screen |
+| **Revision Director** (TypeScript in 27 ordered parts that share one scope and are joined into one script; typed and layered, but with no imports or exports) | Nothing as a file | The planner's signals (exam proximity, weakness, balance, interleaving, time), sticking-point escalation, corrective relearning, learning how long things take, and interruption-aware timing: each is rewritten as a small pure function over topics and facts, with its existing tests as the specification | Its scheduler (Practice Desk's does the same job in a fifth of the code), units and obligations, stored cards and their fingerprints, replay and rebase machinery, the plug-in runtime, every screen |
 | **Calendar** (TypeScript modules) | Its calendar-file export (`src/interoperability/ics.ts`), for "Add to my calendar" | — | Everything else; its home is Study Director |
 | **Study Director** (plain JavaScript in its own module registry) | — | The pacer's arithmetic (its code is tied to Study Director's screen); install and update flow, phone safe-area handling, notification and sound handling, as patterns; the sync engine once its overhaul is done | Planner, timer and notes stay there |
 
-In short: Practice Desk's core drops in nearly unchanged, because it is already written the way this app will be. Revision Director contributes its ideas and its tests more than its files. The largest new pieces, with no source in any of the four, are the interface kit, the PDF answer sheet with clipping, and written answers.
+In short: Practice Desk's core drops in nearly unchanged, because it is already written the way this app will be. Revision Director contributes its ideas and its tests more than its files; turning the whole of it into modules would not change that, because most of it (units, obligations, stored cards, its screens) is left behind. Only the few parts being carried need the conversion, and they are converted as they are carried. The largest new pieces, with no source in any of the four, are the interface kit, the PDF answer sheet with clipping, and written answers.
 
 Practice Desk and Revision Director are frozen once Practice Director reaches parity with each. Both source apps carry their own scheduler, optimizer, store, backup format and tab guard; one of each remains.
 

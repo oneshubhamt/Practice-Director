@@ -201,6 +201,8 @@ Paper patterns, from memory and to be confirmed the same way:
 
 The app ships no copyrighted papers. Paper maps carry only numbers, keys and topic names.
 
+Prepared content is kept as a question bank in the form Practice Desk now uses (one folder per paper, found through catalogue, exam and year, with original and revised editions), and is fetched for the exams you sit. See [DATA.md](DATA.md), section 2.
+
 ## 10. Working with AI
 
 The app is the memory and the measurement; an AI is the reasoning and the content. Without a key, you carry things between them:
