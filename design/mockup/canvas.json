@@ -4,7 +4,7 @@
     "v": 1,
     "at": "2026-11-13T14:10:00Z"
   },
-  "title": "Practice Director \u2014 design mock-up",
+  "title": "Practice Director — design mock-up",
   "launch": {
     "view": "canvas"
   },
@@ -15,77 +15,217 @@
       "y": 0,
       "w": 1440,
       "h": 1100,
-      "title": "Today (laptop)",
+      "title": "01 · Today",
       "expand": "fill",
       "is_interactive": true
     },
     "Phone-flow.dc.html": {
-      "x": 1520,
+      "x": 1540,
       "y": 0,
       "w": 390,
       "h": 844,
-      "title": "Daily session (phone, press Play)",
-      "is_interactive": true,
-      "radius": 28
+      "title": "02 · Today and a daily session on a phone (press Start)",
+      "radius": 28,
+      "is_interactive": true
     },
-    "Written-answer.dc.html": {
-      "x": 1990,
+    "Today-states.dc.html": {
+      "x": 2030,
       "y": 0,
-      "w": 390,
-      "h": 844,
-      "title": "Written answer (phone beside your paper)",
-      "is_interactive": true,
-      "radius": 28
+      "w": 1680,
+      "h": 900,
+      "title": "03 · Today on other days: after a gap, a thin day, a paper day, done"
+    },
+    "Practice.dc.html": {
+      "x": 0,
+      "y": 1260,
+      "w": 1440,
+      "h": 960,
+      "title": "04 · Practice",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Phone-places.dc.html": {
+      "x": 1540,
+      "y": 1260,
+      "w": 1280,
+      "h": 900,
+      "title": "05 · Practice, Syllabus and Progress on a phone",
+      "is_interactive": true
+    },
+    "Practice-sheets.dc.html": {
+      "x": 2920,
+      "y": 1260,
+      "w": 1440,
+      "h": 780,
+      "title": "06 · Practice: build a set, log outside practice, quick cards from a list",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Briefing.dc.html": {
+      "x": 0,
+      "y": 2380,
+      "w": 1440,
+      "h": 900,
+      "title": "07 · A paper, step 1: the briefing",
+      "expand": "fill",
+      "is_interactive": true
     },
     "Answer-sheet.dc.html": {
-      "x": 0,
-      "y": 1080,
+      "x": 1540,
+      "y": 2380,
       "w": 1440,
       "h": 1030,
-      "title": "Answer-sheet mode (any PDF)",
+      "title": "08 · A paper, step 2: answer sheet beside your PDF",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Answer-sheet-tablet.dc.html": {
+      "x": 3080,
+      "y": 2380,
+      "w": 834,
+      "h": 1112,
+      "title": "09 · Answer sheet on a tablet",
+      "radius": 20,
+      "is_interactive": true
+    },
+    "Paper-key.dc.html": {
+      "x": 4014,
+      "y": 2380,
+      "w": 1440,
+      "h": 970,
+      "title": "10 · A paper without a key: entering it",
       "expand": "fill",
       "is_interactive": true
     },
     "Results.dc.html": {
-      "x": 1520,
-      "y": 1080,
+      "x": 5554,
+      "y": 2380,
       "w": 1440,
       "h": 1280,
-      "title": "Results as a story",
-      "expand": "fill"
+      "title": "11 · A paper, step 3: results (three tabs)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Mistake.dc.html": {
+      "x": 7094,
+      "y": 2380,
+      "w": 1440,
+      "h": 900,
+      "title": "12 · A paper, step 4: a first look at each mistake",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Written-answer.dc.html": {
+      "x": 0,
+      "y": 3820,
+      "w": 390,
+      "h": 844,
+      "title": "13 · A written answer, phone beside your paper",
+      "radius": 28,
+      "is_interactive": true
+    },
+    "Rehearsal.dc.html": {
+      "x": 490,
+      "y": 3820,
+      "w": 1440,
+      "h": 900,
+      "title": "14 · A full Mains paper: choose, write, check",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Test-player.dc.html": {
+      "x": 2030,
+      "y": 3820,
+      "w": 1440,
+      "h": 900,
+      "title": "15 · The test player, for papers on screen",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Quick-cards.dc.html": {
+      "x": 3570,
+      "y": 3820,
+      "w": 390,
+      "h": 844,
+      "title": "16 · Quick cards",
+      "radius": 28,
+      "is_interactive": true
     },
     "Syllabus.dc.html": {
       "x": 0,
-      "y": 2480,
+      "y": 4880,
       "w": 1440,
-      "h": 900,
-      "title": "Syllabus",
+      "h": 1020,
+      "title": "17 · Syllabus",
       "expand": "fill",
       "is_interactive": true
     },
     "Progress.dc.html": {
-      "x": 1520,
-      "y": 2480,
+      "x": 1540,
+      "y": 4880,
       "w": 1440,
-      "h": 1150,
-      "title": "Progress",
-      "expand": "fill"
-    },
-    "SD-Plan-concept.dc.html": {
-      "x": 0,
-      "y": 3750,
-      "w": 1440,
-      "h": 970,
-      "title": "Study Director: Plan with a margin (concept)",
+      "h": 1170,
+      "title": "18 · Progress (press Adjust on the road)",
       "expand": "fill",
       "is_interactive": true
     },
-    "Practice.dc.html": {
+    "Speaks-up.dc.html": {
+      "x": 3080,
+      "y": 4880,
+      "w": 1680,
+      "h": 900,
+      "title": "19 · When the app speaks up: sticking point, load guard, phase, weekly summary"
+    },
+    "First-run.dc.html": {
       "x": 0,
-      "y": 0,
+      "y": 6210,
+      "w": 390,
+      "h": 844,
+      "title": "20 · First run, and a second device",
+      "radius": 28,
+      "is_interactive": true
+    },
+    "Settings.dc.html": {
+      "x": 490,
+      "y": 6210,
       "w": 1440,
-      "h": 960,
-      "title": "Practice",
+      "h": 1100,
+      "title": "21 · Settings",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Search.dc.html": {
+      "x": 2030,
+      "y": 6210,
+      "w": 1440,
+      "h": 1060,
+      "title": "22 · Search",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AI-bridge.dc.html": {
+      "x": 3570,
+      "y": 6210,
+      "w": 1440,
+      "h": 1120,
+      "title": "23 · Working with an AI: copy out, paste in",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Design-system.dc.html": {
+      "x": 0,
+      "y": 7490,
+      "w": 1440,
+      "h": 2440,
+      "title": "24 · Design system",
+      "expand": "fill"
+    },
+    "SD-Plan-concept.dc.html": {
+      "x": 1540,
+      "y": 7490,
+      "w": 1440,
+      "h": 970,
+      "title": "25 · For Study Director, a concept: Plan with a margin",
       "expand": "fill",
       "is_interactive": true
     }
@@ -93,11 +233,28 @@
   "order": [
     "Main.dc.html",
     "Phone-flow.dc.html",
-    "Written-answer.dc.html",
+    "Today-states.dc.html",
+    "Practice.dc.html",
+    "Phone-places.dc.html",
+    "Practice-sheets.dc.html",
+    "Briefing.dc.html",
     "Answer-sheet.dc.html",
+    "Answer-sheet-tablet.dc.html",
+    "Paper-key.dc.html",
     "Results.dc.html",
+    "Mistake.dc.html",
+    "Written-answer.dc.html",
+    "Rehearsal.dc.html",
+    "Test-player.dc.html",
+    "Quick-cards.dc.html",
     "Syllabus.dc.html",
     "Progress.dc.html",
+    "Speaks-up.dc.html",
+    "First-run.dc.html",
+    "Settings.dc.html",
+    "Search.dc.html",
+    "AI-bridge.dc.html",
+    "Design-system.dc.html",
     "SD-Plan-concept.dc.html"
   ],
   "notes": {},

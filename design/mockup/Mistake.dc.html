@@ -113,10 +113,10 @@ class Component extends DCLogic {
   }
   renderVals() {
     const { index, reason } = this.state;
-    const order = [6, 14, 23, 31, 38, 47, 52, 61, 70, 84, 93, 3, 9, 17, 22, 28, 35, 41, 49, 56, 63, 77, 88, 95, 11, 26, 44, 58, 67, 79, 90];
+    const order = [12, 14, 23, 31, 38, 47, 52, 61, 70, 84, 93, 3, 6, 9, 17, 22, 28, 35, 41, 49, 56, 63, 77, 88, 11, 26, 44, 58, 67, 79, 90];
     const samples = [
       { topic: 'Environment › Protected areas', yours: 'B, and you were sure', right: 'D', time: '0:48 · your average is 1:10', pick: 'B', key: 'D', guess: 'Did not know it', observed: 'Chosen for you: you were sure, and answered quickly.' },
-      { topic: 'Polity › Parliament', yours: 'A, and you were sure', right: 'C', time: '2:36 · your average is 1:10', pick: 'A', key: 'C', guess: 'Misread the question', observed: 'Chosen for you: sure, slow, and the question asks which is "not correct".' },
+      { topic: 'Polity › Parliament', yours: 'A, and you were sure', right: 'C', time: '2:50 · your average is 1:10', pick: 'A', key: 'C', guess: 'Misread the question', observed: 'Chosen for you: sure, slow, and the question asks which is "not correct".' },
       { topic: 'Economy › Banking', yours: 'C, as a 50-50', right: 'A', time: '1:52 · your average is 1:10', pick: 'C', key: 'A', guess: 'Torn between two', observed: 'Chosen for you: you marked it 50-50 and changed your answer from A to C.' }
     ];
     const s = samples[index % samples.length];

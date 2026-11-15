@@ -9,7 +9,7 @@ Consolidated 14 Nov 2026. The product design this serves is in [PLAN.md](PLAN.md
   - reactive state, so a screen can never show stale data;
   - a component convention (a function that returns elements) and a keyed-list helper;
   - a router and one motion layer (shared-element and page transitions, springs, reduced-motion support);
-  - a design system of tokens and about twenty components. Screens are assembled only from these.
+  - a design system of tokens and about twenty components, as laid out on the mock-up's design-system sheet. Screens are assembled only from these.
 - Why not freehand: Study Director and Practice Desk both show the cost (a 12,000-line host file; hand-written code to stop re-renders destroying focus and input).
 - Why not Preact, Svelte, Solid or Lit: each would work, but each adds a dependency for benefits the kit already gives. Polish comes from the design system and motion layer, not from a framework.
 - Runtime libraries kept: ts-fsrs, KaTeX, Wordgard.
@@ -75,7 +75,7 @@ Each phase ends with something usable daily.
 
 | Phase | Delivers | Replaces |
 |---|---|---|
-| 0. Design | The mock-up, reviewed and reworked once. Still to draw: see PLAN.md section 12. The owner approves before build. | — |
+| 0. Design | The mock-up, drawn end to end for Practice Director with a design-system sheet (see `design/README.md`). The few screens left are listed in PLAN.md section 12. The owner approves before build. | — |
 | 0b. Content | Syllabus packs for Forestry, Geology, General Knowledge and Prelims; paper maps for recent Prelims papers; past Mains questions mapped to topics. In Claude Code sessions, alongside phase 1. | — |
 | 1. Remember | Interface kit and design system, storage, syllabus checklist, memory schedule, recall with tap-what-you-missed, Today, backup file | Revision Director |
 | 2. Rehearse | Answer-sheet mode with paper maps and clipping, results, mistake re-attempts, cross-check, outside-practice log | Practice Desk (core) |
@@ -97,7 +97,7 @@ Everything in PLAN.md that is not named in the phase table above, with where it 
 
 | Phase | Capability |
 |---|---|
-| 1 | Prompt forms (explain, list, compare, draw, sequence); sticking points; time estimates learned from your pace; Read next; the optional source line; choose-your-own by subject, kind and length; a sample-data preview and an in-app guide; exam templates with known dates offered for acceptance; quick cards from a pasted list |
-| 2 | Sure · 50-50 · Guess; the briefing before a paper; saving a question; a one-line lesson on a mistake; clipping the explanation; changed answers; speed against accuracy; accuracy by question type; keyboard shortcuts and text size; screen stays awake and sound cues during timed work |
+| 1 | Any length of time typed as well as picked; prompt forms (explain, list, compare, draw, sequence); sticking points; time estimates learned from your pace; Read next; the optional source line; choose-your-own by subject, kind and length; a sample-data preview and an in-app guide; exam templates with known dates offered for acceptance; quick cards from a pasted list |
+| 2 | Sure · 50-50 · Guess; entering a key by paste, photo or tap; timed and untimed sittings; the briefing before a paper; saving a question; a one-line lesson on a mistake; clipping the explanation; changed answers; speed against accuracy; accuracy by question type; keyboard shortcuts and text size; screen stays awake and sound cues during timed work |
 | 3 | The pacer across a whole paper; the choose-your-questions step; the diagram check; General English through the same flow; a photo of the page |
-| 5 | Phases declared by you; "what you tend to leave out" as a printable sheet; a minimum day; coming back after a gap |
+| 5 | Phases drafted by the app and approved or adjusted by you; "what you tend to leave out" as a printable sheet; a minimum day; coming back after a gap |

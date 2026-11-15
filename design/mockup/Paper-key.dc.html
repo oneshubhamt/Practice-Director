@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — entering an answer key</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4B55D6}a:hover{color:#2F38A8}
+button{font-family:inherit;cursor:pointer}
+.pd-cell{transition:background .14s ease,border-color .14s ease,transform .12s ease}
+.pd-cell:hover{border-color:#4B55D6}
+.pd-cell:active{transform:scale(.94)}
+.pd-quiet{transition:background .14s ease}
+.pd-quiet:hover{background:#EEF0F5}
+@media (prefers-reduced-motion:reduce){.pd-cell,.pd-quiet{transition:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #F6F7FA; color: #14161C; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 12px clamp(16px, 3vw, 32px); background: #FFFFFF; border-bottom: 1px solid #E3E6EE">
+<a href="Practice.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Practice</a>
+<div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="font-weight: 600; font-size: 16px">Coaching test 8 · Economy</div>
+<div style="font-size: 13px; color: #555B6B">Your PDF · finished in 1:52:10 · 86 answered, 14 left blank</div>
+</div>
+</header>
+
+<main style="flex: 1 1 auto; width: 100%; max-width: 1180px; box-sizing: border-box; margin: 0 auto; padding: 32px clamp(16px, 3vw, 32px) 40px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px; max-width: 720px">
+<h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em">Now the answer key</h1>
+<div style="color: #555B6B">This paper did not come with one. Paste it in whatever form the coaching gives it, or tap the letters. Your answers are safe either way.</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+<section aria-label="Paste the key" style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EE; border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<label for="key-paste" style="font-weight: 600">Paste the key</label>
+<textarea id="key-paste" rows="12" style="box-sizing: border-box; width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid #C9CEDB; background: #F6F7FA; color: #14161C; font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 13px; line-height: 1.7; outline: none; resize: vertical">1. (b)   2. (d)   3. (a)   4. (c)   5. (b)
+6. (d)   7. (a)   8. (c)   9. (b)  10. (a)
+11. (c)  12. (c)  13. (d)  14. (a)  15. (b)
+16. (d)  17. (*)  18. (b)  19. (a)  20. (c)
+21. (a)  22. (b)  23. (d)  24. (c)  25. (a)
+…</textarea>
+<div style="font-size: 13px; color: #555B6B">Read as you paste: “1-b”, “1. (b)”, “1 B”, a table, or one letter per line all work. A photo of a printed key works too.</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" class="pd-quiet" style="min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-weight: 500; font-size: 14px">Read it from a photo</button>
+<button type="button" class="pd-quiet" style="min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-weight: 500; font-size: 14px">Take it from a solutions PDF</button>
+</div>
+</section>
+
+<section aria-label="The key as read" style="flex: 2 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EE; border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px"><span style="font-weight: 600">{{readLine}}</span><span style="font-size: 13px; color: {{needColor}}">{{needLine}}</span></div>
+<div role="group" aria-label="Answer key" style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{cells}}" as="c" hint-placeholder-count="100">
+<button type="button" class="pd-cell" onClick="{{c.cycle}}" aria-label="{{c.aria}}" style="min-height: 44px; padding: 0 4px; border-radius: 10px; display: flex; align-items: baseline; justify-content: center; gap: 5px; background: {{c.bg}}; border: 1.5px solid {{c.line}}; color: #14161C"><span style="font-size: 12px; color: #555B6B; font-variant-numeric: tabular-nums">{{c.n}}</span><span style="font-size: 15px; font-weight: 600">{{c.letter}}</span></button>
+</sc-for>
+</div>
+<div style="font-size: 13px; color: #555B6B">Press any square to change its letter. The three marked ones were starred or unreadable in what you pasted; a question the coaching cancelled can be left out and is not scored.</div>
+</section>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
+<a href="Results.dc.html" style="display: inline-flex; align-items: center; min-height: 52px; box-sizing: border-box; padding: 0 30px; border-radius: 14px; background: #14161C; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px; opacity: {{scoreOpacity}}">Score the paper</a>
+<button type="button" class="pd-quiet" style="min-height: 44px; padding: 0 14px; border-radius: 12px; border: 0; background: transparent; color: #4B55D6; font-weight: 500; font-size: 15px">No key yet. Keep my answers and score later</button>
+<span style="flex: 1 1 260px; font-size: 13px; color: #555B6B">Topics are not known for this paper, so results are by subject: Economy, from its name. If the key turns out to be wrong in places, a corrected edition can sit beside this one.</span>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { fixed: {} };
+  }
+  renderVals() {
+    const { fixed } = this.state;
+    const seq = 'bdacbdacbaccdabd?bacabdcadbcabdcabacdbadcbadc?bdacbdcabdacbadcbdacabdcbadcabdacbd?cabdacbdcabdacbadcbd';
+    const order = ['A', 'B', 'C', 'D', '—'];
+    const cells = Array.from({ length: 100 }, (_, i) => {
+      const n = i + 1, raw = seq[i] || 'a', unread = raw === '?';
+      const letter = fixed[n] || (unread ? '?' : raw.toUpperCase());
+      const open = letter === '?';
+      return {
+        n, letter, bg: open ? '#FBEBD3' : fixed[n] ? '#EEF0FF' : '#FFFFFF', line: open ? '#E0902F' : fixed[n] ? '#4B55D6' : '#E3E6EE',
+        aria: 'Question ' + n + ', key ' + (open ? 'not read' : letter),
+        cycle: () => this.setState({ fixed: { ...fixed, [n]: order[(order.indexOf(letter) + 1) % order.length] } })
+      };
+    });
+    const left = cells.filter((c) => c.letter === '?').length;
+    return {
+      cells,
+      readLine: 'Read ' + (100 - left) + ' of 100',
+      needLine: left ? left + ' still to settle: press each one' : 'All settled',
+      needColor: left ? '#8A5206' : '#1E6B4C',
+      scoreOpacity: left ? 0.45 : 1
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 // A board marks a slot as  <!--pd:rail today-->...<!--/pd:rail-->  (or pd:tabs).
 // Running this rewrites what is between the markers; the markers stay, so it can be re-run.
 const fs = require('fs'); const path = require('path');
-const PROJ = path.resolve(__dirname, 'pd-design/project');
+const PROJ = path.resolve(__dirname, '../mockup');
 
 const ico = (d, stroke) => `<svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: ${stroke}; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round">${d}</svg>`;
 const ICON = {
@@ -29,8 +29,16 @@ function rail(active) {
     const on = id === active;
     return `<a href="${href}" class="pd-nav"${on ? ' aria-current="page"' : ''} style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; ${on ? 'background: #1E222D; color: #ECEEF4' : 'color: #A9AEBD'}; text-decoration: none; font-weight: 500; font-size: 14px">${ico(ICON[id], on ? '#9BA3FF' : 'currentColor')}${label}</a>`;
   };
+  const narrow = PLACES.map(([id, label, href]) => {
+    const on = id === active;
+    return `<a href="${href}"${on ? ' aria-current="page"' : ''} style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: ${on ? '#9BA3FF' : '#8A90A2'}">${ico(ICON[id], 'currentColor').replace(/20px/g, '22px')}${label}</a>`;
+  }).join('\n');
   return `
-<nav aria-label="Main" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 18px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 22px">
+<style>@media (max-width: 760px){.pd-rail{display:none!important}.pd-railtabs{display:flex!important}.pd-rail~main{padding-bottom:104px!important}}</style>
+<nav aria-label="Main, on a narrow screen" class="pd-railtabs" style="display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 8px 8px 16px; background: #11141B; border-top: 1px solid #222632">
+${narrow}
+</nav>
+<nav aria-label="Main" class="pd-rail" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 18px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 22px">
 <div style="padding: 0 12px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
 <a href="Search.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #262B38; color: #8A90A2; text-decoration: none; font-size: 14px">${ico(ICON.search, 'currentColor').replace(/20px/g, '17px')}<span style="flex: 1 1 auto">Search</span><span style="padding: 1px 7px; border-radius: 6px; border: 1px solid #343A4A; font-size: 12px; color: #8A90A2">/</span></a>
 <div style="display: flex; flex-direction: column; gap: 4px">
@@ -48,7 +56,7 @@ const TAB_HREF = { today: 'Phone-flow.dc.html', practice: 'Phone-places.dc.html'
 function tabs(active) {
   const item = ([id, label]) => {
     const on = id === active;
-    return `<a href="${TAB_HREF[id]}"${on ? ' aria-current="page"' : ''} style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 500; color: ${on ? '#9BA3FF' : '#8A90A2'}">${ico(ICON[id], 'currentColor').replace(/20px/g, '22px')}${label}</a>`;
+    return `<a href="${TAB_HREF[id]}"${on ? ' aria-current="page"' : ''} style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: ${on ? '#9BA3FF' : '#8A90A2'}">${ico(ICON[id], 'currentColor').replace(/20px/g, '22px')}${label}</a>`;
   };
   return `
 <nav aria-label="Main" style="flex: 0 0 auto; display: flex; padding: 8px 8px 20px; background: #11141B; border-top: 1px solid #222632">

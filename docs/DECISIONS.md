@@ -11,6 +11,8 @@ How the idea has changed, in order, and where each question stands. Consolidated
 | Where the Calendar goes | Into Study Director, as Week, Month and Year views above its day board | Proposed; owner now expects it to help a great deal and wants it designed carefully |
 | Where Revision Director's engine goes | Into Practice Director | Proposed |
 | Who plans the day | The owner, by hand. The apps inform and offer; they never place work in a plan. | Owner's condition |
+| Phases of the year | Drafted by the app from the exam dates; approved, edited or adjusted by the owner | Owner's ruling |
+| The mock-up | Complete for Practice Director (25 screens and a design-system sheet); awaiting the owner's review | Phase 0, drawn |
 | How the apps guide without dictating | Two sides of one screen: the owner's plan, and the app's "Worth knowing" | Owner's suggestion, refined; proposed |
 | How much the owner must enter | As little as possible: recorded automatically, editable afterwards | Owner's condition, for every part of both apps |
 | Sync | Both apps on the owner's Google Drive through one shared mechanism; no server | Agreed in principle |
@@ -36,17 +38,20 @@ How the idea has changed, in order, and where each question stands. Consolidated
 
 ### 14 Nov 2026
 
-6. **Owner asked for a first-principles review**, aimed at the highest possible rank, and said the coming CAT should not shape the app. Described himself as self-contained, weak at planning revision and at keeping to a timetable, and asked that the app complement both his own habits and AI assistants.
+6. **Owner asked for a first-principles review**, aimed at the highest possible rank, and said the coming CAT should not shape the app. Described themselves as self-contained, weak at planning revision and at keeping to a timetable, and asked that the app complement both their own habits and AI assistants.
 7. **Review and third version.** A value test and four jobs (remember, measure, never waste a mistake, rehearse). Three depths of use. Self-rating replaced by tapping what was missed. Mistakes return as blind re-attempts. Written-answer flow added. Strength labels replaced by a draining memory bar with a cross-check. Targets, paper maps, load guard, minimum day and restart after a gap added. The Plan screen removed, leaving four places. Phases reordered. Mock-up reworked: seven screens, rendered and inspected this time.
 8. **Capability audit** against the four apps: about twenty capabilities restored or added.
 9. **Owner proposed two universes**, a study side and a practice side. Gave practice time and the level of marks needed.
 10. **Two-app structure proposed**, replacing absorption: Study Director for time with the Calendar, Practice Director for marks with Revision Director's engine, three links between them.
 11. **Owner liked the direction but did not finalise it.** Asked why the Calendar belongs in Study Director and how multi-day planning fits an app that knows one day. Answer recorded: a calendar is for dates a person decides; revision dates are decided by the forgetting curve, so revision needs a schedule and a load forecast.
-12. **Owner's condition: the day must not be dictated by a machine.** Recorded as a principle: the app remembers, computes and offers; it places nothing. Consequences: choose-your-own by subject, kind and length; phases declared by the owner; practice time offered to the day, never inserted.
+12. **Owner's condition: the day must not be dictated by a machine.** Recorded as a principle: the app remembers, computes and offers; it places nothing. Consequences: choose-your-own by subject, kind and length; phases declared by the owner (refined in entry 18); practice time offered to the day, never inserted.
 13. **Second audit, beyond the four apps.** Added: briefing before a paper, deadlines, a source line per topic, readable export. Proposed cutting or deferring several inherited parts.
 14. **Owner on Study Director's unfinished-work feature**: never used, a bureaucratic procedure. Found to be a generated text note with no way to act on it. Proposed: a "left over" tray of live blocks, and a one-line note to tomorrow.
 15. **Owner's rulings.** Suggested two panels in Plan, one to author and one for suggestions, with the calendar as part of Plan; adopted as "Plan with a margin". Briefing, source line and readable export: yes. Form and admit-card dates: added by the owner as deadlines in the calendar, which works back from them. Sharing answers with a person: dropped; AI only. Paper editions: keep, out of the interface by default. Authoring: keep, late. Test player and question bank: must stay. Safety machinery: left to the designer, who reduced it without loss of safety.
 16. **Owner's confirmations and a request.** The left-over tray must be automatic and editable, like Review today; effortlessness is required of every part of both apps. The calendar will help a great deal (weeks and months, points and windows, forms, obligations) and must be designed carefully and fully. Both apps should talk to each other, stay independent, and share the sync mechanism. Asked that the whole conversation be organised and consolidated into documents for a final review; the documents were audited against the conversation and rewritten as a set.
+
+17. **Owner asked for the mock-up to be finished**, end to end and with high polish, as the basis for development (phase 0 of the build). Done for Practice Director: 25 screens on the canvas, each rendered and inspected, with automated checks for broken links, tap-target size, text contrast, text size and narrow-width overflow. Choices made while drawing, all open to change: Search and Settings on the rail and no profile menu; a paused paper offered first on Practice; timed and untimed sittings, with only timed ones measured against the target; mistakes shown sure-and-wrong first; checking after a full paper can be spread over the week; a key-entry step for papers without a key; a first layout for Paste from AI; the test player's keys and question states taken from Practice Desk's own player.
+18. **Owner's two rulings during the mock-up.** Phases are to be suggested and tentatively drawn by the app, then approved, edited or adjusted by the owner. Time is to be enterable freely, not only picked from fixed chips. Both applied to the documents and the screens.
 
 ## 3. Positions that were reversed
 
@@ -62,7 +67,8 @@ How the idea has changed, in order, and where each question stands. Consolidated
 | "Fix" shows the answer | Blind re-attempt | Seeing an answer is not solving it |
 | Five strength labels | Draining memory bar | The labels mixed knowing with recency |
 | The app decides what, when and how much | The app offers; the owner decides | Owner's condition |
-| Phases worked out from exam dates | Phases declared by the owner | Same |
+| Phases worked out from exam dates, then phases declared by the owner | The app drafts the phases from the exam dates as a tentative suggestion; the owner approves, edits or adjusts them | Owner's ruling: a suggestion saves the work, and approval keeps the decision the owner's |
+| Time chosen from fixed chips | Chips for the common lengths, plus any length the owner types | Owner's question: there was no reason to limit it |
 | Test player to be re-examined; editions dropped from the interface; authoring pushed far back | All three kept | Owner's ruling |
 | Sharing a written answer with a person | AI only | Owner's ruling |
 | Calendar week level "optional" | A real part of planning, though the day never depends on it | Owner expects it to be useful |
@@ -95,8 +101,8 @@ How the idea has changed, in order, and where each question stands. Consolidated
 1. Final word on the two-app structure and the Calendar's home.
 2. The careful design pass on the calendar ([STUDY_DIRECTOR_IDEAS.md](STUDY_DIRECTOR_IDEAS.md), section 2, lists its questions).
 3. When Study Director work is taken up, and in which repo.
-4. The layout for "Paste from AI".
-5. Screens not yet drawn ([PLAN.md](PLAN.md), section 12).
+4. The layout for "Paste from AI": a first proposal is in the mock-up, not settled.
+5. The owner's review of the mock-up, and the few screens still not drawn ([PLAN.md](PLAN.md), section 12).
 6. Thin areas: current affairs, General English, the interview stage.
 7. Exam dates and paper patterns to be confirmed against official notifications.
 8. The review of the sync mechanism that both apps are to share.

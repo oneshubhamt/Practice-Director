@@ -17,6 +17,11 @@ button{font-family:inherit;cursor:pointer}
 .pd-nav:hover{background:#1A1E28;color:#ECEEF4}
 .pd-row{transition:background .16s ease}
 .pd-row:hover{background:#1A1E28}
+.pd-seg{transition:background .16s ease,color .16s ease}
+.pd-add{transition:border-color .16s ease}
+.pd-add:hover{border-color:#8E97FF}
+@keyframes pdCost{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pd-cost{animation:pdCost .28s cubic-bezier(.2,.7,.2,1) both}
 .pd-tick{transition:background .16s ease,border-color .16s ease,transform .12s ease}
 .pd-tick:active{transform:scale(.88)}
 .pd-fill{transition:width .5s cubic-bezier(.2,.7,.2,1),flex-grow .5s cubic-bezier(.2,.7,.2,1)}
@@ -25,28 +30,41 @@ button{font-family:inherit;cursor:pointer}
 </helmet>
 <div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #0E1016; color: #ECEEF4; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
 
-<nav aria-label="Main" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 20px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 28px">
-<div style="padding: 0 10px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
-<div style="display: flex; flex-direction: column; gap: 4px">
-<a href="Main.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
-<a href="Answer-sheet.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
-<a href="#syllabus" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; background: #1E222D; color: #ECEEF4; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: #9BA3FF; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
-<a href="Progress.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
-</div>
-<div style="margin-top: auto; padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #8A90A2; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #6FD3A8"></span>Synced 2 min ago</div>
+<!--pd:rail syllabus-->
+<style>@media (max-width: 760px){.pd-rail{display:none!important}.pd-railtabs{display:flex!important}.pd-rail~main{padding-bottom:104px!important}}</style>
+<nav aria-label="Main, on a narrow screen" class="pd-railtabs" style="display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 8px 8px 16px; background: #11141B; border-top: 1px solid #222632">
+<a href="Main.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" aria-current="page" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #9BA3FF"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" style="flex: 1 1 0; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 500; color: #8A90A2"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: 0 0 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
 </nav>
+<nav aria-label="Main" class="pd-rail" style="flex: 0 0 216px; box-sizing: border-box; padding: 28px 16px 18px; background: #11141B; border-right: 1px solid #222632; display: flex; flex-direction: column; gap: 22px">
+<div style="padding: 0 12px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em">Practice Director</div>
+<a href="Search.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 10px; min-height: 40px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #262B38; color: #8A90A2; text-decoration: none; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg><span style="flex: 1 1 auto">Search</span><span style="padding: 1px 7px; border-radius: 6px; border: 1px solid #343A4A; font-size: 12px; color: #8A90A2">/</span></a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="Main.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Today</a>
+<a href="Practice.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4z"></path></svg>Practice</a>
+<a href="Syllabus.dc.html" class="pd-nav" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; background: #1E222D; color: #ECEEF4; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: #9BA3FF; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 6h14M5 12h10M5 18h6"></path></svg>Syllabus</a>
+<a href="Progress.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19V10M12 19V5M19 19v-6"></path></svg>Progress</a>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="Settings.dc.html" class="pd-nav" style="display: flex; align-items: center; gap: 12px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; color: #A9AEBD; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>Settings</a>
+<div style="padding: 0 12px; display: flex; align-items: center; gap: 8px; color: #8A90A2; font-size: 13px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #6FD3A8"></span>Backed up 2 min ago</div>
+</div>
+</nav>
+<!--/pd:rail-->
 
-<main id="syllabus" style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(20px, 4vw, 48px) 48px">
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(20px, 4vw, 48px) 48px">
 <div style="max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px">
 
 <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
 <div style="display: flex; flex-direction: column; gap: 14px">
 <h1 style="margin: 0; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 32px; letter-spacing: -0.02em">Syllabus</h1>
 <div role="group" aria-label="Paper" style="display: flex; flex-wrap: wrap; gap: 8px">
-<button type="button" aria-pressed="true" style="min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #8E97FF; background: #2A2E55; color: #DDE0FF; font-weight: 500; font-size: 14px">Forestry</button>
-<button type="button" aria-pressed="false" style="min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">Geology</button>
-<button type="button" aria-pressed="false" style="min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">General Knowledge</button>
-<button type="button" aria-pressed="false" style="min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">Prelims</button>
+<button type="button" aria-pressed="true" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #8E97FF; background: #2A2E55; color: #DDE0FF; font-weight: 500; font-size: 14px">Forestry</button>
+<button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">Geology</button>
+<button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">General Knowledge</button>
+<button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #343A4A; background: transparent; color: #A9AEBD; font-weight: 500; font-size: 14px">Prelims</button>
 </div>
 </div>
 <div style="flex: 0 1 340px; min-width: 240px; display: flex; flex-direction: column; gap: 8px">
@@ -59,13 +77,22 @@ button{font-family:inherit;cursor:pointer}
 </div>
 </header>
 
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: -6px">
+<div role="group" aria-label="Show" style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #171A23; border: 1px solid #262B38">
+<sc-for list="{{views}}" as="v" hint-placeholder-count="2">
+<button type="button" class="pd-seg" onClick="{{v.pick}}" aria-pressed="{{v.pressed}}" style="min-height: 40px; padding: 0 16px; border: 0; border-radius: 9px; font-size: 14px; font-weight: 500; background: {{v.bg}}; color: {{v.fg}}">{{v.label}}</button>
+</sc-for>
+</div>
+<button type="button" class="pd-add" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid #343A4A; background: transparent; color: #ECEEF4; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M12 5v14M5 12h14"></path></svg>Add topics</button>
+</div>
+
 <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
 
 <section aria-label="Topics" style="flex: 999 1 480px; min-width: 0; background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 10px">
-<div style="padding: 12px 14px 8px; font-size: 13px; color: #8A90A2">Paper I · tick a topic once you have studied it. The bar is your memory of it, draining as days pass.</div>
+<div style="padding: 12px 14px 8px; font-size: 13px; color: #8A90A2">{{listNote}}</div>
 <sc-for list="{{topics}}" as="t" hint-placeholder-count="8">
 <div class="pd-row" style="display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 12px; background: {{t.rowBg}}">
-<button type="button" class="pd-tick" onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" aria-label="{{t.tickLabel}}" style="flex: 0 0 26px; height: 26px; border-radius: 50%; border: 1.5px solid {{t.tickLine}}; background: {{t.tickBg}}; display: flex; align-items: center; justify-content: center; padding: 0"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: #0E1016; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: {{t.tickMark}}"><path d="M5 12l5 5 9-10"></path></svg></button>
+<button type="button" class="pd-tick" onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" aria-label="{{t.tickLabel}}" style="flex: 0 0 44px; height: 44px; margin: -6px -9px; border: 0; background: transparent; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0"><span style="width: 26px; height: 26px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid {{t.tickLine}}; background: {{t.tickBg}}; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: #0E1016; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: {{t.tickMark}}"><path d="M5 12l5 5 9-10"></path></svg></span></button>
 <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
 <span style="font-weight: 500; font-size: 15px">{{t.name}}</span>
 <span style="font-size: 12px; color: #8A90A2">{{t.meta}}<span style="color: #F2B866">{{t.weak}}</span></span>
@@ -76,6 +103,9 @@ button{font-family:inherit;cursor:pointer}
 </div>
 </div>
 </sc-for>
+<sc-if value="{{hasCost}}" hint-placeholder-val="{{false}}">
+<div class="pd-cost" role="status" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 8px 4px 4px; padding: 12px 14px; border-radius: 12px; background: #1E222D; border: 1px solid #343A4A"><span style="flex: 1 1 260px"><span style="font-weight: 500">{{costLine}}</span> <span style="color: #A9AEBD">{{costNote}}</span></span><button type="button" onClick="{{undo}}" style="min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #343A4A; background: transparent; color: #9BA3FF; font-weight: 600; font-size: 14px">Undo</button></div>
+</sc-if>
 </section>
 
 <aside aria-label="Selected topic" style="flex: 1 1 340px; min-width: 0; background: #171A23; border: 1px solid #262B38; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 22px">
@@ -97,6 +127,10 @@ button{font-family:inherit;cursor:pointer}
 </div>
 <div style="font-size: 13px; color: #8A90A2">Collected from your recalls and answers. This becomes your sheet for the final month.</div>
 </div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><span style="color: #8A90A2">Your source</span><span style="text-align: right">Khanna, chapter 7 · <a href="#" style="text-decoration: none">Change</a></span></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><span style="color: #8A90A2">Your note in Study Director</span><a href="#" style="display: inline-block; padding: 13px 0 13px 12px; margin: -13px 0; text-decoration: none">Open</a></div>
+</div>
 <div style="border-radius: 14px; background: #131620; border: 1px solid #262B38; padding: 16px; display: flex; flex-direction: column; gap: 4px">
 <div style="font-weight: 600">3 past questions ready to write</div>
 <div style="font-size: 13px; color: #8A90A2">10, 15 and 20 marks. Recalling this topic means answering one of them.</div>
@@ -113,7 +147,7 @@ button{font-family:inherit;cursor:pointer}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { studied: { 0: true, 1: true, 2: true, 3: false, 4: true, 5: true, 6: false, 7: false } };
+    this.state = { view: 'all', last: -1, studied: { 0: true, 1: true, 2: true, 3: false, 4: true, 5: true, 6: false, 7: false } };
   }
   renderVals() {
     const base = [
@@ -136,17 +170,30 @@ class Component extends DCLogic {
       return {
         name, meta, weak: on ? weak : '',
         state: state === 'New' ? 'Not started' : state,
-        note: !on ? '' : justTicked ? 'first recall tomorrow' : note,
+        note: !on ? '' : justTicked ? 'first recall Monday' : note,
         barWidth: !on ? '0%' : (justTicked ? 100 : pct) + '%',
         barColor: state === 'Fading' ? '#F2B866' : '#8E97FF',
         labelColor: state === 'Fading' ? '#F2B866' : state === 'New' ? '#8A90A2' : '#C3C8FF',
         rowBg: i === 1 ? '#1E222D' : 'transparent',
         pressed: on ? 'true' : 'false', tickLabel: 'Studied: ' + name,
         tickBg: on ? '#8E97FF' : 'transparent', tickLine: on ? '#8E97FF' : '#4A5062', tickMark: on ? 1 : 0,
-        toggle: () => this.setState({ studied: { ...studied, [i]: !on } })
+        asked: parseInt(meta.replace('Asked in ', ''), 10), unread: !on,
+        toggle: () => this.setState({ studied: { ...studied, [i]: !on }, last: on ? -1 : i })
       };
     });
-    return { topics, nFresh, nFading, nNew };
+    const { view, last } = this.state;
+    const readNext = view === 'next';
+    const shown = readNext ? topics.filter((t) => t.unread).sort((a, b) => b.asked - a.asked) : topics;
+    const views = [['all', 'All topics'], ['next', 'Read next']].map(([id, label]) => ({ label, pressed: id === view ? 'true' : 'false', bg: id === view ? '#2A2E55' : 'transparent', fg: id === view ? '#DDE0FF' : '#A9AEBD', pick: () => this.setState({ view: id }) }));
+    const ticked = last >= 0 && studied[last] ? base[last][0] : '';
+    return {
+      topics: shown.map((t) => ({ ...t, rowBg: readNext ? 'transparent' : t.rowBg })), views, nFresh, nFading, nNew,
+      listNote: readNext
+        ? 'Not yet read, the most asked first. When you read is yours to plan; tick a topic once it is done.'
+        : 'Paper I · tick a topic once you have studied it. The bar is your memory of it, draining as days pass.',
+      hasCost: !!ticked, costLine: 'Ticked ' + ticked + '.', costNote: 'First recall on Monday. This adds about 1 minute a day.',
+      undo: () => this.setState({ studied: { ...studied, [last]: false }, last: -1 })
+    };
   }
 }
 </script>

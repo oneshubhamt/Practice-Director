@@ -23,7 +23,7 @@ button{font-family:inherit;cursor:pointer}
 <div style="min-height: 100vh; display: flex; flex-direction: column; background: #F6F7FA; color: #14161C; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
 
 <header style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; padding: 14px clamp(16px, 3vw, 32px); background: #FFFFFF; border-bottom: 1px solid #E3E6EE">
-<a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Leave</a>
+<a href="Practice.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Leave</a>
 <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
 <div style="font-weight: 600; font-size: 16px">UPSC Prelims 2023 · General Studies Paper I</div>
 <div style="font-size: 13px; color: #555B6B">Your PDF · 100 questions · +2 for right, −0.66 for wrong · key and topics already loaded</div>
@@ -92,7 +92,7 @@ class Component extends DCLogic {
     super(props);
     this.state = {
       conf: 'sure',
-      answers: { 1: ['B', 'sure'], 2: ['D', 'sure'], 3: ['A', 'fifty'], 4: ['C', 'sure'], 6: ['B', 'guess'] }
+      answers: { 1: ['B', 'sure'], 2: ['D', 'sure'], 3: ['A', 'fifty'], 4: ['C', 'guess'], 5: ['B', 'sure'], 6: ['B', 'fifty'] }
     };
   }
   renderVals() {

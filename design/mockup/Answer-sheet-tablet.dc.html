@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice Director — answer sheet on a tablet</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4B55D6}a:hover{color:#2F38A8}
+button{font-family:inherit;cursor:pointer}
+.pd-bub{transition:background .14s ease,border-color .14s ease,transform .12s ease}
+.pd-bub:active{transform:scale(.94)}
+.pd-seg{transition:background .16s ease,color .16s ease}
+.pd-num{transition:background .14s ease,border-color .14s ease}
+@media (prefers-reduced-motion:reduce){.pd-bub,.pd-seg,.pd-num{transition:none}}
+</style>
+</helmet>
+<div style="width: 834px; height: 1112px; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; background: #F6F7FA; color: #14161C; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45">
+
+<header style="flex: 0 0 auto; display: flex; align-items: center; gap: 16px; padding: 12px 20px; background: #FFFFFF; border-bottom: 1px solid #E3E6EE">
+<a href="Practice.dc.html" aria-label="Leave" style="flex: 0 0 44px; height: 44px; border-radius: 12px; border: 1px solid #E3E6EE; display: flex; align-items: center; justify-content: center; color: #14161C"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></a>
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+<div style="font-weight: 600">Prelims 2023 · General Studies</div>
+<div style="font-size: 13px; color: #555B6B">{{answered}} of 100 answered · page 4 of 24</div>
+</div>
+<div style="display: flex; align-items: baseline; gap: 6px"><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">1:12:40</span><span style="font-size: 13px; color: #555B6B">left</span></div>
+<a href="Results.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 12px; background: #14161C; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 14px">Finish</a>
+</header>
+
+<section aria-label="Your paper" style="flex: 1 1 auto; min-height: 0; overflow: hidden; padding: 20px 24px 0; display: flex; flex-direction: column">
+<div style="flex: 1 1 auto; min-height: 0; background: #FFFFFF; border: 1px solid #E3E6EE; border-bottom: 0; border-radius: 6px 6px 0 0; box-shadow: 0 12px 32px rgba(20,22,28,.06); padding: 40px 48px 0; display: flex; flex-direction: column; gap: 30px; overflow: hidden">
+<sc-for list="{{page}}" as="q" hint-placeholder-count="3">
+<div style="display: flex; gap: 14px; margin: -12px; padding: 12px; border-radius: 10px; background: {{q.bg}}"><span style="flex: 0 0 22px; font-weight: 600; color: {{q.numColor}}">{{q.n}}.</span><div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 9px"><div style="height: 9px; width: {{q.w1}}; border-radius: 4px; background: #DADEE8"></div><div style="height: 9px; width: {{q.w2}}; border-radius: 4px; background: #DADEE8"></div><div style="height: 9px; width: {{q.w3}}; border-radius: 4px; background: #DADEE8"></div><div style="margin-top: 6px; display: flex; flex-direction: column; gap: 8px"><div style="height: 8px; width: 38%; border-radius: 4px; background: #E7EAF1"></div><div style="height: 8px; width: 44%; border-radius: 4px; background: #E7EAF1"></div><div style="height: 8px; width: 33%; border-radius: 4px; background: #E7EAF1"></div><div style="height: 8px; width: 40%; border-radius: 4px; background: #E7EAF1"></div></div></div></div>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="Answer" style="flex: 0 0 auto; background: #FFFFFF; border-top: 1px solid #E3E6EE; box-shadow: 0 -10px 30px rgba(20,22,28,.07); padding: 18px 24px 22px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 18px">
+<div style="flex: 0 0 auto; display: flex; flex-direction: column; gap: 0"><span style="font-size: 12px; color: #555B6B">Question</span><span style="font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.02em; line-height: 1.05; font-variant-numeric: tabular-nums; min-width: 48px">{{current}}</span></div>
+<div role="group" aria-label="Your answer" style="flex: 1 1 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{options}}" as="o" hint-placeholder-count="4">
+<button type="button" class="pd-bub" onClick="{{o.pick}}" aria-label="{{o.aria}}" aria-pressed="{{o.pressed}}" style="min-height: 60px; border-radius: 16px; font-family: 'Inter Tight', Inter, sans-serif; font-weight: 600; font-size: 20px; background: {{o.bg}}; color: {{o.fg}}; border: {{o.border}}">{{o.letter}}</button>
+</sc-for>
+</div>
+<div role="group" aria-label="How sure are you" style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 14px; background: #EEF0F5">
+<sc-for list="{{confs}}" as="c" hint-placeholder-count="3">
+<button type="button" class="pd-seg" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" style="min-height: 52px; padding: 0 14px; border: 0; border-radius: 10px; font-size: 14px; font-weight: 600; background: {{c.bg}}; color: {{c.fg}}; box-shadow: {{c.shadow}}">{{c.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 12px">
+<div role="group" aria-label="Jump to a question" style="flex: 1 1 auto; min-width: 0; display: flex; gap: 6px; overflow: hidden">
+<sc-for list="{{strip}}" as="s" hint-placeholder-count="14">
+<button type="button" class="pd-num" onClick="{{s.go}}" aria-label="{{s.aria}}" style="flex: 0 0 44px; height: 44px; border-radius: 12px; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; background: {{s.bg}}; color: {{s.fg}}; border: {{s.border}}">{{s.n}}</button>
+</sc-for>
+</div>
+<button type="button" style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CEDB; background: #FFFFFF; color: #14161C; font-weight: 500; font-size: 14px"><svg aria-hidden="true" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M6 3v15h15M3 6h15v15"></path></svg>Clip</button>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":834,"height":1112}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { current: 6, conf: 'sure', answers: { 1: ['B', 'sure'], 2: ['D', 'sure'], 3: ['A', 'fifty'], 4: ['C', 'guess'], 5: ['B', 'sure'] } };
+  }
+  renderVals() {
+    const { current, conf, answers } = this.state;
+    const look = {
+      sure: { bg: '#4B55D6', fg: '#FFFFFF', border: '1.5px solid #4B55D6' },
+      fifty: { bg: '#F2C47A', fg: '#14161C', border: '1.5px solid #A8660A' },
+      guess: { bg: '#FFFFFF', fg: '#14161C', border: '2px dashed #A8660A' }
+    };
+    const blank = { bg: '#FFFFFF', fg: '#14161C', border: '1.5px solid #C9CEDB' };
+    const mine = answers[current];
+    const options = ['A', 'B', 'C', 'D'].map((letter) => {
+      const on = !!mine && mine[0] === letter;
+      return {
+        letter, ...(on ? look[mine[1]] : blank), pressed: on ? 'true' : 'false', aria: 'Question ' + current + ', option ' + letter,
+        pick: () => {
+          const next = { ...answers };
+          if (on) delete next[current]; else next[current] = [letter, conf];
+          this.setState({ answers: next, conf: 'sure', current: on ? current : Math.min(100, current + 1) });
+        }
+      };
+    });
+    const confs = [['sure', 'Sure'], ['fifty', '50-50'], ['guess', 'Guess']].map(([id, label]) => {
+      const on = id === conf;
+      return { label, pressed: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#14161C' : '#555B6B', shadow: on ? '0 1px 3px rgba(20,22,28,.14)' : 'none', pick: () => this.setState({ conf: id }) };
+    });
+    const first = Math.max(1, Math.min(current - 5, 87));
+    const strip = Array.from({ length: 14 }, (_, i) => {
+      const n = first + i, a = answers[n], here = n === current;
+      const s = a ? look[a[1]] : { bg: '#F6F7FA', fg: '#555B6B', border: '1.5px solid #F6F7FA' };
+      return { n, ...s, border: here ? '2px solid #14161C' : s.border, aria: 'Question ' + n + (a ? ', answered ' + a[0] : ', not answered'), go: () => this.setState({ current: n }) };
+    });
+    const widths = [['96%', '91%', '42%'], ['93%', '97%', '71%'], ['89%', '64%', '0%'], ['92%', '85%', '55%'], ['95%', '78%', '0%'], ['90%', '94%', '36%']];
+    const page = [5, 6, 7, 8, 9, 10].map((n, i) => ({ n, w1: widths[i][0], w2: widths[i][1], w3: widths[i][2], bg: n === current ? '#F3F4FF' : 'transparent', numColor: n === current ? '#4B55D6' : '#555B6B' }));
+    return { current, options, confs, strip, page, answered: Object.keys(answers).length };
+  }
+}
+</script>
+</body>
+</html>

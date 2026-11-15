@@ -1,12 +1,12 @@
 # Practice Director: product design
 
-Consolidated 14 Nov 2026 from the whole planning conversation. Nothing is built yet, and nothing here is final until the owner says so. How this design was reached is in [DECISIONS.md](DECISIONS.md); how it would be built is in [BUILD.md](BUILD.md); how it sits beside Study Director is in [ECOSYSTEM.md](ECOSYSTEM.md).
+Consolidated 14 Nov 2026 from the whole planning conversation; brought in line with the full mock-up the same day. Nothing is built yet, and nothing here is final until the owner says so. How this design was reached is in [DECISIONS.md](DECISIONS.md); how it would be built is in [BUILD.md](BUILD.md); how it sits beside Study Director is in [ECOSYSTEM.md](ECOSYSTEM.md).
 
 ## 1. Purpose
 
 Practice Director answers one question: **what should I practise now, so that what I studied turns into marks and is still in my head on exam day?** It then lets you do that practice on the spot and learns from the result.
 
-**Who it is for.** First, its owner: preparing for UPSC Prelims 2027 and IFoS Mains 2027 (optionals Forestry and Geology), with screen-based exams (CAT, XAT, PGDBA) as secondary aims. He is self-directed, plans his own day by hand in Study Director, practises 2 to 4 hours a day, and names two weaknesses: planning revision, and keeping to a timetable. The aim is the highest possible rank. Second, other students (CSE aspirants, medical students, JEE and others), which is why everything exam-specific lives in data and not in code.
+**Who it is for.** First, its owner: preparing for UPSC Prelims 2027 and IFoS Mains 2027 (optionals Forestry and Geology), with screen-based exams (CAT, XAT, PGDBA) as secondary aims. The owner is self-directed, plans each day by hand in Study Director, practises 2 to 4 hours a day, and names two weaknesses: planning revision, and keeping to a timetable. The aim is the highest possible rank. Second, other students (CSE aspirants, medical students, JEE and others), which is why everything exam-specific lives in data and not in code.
 
 **The test of success** is daily use. An app that feels like paperwork will not be used, and an unused app is worth nothing.
 
@@ -53,22 +53,23 @@ Work done on your own counts exactly as much as work the app suggested.
 
 ## 5. The four places
 
-Today, Practice, Syllabus, Progress. Settings sit behind the profile menu. On a laptop they are a slim left rail; on a phone, a bottom bar.
+Today, Practice, Syllabus, Progress. On a laptop they are a slim left rail, with Search at its head and Settings at its foot; on a phone, a bottom bar, with Search and Settings as two icons on Today. There is no profile menu, because there are no accounts.
 
 ### Today
 
 - Countdown to each exam.
-- **Suggested for today**: an ordered list with a reason and a time for each item. It has a core that fits a 2-hour day and an extension up to 4. One **Start** button.
-- **Choose your own**, beside Start, works by feel: pick a subject, a kind of work (recall, questions, writing) and a length, in any combination. You decide what and how long; the app only picks which items fill it.
-- **Less time today?** Chips (15 · 30 · 60 min) cut the session to its most valuable part.
+- **Suggested for today**: an ordered list with a reason and a time for each item. It has a core that fits a 2-hour day, and below it a few offers you can add one by one, up to the 4 hours you allow. One **Start** button.
+- **Choose your own**, beside Start, works by feel: pick a subject, a kind of work (recall, questions, writing, fixing mistakes) and a length, in any combination. You decide what and how long; the app only picks which items fill it.
+- **Less time today?** Chips for the common lengths, and a field for any number of minutes you type, cut the session to its most valuable part. The same holds wherever a length of time is chosen: chips for speed, a typed value for anything else.
 - **Your memory**: topics fresh, fading and not started, and how many of the fading ones today's session catches.
 - The next full paper, set at the real exam's hour.
 - A week strip. A skipped day is stated plainly and its work spread forward.
-- **Quick note**: one line for anything you did on your own.
+- **Quick note**: one line for anything you did on your own. The app shows how it read the line (which topic it ticked, what it recorded) with an Undo.
 
 ### Practice
 
-- **Papers**: past papers and tests; two taps to start. A paper's slot can be added to your phone's own calendar.
+- **Papers**: past papers and tests, grouped by exam; two taps to start. A paper's slot can be added to your phone's own calendar. A paper left half-done is offered first, on the device that holds it.
+- **Fix mistakes** and **Saved questions**: the open list, and the questions you chose to keep.
 - **Answer-sheet mode** (section 6).
 - **Build a set**: topics, number of questions, source (unseen, my mistakes, weak topics, mixed).
 - **Written answers** and **full-paper rehearsal** (section 6).
@@ -87,7 +88,7 @@ Today, Practice, Syllabus, Progress. Settings sit behind the profile menu. On a 
 
 ### Progress
 
-- **The road ahead**: phases from today to each exam. You set the dates and say which phase you are in; the app proposes a change and you confirm. A phase only shifts what is offered.
+- **The road ahead**: phases from today to each exam. The app drafts them from your exam dates as a tentative suggestion; you approve the draft, or edit its dates, names and number of phases, at any time. When a phase date arrives the app asks and you confirm, postpone or change the road. A phase only shifts what is offered.
 - **Two things that matter now**, never more, each with its reason.
 - **Full papers against your target**. A target starts at 55% of a paper's marks and can be changed.
 - **What you still hold**: fresh, fading and not started, by paper.
@@ -97,12 +98,12 @@ Today, Practice, Syllabus, Progress. Settings sit behind the profile menu. On a 
 
 ### First run and a second device
 
-- **First run, under two minutes**: pick an exam, set its date, set the time you allow. The syllabus is preloaded. Take one past paper in answer-sheet mode; its result is the first reason to return.
+- **First run, under two minutes**: pick your exams, confirm the dates and optionals already filled in, say how long you practise on a normal day. The syllabus is preloaded and a first road is drafted. Take one past paper in answer-sheet mode; its result is the first reason to return.
 - **A second device** starts with "Connect Drive" and finds your data before asking for anything.
 
 ### Settings
 
-Exams and dates, the time you allow, appearance and text size, data (backup, versions, export in readable form, sync), the memory schedule (advanced), an in-app guide and a sample-data preview.
+Exams, dates and targets; the time you allow on a normal day and at most (chips or a typed value); the one daily reminder; appearance and text size; data (backup, versions, export in readable form, sync); the memory schedule (advanced); working with an AI; an in-app guide and a sample-data preview; keyboard shortcuts.
 
 ## 6. How each kind of practice works
 
@@ -110,19 +111,19 @@ Exams and dates, the time you allow, appearance and text size, data (backup, ver
 
 **A mistake coming back.** The question appears as you clipped it and you **answer it again, blind**. The app marks it. Right: it returns once more after a few days, then rests. Wrong: tomorrow, and its topic moves up. A one-line lesson you wrote ("what I should have seen") shows after you answer.
 
-**Answer-sheet mode.** For any PDF, book or coaching test, with no typing-in of questions. Your PDF sits beside a bubble sheet. You answer against the clock and say when you are unsure: Sure · 50-50 · Guess. For official papers a **paper map** (answer key and topic of each question) is already loaded. For anything else you paste or tap in the key. You can **clip** a question, and its explanation from a solutions PDF, straight from the page; the clip becomes the revision card. This is also closest to how Prelims is actually sat.
+**Answer-sheet mode.** For any PDF, book or coaching test, with no typing-in of questions. Your PDF sits beside a bubble sheet; on a tablet or phone the sheet becomes a dock under the page with one large row of answers. You answer against the clock and say when you are unsure: Sure · 50-50 · Guess. For official papers a **paper map** (answer key and topic of each question) is already loaded. For anything else you enter the key at the end: paste it in whatever form it comes, read it from a photo or a solutions PDF, or tap the letters; anything unreadable is marked for you to settle, and scoring can wait if you have no key yet. You can **clip** a question, and its explanation from a solutions PDF, straight from the page; the clip becomes the revision card. This is also closest to how Prelims is actually sat.
 
-**Results.** A short story: the score against your target → where the marks went → three things to do next → whether your bets paid at each confidence level, against the break-even for that paper's marking → **Fix the mistakes**. Every question, timing, speed against accuracy, changed answers and time sinks (long and wrong: questions to have left) remain as tabs. A first look at each mistake takes one tap for the reason, pre-selected from what the app observed (answered in seconds, changed from right to wrong, left blank at the end, marked unsure).
+**Results.** A short story: the score against your target → where the marks went → three things to do next → whether your bets paid at each confidence level, against the break-even for that paper's marking → **Fix the mistakes**. Every question, timing, speed against accuracy, changed answers and time sinks (long and wrong: questions to have left) remain as tabs. A first look at each mistake takes one tap for the reason, pre-selected from what the app observed (answered in seconds, changed from right to wrong, left blank at the end, marked unsure). Mistakes are shown in the order worth looking at: sure and wrong first.
 
-**Briefing before a paper.** Your own standing lessons appear before the clock starts: "your pure guesses lose marks", "misreading 'not correct' cost 9 marks last time".
+**Briefing before a paper.** Your own standing lessons appear before the clock starts: "your pure guesses lose marks", "misreading 'not correct' cost 9 marks last time". You choose to sit it as in the exam or untimed; only timed papers are measured against your target.
 
 **Written answer.** The phone sits beside your paper. It shows a past question, runs a clock weighted by marks (about 9 minutes for 10 marks in a 200-mark, 3-hour paper), then shows the marking points for you to tap what your answer left out, and asks about the diagram. Missed points become recall cards. A photo of the page and **Copy for AI feedback** are optional.
 
-**Full-paper rehearsal.** A whole Mains paper: three hours, a choose-your-questions step, the pacer across questions, then the same check for each answer. General English practice (essay, précis) uses the same flow.
+**Full-paper rehearsal.** A whole Mains paper: three hours, a choose-your-questions step on the running clock, the pacer across questions (every mark gets the same time, and the screen says how far ahead or behind the paper you are), then the same check for each answer. The checking can be done at once or spread over the following days by itself. General English practice (essay, précis) uses the same flow.
 
 **The in-app test player.** For papers held fully inside the app, and for screen-based exams. Distraction-free and faithful to the paper's own rules: sectional locks, question palette, mark for review, on-screen calculator where allowed, split view for passages, keyboard shortcuts. Ported from Practice Desk.
 
-**Quick cards.** Paste a two-column list (species and botanical names, formations, formulae); each row becomes a rapid-fire card.
+**Quick cards.** Paste a two-column list (species and botanical names, formations, formulae); each row becomes a rapid-fire card, asked one way or both: say it, show it, Knew it or Missed.
 
 **Saving a question** you got right, when it is worth seeing again.
 
@@ -155,7 +156,7 @@ Exams and dates, the time you allow, appearance and text size, data (backup, ver
 | Diagrams, maps and tables | "Draw it" prompts with a reference image; the diagram check after an answer |
 | Short notes for the final month | "What you tend to leave out", gathered automatically |
 | Current affairs revised monthly | A current-affairs topic created each month and scheduled like any other |
-| Preparation in phases | The road ahead; you declare the phase |
+| Preparation in phases | The road ahead: drafted by the app, approved or adjusted by you |
 | Weekly review | The weekly summary, written for you |
 | Consistency over intensity | The time you allow, a week strip that states a rest day plainly, catch-up spread forward |
 
@@ -205,7 +206,7 @@ The app ships no copyrighted papers. Paper maps carry only numbers, keys and top
 The app is the memory and the measurement; an AI is the reasoning and the content. Without a key, you carry things between them:
 
 - **Copy for AI**: one tap copies a mistake, a written answer with its marking points, or your weekly state, as a brief to paste into any chat.
-- **Paste from AI**: the app accepts key points, cards and question sets in a simple text layout that any assistant can produce. The layout is not yet specified.
+- **Paste from AI**: the app accepts key points, cards and question sets in a simple text layout that any assistant can produce. A first layout is proposed in the mock-up (a TOPIC line, then POINTS, CARDS and QUESTION blocks); it is not settled. The screen also gives a ready request to copy into the chat, so the assistant replies in that shape.
 - **Packs** and paper maps are prepared in Claude Code sessions.
 
 With a key, later and optional: drafting questions from a PDF, feedback on a written answer, explaining a mistake. Always as drafts you approve.
@@ -227,9 +228,11 @@ With a key, later and optional: drafting questions from a PDF, feedback on a wri
 
 A calmer sibling of Study Director's Glass look: dark and light from one set of colour roles, one accent, one warm colour reserved for "needs attention", Inter throughout (Inter Tight for headings and large numbers), generous spacing, restrained motion. Reading surfaces are plain and high-contrast.
 
-The mock-up is on a design canvas; its source is in `design/mockup/` (see `design/README.md`). It shows Today, a phone session, a written answer, answer-sheet mode, results, Syllabus, Progress, and a concept for Study Director's Plan.
+The mock-up is on a design canvas; its source is in `design/mockup/` and every screen is listed in `design/README.md`. It now covers Practice Director end to end: the four places on a laptop and on a phone, a daily session, every kind of practice, the whole path of a paper (briefing, answer sheet, key entry, results, mistakes), the moments the app speaks up, first run, Settings, search, the AI bridge and a design-system sheet. The design-system sheet is the reference for colour roles, type, shape, controls, motion and wording.
 
-**Where the mock-up lags this document.** Not yet drawn: the in-app test player, Practice home, first run, Settings, search, a tablet layout, the briefing before a paper, choose-your-own by subject and kind, quick cards, full-paper rehearsal, the source line and Read next.
+Paper pages (answer sheet, results, mistakes, the test player) are drawn light and the rest dark, to show both themes; in the app the theme is your choice, and only the PDF page itself is always white.
+
+**Not drawn yet.** The authoring studio (a late phase); the screen for comparing and choosing paper editions; the clipping tool in the middle of a clip; a recall session at laptop width (it is the phone layout, centred); the advanced memory-schedule page, the guide and the history archive; the printed "what you tend to leave out" sheet; the main screens in the light theme. Study Director's own screens are a separate pass.
 
 ## 13. Known limits and thin areas
 
