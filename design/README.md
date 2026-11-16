@@ -92,6 +92,10 @@ python3 design/tools/theme.py dark Results Results-dark
 
 The light variants come from `Main`, `Practice`, `Syllabus`, `Progress` and `Phone-flow`; the dark ones from `Answer-sheet` and `Results`.
 
+## Reference pictures
+
+`design/reference/` holds one picture of each board at its own size, made from the sources in `design/mockup/` on 16 Nov 2026. They are what a build session looks at beside its own screenshots. A picture shows a board's first state only; tabs, sheets and steps are in the board's source. If a board changes, its picture is made again.
+
 ## Amendments not yet drawn
 
 Found in the check of 15 Nov 2026 (docs/DECISIONS.md, entry 22). Each is small and is built from the text here and in docs/RULES.md; the boards have not been redrawn.

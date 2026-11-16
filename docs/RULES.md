@@ -107,8 +107,9 @@ over the last ten sittings of that paper held in the bank. The "one paper's even
 3. **Due re-attempts**, up to 15% of the core's time.
 4. **Recalls**, in order of value per minute, until the core holds your normal day (2 hours).
 5. **One written answer** in any phase that includes writing (section 6): a past question from a topic ticked or recalled in the last 14 days and not written on in the last 30, heaviest first.
-6. **Mixing.** The list is then rearranged so that no more than three items in a row come from one subject while another subject has items waiting. Order within a subject is kept.
-7. **Offers below the core**, one line each, up to the most you allow (4 hours): the next recalls in order; recalls due in the next two days, at half urgency; a question set where the bank has questions; quick cards that are due.
+6. **Upkeep of a qualifying paper.** While CSAT is not yet safely cleared (section 4), a short set of 15 questions twice a week, so that it never needs a panic week. It draws on your bank; with no questions there, the line opens the answer sheet on a paper of yours.
+7. **Mixing.** The list is then rearranged so that no more than three items in a row come from one subject while another subject has items waiting. Order within a subject is kept.
+8. **Offers below the core**, one line each, up to the most you allow (4 hours): the next recalls in order; recalls due in the next two days, at half urgency; a question set where the bank has questions; quick cards that are due.
 
 ### Less time, more time, your own choice
 

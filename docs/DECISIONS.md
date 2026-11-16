@@ -71,6 +71,8 @@ How the idea has changed, in order, and where each question stands. Consolidated
 
     Also corrected on the way: BUILD.md still described the first sync layout in one paragraph; PLAN.md and BUILD.md still offered reading a key from a photo, which is parked; the exam dates were checked again.
 
+23. **The implementation plan, written at the owner's request** for building by an agent in one chat or many: [IMPLEMENTATION.md](IMPLEMENTATION.md). It breaks the phases into work packages of about one session each, every one with what to read, what to build, what is ported from where, and how to know it is done; fixes the routine of a session and one meaning of "done"; and adds three things a session starts from: `CLAUDE.md`, `docs/STATUS.md`, and a picture of every board in `design/reference/`. Choices made in it, all open to change: tests of pure code on Node's own runner, as Practice Desk does; browser tests on Chromium, with the iPad checked by the owner from a short list at each phase's end; routes after `#`; a hand-written service worker; ported code copied at a named commit with a list of what came from where; `main` to be created from the planning branch. It was written on the recommendations of section 7 before the owner had answered them, so that nothing waits; each one that changes it is named there.
+
 ## 3. Positions that were reversed
 
 | Was | Now | Why |

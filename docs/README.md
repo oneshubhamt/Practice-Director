@@ -1,6 +1,6 @@
 # Planning documents
 
-Everything decided or proposed so far, consolidated on 14 Nov 2026 from the whole planning conversation. Nothing is built, and nothing is final until the owner says so.
+Everything decided or proposed so far, consolidated on 14 Nov 2026 from the whole planning conversation. Nothing is built, and nothing is final until the owner says so. A session that builds starts from `CLAUDE.md` at the root of the repository.
 
 | Read | For |
 |---|---|
@@ -10,6 +10,8 @@ Everything decided or proposed so far, consolidated on 14 Nov 2026 from the whol
 | [BUILD.md](BUILD.md) | How Practice Director would be built: stack, modules, what is reused and how directly, tests, phases |
 | [DATA.md](DATA.md) | What is stored and what is not: the five kinds of data, their size, what stays on a device, what moves between devices, versions and backup |
 | [RULES.md](RULES.md) | The exact rule behind everything the app does by itself: days and clocks, the memory schedule, what Today offers and in what order, phases, when the app speaks up, scoring and what is said after a paper, how typed and pasted text is read, and the qualities the build must meet |
+| [IMPLEMENTATION.md](IMPLEMENTATION.md) | How the building is run: the routine of a build session, what "done" means, the work packages of each phase with what to read, what to build and how to know it is done, content preparation, risks |
+| [STATUS.md](STATUS.md) | Where the building stands: what is done, what is next, what waits on the owner |
 | [DECISIONS.md](DECISIONS.md) | How the idea changed, what was reversed and why, what is parked, left out and still open |
 | [../design/README.md](../design/README.md) | The mock-up |
 
